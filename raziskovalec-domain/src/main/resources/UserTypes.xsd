@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.raziskovalec.org/UserTypes"
+	xmlns:tns="http://www.raziskovalec.org/UserTypes" elementFormDefault="qualified">
+	
+	<simpleType name="TelephoneNumber">
+		<restriction base="string">
+			<minLength value="6"></minLength>
+			<maxLength value="25"></maxLength>
+		</restriction>
+	</simpleType>
+	
+
+	<simpleType name="WWW">
+		<restriction base="string">
+			<minLength value="0"></minLength>
+			<maxLength value="255"></maxLength>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="Email">
+		<restriction base="string">
+			<minLength value="6"></minLength>
+			<maxLength value="255"></maxLength>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ID">
+		<restriction base="int">
+			<minInclusive value="1"></minInclusive>
+		</restriction>
+	</simpleType>
+</schema>

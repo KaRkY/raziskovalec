@@ -1,0 +1,14 @@
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="root" template="/WEB-INF/jsp/template/template.jsp">
+		<put-attribute name="page-name" value="Raziskovalec" />
+	</definition>
+
+	<definition name="home" extends="root">
+		<put-attribute name="menu" value="home" cascade="true" />
+		<put-attribute name="title" value="Domov" cascade="true" />
+		<put-attribute name="header" value="/WEB-INF/jsp/template/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/home.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/template/footer.jsp" />
+	</definition>
+</tiles-definitions>
