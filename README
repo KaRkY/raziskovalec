@@ -1,3 +1,5 @@
 Dela na Tomcat 7.x
 
-POMEMBNO: spremeni Default servlet URL na /static To bo popravljeno v Tomcat 7.0.15
+POMEMBNO: spremeni Default servlet URL na /static To bo popravljeno v Tomcat 7.0.16
+
+Na 7.0.16 dela brez popravkov.
