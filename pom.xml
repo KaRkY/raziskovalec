@@ -201,7 +201,6 @@
 
 	<modules>
 		<module>raziskovalec-web</module>
-		<module>raziskovalec-domain</module>
 	</modules>
 
 </project>

@@ -3,4 +3,5 @@
 .classpath
 .springBeans
 target/
+target
 .settings
