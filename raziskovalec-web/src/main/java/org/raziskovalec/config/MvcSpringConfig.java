@@ -16,6 +16,8 @@
 
 package org.raziskovalec.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -33,6 +35,8 @@ import org.springframework.web.servlet.view.tiles2.TilesView;
 @ComponentScan(basePackages = { "org.raziskovalec.controllers" })
 public class MvcSpringConfig extends WebMvcConfigurerAdapter
 {
+
+	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public void configureDefaultServletHandling(
