@@ -13,14 +13,18 @@
 	</div>
 </div>
 
-<c:set var="menuSelect" > <tiles:getAsString name="menu"/> </c:set>
+<c:set var="menuSelect">
+	<tiles:getAsString name="menu" />
+</c:set>
 
 <div id="menubar">
 	<ul id="menu">
 		<li class="${menuSelect eq 'home' ? 'selected' : ''}"><a
-			href="<c:url value="/" />">Domov </a></li>
+			href='<c:url value="/" />'
+		>Domov </a></li>
 		<li class="${menuSelect eq 'persons' ? 'selected' : ''}"><a
-			href="<c:url value="/persons" />">Test</a></li>
+			href='<c:url value="/persons" />'
+		>Test</a></li>
 		<li><a href="page.html">A Page</a></li>
 		<li><a href="another_page.html">Another Page</a></li>
 		<li><a href="contact.html">Contact Us</a></li>

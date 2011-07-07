@@ -31,23 +31,28 @@ import org.springframework.web.servlet.view.tiles2.TilesView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "org.raziskovalec.controllers" })
-public class MvcSpringConfig extends WebMvcConfigurerAdapter {
-	
+public class MvcSpringConfig extends WebMvcConfigurerAdapter
+{
+
 	@Override
 	public void configureDefaultServletHandling(
-			DefaultServletHandlerConfigurer configurer) {
+			final DefaultServletHandlerConfigurer configurer)
+	{
 		configurer.enable();
 	}
 
 	@Override
-	public void configureViewControllers(ViewControllerConfigurer configurer) {
+	public void configureViewControllers(
+			final ViewControllerConfigurer configurer)
+	{
 
 		configurer.mapViewName("/", "home");
 		configurer.mapViewName("/login", "home");
 	}
 
 	@Bean
-	public TilesConfigurer tilesConfigurer() {
+	public TilesConfigurer tilesConfigurer()
+	{
 		TilesConfigurer configurer = new TilesConfigurer();
 
 		String[] definitions = { "/WEB-INF/tiles/general.xml" };
@@ -58,7 +63,8 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public ViewResolver viewResolver() {
+	public ViewResolver viewResolver()
+	{
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setViewClass(TilesView.class);
 

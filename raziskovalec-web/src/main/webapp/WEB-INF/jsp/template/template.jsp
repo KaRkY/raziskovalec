@@ -12,12 +12,15 @@
 <c:url value="/script/script.js" var="script" />
 
 <script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"
+></script>
 
 <script type="text/javascript" src="${script}"></script>
 
 <title><tiles:getAsString name="page-name" /> - <tiles:getAsString
-		name="title" /></title>
+		name="title"
+	/>
+</title>
 </head>
 <body>
 	<div id="main">
@@ -25,13 +28,11 @@
 			<tiles:insertAttribute name="header" />
 		</div>
 		<div id="site_content">
-                <div class="sidebar">
-                    sdfdsfdsf
-                </div>
-                <div id="content">
-                    <tiles:insertAttribute name="body" />
-                </div>
-            </div>
+			<div class="sidebar">sdfdsfdsf</div>
+			<div id="content">
+				<tiles:insertAttribute name="body" />
+			</div>
+		</div>
 		<div id="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>

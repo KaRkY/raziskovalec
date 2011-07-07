@@ -32,32 +32,39 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 
 @Configuration
 @EnableTransactionManagement(mode = AdviceMode.PROXY)
-public class RootSpringConfig implements TransactionManagementConfigurer {
-	private Logger logger = LoggerFactory.getLogger(getClass());
+public class RootSpringConfig implements TransactionManagementConfigurer
+{
+	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+
+	@Override
+	public PlatformTransactionManager annotationDrivenTransactionManager()
+	{
+		return this.txManager();
+	}
 
 	@Bean
-	public DataSource dataSource() {
-		try {
-			logger.trace("Getting DataSource");
+	public DataSource dataSource()
+	{
+		try
+		{
+			this.logger.trace("Getting DataSource");
 			InitialContext ctx = new InitialContext();
 			return (DataSource) ctx.lookup("java:comp/env/jdbc/raziskovalecDB");
-		} catch (NamingException e) {
-			logger.error(e.getMessage(), e);
+		}
+		catch (NamingException e)
+		{
+			this.logger.error(e.getMessage(), e);
 			return null;
 		}
 	}
 
 	@Bean
-	public PlatformTransactionManager txManager() {
-		logger.trace("Creating Transaction manager");
+	public PlatformTransactionManager txManager()
+	{
+		this.logger.trace("Creating Transaction manager");
 		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(
-				dataSource());
+				this.dataSource());
 		return dataSourceTransactionManager;
-	}
-
-	@Override
-	public PlatformTransactionManager annotationDrivenTransactionManager() {
-		return txManager();
 	}
 
 }

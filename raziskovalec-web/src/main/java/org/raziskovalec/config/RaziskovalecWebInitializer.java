@@ -16,18 +16,12 @@
 
 package org.raziskovalec.config;
 
-import java.io.IOException;
 import java.util.Set;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -35,25 +29,29 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-public class RaziskovalecWebInitializer implements WebApplicationInitializer {
+public class RaziskovalecWebInitializer implements WebApplicationInitializer
+{
 
 	@Override
-	public void onStartup(ServletContext servletContext)
-			throws ServletException {
-		AnnotationConfigWebApplicationContext rootAppContext = initRootContext(servletContext);
+	public void onStartup(final ServletContext servletContext)
+			throws ServletException
+	{
+		AnnotationConfigWebApplicationContext rootAppContext = this
+				.initRootContext(servletContext);
 
-		AnnotationConfigWebApplicationContext servletAppContext = initMvcContext(
-				servletContext, rootAppContext);
-		
-		initCharacterFilter(servletContext);
+		AnnotationConfigWebApplicationContext servletAppContext = this
+				.initMvcContext(servletContext, rootAppContext);
+
+		this.initCharacterFilter(servletContext);
 
 		servletContext.addListener(new ContextLoaderListener(rootAppContext));
 
-		ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("appServlet",
-				new DispatcherServlet(servletAppContext));
+		ServletRegistration.Dynamic servletDynamic = servletContext.addServlet(
+				"appServlet", new DispatcherServlet(servletAppContext));
 		servletDynamic.setLoadOnStartup(1);
 		Set<String> mappingConflicts = servletDynamic.addMapping("/");
-		if (!mappingConflicts.isEmpty()) {
+		if (!mappingConflicts.isEmpty())
+		{
 			throw new IllegalStateException(
 					"'appServlet' could not be mapped to '/' due "
 							+ "to an existing mapping. This is a known issue under Tomcat versions "
@@ -62,54 +60,37 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer {
 
 	}
 
-	private void initCharacterFilter(ServletContext servletContext) {
-		FilterRegistration.Dynamic filterDynamic = servletContext.addFilter("characterEncoding", new CharacterEncodingFilter());
+	private void initCharacterFilter(final ServletContext servletContext)
+	{
+		FilterRegistration.Dynamic filterDynamic = servletContext.addFilter(
+				"characterEncoding", new CharacterEncodingFilter());
 		filterDynamic.setInitParameter("encoding", "UTF-8");
 		filterDynamic.setInitParameter("forceEncoding", "true");
 		filterDynamic.getUrlPatternMappings().add("/*");
 	}
 
 	private AnnotationConfigWebApplicationContext initMvcContext(
-			ServletContext servletContext,
-			AnnotationConfigWebApplicationContext rootAppContext) {
-		
+			final ServletContext servletContext,
+			final AnnotationConfigWebApplicationContext rootAppContext)
+	{
+
 		AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
 		servletAppContext.setParent(rootAppContext);
 		servletAppContext.setServletContext(servletContext);
 		servletAppContext.register(MvcSpringConfig.class);
-		
+
 		return servletAppContext;
 	}
 
 	private AnnotationConfigWebApplicationContext initRootContext(
-			ServletContext servletContext) {
-		
+			final ServletContext servletContext)
+	{
+
 		AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
 		rootAppContext.register(RootSpringConfig.class);
 		rootAppContext.setServletContext(servletContext);
-		
+
 		return rootAppContext;
 	}
-	
-	class Test implements Filter{
-
-		@Override
-		public void destroy() {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void doFilter(ServletRequest arg0, ServletResponse arg1,
-				FilterChain arg2) throws IOException, ServletException {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void init(FilterConfig arg0) throws ServletException {
-			throw new RuntimeException();
-			
-		}}
 
 }
