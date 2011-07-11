@@ -16,6 +16,8 @@
 
 package org.raziskovalec.config;
 
+import java.util.Properties;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -26,9 +28,8 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.UrlBasedViewResolver;
-import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles2.TilesView;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 @Configuration
 @EnableWebMvc
@@ -51,17 +52,20 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	{
 
 		configurer.mapViewName("/", "home");
-		configurer.mapViewName("/login", "home");
 	}
 
 	@Bean
-	public TilesConfigurer tilesConfigurer()
+	public FreeMarkerConfigurer tilesConfigurer()
 	{
-		TilesConfigurer configurer = new TilesConfigurer();
+		FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
 
-		String[] definitions = { "/WEB-INF/tiles/general.xml" };
+		configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
 
-		configurer.setDefinitions(definitions);
+		Properties prop = new Properties();
+		prop.setProperty("auto_import",
+				"/layout/layout.ftl as layout, spring.ftl as spring");
+
+		configurer.setFreemarkerSettings(prop);
 
 		return configurer;
 	}
@@ -69,8 +73,10 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	@Bean
 	public ViewResolver viewResolver()
 	{
-		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
-		resolver.setViewClass(TilesView.class);
+		FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+		resolver.setCache(true);
+		resolver.setPrefix("");
+		resolver.setSuffix(".ftl");
 
 		return resolver;
 	}
