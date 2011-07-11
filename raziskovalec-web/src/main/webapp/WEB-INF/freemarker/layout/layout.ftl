@@ -1,3 +1,5 @@
+<#ftl encoding="UTF-8">
+
 <#macro fragment name>
 	<#local frag>
 		<#nested>

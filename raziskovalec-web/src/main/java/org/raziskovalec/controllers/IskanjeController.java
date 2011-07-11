@@ -16,35 +16,34 @@
 
 package org.raziskovalec.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/iskanje")
 public class IskanjeController
 {
+	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+
 	@RequestMapping(method = RequestMethod.GET)
-	public String isci()
+	public String isci(final Model model)
 	{
+		model.addAttribute("iskalniParameter", "");
 		return "iskanje";
 	}
 
-	@RequestMapping(value = "/{iskalniParameter}", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.POST)
 	public String iskanje(
-			@PathVariable("iskalniParameter") final String iskalniParameter,
+			@RequestParam("iskalniParameter") final String iskalniParameter,
 			final Model model)
 	{
-		return this.iskanjeSStranmi(iskalniParameter, 1, model);
-	}
-
-	@RequestMapping(value = "/{iskalniParameter}/{stran}", method = RequestMethod.GET)
-	public String iskanjeSStranmi(
-			@PathVariable("iskalniParameter") final String iskalniParameter,
-			@PathVariable("stran") final int stran, final Model model)
-	{
-		return null;
+		this.logger.info("Iskanje z parametrom: {}", iskalniParameter);
+		model.addAttribute("iskalniParameter", iskalniParameter);
+		return "iskanje";
 	}
 }

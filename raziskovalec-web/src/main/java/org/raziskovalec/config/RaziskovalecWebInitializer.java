@@ -77,6 +77,7 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 			final ServletContext servletContext,
 			final AnnotationConfigWebApplicationContext rootAppContext)
 	{
+		this.logger.trace("Init MVC context");
 
 		AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
 		servletAppContext.setParent(rootAppContext);
@@ -89,6 +90,7 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 	private AnnotationConfigWebApplicationContext initRootContext(
 			final ServletContext servletContext)
 	{
+		this.logger.trace("Init Root context");
 
 		AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
 		rootAppContext.register(RootSpringConfig.class);

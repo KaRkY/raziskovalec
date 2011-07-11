@@ -43,6 +43,7 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	public void configureDefaultServletHandling(
 			final DefaultServletHandlerConfigurer configurer)
 	{
+		this.logger.trace("Enabling default servlet hadler.");
 		configurer.enable();
 	}
 
@@ -55,8 +56,9 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	}
 
 	@Bean
-	public FreeMarkerConfigurer tilesConfigurer()
+	public FreeMarkerConfigurer freemarkerConfigurer()
 	{
+		this.logger.trace("Configuring Freemarker");
 		FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
 
 		configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
@@ -64,8 +66,10 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 		Properties prop = new Properties();
 		prop.setProperty("auto_import",
 				"/layout/layout.ftl as layout, spring.ftl as spring");
+		prop.setProperty("output_encoding", "UTF-8");
 
 		configurer.setFreemarkerSettings(prop);
+		configurer.setDefaultEncoding("UTF-8");
 
 		return configurer;
 	}
@@ -73,6 +77,7 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	@Bean
 	public ViewResolver viewResolver()
 	{
+		this.logger.trace("Confoguring freemarker viewresolver");
 		FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
 		resolver.setCache(true);
 		resolver.setPrefix("");
