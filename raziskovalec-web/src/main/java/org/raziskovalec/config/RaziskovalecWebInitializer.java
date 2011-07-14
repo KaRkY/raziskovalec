@@ -34,26 +34,28 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class RaziskovalecWebInitializer implements WebApplicationInitializer
 {
 
-	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	private transient final Logger	logger	= LoggerFactory.getLogger(this
+													.getClass());
 
 	@Override
 	public void onStartup(final ServletContext servletContext)
 			throws ServletException
 	{
-		AnnotationConfigWebApplicationContext rootAppContext = this
+		final AnnotationConfigWebApplicationContext rootAppContext = this
 				.initRootContext(servletContext);
 
-		AnnotationConfigWebApplicationContext servletAppContext = this
+		final AnnotationConfigWebApplicationContext servletAppContext = this
 				.initMvcContext(servletContext, rootAppContext);
 
 		this.initCharacterFilter(servletContext);
 
 		servletContext.addListener(new ContextLoaderListener(rootAppContext));
 
-		ServletRegistration.Dynamic servletDynamic = servletContext.addServlet(
-				"appServlet", new DispatcherServlet(servletAppContext));
+		final ServletRegistration.Dynamic servletDynamic = servletContext
+				.addServlet("appServlet", new DispatcherServlet(
+						servletAppContext));
 		servletDynamic.setLoadOnStartup(1);
-		Set<String> mappingConflicts = servletDynamic.addMapping("/");
+		final Set<String> mappingConflicts = servletDynamic.addMapping("/");
 		if (!mappingConflicts.isEmpty())
 		{
 			throw new IllegalStateException(
@@ -66,8 +68,8 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 
 	private void initCharacterFilter(final ServletContext servletContext)
 	{
-		FilterRegistration.Dynamic filterDynamic = servletContext.addFilter(
-				"characterEncoding", new CharacterEncodingFilter());
+		final FilterRegistration.Dynamic filterDynamic = servletContext
+				.addFilter("characterEncoding", new CharacterEncodingFilter());
 		filterDynamic.setInitParameter("encoding", "UTF-8");
 		filterDynamic.setInitParameter("forceEncoding", "true");
 		filterDynamic.getUrlPatternMappings().add("/*");
@@ -79,7 +81,7 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 	{
 		this.logger.trace("Init MVC context");
 
-		AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
+		final AnnotationConfigWebApplicationContext servletAppContext = new AnnotationConfigWebApplicationContext();
 		servletAppContext.setParent(rootAppContext);
 		servletAppContext.setServletContext(servletContext);
 		servletAppContext.register(MvcSpringConfig.class);
@@ -92,7 +94,7 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 	{
 		this.logger.trace("Init Root context");
 
-		AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
+		final AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
 		rootAppContext.register(RootSpringConfig.class);
 		rootAppContext.setServletContext(servletContext);
 

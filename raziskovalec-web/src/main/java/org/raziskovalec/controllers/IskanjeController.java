@@ -28,7 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/iskanje")
 public class IskanjeController
 {
-	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	private transient final Logger	logger	= LoggerFactory.getLogger(this
+													.getClass());
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String isci(final Model model)

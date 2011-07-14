@@ -37,7 +37,8 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 public class MvcSpringConfig extends WebMvcConfigurerAdapter
 {
 
-	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	private transient final Logger	logger	= LoggerFactory.getLogger(this
+													.getClass());
 
 	@Override
 	public void configureDefaultServletHandling(
@@ -59,14 +60,13 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	public FreeMarkerConfigurer freemarkerConfigurer()
 	{
 		this.logger.trace("Configuring Freemarker");
-		FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+		final FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
 
 		configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
 
-		Properties prop = new Properties();
+		final Properties prop = new Properties();
 		prop.setProperty("auto_import",
 				"/layout/layout.ftl as layout, spring.ftl as spring");
-		prop.setProperty("output_encoding", "UTF-8");
 
 		configurer.setFreemarkerSettings(prop);
 		configurer.setDefaultEncoding("UTF-8");
@@ -78,10 +78,11 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	public ViewResolver viewResolver()
 	{
 		this.logger.trace("Confoguring freemarker viewresolver");
-		FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+		final FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
 		resolver.setCache(true);
 		resolver.setPrefix("");
 		resolver.setSuffix(".ftl");
+		resolver.setContentType("text/html;charset=UTF-8");
 
 		return resolver;
 	}

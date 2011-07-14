@@ -26,6 +26,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.config.AdviceMode;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
@@ -34,7 +35,8 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @EnableTransactionManagement(mode = AdviceMode.PROXY)
 public class RootSpringConfig implements TransactionManagementConfigurer
 {
-	private Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	private transient final Logger	logger	= LoggerFactory.getLogger(this
+													.getClass());
 
 	@Override
 	public PlatformTransactionManager annotationDrivenTransactionManager()
@@ -48,13 +50,13 @@ public class RootSpringConfig implements TransactionManagementConfigurer
 		try
 		{
 			this.logger.trace("Getting DataSource");
-			InitialContext ctx = new InitialContext();
+			final InitialContext ctx = new InitialContext();
 			return (DataSource) ctx.lookup("java:comp/env/jdbc/raziskovalecDB");
 		}
-		catch (NamingException e)
+		catch (final NamingException e)
 		{
 			this.logger.error(e.getMessage(), e);
-			return null;
+			throw new DataSourceLookupFailureException(e.getMessage(), e);
 		}
 	}
 
@@ -62,9 +64,9 @@ public class RootSpringConfig implements TransactionManagementConfigurer
 	public PlatformTransactionManager txManager()
 	{
 		this.logger.trace("Creating Transaction manager");
-		DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager(
+		final DataSourceTransactionManager dataSourceTM = new DataSourceTransactionManager(
 				this.dataSource());
-		return dataSourceTransactionManager;
+		return dataSourceTM;
 	}
 
 }

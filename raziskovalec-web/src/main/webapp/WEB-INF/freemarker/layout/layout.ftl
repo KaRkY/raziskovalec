@@ -18,10 +18,14 @@
 			<head>
 				<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 				
-				<#local style>
-					<@spring.url "/styles/style.css" />
+				<#local html>
+					<@spring.url "/styles/html.css" />
 				</#local>
-				<link href="${style}" type="text/css" rel="stylesheet" />
+				<link href="${html}" type="text/css" rel="stylesheet" />
+				<#local layout>
+					<@spring.url "/styles/layout.css" />
+				</#local>
+				<link href="${layout}" type="text/css" rel="stylesheet" />
 				
 				<script type="text/javascript"
 				src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" ></script>
@@ -36,23 +40,80 @@
 				</#if>
 			</head>
 			<body>
-				<div id="content">
+				<!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
+				<div id="content">	
+					<!-- HEADER: Holds title, subtitle and header images -->
 					<div id="header">
-						<#if fragments["header"]??>
-							${fragments["header"]?trim}
-						</#if>
-					</div> <!-- End header -->
-					<div id="body">
-						<#if fragments["body"]??>
-							${fragments["body"]?trim}
-						</#if>
-					</div> <!-- End body -->
-					<div id="footer">
-						<#if fragments["footer"]??>
-							${fragments["footer"]?trim}
-						</#if>
-					</div> <!-- End footer-->
-				</div> <!--End content-->
+					
+						<div id="title">
+						  <h1>Raziskovalec.org</h1>
+						  <h2>in the city</h2>
+						</div>
+						
+						<img src="/images/bg/balloons.gif" alt="balloons" class="balloons" />
+						<img src="/images/bg/header_left.jpg" alt="left slice" class="left" />
+						<img src="/images/bg/header_right.jpg" alt="right slice" class="right" />
+	
+					</div>
+					
+					
+					
+					<!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
+					<div id="mainMenu">
+						<ul class="floatRight">
+						
+							<li><a href="index.html" title="Introduction" class="here">Intro</a></li>
+							<li><a href="help.html" title="Learn how to use the template">Help</a></li>
+							<li><a href="tags.html" title="View the styled tags">Tags</a></li>
+							<li><a href="print.html" title="View the print layout">Print</a></li>
+							<li><a href="http://fullahead.org/contact.html" title="Get in touch" class="last">Mail</a></li>
+						</ul>
+					</div>
+				
+				
+				
+				
+					<!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+					<div id="page">
+					
+					
+						<!-- 25 percent width column, aligned to the left -->
+						<div class="width25 floatLeft leftColumn">
+						
+							<h1>Intro</h1>
+						
+						</div>
+					
+					
+					
+					
+					    <!-- 75 percent width column, aligned to the right -->
+					    <div class="width75 floatRight">
+					    	<#if fragments["body"]??>
+								${fragments["body"]?trim}
+							</#if>
+						</div>
+				</div>
+				
+				
+				<!-- FOOTER: Site footer for links, copyright, etc. -->
+				<div id="footer">
+				
+				  <div id="width">
+				    <span class="floatLeft">
+				      <a href="http://www.raziskovalec.org">Raziskovalec.org</a>
+				    </span>
+				
+				    <span class="floatRight">
+				      <a href="index.html" title="Introduction">intro</a> <span class="grey">|</span>
+				      <a href="help.html" title="Learn how to use the template">help</a> <span class="grey">|</span>
+				      <a href="tags.html" title="View the styled tags">tags</a> <span class="grey">|</span>
+				      <a href="print.html" title="View the print layout">print</a> <span class="grey">|</span>
+				      <a href="http://fullahead.org/contact.html" title="Get in touch">mail</a>
+				    </span>
+				  </div>
+				
+				</div>
 			</body>
 		</html>
 	</#compress>
