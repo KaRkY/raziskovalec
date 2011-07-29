@@ -16,57 +16,14 @@
 
 package org.raziskovalec.config;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.config.AdviceMode;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 @Configuration
-@EnableTransactionManagement(mode = AdviceMode.PROXY)
-public class RootSpringConfig implements TransactionManagementConfigurer
+public class RootSpringConfig
 {
 	private transient final Logger	logger	= LoggerFactory.getLogger(this
 													.getClass());
-
-	@Override
-	public PlatformTransactionManager annotationDrivenTransactionManager()
-	{
-		return this.txManager();
-	}
-
-	@Bean
-	public DataSource dataSource()
-	{
-		try
-		{
-			this.logger.trace("Getting DataSource");
-			final InitialContext ctx = new InitialContext();
-			return (DataSource) ctx.lookup("java:comp/env/jdbc/raziskovalecDB");
-		}
-		catch (final NamingException e)
-		{
-			this.logger.error(e.getMessage(), e);
-			throw new DataSourceLookupFailureException(e.getMessage(), e);
-		}
-	}
-
-	@Bean
-	public PlatformTransactionManager txManager()
-	{
-		this.logger.trace("Creating Transaction manager");
-		final DataSourceTransactionManager dataSourceTM = new DataSourceTransactionManager(
-				this.dataSource());
-		return dataSourceTM;
-	}
 
 }

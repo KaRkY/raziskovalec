@@ -59,7 +59,7 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	@Bean
 	public FreeMarkerConfigurer freemarkerConfigurer()
 	{
-		this.logger.trace("Configuring Freemarker");
+		this.logger.trace("Getting Freemarker");
 		final FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
 
 		configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
@@ -77,7 +77,7 @@ public class MvcSpringConfig extends WebMvcConfigurerAdapter
 	@Bean
 	public ViewResolver viewResolver()
 	{
-		this.logger.trace("Confoguring freemarker viewresolver");
+		this.logger.trace("Getting freemarker viewresolver");
 		final FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
 		resolver.setCache(true);
 		resolver.setPrefix("");

@@ -35,7 +35,7 @@ public class IskanjeController
 	public String isci(final Model model)
 	{
 		model.addAttribute("iskalniParameter", "");
-		return "iskanje";
+		return "iskanje/iskanje";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -45,6 +45,6 @@ public class IskanjeController
 	{
 		this.logger.info("Iskanje z parametrom: {}", iskalniParameter);
 		model.addAttribute("iskalniParameter", iskalniParameter);
-		return "iskanje";
+		return "iskanje/iskanje";
 	}
 }

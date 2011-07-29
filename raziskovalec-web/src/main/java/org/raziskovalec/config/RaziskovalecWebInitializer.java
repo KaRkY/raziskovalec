@@ -16,13 +16,16 @@
 
 package org.raziskovalec.config;
 
+import java.util.EnumSet;
 import java.util.Set;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
+import org.raziskovalec.filters.Slf4jLoggingFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.WebApplicationInitializer;
@@ -49,6 +52,8 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 
 		this.initCharacterFilter(servletContext);
 
+		this.initLoggingFilter(servletContext);
+
 		servletContext.addListener(new ContextLoaderListener(rootAppContext));
 
 		final ServletRegistration.Dynamic servletDynamic = servletContext
@@ -73,6 +78,14 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
 		filterDynamic.setInitParameter("encoding", "UTF-8");
 		filterDynamic.setInitParameter("forceEncoding", "true");
 		filterDynamic.getUrlPatternMappings().add("/*");
+	}
+
+	private void initLoggingFilter(final ServletContext servletContext)
+	{
+		final FilterRegistration.Dynamic loggerFilter = servletContext
+				.addFilter("loggerFilter", new Slf4jLoggingFilter());
+		loggerFilter.addMappingForUrlPatterns(
+				EnumSet.of(DispatcherType.REQUEST), true, "/*");
 	}
 
 	private AnnotationConfigWebApplicationContext initMvcContext(
