@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.raziskovalec.controllers;
 
 import org.slf4j.Logger;
@@ -24,27 +23,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ * 
+ * @author Rene Svetina
+ */
 @Controller
 @RequestMapping("/iskanje")
 public class IskanjeController
 {
-	private transient final Logger	logger	= LoggerFactory.getLogger(this
-													.getClass());
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String isci(final Model model)
-	{
-		model.addAttribute("iskalniParameter", "");
-		return "iskanje/iskanje";
-	}
+    private transient final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String iskanje(
-			@RequestParam("iskalniParameter") final String iskalniParameter,
-			final Model model)
-	{
-		this.logger.info("Iskanje z parametrom: {}", iskalniParameter);
-		model.addAttribute("iskalniParameter", iskalniParameter);
-		return "iskanje/iskanje";
-	}
+    /**
+     * 
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String isci(final Model model)
+    {
+        model.addAttribute("iskalniParameter", "");
+        return "iskanje/iskanje";
+    }
+
+    /**
+     * 
+     * @param iskalniParameter
+     * @param model
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    public String iskanje(
+            @RequestParam("iskalniParameter") final String iskalniParameter,
+            final Model model)
+    {
+        this.logger.info("Iskanje z parametrom: {}", iskalniParameter);
+        model.addAttribute("iskalniParameter", iskalniParameter);
+        return "iskanje/iskanje";
+    }
 }

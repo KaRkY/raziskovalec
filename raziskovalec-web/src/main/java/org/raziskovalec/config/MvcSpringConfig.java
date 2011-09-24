@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package org.raziskovalec.config;
 
 import java.util.Properties;
@@ -31,60 +30,67 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
+/**
+ * 
+ * @author Rene Svetina
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = { "org.raziskovalec.controllers" })
 public class MvcSpringConfig extends WebMvcConfigurerAdapter
 {
-
-	private transient final Logger	logger	= LoggerFactory.getLogger(this
-													.getClass());
-
-	@Override
-	public void configureDefaultServletHandling(
-			final DefaultServletHandlerConfigurer configurer)
-	{
-		this.logger.trace("Enabling default servlet hadler.");
-		configurer.enable();
-	}
-
-	@Override
-	public void configureViewControllers(
-			final ViewControllerConfigurer configurer)
-	{
-
-		configurer.mapViewName("/", "home");
-	}
-
-	@Bean
-	public FreeMarkerConfigurer freemarkerConfigurer()
-	{
-		this.logger.trace("Getting Freemarker");
-		final FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
-
-		configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
-
-		final Properties prop = new Properties();
-		prop.setProperty("auto_import",
-				"/layout/layout.ftl as layout, spring.ftl as spring");
-
-		configurer.setFreemarkerSettings(prop);
-		configurer.setDefaultEncoding("UTF-8");
-
-		return configurer;
-	}
-
-	@Bean
-	public ViewResolver viewResolver()
-	{
-		this.logger.trace("Getting freemarker viewresolver");
-		final FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-		resolver.setCache(true);
-		resolver.setPrefix("");
-		resolver.setSuffix(".ftl");
-		resolver.setContentType("text/html;charset=UTF-8");
-
-		return resolver;
-	}
-
+    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    
+    @Override
+    public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer)
+    {
+        logger.trace("Enabling default servlet hadler.");
+        configurer.enable();
+    }
+    
+    @Override
+    public void configureViewControllers(final ViewControllerConfigurer configurer)
+    {
+        
+        configurer.mapViewName("/", "home");
+    }
+    
+    /**
+     * 
+     * @return freemarker configuration
+     */
+    @Bean
+    public FreeMarkerConfigurer freemarkerConfigurer()
+    {
+        logger.trace("Getting Freemarker");
+        final FreeMarkerConfigurer configurer = new FreeMarkerConfigurer();
+        
+        configurer.setTemplateLoaderPath("/WEB-INF/freemarker");
+        
+        final Properties prop = new Properties();
+        prop.setProperty("auto_import", "/layout/layout.ftl as layout, spring.ftl as spring");
+        
+        configurer.setFreemarkerSettings(prop);
+        configurer.setDefaultEncoding("UTF-8");
+        
+        return configurer;
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    @Bean
+    public ViewResolver viewResolver()
+    {
+        logger.trace("Getting freemarker viewresolver");
+        final FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+        resolver.setCache(true);
+        resolver.setPrefix("");
+        resolver.setSuffix(".ftl");
+        resolver.setContentType("text/html;charset=UTF-8");
+        
+        return resolver;
+    }
 }
