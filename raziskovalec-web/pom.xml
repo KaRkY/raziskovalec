@@ -48,9 +48,6 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-    <build>
-        <finalName>raziskovalec-web</finalName>
-    </build>
 
     <profiles>
         <profile>
