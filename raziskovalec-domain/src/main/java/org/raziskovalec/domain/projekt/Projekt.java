@@ -17,6 +17,15 @@ package org.raziskovalec.domain.projekt;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,20 +41,38 @@ import org.raziskovalec.domain.raziskovanje.Raziskovalec;
  */
 @Data
 @EqualsAndHashCode(of = { "ime" })
+@Entity
 public class Projekt
 {
     @Setter(AccessLevel.PROTECTED)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long                  id;
+    @Column(nullable = false, unique = true)
     private String                ime;
+    @Column(nullable = false)
     private LocalDate             datumZacetka;
     private LocalDate             datumZakljucka;
+    @Column(nullable = false)
     private String                opis;
+    @Column(nullable = false)
     private String                namen;
+    @ManyToOne(optional = false)
+    @JoinColumn
     private Tag                   tag;
+    @ManyToOne(optional = false)
+    @JoinColumn
     private Organizacija          vodilnaOrganizacija;
+    @ManyToOne(optional = false)
+    @JoinColumn
     private ProjektnaSkupina      vodilnaSkupina;
+    @ManyToMany
     private Set<Organizacija>     sudelujoceOrganizacije;
+    @ManyToMany
     private Set<ProjektnaSkupina> sudelujoceSkupine;
+    @ManyToOne(optional = false)
+    @JoinColumn
     private Raziskovalec          projektniVodja;
+    @ManyToMany
     private Set<Raziskovalec>     neodvisniRaziskovalci;
 }

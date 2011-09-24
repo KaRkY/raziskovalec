@@ -15,6 +15,12 @@
  */
 package org.raziskovalec.domain.projekt;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,9 +32,13 @@ import lombok.Setter;
  */
 @Data
 @EqualsAndHashCode(of = { "naziv" })
+@Entity
 public class Tag
 {
     @Setter(AccessLevel.PROTECTED)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
+    @Column(nullable = false, unique = true)
     private String naziv;
 }

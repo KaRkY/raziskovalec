@@ -17,6 +17,16 @@ package org.raziskovalec.domain.raziskovanje;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,18 +42,32 @@ import org.raziskovalec.domain.projekt.ProjektnaSkupina;
  * 
  */
 @Data
-@EqualsAndHashCode(of = { "ime", "telefonskaStevilka" })
+@EqualsAndHashCode(of = { "ime", "telefonskaStevilka", "email" })
+@Entity
 public class Organizacija
 {
     @Setter(AccessLevel.PROTECTED)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long                  id;
+    @Column(nullable = false)
     private String                ime;
+    @Column(nullable = false)
     private String                telefonskaStevilka;
+    @Column(nullable = false, unique = true)
     private String                email;
     private String                www;
+    @ManyToOne(optional = false)
+    @JoinColumn
     private Naslov                naslov;
+    @OneToMany(mappedBy = "lastnikOrganizacija")
     private Set<Patent>           lastniskiPatenti;
+    @OneToMany(mappedBy = "vodilnaOrganizacija")
     private Set<ProjektnaSkupina> projektneSkupine;
+    @ManyToMany(mappedBy = "sudelujoceOrganizacije")
+    private Set<ProjektnaSkupina> sodelujeV;
+    @OneToMany(mappedBy = "vodilnaOrganizacija")
     private Set<Projekt>          projekti;
+    @OneToMany(mappedBy = "organizacija")
     private Set<Raziskovalec>     raziskovalci;
 }

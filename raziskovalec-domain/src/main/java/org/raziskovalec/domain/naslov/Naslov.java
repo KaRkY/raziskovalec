@@ -15,6 +15,14 @@
  */
 package org.raziskovalec.domain.naslov;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,13 +33,22 @@ import lombok.Setter;
  * 
  */
 @Data
-@EqualsAndHashCode(of= {"hisnaStevilka", "ulica", "posta", "mesto"})
+@EqualsAndHashCode(of = { "hisnaStevilka", "ulica", "posta", "mesto" })
+@Entity
 public class Naslov
 {
     @Setter(AccessLevel.PROTECTED)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
+    @Column(nullable = false)
     private String hisnaStevilka;
+    @Column(nullable = false)
     private String ulica;
-    private Mesto mesto;
-    private Posta posta;
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private Mesto  mesto;
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private Posta  posta;
 }
