@@ -15,10 +15,18 @@
  */
 package org.raziskovalec.service.config;
 
+import java.util.Set;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
+import org.apache.cxf.transport.servlet.CXFServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 /**
  * @author Rene Svetina
@@ -26,6 +34,7 @@ import org.springframework.web.WebApplicationInitializer;
  */
 public class ServiceWebInitializer implements WebApplicationInitializer
 {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     
     /*
      * (non-Javadoc)
@@ -37,7 +46,18 @@ public class ServiceWebInitializer implements WebApplicationInitializer
     @Override
     public void onStartup(final ServletContext servletContext) throws ServletException
     {
-        // TODO Auto-generated method stub
+        logger.trace("Init rootAppContext.");
+        final AnnotationConfigWebApplicationContext rootAppContext = new AnnotationConfigWebApplicationContext();
+        
+        logger.trace("Adding listener");
+        servletContext.addListener(new ContextLoaderListener(rootAppContext));
+        
+        logger.trace("Adding servlet.");
+        final ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("appServlet", new CXFServlet());
+        servletDynamic.setLoadOnStartup(1);
+        final Set<String> mappingConflicts = servletDynamic.addMapping("/");
+        
+        servletDynamic.setInitParameter("config-location", "/WEB-INF/spring/cxf-applicationContext.xml");
         
     }
     

@@ -47,6 +47,10 @@
             <artifactId>raziskovalec-domain</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+        </dependency>
     </dependencies>
 
     <profiles>

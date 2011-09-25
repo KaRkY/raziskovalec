@@ -62,8 +62,8 @@
 					<div id="mainMenu">
 						<ul class="floatRight">
 						
-							<li><a href="index.html" title="Home" <#if menuName="Home">class="here"</#if> >Home</a></li>
-							<li><a href="help.html" title="Iskanje" <#if menuName="Iskanje">class="here"</#if>>Iskanje</a></li>
+							<li><a href="<@spring.url "/" />" title="Home" <#if menuName="Home">class="here"</#if> >Home</a></li>
+							<li><a href="<@spring.url "/iskanje" />" title="Iskanje" <#if menuName="Iskanje">class="here"</#if>>Iskanje</a></li>
 							<li><a href="tags.html" title="View the styled tags">Tags</a></li>
 							<li><a href="print.html" title="View the print layout">Print</a></li>
 							<li><a href="http://fullahead.org/contact.html" title="Get in touch" class="last">Mail</a></li>
