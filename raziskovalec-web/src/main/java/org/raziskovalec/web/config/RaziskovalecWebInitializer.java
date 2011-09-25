@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.config;
+package org.raziskovalec.web.config;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -24,7 +24,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
-import org.raziskovalec.filters.Slf4jLoggingFilter;
+import org.raziskovalec.web.filters.Slf4jLoggingFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.WebApplicationInitializer;

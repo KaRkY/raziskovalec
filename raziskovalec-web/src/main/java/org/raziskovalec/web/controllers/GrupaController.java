@@ -13,19 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.config;
+package org.raziskovalec.web.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 
 /**
  * 
  * @author Rene Svetina
  */
-@Configuration
-public class RootSpringConfig
+@Controller
+public class GrupaController
 {
-
-    private transient final Logger logger = LoggerFactory.getLogger(this.getClass());
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.controllers;
+package org.raziskovalec.web.controllers;
 
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
  * @author Rene Svetina
  */
 @Controller
-public class GrupaController
+public class RaziskovalecController
 {
+
 }

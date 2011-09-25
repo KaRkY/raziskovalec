@@ -1,4 +1,4 @@
-package org.raziskovalec.filters;
+package org.raziskovalec.web.filters;
 
 import javax.servlet.http.HttpServletRequest;
 
