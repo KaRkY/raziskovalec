@@ -15,8 +15,8 @@
  */
 
 /**
- * Osnovna konfiguracija projekta za spletno stran
+ * Servisi za raziskovalca
  * 
  * @author Rene Svetina
  */
-package org.raziskovalec.web.config;
+package org.raziskovalec.service;
