@@ -25,6 +25,13 @@
         </developer>
     </developers>
 
+    <name>Rziskovalec</name>
+    <description>
+        Projekt ki sem ga začel zaradi diplome. 
+        Projekt bi naj omogočal delo z raziskovalci 
+        in njihovimi patenti ter projekti, ki jih izvajajo.
+    </description>
+
     <scm>
         <connection>scm:git:git://github.com/KaRkY/Raziskovalci.git</connection>
         <url>https://github.com/KaRkY/Raziskovalci</url>

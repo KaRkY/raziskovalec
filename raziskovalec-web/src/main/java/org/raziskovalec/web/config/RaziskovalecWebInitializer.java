@@ -68,11 +68,9 @@ public class RaziskovalecWebInitializer implements WebApplicationInitializer
         servletDynamic.setLoadOnStartup(1);
         final Set<String> mappingConflicts = servletDynamic.addMapping("/");
         if (!mappingConflicts.isEmpty())
-        {
             throw new IllegalStateException("'appServlet' could not be mapped to '/' due "
                     + "to an existing mapping. This is a known issue under Tomcat versions " + "<= 7.0.14; see "
                     + "https://issues.apache.org/bugzilla/show_bug.cgi?id=51278");
-        }
         
     }
     

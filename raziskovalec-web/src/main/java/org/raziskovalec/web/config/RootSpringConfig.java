@@ -15,8 +15,6 @@
  */
 package org.raziskovalec.web.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -27,5 +25,4 @@ import org.springframework.context.annotation.Configuration;
 public class RootSpringConfig
 {
 
-    private transient final Logger logger = LoggerFactory.getLogger(this.getClass());
 }
