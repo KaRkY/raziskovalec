@@ -25,12 +25,10 @@
         </developer>
     </developers>
 
-    <name>Rziskovalec</name>
-    <description>
-        Projekt ki sem ga začel zaradi diplome. 
-        Projekt bi naj omogočal delo z raziskovalci 
-        in njihovimi patenti ter projekti, ki jih izvajajo.
-    </description>
+    <name>Raziskovalec</name>
+    <description>Projekt ki sem ga začel zaradi diplome. 
+Projekt bi naj omogočal delo z raziskovalci 
+in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 
     <scm>
         <connection>scm:git:git://github.com/KaRkY/Raziskovalci.git</connection>
@@ -119,7 +117,6 @@
                         <execution>
                             <id>generate</id>
                             <goals>
-                                <goal>aggregate</goal>
                                 <goal>jar</goal>
                             </goals>
                             <phase>install</phase>
