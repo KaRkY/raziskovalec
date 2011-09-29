@@ -43,13 +43,12 @@
             <artifactId>cglib</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>raziskovalec-domain</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-jaxrs</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.raziskovalec</groupId>
+            <artifactId>raziskovalec-domain</artifactId>
         </dependency>
     </dependencies>
 

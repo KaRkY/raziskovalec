@@ -19,4 +19,5 @@
             <artifactId>javaee-web-api</artifactId>
         </dependency>
     </dependencies>
+    <name>raziskovalec-domain</name>
 </project>

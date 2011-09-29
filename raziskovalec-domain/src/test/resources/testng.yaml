@@ -1,0 +1,8 @@
+name: raziskovalec-domain
+tests:
+  - name: NaslovBuilders
+    classes:
+      - org.raziskovalec.domain.builders.naslov.MestoBuilderTest
+      - org.raziskovalec.domain.builders.naslov.NaslovBuilderTest
+      - org.raziskovalec.domain.builders.naslov.PostaBuilderTest
+
