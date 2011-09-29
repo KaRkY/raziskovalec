@@ -19,12 +19,19 @@ import org.raziskovalec.domain.builders.AbstractBuilder;
 import org.raziskovalec.domain.naslov.Mesto;
 
 /**
+ * Builder za {@link Mesto}
+ * 
  * @author Rene Svetina
  * 
  */
 public class MestoBuilder extends AbstractBuilder<Mesto, MestoBuilder>
 {
     
+    /**
+     * @param ime
+     *            ime mesta
+     * @return builder
+     */
     public MestoBuilder ime(final String ime)
     {
         getValue().setIme(ime);
@@ -39,7 +46,7 @@ public class MestoBuilder extends AbstractBuilder<Mesto, MestoBuilder>
     @Override
     protected Mesto getObject()
     {
-        return  new Mesto();
+        return new Mesto();
     }
     
     /*

@@ -74,12 +74,13 @@ public class NaslovBuilderTest
     @Test
     public void shouldBuildPosta()
     {
-        final Naslov naslov = new NaslovBuilder().posta(new PostaBuilder().ime("Maribor").build()).build();
+        final Naslov naslov = new NaslovBuilder().posta(new PostaBuilder().ime("Maribor").postnaStevilka(2000).build())
+                .build();
         assertNull(naslov.getId(), "Id");
         assertNull(naslov.getUlica(), "Ulica");
         assertNull(naslov.getHisnaStevilka(), "HisnaStevilka");
         assertNull(naslov.getMesto(), "Mesto");
-        assertEquals(new PostaBuilder().ime("Maribor").build(), naslov.getPosta(), "Posta");
+        assertEquals(new PostaBuilder().ime("Maribor").postnaStevilka(2000).build(), naslov.getPosta(), "Posta");
     }
     
     @Test
@@ -88,12 +89,12 @@ public class NaslovBuilderTest
         final Naslov naslov = new NaslovBuilder().ulica("Cankarjeva")
                 .hisnaStevilka("10a")
                 .mesto(new MestoBuilder().ime("Maribor").build())
-                .posta(new PostaBuilder().ime("Maribor").build())
+                .posta(new PostaBuilder().ime("Maribor").postnaStevilka(2000).build())
                 .build();
         assertNull(naslov.getId(), "Id");
         assertEquals("Cankarjeva", naslov.getUlica(), "Ulica");
         assertEquals("10a", naslov.getHisnaStevilka(), "HisnaStevilka");
         assertEquals(new MestoBuilder().ime("Maribor").build(), naslov.getMesto(), "Mesto");
-        assertEquals(new PostaBuilder().ime("Maribor").build(), naslov.getPosta(), "Posta");
+        assertEquals(new PostaBuilder().ime("Maribor").postnaStevilka(2000).build(), naslov.getPosta(), "Posta");
     }
 }

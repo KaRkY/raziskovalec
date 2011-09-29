@@ -21,30 +21,52 @@ import org.raziskovalec.domain.naslov.Naslov;
 import org.raziskovalec.domain.naslov.Posta;
 
 /**
+ * Builder za {@link Naslov}
+ * 
  * @author Rene Svetina
  * 
  */
 public class NaslovBuilder extends AbstractBuilder<Naslov, NaslovBuilder>
 {
     
+    /**
+     * @param hisnaStevilka
+     *            Hišna številka
+     * @return builder
+     */
     public NaslovBuilder hisnaStevilka(final String hisnaStevilka)
     {
         getValue().setHisnaStevilka(hisnaStevilka);
         return self();
     }
     
+    /**
+     * @param ulica
+     *            Ulica
+     * @return builder
+     */
     public NaslovBuilder ulica(final String ulica)
     {
         getValue().setUlica(ulica);
         return self();
     }
     
+    /**
+     * @param mesto
+     *            Mesto v katerem je {@link Naslov}
+     * @return builder
+     */
     public NaslovBuilder mesto(final Mesto mesto)
     {
         getValue().setMesto(mesto);
         return self();
     }
     
+    /**
+     * @param posta
+     *            Pošta v kateri je {@link Naslov}
+     * @return builder
+     */
     public NaslovBuilder posta(final Posta posta)
     {
         getValue().setPosta(posta);

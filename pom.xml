@@ -106,7 +106,6 @@
                             <link>http://cxf.apache.org/javadoc/latest/</link>
                             <link>http://commons.apache.org/lang/api-release/</link>
                         </links>
-                        <excludePackageNames>org.raziskovalec.domain.*</excludePackageNames>
                         <linksource>true</linksource>
                     </configuration>
                     <executions>
@@ -162,16 +161,6 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>Spring milestone</id>
-            <name>Spring milestone</name>
-            <url>http://maven.springframework.org/milestone</url>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.testng</groupId>
@@ -286,11 +275,6 @@
                 <artifactId>javaee-web-api</artifactId>
                 <version>6.0</version>
                 <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>0.10.0</version>
             </dependency>
             <dependency>
                 <groupId>joda-time</groupId>

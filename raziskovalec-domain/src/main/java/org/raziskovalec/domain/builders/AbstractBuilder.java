@@ -15,36 +15,61 @@
  */
 package org.raziskovalec.domain.builders;
 
+import org.raziskovalec.domain.builders.patent.PatentBuilder;
+
 /**
+ * Abstraktni razred za builderje
+ * 
  * @author Rene Svetina
  * 
+ * @see PatentBuilder
  */
 public abstract class AbstractBuilder<V extends Object, T extends AbstractBuilder<V, T>>
 {
     private V value;
     
     /**
-     * 
+     * Default constructor
      */
     public AbstractBuilder()
     {
         setValue(getObject());
     }
     
+    /**
+     * Vrne novi objekt katerega želimo graditi.
+     * 
+     * @return novi objekt za grajenje
+     */
     protected abstract V getObject();
     
+    /**
+     * Vrne samega sebe zaradi narave generikov v javi.
+     * 
+     * @return sebe
+     */
     protected abstract T self();
     
+    /**
+     * Vrne trenutno vrednost objekta ki ga gradimo
+     * 
+     * @return trenutno vrednost
+     */
     protected V getValue()
     {
         return value;
     }
     
-    protected void setValue(final V value)
+    private void setValue(final V value)
     {
         this.value = value;
     }
     
+    /**
+     * Vrne zgrajen objekt.
+     * 
+     * @return zgrajen objekt
+     */
     public V build()
     {
         final V returnValue = getValue();

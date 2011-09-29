@@ -19,18 +19,30 @@ import org.raziskovalec.domain.builders.AbstractBuilder;
 import org.raziskovalec.domain.naslov.Posta;
 
 /**
+ * Bilder za {@link Posta}
+ * 
  * @author Rene Svetina
  * 
  */
 public class PostaBuilder extends AbstractBuilder<Posta, PostaBuilder>
 {
     
+    /**
+     * @param postnaStevilka
+     *            Poštna številka
+     * @return builder
+     */
     public PostaBuilder postnaStevilka(final Integer postnaStevilka)
     {
         getValue().setPostnaStevilka(postnaStevilka);
         return self();
     }
     
+    /**
+     * @param ime
+     *            Ime pošte
+     * @return builder
+     */
     public PostaBuilder ime(final String ime)
     {
         getValue().setIme(ime);
