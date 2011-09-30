@@ -15,6 +15,7 @@
  */
 package org.raziskovalec.domain.projekt;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -39,8 +40,9 @@ import org.raziskovalec.domain.raziskovanje.Raziskovalec;
  * 
  */
 @Entity
-public class ProjektnaSkupina
+public class ProjektnaSkupina implements Serializable
 {
+    private static final long serialVersionUID = 7396808074849756293L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long              id;

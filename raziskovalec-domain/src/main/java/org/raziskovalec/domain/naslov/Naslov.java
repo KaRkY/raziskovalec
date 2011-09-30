@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.naslov;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,8 +35,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  */
 @Entity
-public class Naslov
+public class Naslov implements Serializable
 {
+    private static final long serialVersionUID = 4473462875669279084L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;

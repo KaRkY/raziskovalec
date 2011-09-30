@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.patent;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,8 +37,9 @@ import org.raziskovalec.domain.raziskovanje.Raziskovalec;
  * 
  */
 @Entity
-public class Patent
+public class Patent implements Serializable
 {
+    private static final long serialVersionUID = -5330980727656354942L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long         id;

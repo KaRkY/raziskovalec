@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.naslov;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,8 +33,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  */
 @Entity
-public class Mesto
+public class Mesto implements Serializable
 {
+    private static final long serialVersionUID = 2982653096757295299L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;

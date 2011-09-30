@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.znanja;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,8 +33,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * 
  */
 @Entity
-public class Znanje
+public class Znanje implements Serializable
 {
+    private static final long serialVersionUID = 3269439975380395675L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long   id;
