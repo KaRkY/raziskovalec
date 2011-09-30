@@ -23,6 +23,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -54,7 +55,7 @@ public class Projekt
     @Column(nullable = false)
     private String                namen;
     @ManyToMany
-    @JoinColumn
+    @JoinTable
     private Set<Tag>              tags;
     @ManyToOne(optional = false)
     @JoinColumn
