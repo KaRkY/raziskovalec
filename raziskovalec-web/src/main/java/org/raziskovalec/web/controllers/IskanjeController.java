@@ -62,13 +62,13 @@ public class IskanjeController
      * @throws RestClientException
      */
     @RequestMapping(method = RequestMethod.POST)
-    public String iskanje(
-            @RequestParam("iskalniParameter") final String iskalniParameter,
-            final Model model) throws RestClientException, URISyntaxException
+    public String iskanje(@RequestParam("iskalniParameter") final String iskalniParameter, final Model model)
+            throws RestClientException, URISyntaxException
             {
         logger.info("Iskanje z parametrom: {}", iskalniParameter);
         final RestTemplate template = new RestTemplate();
-        final Mesto mesto = template.getForObject(new URI("http://localhost:8080/raziskovalec-service/services"), Mesto.class);
+        final Mesto mesto = template.getForObject(new URI("http://localhost:8080/raziskovalec-service/services"),
+                Mesto.class);
         model.addAttribute("iskalniParameter", mesto.getIme());
         return "iskanje/iskanje";
             }
