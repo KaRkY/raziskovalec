@@ -15,10 +15,8 @@
  */
 package org.raziskovalec.web.controllers;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.raziskovalec.domain.naslov.Mesto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * 
@@ -67,9 +64,11 @@ public class IskanjeController
             final Model model) throws RestClientException, URISyntaxException
             {
         logger.info("Iskanje z parametrom: {}", iskalniParameter);
-        final RestTemplate template = new RestTemplate();
-        final Mesto mesto = template.getForObject(new URI("http://localhost:8080/raziskovalec-service/services"), Mesto.class);
-        model.addAttribute("iskalniParameter", mesto.getIme());
+        // final RestTemplate template = new RestTemplate();
+        // final Mesto mesto = template.getForObject(new
+        // URI("http://localhost:8080/raziskovalec-service/services"),
+        // Mesto.class);
+        model.addAttribute("iskalniParameter", iskalniParameter);
         return "iskanje/iskanje";
             }
 }
