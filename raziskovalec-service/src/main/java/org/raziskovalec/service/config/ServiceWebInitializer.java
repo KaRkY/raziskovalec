@@ -55,8 +55,8 @@ public class ServiceWebInitializer implements WebApplicationInitializer
         logger.trace("Adding servlet.");
         final ServletRegistration.Dynamic servletDynamic = servletContext.addServlet("appServlet", new CXFServlet());
         servletDynamic.setLoadOnStartup(1);
-        final Set<String> mappingConflicts = servletDynamic.addMapping("/");
-        if (mappingConflicts.isEmpty())
+        final Set<String> mappingConflicts = servletDynamic.addMapping("/*");
+        if (!mappingConflicts.isEmpty())
             throw new java.lang.IllegalStateException("Mapping conflict.");
         
         servletDynamic.setInitParameter("config-location", "/WEB-INF/spring/cxf-applicationContext.xml");

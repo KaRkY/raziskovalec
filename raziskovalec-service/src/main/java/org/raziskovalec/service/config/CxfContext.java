@@ -15,17 +15,21 @@
  */
 package org.raziskovalec.service.config;
 
+import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.raziskovalec.service.Iskanje;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author Rene Svetina
  * 
  */
 @Configuration
+@ImportResource({ "classpath:META-INF/cxf/cxf.xml", "classpath:META-INF/cxf/cxf-servlet.xml" })
 public class CxfContext
 {
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -38,21 +42,28 @@ public class CxfContext
         logger.trace("Configuration created.");
     }
     
-    //    @Bean()
-    //    public JAXRSServerFactoryBean server()
-    //    {
-    //        logger.trace("Getting Server factory bean.");
-    //        final JAXRSServerFactoryBean server = new JAXRSServerFactoryBean();
-    //        server.setAddress("/raziskovalec-service");
-    //        server.setServiceBean(iskanje());
-    //
-    //        server.init();
-    //        return server;
-    //    }
+    @Bean()
+    public JAXRSServerFactoryBean server()
+    {
+        logger.trace("Getting Server factory bean.");
+        final JAXRSServerFactoryBean server = new JAXRSServerFactoryBean();
+        server.setAddress("/");
+        server.setServiceBean(iskanje());
+        server.setProvider(provider());
+        
+        server.init();
+        return server;
+    }
     
     @Bean
     public Iskanje iskanje()
     {
         return new Iskanje();
+    }
+    
+    @Bean
+    public JacksonJsonProvider provider()
+    {
+        return new JacksonJsonProvider();
     }
 }

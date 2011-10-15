@@ -1,7 +1,7 @@
 <@layout.layout>
 
 	<@layout.head>
-		<title>Raziskovalec|Iskanje</title>
+		<title>Raziskovalec | Iskanje</title>
 	</@layout.head>
 	
 	<@layout.body "Iskanje">

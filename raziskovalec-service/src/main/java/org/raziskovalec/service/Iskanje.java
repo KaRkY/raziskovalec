@@ -15,8 +15,10 @@
  */
 package org.raziskovalec.service;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.raziskovalec.domain.naslov.Mesto;
@@ -29,17 +31,19 @@ import org.slf4j.LoggerFactory;
  */
 
 @Produces("application/json")
+@Consumes("application/xml")
+@Path("/iskanje")
 public class Iskanje
 {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     
     @GET
-    @Path("/")
-    public Mesto getMimi()
+    @Path("/{parameter}")
+    public Mesto getMimi(@PathParam("parameter") final String parameter)
     {
         logger.trace("mimi called");
         final Mesto mesto = new Mesto();
-        mesto.setIme("mimi");
+        mesto.setIme(parameter);
         return mesto;
     }
 }

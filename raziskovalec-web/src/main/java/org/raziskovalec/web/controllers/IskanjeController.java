@@ -67,7 +67,8 @@ public class IskanjeController
             {
         logger.info("Iskanje z parametrom: {}", iskalniParameter);
         final RestTemplate template = new RestTemplate();
-        final Mesto mesto = template.getForObject(new URI("http://localhost:8080/raziskovalec-service/services"),
+        final Mesto mesto = template.getForObject(new URI("http://localhost:8080/raziskovalec-service/iskanje/"
+                + iskalniParameter),
                 Mesto.class);
         model.addAttribute("iskalniParameter", mesto.getIme());
         return "iskanje/iskanje";
