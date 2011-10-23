@@ -323,7 +323,12 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
             <dependency>
                 <groupId>org.raziskovalec</groupId>
                 <artifactId>raziskovalec-domain</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.raziskovalec</groupId>
+                <artifactId>raziskovalec-util</artifactId>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -339,5 +344,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
         <module>raziskovalec-web</module>
         <module>raziskovalec-domain</module>
         <module>raziskovalec-service</module>
+        <module>raziskovalec-util</module>
     </modules>
 </project>

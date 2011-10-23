@@ -40,9 +40,9 @@ import org.raziskovalec.domain.projekt.Projekt;
 import org.raziskovalec.domain.projekt.ProjektnaSkupina;
 import org.raziskovalec.domain.znanja.Naziv;
 import org.raziskovalec.domain.znanja.Znanje;
-import org.testng.internal.annotations.Sets;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
  * @author Rene Svetina

@@ -15,7 +15,7 @@
  */
 package org.raziskovalec.domain.projekt;
 
-import org.raziskovalec.domain.AbstractBuilder;
+import org.raziskovalec.builders.AbstractBuilder;
 
 /**
  * @author Rene Svetina

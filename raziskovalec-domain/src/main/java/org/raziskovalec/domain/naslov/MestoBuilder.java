@@ -15,7 +15,7 @@
  */
 package org.raziskovalec.domain.naslov;
 
-import org.raziskovalec.domain.AbstractBuilder;
+import org.raziskovalec.builders.AbstractBuilder;
 
 /**
  * Builder za {@link Mesto}

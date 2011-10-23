@@ -14,6 +14,10 @@
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.raziskovalec</groupId>
+            <artifactId>raziskovalec-util</artifactId>
+        </dependency>
     </dependencies>
     <name>raziskovalec-domain</name>
 </project>

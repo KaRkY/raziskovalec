@@ -15,7 +15,7 @@
  */
 package org.raziskovalec.domain.patent;
 
-import org.raziskovalec.domain.AbstractBuilder;
+import org.raziskovalec.builders.AbstractBuilder;
 import org.raziskovalec.domain.raziskovanje.Organizacija;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
 

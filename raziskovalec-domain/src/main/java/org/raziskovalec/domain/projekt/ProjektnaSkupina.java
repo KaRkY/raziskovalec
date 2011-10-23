@@ -1,12 +1,12 @@
 /**
  * Copyright 2011 Rene Svetina
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,13 +36,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.raziskovalec.domain.raziskovanje.Organizacija;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
-import org.testng.internal.annotations.Sets;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
  * @author Rene Svetina
- * 
+ *
  */
 @Entity
 public class ProjektnaSkupina implements Serializable
@@ -72,7 +72,7 @@ public class ProjektnaSkupina implements Serializable
     private Set<Projekt>      sodelujeV;
     @ManyToMany
     private Set<Raziskovalec> raziskovalci;
-    
+
     /**
      * @return the id
      */
@@ -80,7 +80,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return id;
     }
-    
+
     /**
      * @param id
      *            the id to set
@@ -89,7 +89,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.id = id;
     }
-    
+
     /**
      * @return the ime
      */
@@ -97,7 +97,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return ime;
     }
-    
+
     /**
      * @param ime
      *            the ime to set
@@ -106,7 +106,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.ime = ime;
     }
-    
+
     /**
      * @return the telefonskaStevilka
      */
@@ -114,7 +114,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return telefonskaStevilka;
     }
-    
+
     /**
      * @param telefonskaStevilka
      *            the telefonskaStevilka to set
@@ -123,7 +123,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.telefonskaStevilka = telefonskaStevilka;
     }
-    
+
     /**
      * @return the email
      */
@@ -131,7 +131,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return email;
     }
-    
+
     /**
      * @param email
      *            the email to set
@@ -140,7 +140,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.email = email;
     }
-    
+
     /**
      * @return the www
      */
@@ -148,7 +148,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return www;
     }
-    
+
     /**
      * @param www
      *            the www to set
@@ -157,7 +157,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.www = www;
     }
-    
+
     /**
      * @return the vodja
      */
@@ -165,7 +165,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return vodja;
     }
-    
+
     /**
      * @param vodja
      *            the vodja to set
@@ -174,7 +174,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.vodja = vodja;
     }
-    
+
     /**
      * @return the vodilnaOrganizacija
      */
@@ -182,7 +182,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return vodilnaOrganizacija;
     }
-    
+
     /**
      * @param vodilnaOrganizacija
      *            the vodilnaOrganizacija to set
@@ -191,7 +191,7 @@ public class ProjektnaSkupina implements Serializable
     {
         this.vodilnaOrganizacija = vodilnaOrganizacija;
     }
-    
+
     /**
      * @return the sudelujoceOrganizacije
      */
@@ -199,7 +199,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return ImmutableSet.copyOf(sudelujoceOrganizacije);
     }
-    
+
     /**
      * @param sudelujocaOrganizacija
      *            the sudelujoceOrganizacije to set
@@ -210,7 +210,7 @@ public class ProjektnaSkupina implements Serializable
             sudelujoceOrganizacije = Sets.newHashSet();
         sudelujoceOrganizacije.add(checkNotNull(sudelujocaOrganizacija, "Sudelujoca organizacija nemore biti null"));
     }
-    
+
     /**
      * @return the projekti
      */
@@ -218,7 +218,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return ImmutableSet.copyOf(projekti);
     }
-    
+
     /**
      * @param projekti
      *            the projekti to set
@@ -229,7 +229,7 @@ public class ProjektnaSkupina implements Serializable
             projekti = Sets.newHashSet();
         projekti.add(checkNotNull(projekt, "Projekt nemore biti null"));
     }
-    
+
     /**
      * @return the sodelujeV
      */
@@ -237,7 +237,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return ImmutableSet.copyOf(sodelujeV);
     }
-    
+
     /**
      * @param sodelujeV
      *            the sodelujeV to set
@@ -248,7 +248,7 @@ public class ProjektnaSkupina implements Serializable
             this.sodelujeV = Sets.newHashSet();
         this.sodelujeV.add(checkNotNull(sodelujeV, "Sodeluje v nemore biti null"));
     }
-    
+
     /**
      * @return the raziskovalci
      */
@@ -256,7 +256,7 @@ public class ProjektnaSkupina implements Serializable
     {
         return ImmutableSet.copyOf(raziskovalci);
     }
-    
+
     /**
      * @param raziskovalci
      *            the raziskovalci to set
@@ -267,10 +267,10 @@ public class ProjektnaSkupina implements Serializable
             raziskovalci = Sets.newHashSet();
         raziskovalci.add(checkNotNull(raziskovalcec, "Raziskovalec nemore biti null"));
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -285,10 +285,10 @@ public class ProjektnaSkupina implements Serializable
         final ProjektnaSkupina equalTo = (ProjektnaSkupina) obj;
         return new EqualsBuilder().append(getIme(), equalTo.getIme()).isEquals();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -296,10 +296,10 @@ public class ProjektnaSkupina implements Serializable
     {
         return new HashCodeBuilder(17, 31).append(getIme()).build();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override
