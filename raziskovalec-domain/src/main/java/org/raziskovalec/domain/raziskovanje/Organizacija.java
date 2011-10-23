@@ -1,12 +1,12 @@
 /**
  * Copyright 2011 Rene Svetina
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 package org.raziskovalec.domain.raziskovanje;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -37,9 +39,12 @@ import org.raziskovalec.domain.patent.Patent;
 import org.raziskovalec.domain.projekt.Projekt;
 import org.raziskovalec.domain.projekt.ProjektnaSkupina;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
+
 /**
  * @author Rene Svetina
- * 
+ *
  */
 @Entity
 public class Organizacija implements Serializable
@@ -68,7 +73,7 @@ public class Organizacija implements Serializable
     private Set<Projekt>          projekti;
     @OneToMany(mappedBy = "organizacija")
     private Set<Raziskovalec>     raziskovalci;
-    
+
     /**
      * @return the id
      */
@@ -76,7 +81,7 @@ public class Organizacija implements Serializable
     {
         return id;
     }
-    
+
     /**
      * @param id
      *            the id to set
@@ -85,7 +90,7 @@ public class Organizacija implements Serializable
     {
         this.id = id;
     }
-    
+
     /**
      * @return the ime
      */
@@ -93,7 +98,7 @@ public class Organizacija implements Serializable
     {
         return ime;
     }
-    
+
     /**
      * @param ime
      *            the ime to set
@@ -102,7 +107,7 @@ public class Organizacija implements Serializable
     {
         this.ime = ime;
     }
-    
+
     /**
      * @return the telefonskaStevilka
      */
@@ -110,7 +115,7 @@ public class Organizacija implements Serializable
     {
         return telefonskaStevilka;
     }
-    
+
     /**
      * @param telefonskaStevilka
      *            the telefonskaStevilka to set
@@ -119,7 +124,7 @@ public class Organizacija implements Serializable
     {
         this.telefonskaStevilka = telefonskaStevilka;
     }
-    
+
     /**
      * @return the email
      */
@@ -127,7 +132,7 @@ public class Organizacija implements Serializable
     {
         return email;
     }
-    
+
     /**
      * @param email
      *            the email to set
@@ -136,7 +141,7 @@ public class Organizacija implements Serializable
     {
         this.email = email;
     }
-    
+
     /**
      * @return the www
      */
@@ -144,7 +149,7 @@ public class Organizacija implements Serializable
     {
         return www;
     }
-    
+
     /**
      * @param www
      *            the www to set
@@ -153,7 +158,7 @@ public class Organizacija implements Serializable
     {
         this.www = www;
     }
-    
+
     /**
      * @return the naslov
      */
@@ -161,7 +166,7 @@ public class Organizacija implements Serializable
     {
         return naslov;
     }
-    
+
     /**
      * @param naslov
      *            the naslov to set
@@ -170,95 +175,105 @@ public class Organizacija implements Serializable
     {
         this.naslov = naslov;
     }
-    
+
     /**
      * @return the lastniskiPatenti
      */
     public Set<Patent> getLastniskiPatenti()
     {
-        return lastniskiPatenti;
+        return ImmutableSet.copyOf(lastniskiPatenti);
     }
-    
+
     /**
-     * @param lastniskiPatenti
+     * @param lastniskiPatent
      *            the lastniskiPatenti to set
      */
-    public void setLastniskiPatenti(final Set<Patent> lastniskiPatenti)
+    public void setLastniskiPatenti(final Patent lastniskiPatent)
     {
-        this.lastniskiPatenti = lastniskiPatenti;
+        if (lastniskiPatenti == null)
+            lastniskiPatenti = Sets.newHashSet();
+        lastniskiPatenti.add(checkNotNull(lastniskiPatent, "Lastniski patent nemore biti null"));
     }
-    
+
     /**
      * @return the projektneSkupine
      */
     public Set<ProjektnaSkupina> getProjektneSkupine()
     {
-        return projektneSkupine;
+        return ImmutableSet.copyOf(projektneSkupine);
     }
-    
+
     /**
-     * @param projektneSkupine
+     * @param projektnaSkupina
      *            the projektneSkupine to set
      */
-    public void setProjektneSkupine(final Set<ProjektnaSkupina> projektneSkupine)
+    public void setProjektneSkupine(final ProjektnaSkupina projektnaSkupina)
     {
-        this.projektneSkupine = projektneSkupine;
+        if (projektneSkupine == null)
+            projektneSkupine = Sets.newHashSet();
+        projektneSkupine.add(checkNotNull(projektnaSkupina, "Projektna skupina nemore biti null"));
     }
-    
+
     /**
      * @return the sodelujeV
      */
     public Set<ProjektnaSkupina> getSodelujeV()
     {
-        return sodelujeV;
+        return ImmutableSet.copyOf(sodelujeV);
     }
-    
+
     /**
      * @param sodelujeV
      *            the sodelujeV to set
      */
-    public void setSodelujeV(final Set<ProjektnaSkupina> sodelujeV)
+    public void setSodelujeV(final ProjektnaSkupina sodelujeV)
     {
-        this.sodelujeV = sodelujeV;
+        if (this.sodelujeV == null)
+            this.sodelujeV = Sets.newHashSet();
+        this.sodelujeV.add(checkNotNull(sodelujeV, "Sodeluje v nemore biti null"));
     }
-    
+
     /**
      * @return the projekti
      */
     public Set<Projekt> getProjekti()
     {
-        return projekti;
+        return ImmutableSet.copyOf(projekti);
     }
-    
+
     /**
-     * @param projekti
+     * @param projekt
      *            the projekti to set
      */
-    public void setProjekti(final Set<Projekt> projekti)
+    public void setProjekti(final Projekt projekt)
     {
-        this.projekti = projekti;
+        if (projekti == null)
+            projekti = Sets.newHashSet();
+        projekti.add(checkNotNull(projekt, "Projekt nemore biti null"));
     }
-    
+
     /**
      * @return the raziskovalci
      */
     public Set<Raziskovalec> getRaziskovalci()
     {
-        return raziskovalci;
+        return ImmutableSet.copyOf(raziskovalci);
     }
-    
+
     /**
-     * @param raziskovalci
+     * @param raziskovalec
      *            the raziskovalci to set
      */
-    public void setRaziskovalci(final Set<Raziskovalec> raziskovalci)
+    public void setRaziskovalci(final Raziskovalec raziskovalec)
     {
-        this.raziskovalci = raziskovalci;
+        if (raziskovalci == null)
+            raziskovalci = Sets.newHashSet();
+        raziskovalci.add(checkNotNull(raziskovalec, "Raziskovalec nemore biti null"));
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -274,10 +289,10 @@ public class Organizacija implements Serializable
         return new EqualsBuilder().append(getIme(), equalTo.getIme()).append(getTelefonskaStevilka(),
                 equalTo.getTelefonskaStevilka()).append(getEmail(), equalTo.getEmail()).isEquals();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -285,10 +300,10 @@ public class Organizacija implements Serializable
     {
         return new HashCodeBuilder(17, 31).append(getIme()).append(getTelefonskaStevilka()).append(getEmail()).build();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override

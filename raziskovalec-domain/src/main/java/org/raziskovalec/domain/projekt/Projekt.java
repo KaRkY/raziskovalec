@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.projekt;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -35,6 +37,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import org.joda.time.LocalDate;
 import org.raziskovalec.domain.raziskovanje.Organizacija;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
+
+import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Sets;
 
 /**
  * @author Rene Svetina
@@ -229,37 +234,45 @@ public class Projekt implements Serializable
     }
     
     /**
-     * @return the sudelujoceOrganizacije
+     * @return Immutable st sudelojoča organizacija
      */
     public Set<Organizacija> getSudelujoceOrganizacije()
     {
-        return sudelujoceOrganizacije;
+        return ImmutableSet.copyOf(sudelujoceOrganizacije);
     }
     
     /**
-     * @param sudelujoceOrganizacije
-     *            the sudelujoceOrganizacije to set
+     * @param sudelujocaOrganizacija
+     *            sudelojoča organizacija
+     * @throws NullPointerException
+     *             če je sudelujoča organizacija null
      */
-    public void setSudelujoceOrganizacije(final Set<Organizacija> sudelujoceOrganizacije)
+    public void addSudelujoceOrganizacija(final Organizacija sudelujocaOrganizacija)
     {
-        this.sudelujoceOrganizacije = sudelujoceOrganizacije;
+        if (sudelujoceOrganizacije == null)
+            sudelujoceOrganizacije = Sets.newHashSet();
+        sudelujoceOrganizacije.add(checkNotNull(sudelujocaOrganizacija, "Sudelojoca organizacija nemore biti null"));
     }
     
     /**
-     * @return the sudelujoceSkupine
+     * @return ImmutableSet sudelojoče skupine
      */
     public Set<ProjektnaSkupina> getSudelujoceSkupine()
     {
-        return sudelujoceSkupine;
+        return ImmutableSet.copyOf(sudelujoceSkupine);
     }
     
     /**
-     * @param sudelujoceSkupine
-     *            the sudelujoceSkupine to set
+     * @param sudelujocaSkupina
+     *            doda sudelojoco skupino
+     * @throws NullPointerException
+     *             če je sudelojoča skupina null
      */
-    public void setSudelujoceSkupine(final Set<ProjektnaSkupina> sudelujoceSkupine)
+    public void addSudelujoceSkupina(final ProjektnaSkupina sudelujocaSkupina)
     {
-        this.sudelujoceSkupine = sudelujoceSkupine;
+        if (sudelujoceSkupine == null)
+            sudelujoceSkupine = Sets.newHashSet();
+        sudelujoceSkupine.add(checkNotNull(sudelujocaSkupina, "Sudelojoca skupina nemore biti null"));
     }
     
     /**
@@ -279,21 +292,27 @@ public class Projekt implements Serializable
         this.projektniVodja = projektniVodja;
     }
     
+    
     /**
-     * @return the neodvisniRaziskovalci
+     * @return ImmutableSet neodvisnih raziskovalcev
      */
     public Set<Raziskovalec> getNeodvisniRaziskovalci()
     {
-        return neodvisniRaziskovalci;
+        return ImmutableSet.copyOf(neodvisniRaziskovalci);
     }
     
+    
     /**
-     * @param neodvisniRaziskovalci
-     *            the neodvisniRaziskovalci to set
+     * @param neodvisniRaziskovalec
+     *            neodvisni raziskovalec
+     * @throws NullPointerException
+     *             če je raziskovalec null
      */
-    public void setNeodvisniRaziskovalci(final Set<Raziskovalec> neodvisniRaziskovalci)
+    public void addNeodvisniRaziskovalci(final Raziskovalec neodvisniRaziskovalec)
     {
-        this.neodvisniRaziskovalci = neodvisniRaziskovalci;
+        if (neodvisniRaziskovalci == null)
+            neodvisniRaziskovalci = Sets.newHashSet();
+        neodvisniRaziskovalci.add(checkNotNull(neodvisniRaziskovalec, "Neodvisni raziskovalec nemore biti null."));
     }
     
     /*

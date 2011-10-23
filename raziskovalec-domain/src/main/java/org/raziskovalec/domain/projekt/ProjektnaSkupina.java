@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.domain.projekt;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -34,6 +36,9 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.raziskovalec.domain.raziskovanje.Organizacija;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
+import org.testng.internal.annotations.Sets;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
  * @author Rene Svetina
@@ -192,16 +197,18 @@ public class ProjektnaSkupina implements Serializable
      */
     public Set<Organizacija> getSudelujoceOrganizacije()
     {
-        return sudelujoceOrganizacije;
+        return ImmutableSet.copyOf(sudelujoceOrganizacije);
     }
     
     /**
-     * @param sudelujoceOrganizacije
+     * @param sudelujocaOrganizacija
      *            the sudelujoceOrganizacije to set
      */
-    public void setSudelujoceOrganizacije(final Set<Organizacija> sudelujoceOrganizacije)
+    public void addSudelujoceOrganizacije(final Organizacija sudelujocaOrganizacija)
     {
-        this.sudelujoceOrganizacije = sudelujoceOrganizacije;
+        if (sudelujoceOrganizacije == null)
+            sudelujoceOrganizacije = Sets.newHashSet();
+        sudelujoceOrganizacije.add(checkNotNull(sudelujocaOrganizacija, "Sudelujoca organizacija nemore biti null"));
     }
     
     /**
@@ -209,16 +216,18 @@ public class ProjektnaSkupina implements Serializable
      */
     public Set<Projekt> getProjekti()
     {
-        return projekti;
+        return ImmutableSet.copyOf(projekti);
     }
     
     /**
      * @param projekti
      *            the projekti to set
      */
-    public void setProjekti(final Set<Projekt> projekti)
+    public void setProjekti(final Projekt projekt)
     {
-        this.projekti = projekti;
+        if (projekti == null)
+            projekti = Sets.newHashSet();
+        projekti.add(checkNotNull(projekt, "Projekt nemore biti null"));
     }
     
     /**
@@ -226,16 +235,18 @@ public class ProjektnaSkupina implements Serializable
      */
     public Set<Projekt> getSodelujeV()
     {
-        return sodelujeV;
+        return ImmutableSet.copyOf(sodelujeV);
     }
     
     /**
      * @param sodelujeV
      *            the sodelujeV to set
      */
-    public void setSodelujeV(final Set<Projekt> sodelujeV)
+    public void setSodelujeV(final Projekt sodelujeV)
     {
-        this.sodelujeV = sodelujeV;
+        if (this.sodelujeV == null)
+            this.sodelujeV = Sets.newHashSet();
+        this.sodelujeV.add(checkNotNull(sodelujeV, "Sodeluje v nemore biti null"));
     }
     
     /**
@@ -243,16 +254,18 @@ public class ProjektnaSkupina implements Serializable
      */
     public Set<Raziskovalec> getRaziskovalci()
     {
-        return raziskovalci;
+        return ImmutableSet.copyOf(raziskovalci);
     }
     
     /**
      * @param raziskovalci
      *            the raziskovalci to set
      */
-    public void setRaziskovalci(final Set<Raziskovalec> raziskovalci)
+    public void setRaziskovalci(final Raziskovalec raziskovalcec)
     {
-        this.raziskovalci = raziskovalci;
+        if (raziskovalci == null)
+            raziskovalci = Sets.newHashSet();
+        raziskovalci.add(checkNotNull(raziskovalcec, "Raziskovalec nemore biti null"));
     }
     
     /*
@@ -292,11 +305,12 @@ public class ProjektnaSkupina implements Serializable
     @Override
     public String toString()
     {
-        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("Id", getId())
-                .append("Ime", getIme())
-                .append("Telefonska številka", getTelefonskaStevilka())
-                .append("E-mail", getEmail())
-                .append("Website", getWww())
-                .build();
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+        .append("Id", getId())
+        .append("Ime", getIme())
+        .append("Telefonska številka", getTelefonskaStevilka())
+        .append("E-mail", getEmail())
+        .append("Website", getWww())
+        .build();
     }
 }

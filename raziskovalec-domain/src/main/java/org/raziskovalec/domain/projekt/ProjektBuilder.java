@@ -1,73 +1,55 @@
 /**
  * Copyright 2011 Rene Svetina
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.domain.builders.naslov;
+package org.raziskovalec.domain.projekt;
 
-import org.raziskovalec.domain.builders.AbstractBuilder;
-import org.raziskovalec.domain.naslov.Posta;
+import org.raziskovalec.domain.AbstractBuilder;
 
 /**
- * Bilder za {@link Posta}
- * 
  * @author Rene Svetina
- * 
+ *
  */
-public class PostaBuilder extends AbstractBuilder<Posta, PostaBuilder>
+public class ProjektBuilder<V extends Projekt, T extends ProjektBuilder<?, ?>> extends AbstractBuilder<V, T>
 {
-    
     /**
-     * @param postnaStevilka
-     *            Poštna številka
+     * @param id
+     *            id
      * @return builder
      */
-    public PostaBuilder postnaStevilka(final Integer postnaStevilka)
+    public T id(final Long id)
     {
-        getValue().setPostnaStevilka(postnaStevilka);
+        getValue().setId(id);
         return self();
     }
-    
-    /**
-     * @param ime
-     *            Ime pošte
-     * @return builder
-     */
-    public PostaBuilder ime(final String ime)
+
+    public T ime(final String ime)
     {
         getValue().setIme(ime);
         return self();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.raziskovalec.domain.builders.AbstractBuilder#getObject()
      */
+    @SuppressWarnings("unchecked")
     @Override
-    protected Posta getObject()
+    protected V getObject()
     {
-        return new Posta();
+        return (V) new Projekt();
     }
-    
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.raziskovalec.domain.builders.AbstractBuilder#self()
-     */
-    @Override
-    protected PostaBuilder self()
-    {
-        return this;
-    }
+
 }

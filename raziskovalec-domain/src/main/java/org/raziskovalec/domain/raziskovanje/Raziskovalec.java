@@ -1,12 +1,12 @@
 /**
  * Copyright 2011 Rene Svetina
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 package org.raziskovalec.domain.raziskovanje;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -38,10 +40,13 @@ import org.raziskovalec.domain.projekt.Projekt;
 import org.raziskovalec.domain.projekt.ProjektnaSkupina;
 import org.raziskovalec.domain.znanja.Naziv;
 import org.raziskovalec.domain.znanja.Znanje;
+import org.testng.internal.annotations.Sets;
+
+import com.google.common.collect.ImmutableSet;
 
 /**
  * @author Rene Svetina
- * 
+ *
  */
 @Entity
 public class Raziskovalec implements Serializable
@@ -79,7 +84,7 @@ public class Raziskovalec implements Serializable
     private Set<ProjektnaSkupina> vodiSkupine;
     @OneToMany(mappedBy = "lastnikRaziskovalec")
     private Set<Patent>           lastniskiPatenti;
-    
+
     /**
      * @return the id
      */
@@ -87,7 +92,7 @@ public class Raziskovalec implements Serializable
     {
         return id;
     }
-    
+
     /**
      * @param id
      *            the id to set
@@ -96,7 +101,7 @@ public class Raziskovalec implements Serializable
     {
         this.id = id;
     }
-    
+
     /**
      * @return the ime
      */
@@ -104,7 +109,7 @@ public class Raziskovalec implements Serializable
     {
         return ime;
     }
-    
+
     /**
      * @param ime
      *            the ime to set
@@ -113,7 +118,7 @@ public class Raziskovalec implements Serializable
     {
         this.ime = ime;
     }
-    
+
     /**
      * @return the priimek
      */
@@ -121,7 +126,7 @@ public class Raziskovalec implements Serializable
     {
         return priimek;
     }
-    
+
     /**
      * @param priimek
      *            the priimek to set
@@ -130,7 +135,7 @@ public class Raziskovalec implements Serializable
     {
         this.priimek = priimek;
     }
-    
+
     /**
      * @return the telefonskaStevilka
      */
@@ -138,7 +143,7 @@ public class Raziskovalec implements Serializable
     {
         return telefonskaStevilka;
     }
-    
+
     /**
      * @param telefonskaStevilka
      *            the telefonskaStevilka to set
@@ -147,7 +152,7 @@ public class Raziskovalec implements Serializable
     {
         this.telefonskaStevilka = telefonskaStevilka;
     }
-    
+
     /**
      * @return the email
      */
@@ -155,7 +160,7 @@ public class Raziskovalec implements Serializable
     {
         return email;
     }
-    
+
     /**
      * @param email
      *            the email to set
@@ -164,7 +169,7 @@ public class Raziskovalec implements Serializable
     {
         this.email = email;
     }
-    
+
     /**
      * @return the www
      */
@@ -172,7 +177,7 @@ public class Raziskovalec implements Serializable
     {
         return www;
     }
-    
+
     /**
      * @param www
      *            the www to set
@@ -181,7 +186,7 @@ public class Raziskovalec implements Serializable
     {
         this.www = www;
     }
-    
+
     /**
      * @return the organizacija
      */
@@ -189,7 +194,7 @@ public class Raziskovalec implements Serializable
     {
         return organizacija;
     }
-    
+
     /**
      * @param organizacija
      *            the organizacija to set
@@ -198,7 +203,7 @@ public class Raziskovalec implements Serializable
     {
         this.organizacija = organizacija;
     }
-    
+
     /**
      * @return the naslov
      */
@@ -206,7 +211,7 @@ public class Raziskovalec implements Serializable
     {
         return naslov;
     }
-    
+
     /**
      * @param naslov
      *            the naslov to set
@@ -215,129 +220,143 @@ public class Raziskovalec implements Serializable
     {
         this.naslov = naslov;
     }
-    
+
     /**
      * @return the nazivi
      */
     public Set<Naziv> getNazivi()
     {
-        return nazivi;
+        return ImmutableSet.copyOf(nazivi);
     }
-    
+
     /**
-     * @param nazivi
+     * @param naziv
      *            the nazivi to set
      */
-    public void setNazivi(final Set<Naziv> nazivi)
+    public void setNazivi(final Naziv naziv)
     {
-        this.nazivi = nazivi;
+        if (nazivi == null)
+            nazivi = Sets.newHashSet();
+        nazivi.add(checkNotNull(naziv, "Naziv nemore biti null"));
     }
-    
+
     /**
      * @return the projekti
      */
     public Set<Projekt> getProjekti()
     {
-        return projekti;
+        return ImmutableSet.copyOf(projekti);
     }
-    
+
     /**
-     * @param projekti
+     * @param projekt
      *            the projekti to set
      */
-    public void setProjekti(final Set<Projekt> projekti)
+    public void setProjekti(final Projekt projekt)
     {
-        this.projekti = projekti;
+        if (projekti == null)
+            projekti = Sets.newHashSet();
+        projekti.add(checkNotNull(projekt, "Projekt nemore biti null"));
     }
-    
+
     /**
      * @return the vodiProjekte
      */
     public Set<Projekt> getVodiProjekte()
     {
-        return vodiProjekte;
+        return ImmutableSet.copyOf(vodiProjekte);
     }
-    
+
     /**
-     * @param vodiProjekte
+     * @param vodiProjekt
      *            the vodiProjekte to set
      */
-    public void setVodiProjekte(final Set<Projekt> vodiProjekte)
+    public void setVodiProjekte(final Projekt vodiProjekt)
     {
-        this.vodiProjekte = vodiProjekte;
+        if (vodiProjekte == null)
+            vodiProjekte = Sets.newHashSet();
+        vodiProjekte.add(checkNotNull(vodiProjekt, "Projekt nemore biti null"));
     }
-    
+
     /**
      * @return the znanja
      */
     public Set<Znanje> getZnanja()
     {
-        return znanja;
+        return ImmutableSet.copyOf(znanja);
     }
-    
+
     /**
-     * @param znanja
+     * @param znanje
      *            the znanja to set
      */
-    public void setZnanja(final Set<Znanje> znanja)
+    public void setZnanja(final Znanje znanje)
     {
-        this.znanja = znanja;
+        if (znanja == null)
+            znanja = Sets.newHashSet();
+        znanja.add(checkNotNull(znanje, "Znanje nemore biti null"));
     }
-    
+
     /**
      * @return the projektneSkupine
      */
     public Set<ProjektnaSkupina> getProjektneSkupine()
     {
-        return projektneSkupine;
+        return ImmutableSet.copyOf(projektneSkupine);
     }
-    
+
     /**
-     * @param projektneSkupine
+     * @param projektnaSkupina
      *            the projektneSkupine to set
      */
-    public void setProjektneSkupine(final Set<ProjektnaSkupina> projektneSkupine)
+    public void setProjektneSkupine(final ProjektnaSkupina projektnaSkupina)
     {
-        this.projektneSkupine = projektneSkupine;
+        if (projektneSkupine == null)
+            projektneSkupine = Sets.newHashSet();
+        projektneSkupine.add(checkNotNull(projektnaSkupina, "Projektna skupina nemore biti null"));
     }
-    
+
     /**
      * @return the vodiSkupine
      */
     public Set<ProjektnaSkupina> getVodiSkupine()
     {
-        return vodiSkupine;
+        return ImmutableSet.copyOf(vodiSkupine);
     }
-    
+
     /**
-     * @param vodiSkupine
+     * @param vodiSkupino
      *            the vodiSkupine to set
      */
-    public void setVodiSkupine(final Set<ProjektnaSkupina> vodiSkupine)
+    public void setVodiSkupine(final ProjektnaSkupina vodiSkupino)
     {
-        this.vodiSkupine = vodiSkupine;
+        if (vodiSkupine == null)
+            vodiSkupine = Sets.newHashSet();
+        vodiSkupine.add(checkNotNull(vodiSkupino, "Skupina nemore biti null"));
     }
-    
+
     /**
      * @return the lastniskiPatenti
      */
     public Set<Patent> getLastniskiPatenti()
     {
-        return lastniskiPatenti;
+        return ImmutableSet.copyOf(lastniskiPatenti);
     }
-    
+
     /**
-     * @param lastniskiPatenti
+     * @param lastniskiPatent
      *            the lastniskiPatenti to set
      */
-    public void setLastniskiPatenti(final Set<Patent> lastniskiPatenti)
+    public void setLastniskiPatenti(final Patent lastniskiPatent)
     {
-        this.lastniskiPatenti = lastniskiPatenti;
+        if (lastniskiPatenti == null)
+            lastniskiPatenti = Sets.newHashSet();
+        lastniskiPatenti.add(checkNotNull(lastniskiPatent, "Patent nemore biti null"));
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -356,10 +375,10 @@ public class Raziskovalec implements Serializable
                 .append(getEmail(), equalTo.getEmail())
                 .isEquals();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -371,10 +390,10 @@ public class Raziskovalec implements Serializable
                 .append(getEmail())
                 .build();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override
