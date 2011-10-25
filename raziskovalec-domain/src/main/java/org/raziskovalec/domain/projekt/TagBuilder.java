@@ -15,11 +15,45 @@
  */
 package org.raziskovalec.domain.projekt;
 
+import org.raziskovalec.builders.AbstractBuilder;
+
 /**
  * @author Rene Svetina
  *
  */
-public class TagBuilder
+public class TagBuilder<V extends Tag, T extends TagBuilder<?, ?>> extends AbstractBuilder<V, T>
 {
+    /**
+     * @param id
+     *            id
+     * @return builder
+     */
+    public T id(final Long id)
+    {
+        getValue().setId(id);
+        return self();
+    }
 
+    public T naziv(final String naziv)
+    {
+        getValue().setNaziv(naziv);
+        return self();
+    }
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.raziskovalec.builders.AbstractBuilder#getObject()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected V getObject()
+    {
+        return (V) new Tag();
+    }
+
+    public static TagBuilder<? extends Tag, ? extends TagBuilder<?, ?>> tag()
+    {
+        return new TagBuilder<>();
+    }
 }

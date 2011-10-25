@@ -15,11 +15,30 @@
  */
 package org.raziskovalec.domain.raziskovanje;
 
+import org.raziskovalec.builders.AbstractBuilder;
+
 /**
  * @author Rene Svetina
  *
  */
-public class RaziskovalecBuilder
+public class RaziskovalecBuilder<V extends Raziskovalec, T extends RaziskovalecBuilder<?, ?>> extends
+                                                                                              AbstractBuilder<V, T>
 {
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.raziskovalec.builders.AbstractBuilder#getObject()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected V getObject()
+    {
+        return (V) new Raziskovalec();
+    }
+
+    public static RaziskovalecBuilder<? extends Raziskovalec, ? extends RaziskovalecBuilder<?, ?>> razuskovalec()
+    {
+        return new RaziskovalecBuilder<>();
+    }
 }

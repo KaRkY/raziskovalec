@@ -1,12 +1,12 @@
 /**
  * Copyright 2011 Rene Svetina
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -16,6 +16,7 @@
 package org.raziskovalec.domain.projekt;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.raziskovalec.base.ObjectsUtil.emptyForNull;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -39,11 +40,10 @@ import org.raziskovalec.domain.raziskovanje.Organizacija;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 
 /**
  * @author Rene Svetina
- * 
+ *
  */
 @Entity
 public class Projekt implements Serializable
@@ -79,7 +79,7 @@ public class Projekt implements Serializable
     private Raziskovalec          projektniVodja;
     @ManyToMany
     private Set<Raziskovalec>     neodvisniRaziskovalci;
-    
+
     /**
      * @return the id
      */
@@ -87,7 +87,7 @@ public class Projekt implements Serializable
     {
         return id;
     }
-    
+
     /**
      * @param id
      *            the id to set
@@ -96,7 +96,7 @@ public class Projekt implements Serializable
     {
         this.id = id;
     }
-    
+
     /**
      * @return the ime
      */
@@ -104,7 +104,7 @@ public class Projekt implements Serializable
     {
         return ime;
     }
-    
+
     /**
      * @param ime
      *            the ime to set
@@ -113,7 +113,7 @@ public class Projekt implements Serializable
     {
         this.ime = ime;
     }
-    
+
     /**
      * @return the datumZacetka
      */
@@ -121,7 +121,7 @@ public class Projekt implements Serializable
     {
         return datumZacetka;
     }
-    
+
     /**
      * @param datumZacetka
      *            the datumZacetka to set
@@ -130,7 +130,7 @@ public class Projekt implements Serializable
     {
         this.datumZacetka = datumZacetka;
     }
-    
+
     /**
      * @return the datumZakljucka
      */
@@ -138,7 +138,7 @@ public class Projekt implements Serializable
     {
         return datumZakljucka;
     }
-    
+
     /**
      * @param datumZakljucka
      *            the datumZakljucka to set
@@ -147,7 +147,7 @@ public class Projekt implements Serializable
     {
         this.datumZakljucka = datumZakljucka;
     }
-    
+
     /**
      * @return the opis
      */
@@ -155,7 +155,7 @@ public class Projekt implements Serializable
     {
         return opis;
     }
-    
+
     /**
      * @param opis
      *            the opis to set
@@ -164,7 +164,7 @@ public class Projekt implements Serializable
     {
         this.opis = opis;
     }
-    
+
     /**
      * @return the namen
      */
@@ -172,7 +172,7 @@ public class Projekt implements Serializable
     {
         return namen;
     }
-    
+
     /**
      * @param namen
      *            the namen to set
@@ -181,24 +181,26 @@ public class Projekt implements Serializable
     {
         this.namen = namen;
     }
-    
+
     /**
      * @return the tags
      */
     public Set<Tag> getTags()
     {
-        return tags;
+        tags = emptyForNull(tags);
+        return ImmutableSet.copyOf(tags);
     }
-    
+
     /**
      * @param tags
      *            the tags to set
      */
-    public void setTags(final Set<Tag> tags)
+    public void addTag(final Tag tag)
     {
-        this.tags = tags;
+        tags = emptyForNull(tags);
+        tags.add(checkNotNull(tag, "Tag nemore biti null"));
     }
-    
+
     /**
      * @return the vodilnaOrganizacija
      */
@@ -206,7 +208,7 @@ public class Projekt implements Serializable
     {
         return vodilnaOrganizacija;
     }
-    
+
     /**
      * @param vodilnaOrganizacija
      *            the vodilnaOrganizacija to set
@@ -215,7 +217,7 @@ public class Projekt implements Serializable
     {
         this.vodilnaOrganizacija = vodilnaOrganizacija;
     }
-    
+
     /**
      * @return the vodilnaSkupina
      */
@@ -223,7 +225,7 @@ public class Projekt implements Serializable
     {
         return vodilnaSkupina;
     }
-    
+
     /**
      * @param vodilnaSkupina
      *            the vodilnaSkupina to set
@@ -232,49 +234,49 @@ public class Projekt implements Serializable
     {
         this.vodilnaSkupina = vodilnaSkupina;
     }
-    
+
     /**
      * @return Immutable st sudelojoča organizacija
      */
     public Set<Organizacija> getSudelujoceOrganizacije()
     {
+        sudelujoceOrganizacije = emptyForNull(sudelujoceOrganizacije);
         return ImmutableSet.copyOf(sudelujoceOrganizacije);
     }
-    
+
     /**
      * @param sudelujocaOrganizacija
      *            sudelojoča organizacija
      * @throws NullPointerException
      *             če je sudelujoča organizacija null
      */
-    public void addSudelujoceOrganizacija(final Organizacija sudelujocaOrganizacija)
+    public void addSudelujocoOrganizacijo(final Organizacija sudelujocaOrganizacija)
     {
-        if (sudelujoceOrganizacije == null)
-            sudelujoceOrganizacije = Sets.newHashSet();
+        sudelujoceOrganizacije = emptyForNull(sudelujoceOrganizacije);
         sudelujoceOrganizacije.add(checkNotNull(sudelujocaOrganizacija, "Sudelojoca organizacija nemore biti null"));
     }
-    
+
     /**
      * @return ImmutableSet sudelojoče skupine
      */
     public Set<ProjektnaSkupina> getSudelujoceSkupine()
     {
+        sudelujoceSkupine = emptyForNull(sudelujoceSkupine);
         return ImmutableSet.copyOf(sudelujoceSkupine);
     }
-    
+
     /**
      * @param sudelujocaSkupina
      *            doda sudelojoco skupino
      * @throws NullPointerException
      *             če je sudelojoča skupina null
      */
-    public void addSudelujoceSkupina(final ProjektnaSkupina sudelujocaSkupina)
+    public void addSudelujocoSkupino(final ProjektnaSkupina sudelujocaSkupina)
     {
-        if (sudelujoceSkupine == null)
-            sudelujoceSkupine = Sets.newHashSet();
+        sudelujoceSkupine = emptyForNull(sudelujoceSkupine);
         sudelujoceSkupine.add(checkNotNull(sudelujocaSkupina, "Sudelojoca skupina nemore biti null"));
     }
-    
+
     /**
      * @return the projektniVodja
      */
@@ -282,7 +284,7 @@ public class Projekt implements Serializable
     {
         return projektniVodja;
     }
-    
+
     /**
      * @param projektniVodja
      *            the projektniVodja to set
@@ -291,33 +293,33 @@ public class Projekt implements Serializable
     {
         this.projektniVodja = projektniVodja;
     }
-    
-    
+
+
     /**
      * @return ImmutableSet neodvisnih raziskovalcev
      */
     public Set<Raziskovalec> getNeodvisniRaziskovalci()
     {
+        neodvisniRaziskovalci = emptyForNull(neodvisniRaziskovalci);
         return ImmutableSet.copyOf(neodvisniRaziskovalci);
     }
-    
-    
+
+
     /**
      * @param neodvisniRaziskovalec
      *            neodvisni raziskovalec
      * @throws NullPointerException
      *             če je raziskovalec null
      */
-    public void addNeodvisniRaziskovalci(final Raziskovalec neodvisniRaziskovalec)
+    public void addNeodvisnegaRaziskovalca(final Raziskovalec neodvisniRaziskovalec)
     {
-        if (neodvisniRaziskovalci == null)
-            neodvisniRaziskovalci = Sets.newHashSet();
+        neodvisniRaziskovalci = emptyForNull(neodvisniRaziskovalci);
         neodvisniRaziskovalci.add(checkNotNull(neodvisniRaziskovalec, "Neodvisni raziskovalec nemore biti null."));
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -332,10 +334,10 @@ public class Projekt implements Serializable
         final Projekt equalTo = (Projekt) obj;
         return new EqualsBuilder().append(getIme(), equalTo.getIme()).isEquals();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -343,10 +345,10 @@ public class Projekt implements Serializable
     {
         return new HashCodeBuilder(17, 31).append(getIme()).build();
     }
-    
+
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
     @Override

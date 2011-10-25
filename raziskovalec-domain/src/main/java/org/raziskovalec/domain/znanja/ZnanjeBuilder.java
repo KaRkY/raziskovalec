@@ -15,11 +15,30 @@
  */
 package org.raziskovalec.domain.znanja;
 
+import org.raziskovalec.builders.AbstractBuilder;
+
 /**
  * @author Rene Svetina
  *
  */
-public class ZnanjeBuilder
+public class ZnanjeBuilder<V extends Znanje, T extends ZnanjeBuilder<?, ?>> extends AbstractBuilder<V, T>
 {
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.raziskovalec.builders.AbstractBuilder#getObject()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected V getObject()
+    {
+        return (V) new Znanje();
+    }
+
+    public static ZnanjeBuilder<? extends Znanje, ? extends ZnanjeBuilder<?, ?>> znanje()
+    {
+        return new ZnanjeBuilder<>();
+    }
 
 }

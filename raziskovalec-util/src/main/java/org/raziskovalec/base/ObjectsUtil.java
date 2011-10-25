@@ -13,31 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.domain.znanja;
+package org.raziskovalec.base;
 
-import org.raziskovalec.builders.AbstractBuilder;
+import java.util.Set;
+
+import org.testng.internal.annotations.Sets;
 
 /**
  * @author Rene Svetina
  *
  */
-public class NazivBuilder<V extends Naziv, T extends NazivBuilder<?, ?>> extends AbstractBuilder<V, T>
+public final class ObjectsUtil
 {
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see org.raziskovalec.builders.AbstractBuilder#getObject()
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    protected V getObject()
+    private ObjectsUtil()
     {
-        return (V) new Naziv();
     }
 
-    public static NazivBuilder<? extends Naziv, ? extends NazivBuilder<?, ?>> naziv()
+    public static <E> Set<E> emptyForNull(final Set<E> set)
     {
-        return new NazivBuilder<>();
+        if (set == null)
+            return Sets.newHashSet();
+        return set;
     }
 }

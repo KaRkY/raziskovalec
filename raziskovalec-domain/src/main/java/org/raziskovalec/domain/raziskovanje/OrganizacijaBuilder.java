@@ -15,11 +15,30 @@
  */
 package org.raziskovalec.domain.raziskovanje;
 
+import org.raziskovalec.builders.AbstractBuilder;
+
 /**
  * @author Rene Svetina
  *
  */
-public class OrganizacijaBuilder
+public class OrganizacijaBuilder<V extends Organizacija, T extends OrganizacijaBuilder<?, ?>> extends
+                                                                                              AbstractBuilder<V, T>
 {
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see org.raziskovalec.builders.AbstractBuilder#getObject()
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    protected V getObject()
+    {
+        return (V) new Organizacija();
+    }
+
+    public static OrganizacijaBuilder<? extends Organizacija, ? extends OrganizacijaBuilder<?, ?>> organizacija()
+    {
+        return new OrganizacijaBuilder<>();
+    }
 }

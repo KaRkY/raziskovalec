@@ -17,7 +17,9 @@ package org.raziskovalec.domain.patent;
 
 import org.raziskovalec.builders.AbstractBuilder;
 import org.raziskovalec.domain.raziskovanje.Organizacija;
+import org.raziskovalec.domain.raziskovanje.OrganizacijaBuilder;
 import org.raziskovalec.domain.raziskovanje.Raziskovalec;
+import org.raziskovalec.domain.raziskovanje.RaziskovalecBuilder;
 
 /**
  * Builder za {@link Patent}
@@ -37,7 +39,7 @@ public class PatentBuilder<V extends Patent, T extends PatentBuilder<?, ?>> exte
         getValue().setId(id);
         return self();
     }
-    
+
     /**
      * @param ime
      *            ime patenta
@@ -61,6 +63,18 @@ public class PatentBuilder<V extends Patent, T extends PatentBuilder<?, ?>> exte
     }
 
     /**
+     * @param lastnikRaziskovalec
+     *            lastnik
+     * @return builder
+     */
+    public T lastnikRaziskovalec(
+            final RaziskovalecBuilder<? extends Raziskovalec, ? extends RaziskovalecBuilder<?, ?>> lastnikRaziskovalec)
+    {
+        getValue().setLastnikRaziskovalec(lastnikRaziskovalec.build());
+        return self();
+    }
+
+    /**
      * @param lastnikOrganizacija
      *            lastnik
      * @return builder
@@ -68,6 +82,18 @@ public class PatentBuilder<V extends Patent, T extends PatentBuilder<?, ?>> exte
     public T lastnikOrganizacija(final Organizacija lastnikOrganizacija)
     {
         getValue().setLastnikOrganizacija(lastnikOrganizacija);
+        return self();
+    }
+
+    /**
+     * @param lastnikOrganizacija
+     *            lastnik
+     * @return builder
+     */
+    public T lastnikOrganizacija(
+            final OrganizacijaBuilder<? extends Organizacija, ? extends OrganizacijaBuilder<?, ?>> lastnikOrganizacija)
+    {
+        getValue().setLastnikOrganizacija(lastnikOrganizacija.build());
         return self();
     }
 

@@ -16,6 +16,7 @@
 package org.raziskovalec.domain.raziskovanje;
 
 import static com.google.common.base.Preconditions.checkNotNull;
+import static org.raziskovalec.base.ObjectsUtil.emptyForNull;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -42,7 +43,6 @@ import org.raziskovalec.domain.znanja.Naziv;
 import org.raziskovalec.domain.znanja.Znanje;
 
 import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.Sets;
 
 /**
  * @author Rene Svetina
@@ -226,6 +226,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<Naziv> getNazivi()
     {
+        nazivi = emptyForNull(nazivi);
         return ImmutableSet.copyOf(nazivi);
     }
 
@@ -235,8 +236,7 @@ public class Raziskovalec implements Serializable
      */
     public void setNazivi(final Naziv naziv)
     {
-        if (nazivi == null)
-            nazivi = Sets.newHashSet();
+        nazivi = emptyForNull(nazivi);
         nazivi.add(checkNotNull(naziv, "Naziv nemore biti null"));
     }
 
@@ -245,6 +245,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<Projekt> getProjekti()
     {
+        projekti = emptyForNull(projekti);
         return ImmutableSet.copyOf(projekti);
     }
 
@@ -254,8 +255,7 @@ public class Raziskovalec implements Serializable
      */
     public void setProjekti(final Projekt projekt)
     {
-        if (projekti == null)
-            projekti = Sets.newHashSet();
+        projekti = emptyForNull(projekti);
         projekti.add(checkNotNull(projekt, "Projekt nemore biti null"));
     }
 
@@ -264,6 +264,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<Projekt> getVodiProjekte()
     {
+        vodiProjekte = emptyForNull(vodiProjekte);
         return ImmutableSet.copyOf(vodiProjekte);
     }
 
@@ -273,8 +274,7 @@ public class Raziskovalec implements Serializable
      */
     public void setVodiProjekte(final Projekt vodiProjekt)
     {
-        if (vodiProjekte == null)
-            vodiProjekte = Sets.newHashSet();
+        vodiProjekte = emptyForNull(vodiProjekte);
         vodiProjekte.add(checkNotNull(vodiProjekt, "Projekt nemore biti null"));
     }
 
@@ -283,6 +283,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<Znanje> getZnanja()
     {
+        znanja = emptyForNull(znanja);
         return ImmutableSet.copyOf(znanja);
     }
 
@@ -292,8 +293,7 @@ public class Raziskovalec implements Serializable
      */
     public void setZnanja(final Znanje znanje)
     {
-        if (znanja == null)
-            znanja = Sets.newHashSet();
+        znanja = emptyForNull(znanja);
         znanja.add(checkNotNull(znanje, "Znanje nemore biti null"));
     }
 
@@ -302,6 +302,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<ProjektnaSkupina> getProjektneSkupine()
     {
+        projektneSkupine = emptyForNull(projektneSkupine);
         return ImmutableSet.copyOf(projektneSkupine);
     }
 
@@ -311,8 +312,7 @@ public class Raziskovalec implements Serializable
      */
     public void setProjektneSkupine(final ProjektnaSkupina projektnaSkupina)
     {
-        if (projektneSkupine == null)
-            projektneSkupine = Sets.newHashSet();
+        projektneSkupine = emptyForNull(projektneSkupine);
         projektneSkupine.add(checkNotNull(projektnaSkupina, "Projektna skupina nemore biti null"));
     }
 
@@ -321,6 +321,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<ProjektnaSkupina> getVodiSkupine()
     {
+        vodiSkupine = emptyForNull(vodiSkupine);
         return ImmutableSet.copyOf(vodiSkupine);
     }
 
@@ -330,8 +331,7 @@ public class Raziskovalec implements Serializable
      */
     public void setVodiSkupine(final ProjektnaSkupina vodiSkupino)
     {
-        if (vodiSkupine == null)
-            vodiSkupine = Sets.newHashSet();
+        vodiSkupine = emptyForNull(vodiSkupine);
         vodiSkupine.add(checkNotNull(vodiSkupino, "Skupina nemore biti null"));
     }
 
@@ -340,6 +340,7 @@ public class Raziskovalec implements Serializable
      */
     public Set<Patent> getLastniskiPatenti()
     {
+        lastniskiPatenti = emptyForNull(lastniskiPatenti);
         return ImmutableSet.copyOf(lastniskiPatenti);
     }
 
@@ -349,8 +350,7 @@ public class Raziskovalec implements Serializable
      */
     public void setLastniskiPatenti(final Patent lastniskiPatent)
     {
-        if (lastniskiPatenti == null)
-            lastniskiPatenti = Sets.newHashSet();
+        lastniskiPatenti = emptyForNull(lastniskiPatenti);
         lastniskiPatenti.add(checkNotNull(lastniskiPatent, "Patent nemore biti null"));
     }
 
