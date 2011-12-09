@@ -59,7 +59,7 @@ public class MestoBuilder<V extends Mesto, T extends MestoBuilder<?, ?>> extends
         return (V) new Mesto();
     }
 
-    public static MestoBuilder<? extends Mesto, ? extends MestoBuilder<?, ?>> mesto()
+    public static MestoBuilder<? super Mesto, ? super MestoBuilder<?, ?>> mesto()
     {
         return new MestoBuilder<>();
     }

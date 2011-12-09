@@ -15,9 +15,8 @@
  */
 package org.raziskovalec.base;
 
+import com.google.common.collect.Sets;
 import java.util.Set;
-
-import org.testng.internal.annotations.Sets;
 
 /**
  * @author Rene Svetina
