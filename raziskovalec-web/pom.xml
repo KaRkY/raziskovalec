@@ -27,16 +27,8 @@
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
         </dependency>
         <dependency>
             <groupId>cglib</groupId>
@@ -49,6 +41,26 @@
         <dependency>
             <groupId>org.raziskovalec</groupId>
             <artifactId>raziskovalec-domain</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.springframework</groupId>
+        	<artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.icefaces</groupId>
+        	<artifactId>icefaces</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.icefaces</groupId>
+        	<artifactId>icefaces-compat</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>javax.servlet</groupId>
+        	<artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+        	<groupId>org.raziskovalec</groupId>
+        	<artifactId>raziskovalec-util</artifactId>
         </dependency>
     </dependencies>
 

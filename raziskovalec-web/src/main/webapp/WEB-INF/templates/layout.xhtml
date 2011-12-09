@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link href="#{facesContext.externalContext.requestContextPath}/styles/html.css" rel="stylesheet" type="text/css" />
+    
+    <link href="#{facesContext.externalContext.requestContextPath}/styles/layout.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/scripts/script.js" />
+    
+    <ui:insert name="head" />
+
+    <title><ui:insert name="title" /></title>
+</h:head>
+<h:body>
+    <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
+    <div id="content">
+        <!-- HEADER: Holds title, subtitle and header images -->
+        <div id="header">
+
+            <div id="title">
+                <h1>Raziskovalec.org</h1>
+                <h2>in the city</h2>
+            </div>
+
+            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/balloons.gif" alt="baloons" class="baloons" />
+            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_left.jpg" alt="left slice" class="left" />
+            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_right.jpg" alt="right slice" class="right" />
+        </div>
+
+
+
+        <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
+        <div id="mainMenu">
+            <ul class="floatRight">
+
+                <li><h:link title="Home" value="home" /></li>
+                <li><h:link title="Iskanje" value="iskanje" /></li>
+                <li><h:link title="Home" value="home" /></li>
+                <li><h:link title="Home" value="home" /></li>
+                <li><h:link title="Home" value="home" /></li>
+            </ul>
+        </div>
+
+
+
+
+        <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+        <div id="page">
+
+
+            <!-- 25 percent width column, aligned to the left -->
+            <div class="width25 floatLeft leftColumn">
+
+                <h1>Intro</h1>
+
+            </div>
+
+
+
+
+            <!-- 75 percent width column, aligned to the right -->
+            <div class="width75 floatRight">
+                <ui:insert name="body" />
+            </div>
+        </div>
+
+
+        <!-- FOOTER: Site footer for links, copyright, etc. -->
+        <div id="footer">
+
+            <div id="width">
+                <span class="floatLeft"> 
+                <a href="http://www.raziskovalec.org">Raziskovalec.org</a>
+                </span> 
+                <span class="floatRight"> <a href="index.html" title="Introduction">intro</a> 
+                <span class="grey">|</span>
+                <a href="help.html" title="Learn how to use the template">help</a> 
+                <span class="grey">|</span> 
+                <a href="tags.html" title="View the styled tags">tags</a> 
+                <span class="grey">|</span> <a href="print.html" title="View the print layout">print</a> 
+                <span class="grey">|</span> <a href="http://fullahead.org/contact.html" title="Get in touch">mail</a>
+                </span>
+            </div>
+
+        </div>
+    </div>
+</h:body>
+</html>
