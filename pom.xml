@@ -322,6 +322,11 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<artifactId>jstl</artifactId>
 				<version>1.2</version>
 			</dependency>
+			<dependency>
+				<groupId>org.icepush</groupId>
+				<artifactId>icepush</artifactId>
+				<version>3.0.0.RC1</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<properties>

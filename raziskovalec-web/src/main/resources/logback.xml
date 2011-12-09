@@ -30,6 +30,8 @@
     <logger name="org.springframework" level="warn" />
 
     <logger name="org.apache" level="warn" />
+    
+    <logger name="org.raziskovalec.web.jsf" level="warn" />
 
     <root level="trace">
         <appender-ref ref="STDOUT" />

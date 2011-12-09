@@ -6,7 +6,7 @@
  * You may obtain a copy of the License at
  * 
  *      http://www.apache.org/licenses/LICENSE-2.0
- *      
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,7 +15,11 @@
  */
 package org.raziskovalec.web.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
 /**
  * 
@@ -24,5 +28,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RootSpringConfig
 {
-
+	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	
+	@Bean
+	public ResourceBundleMessageSource msg()
+	{
+		logger.trace("Entering method msg()");
+		final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		
+		messageSource.setBasenames(new String[] { "org.raziskovalec.messages.menu" });
+		
+		logger.trace("Leaving method msg(messageSource: {})", messageSource);
+		return messageSource;
+	}
 }

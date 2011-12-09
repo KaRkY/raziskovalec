@@ -18,7 +18,7 @@
     
     <ui:insert name="head" />
 
-    <title><ui:insert name="title" /></title>
+    <title>Raziskovalec | <ui:insert name="title" /></title>
 </h:head>
 <h:body>
     <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
@@ -42,8 +42,8 @@
         <div id="mainMenu">
             <ul class="floatRight">
 
-                <li><h:link title="Home" value="home" /></li>
-                <li><h:link title="Iskanje" value="iskanje" /></li>
+                <li><h:link title="#{msg['home']}" value="#{msg['home']}" outcome="/index" styleClass="#{page eq 'home'? 'here' : ''}" /></li>
+                <li><h:link title="#{msg['search']}" value="#{msg['search']}" outcome="/search/search" styleClass="#{page eq 'search'? 'here' : ''}" /></li>
                 <li><h:link title="Home" value="home" /></li>
                 <li><h:link title="Home" value="home" /></li>
                 <li><h:link title="Home" value="home" /></li>
@@ -60,7 +60,7 @@
             <!-- 25 percent width column, aligned to the left -->
             <div class="width25 floatLeft leftColumn">
 
-                <h1>Intro</h1>
+                <h1><ui:insert name="title" /></h1>
 
             </div>
 
