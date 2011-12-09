@@ -332,8 +332,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 	</properties>
 	<modules>
 		<module>raziskovalec-web</module>
-		<module>raziskovalec-domain</module>
-		<module>raziskovalec-service</module>
 		<module>raziskovalec-util</module>
 	</modules>
 </project>
