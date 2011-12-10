@@ -11,6 +11,10 @@
   <param-value>org.raziskovalec.web.config.RootSpringConfig</param-value>
  </context-param>
  <context-param>
+  <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
   <description>
             Tell the runtime where we are in the project development
             lifecycle.  Valid values are: 
@@ -22,11 +26,51 @@
   <param-value>Development</param-value>
  </context-param>
  <context-param>
+  <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+  <param-value>server</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.ADD_RESOURCE_CLASS</param-name>
+  <param-value>org.apache.myfaces.renderkit.html.util.NonBufferingAddResource</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
   <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
   <param-value>true</param-value>
  </context-param>
  <context-param>
+  <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.COMPRESS_STATE_IN_SESSION</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.DISABLE_TOMAHAWK_FACES_CONTEXT_WRAPPER</param-name>
+  <param-value>false</param-value>
+ </context-param>
+ <context-param>
   <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.RESOURCE_VIRTUAL_PATH</param-name>
+  <param-value>/faces/extensionResource</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name>
+  <param-value>true</param-value>
+ </context-param>
+ <context-param>
+  <param-name>org.apache.myfaces.VALIDATE</param-name>
   <param-value>true</param-value>
  </context-param>
  <filter>
@@ -42,9 +86,37 @@
    <param-value>true</param-value>
   </init-param>
  </filter>
+ <filter>
+  <filter-name>MyFacesExtensionsFilter</filter-name>
+  <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+  <init-param>
+   <description>Set the size limit for uploaded files.
+            Format: 10 - 10 bytes
+                    10k - 10 KB
+                    10m - 10 MB
+                    1g - 1 GB
+        </description>
+   <param-name>uploadMaxFileSize</param-name>
+   <param-value>100m</param-value>
+  </init-param>
+  <init-param>
+   <param-name>uploadThresholdSize</param-name>
+   <param-value>100k</param-value>
+  </init-param>
+ </filter>
  <filter-mapping>
   <filter-name>characterEncoding</filter-name>
   <url-pattern>/*</url-pattern>
+ </filter-mapping>
+ <!-- extension mapping for adding <script/>, <link/>, and other resource tags to JSF-pages  -->
+ <filter-mapping>
+  <filter-name>MyFacesExtensionsFilter</filter-name>
+  <url-pattern>*.face</url-pattern>
+ </filter-mapping>
+ <!-- extension mapping for serving page-independent resources (javascript, stylesheets, images, etc.)  -->
+ <filter-mapping>
+  <filter-name>MyFacesExtensionsFilter</filter-name>
+  <url-pattern>/faces/*</url-pattern>
  </filter-mapping>
  <listener>
   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -61,6 +133,10 @@
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.face</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>Faces Servlet</servlet-name>
+  <url-pattern>/faces/*</url-pattern>
  </servlet-mapping>
  <session-config>
   <session-timeout>20</session-timeout>
