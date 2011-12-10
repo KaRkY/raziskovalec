@@ -296,3 +296,15 @@ ul.sideMenu {
    padding-top: 2em;
    padding-bottom: 2em;
 }
+
+.internationalization {
+   position: absolute;
+   top: 10;
+   right: 0;
+   z-index: 1;
+}
+
+.baloons {
+   position: absolute;
+   z-index: 1;
+}

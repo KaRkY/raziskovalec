@@ -26,7 +26,6 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * 
  * @author Rene Svetina
  */
 @Configuration
@@ -52,7 +51,9 @@ public class RootSpringConfig
 				ResourceBundleMessageSource();
 		
 		messageSource.setBasenames(new String[] {
-				"org.raziskovalec.messages.menu", "org.raziskovalec.messages.search.messages" });
+				"org.raziskovalec.messages.menu",
+				"org.raziskovalec.messages.search.messages",
+		"org.raziskovalec.messages.researcher.messages" });
 		
 		logger.trace("Leaving method msg(): {}", messageSource);
 		return messageSource;
