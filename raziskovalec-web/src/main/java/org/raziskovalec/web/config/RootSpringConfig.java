@@ -16,7 +16,6 @@
 package org.raziskovalec.web.config;
 
 import org.raziskovalec.web.i18n.LocalizationBean;
-import org.raziskovalec.web.jsf.MessageMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -36,20 +35,6 @@ public class RootSpringConfig
 	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
 	
 	@Bean
-	public ResourceBundleMessageSource bundle()
-	{
-		logger.trace("Entering method msg()");
-		final ResourceBundleMessageSource messageSource = new
-				ResourceBundleMessageSource();
-		
-		messageSource.setBasenames(new String[] {
-		"org.raziskovalec.messages.menu" });
-		
-		logger.trace("Leaving method msg(): {}", messageSource);
-		return messageSource;
-	}
-	
-	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public LocalizationBean localizationBean()
 	{
@@ -60,8 +45,16 @@ public class RootSpringConfig
 	}
 	
 	@Bean
-	public MessageMap msg()
+	public ResourceBundleMessageSource msg()
 	{
-		return new MessageMap(bundle(), localizationBean());
+		logger.trace("Entering method msg()");
+		final ResourceBundleMessageSource messageSource = new
+				ResourceBundleMessageSource();
+		
+		messageSource.setBasenames(new String[] {
+				"org.raziskovalec.messages.menu", "org.raziskovalec.messages.search.messages" });
+		
+		logger.trace("Leaving method msg(): {}", messageSource);
+		return messageSource;
 	}
 }

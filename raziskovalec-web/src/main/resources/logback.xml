@@ -37,8 +37,6 @@
     
     <logger name="org.raziskovalec.web.jsf" level="warn" />
     
-    <logger name="org.raziskovalec.web.jsf.MessageSourceSpringBeanFacesELResolver" level="trace" />
-
     <root level="trace">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />

@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:t="http://myfaces.apache.org/tomahawk">
 
 <ui:composition template="/WEB-INF/templates/layout.xhtml">
 
@@ -11,7 +11,12 @@
     </ui:define>
 
     <ui:define name="body">
-
+        <h:form id="search">
+            <t:panelGrid columns="2" styleClass="search">
+                <t:inputText />
+                <t:commandButton value="#{msg['searchButton']}"  />
+            </t:panelGrid>
+        </h:form>
     </ui:define>
 
 </ui:composition>

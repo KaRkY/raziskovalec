@@ -7,7 +7,7 @@
   <converter-class>org.raziskovalec.web.jsf.converters.LocaleConverter</converter-class>
  </converter>
  <application>
-<!--   <view-handler>org.raziskovalec.web.jsf.LocaleViewHandler</view-handler> -->
-  <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+  <view-handler>org.raziskovalec.web.jsf.LocaleViewHandler</view-handler>
+  <el-resolver>org.raziskovalec.web.jsf.MessageSourceSpringBeanFacesELResolver</el-resolver>
  </application>
 </faces-config>
