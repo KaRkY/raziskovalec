@@ -308,24 +308,24 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>2.1.5</version>
 			</dependency>
 			<dependency>
-				<groupId>org.icefaces</groupId>
-				<artifactId>icefaces</artifactId>
-				<version>3.0.0.RC1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.icefaces</groupId>
-				<artifactId>icefaces-compat</artifactId>
-				<version>3.0.0.RC1</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>jstl</artifactId>
 				<version>1.2</version>
 			</dependency>
 			<dependency>
-				<groupId>org.icepush</groupId>
-				<artifactId>icepush</artifactId>
-				<version>3.0.0.RC1</version>
+				<groupId>org.apache.myfaces.core</groupId>
+				<artifactId>myfaces-api</artifactId>
+				<version>2.1.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.myfaces.core</groupId>
+				<artifactId>myfaces-impl</artifactId>
+				<version>2.1.5</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.myfaces.tomahawk</groupId>
+				<artifactId>tomahawk20</artifactId>
+				<version>1.1.11</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

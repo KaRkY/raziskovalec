@@ -15,11 +15,16 @@
  */
 package org.raziskovalec.web.config;
 
+import org.raziskovalec.web.i18n.LocalizationBean;
+import org.raziskovalec.web.jsf.MessageMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * 
@@ -31,14 +36,32 @@ public class RootSpringConfig
 	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
 	
 	@Bean
-	public ResourceBundleMessageSource msg()
+	public ResourceBundleMessageSource bundle()
 	{
 		logger.trace("Entering method msg()");
-		final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		final ResourceBundleMessageSource messageSource = new
+				ResourceBundleMessageSource();
 		
-		messageSource.setBasenames(new String[] { "org.raziskovalec.messages.menu" });
+		messageSource.setBasenames(new String[] {
+		"org.raziskovalec.messages.menu" });
 		
-		logger.trace("Leaving method msg(messageSource: {})", messageSource);
+		logger.trace("Leaving method msg(): {}", messageSource);
 		return messageSource;
+	}
+	
+	@Bean
+	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	public LocalizationBean localizationBean()
+	{
+		logger.trace("Entering method localizationBean()");
+		final LocalizationBean localizationBean = new LocalizationBean();
+		logger.trace("Leaving method localizationBean(): {}", localizationBean);
+		return localizationBean;
+	}
+	
+	@Bean
+	public MessageMap msg()
+	{
+		return new MessageMap(bundle(), localizationBean());
 	}
 }
