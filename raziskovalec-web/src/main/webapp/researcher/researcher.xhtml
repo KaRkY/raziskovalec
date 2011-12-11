@@ -20,31 +20,28 @@
                     </f:facet>
                     
                     <h:outputText value="#{msg['researcher.name']}:" />
-                    <h:inputText id="txtName" value="Test" />
+                    <h:inputText id="txtName" value="#{researcher.name}" />
                     <h:message for="txtName"/>
                     
                     <h:outputText value="#{msg['researcher.lastname']}:" />
-                    <h:inputText id="txtLastname" value="Test" />
+                    <h:inputText id="txtLastname" value="#{researcher.lastname}" />
                     <h:message for="txtLastname"/>
                     
                     <h:outputText value="#{msg['researcher.email']}:" />
-                    <h:inputText id="txtEmail" value="Test" />
+                    <h:inputText id="txtEmail" value="#{researcher.email}" />
                     <h:message for="txtEmail"/>
                     
                     <h:outputText value="#{msg['researcher.telephonenumber']}:" />
-                    <t:panelGroup>
-                        <h:selectOneMenu>
-                            <f:selectItem itemValue="+386"/>
-                            <f:selectItem itemValue="+1"/>
-                        </h:selectOneMenu>
-                        <h:inputText id="txtTelephone" value="Test" maxlength="16"/>
-                    </t:panelGroup>
+                    <h:inputText id="txtTelephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
                     <h:message for="txtTelephone"/>
                     
                     <h:outputText value="#{msg['researcher.www']}:" />
-                    <h:inputText id="txtWww" value="Test" />
+                    <h:inputText id="txtWww" value="#{researcher.www}" />
                     <h:message for="txtWww"/>
                 </t:panelGrid>
+                
+                <t:commandButton value="#{msg['researcher.save']}" title="#{msg['researcher.save']}" action="#{researcherAdd.save}" />
+                <t:commandButton value="#{msg['researcher.cancel']}" title="#{msg['researcher.cancel']}" action="#{researcherAdd.cancel}" />
             </h:form>
         </ui:define>
         

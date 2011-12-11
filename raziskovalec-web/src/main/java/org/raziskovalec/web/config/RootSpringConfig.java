@@ -19,11 +19,13 @@ import java.util.Map;
 
 import org.raziskovalec.web.i18n.LocalizationBean;
 import org.raziskovalec.web.jsf.scopes.ViewScope;
+import org.raziskovalec.web.user.ResearcherBeansDeclaration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -35,6 +37,7 @@ import com.google.common.collect.Maps;
  * @author Rene Svetina
  */
 @Configuration
+@Import({ ResearcherBeansDeclaration.class })
 public class RootSpringConfig
 {
 	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
