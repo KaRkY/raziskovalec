@@ -19,8 +19,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import org.apache.commons.lang3.LocaleUtils;
@@ -56,10 +54,6 @@ public class LocalizationBean implements Serializable
 	// ========================================================================
 	public void changeLocale(final Locale locale)
 	{
-		final FacesContext context = FacesContext.getCurrentInstance();
-		final UIViewRoot viewRoot = context.getViewRoot();
-		System.out.println(viewRoot.getClientId());
-		
 		setCurrentLocale(locale);
 	}
 	
@@ -75,7 +69,6 @@ public class LocalizationBean implements Serializable
 	
 	public void setCurrentLocale(final Locale currentLocale)
 	{
-		logger.debug("Current locale: {}", currentLocale);
 		this.currentLocale = currentLocale;
 	}
 	
