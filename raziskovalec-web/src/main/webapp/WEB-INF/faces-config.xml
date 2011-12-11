@@ -9,5 +9,15 @@
  <application>
   <view-handler>org.raziskovalec.web.jsf.LocaleViewHandler</view-handler>
   <el-resolver>org.raziskovalec.web.jsf.MessageSourceSpringBeanFacesELResolver</el-resolver>
+  <system-event-listener>
+   <system-event-listener-class>org.raziskovalec.web.jsf.scopes.ViewScopeCallbackRegistrar</system-event-listener-class>
+   <system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
+   <source-class>javax.faces.component.UIViewRoot</source-class>
+  </system-event-listener>
+  <system-event-listener>
+   <system-event-listener-class>org.raziskovalec.web.jsf.scopes.ViewScopeCallbackRegistrar</system-event-listener-class>
+   <system-event-class>javax.faces.event.PreDestroyViewMapEvent</system-event-class>
+   <source-class>javax.faces.component.UIViewRoot</source-class>
+  </system-event-listener>
  </application>
 </faces-config>

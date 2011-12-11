@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:param name="page" value="researcher" />
@@ -10,5 +11,42 @@
         <ui:define name="title">
             #{msg['researcher.title']}
         </ui:define>
+        
+        <ui:define name="body">
+            <h:form id="researcher">
+                <t:panelGrid columns="3" cellpadding="2px">
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['researcher.add']}" />
+                    </f:facet>
+                    
+                    <h:outputText value="#{msg['researcher.name']}:" />
+                    <h:inputText id="txtName" value="Test" />
+                    <h:message for="txtName"/>
+                    
+                    <h:outputText value="#{msg['researcher.lastname']}:" />
+                    <h:inputText id="txtLastname" value="Test" />
+                    <h:message for="txtLastname"/>
+                    
+                    <h:outputText value="#{msg['researcher.email']}:" />
+                    <h:inputText id="txtEmail" value="Test" />
+                    <h:message for="txtEmail"/>
+                    
+                    <h:outputText value="#{msg['researcher.telephonenumber']}:" />
+                    <t:panelGroup>
+                        <h:selectOneMenu>
+                            <f:selectItem itemValue="+386"/>
+                            <f:selectItem itemValue="+1"/>
+                        </h:selectOneMenu>
+                        <h:inputText id="txtTelephone" value="Test" maxlength="16"/>
+                    </t:panelGroup>
+                    <h:message for="txtTelephone"/>
+                    
+                    <h:outputText value="#{msg['researcher.www']}:" />
+                    <h:inputText id="txtWww" value="Test" />
+                    <h:message for="txtWww"/>
+                </t:panelGrid>
+            </h:form>
+        </ui:define>
+        
 	</ui:composition>
 </html>

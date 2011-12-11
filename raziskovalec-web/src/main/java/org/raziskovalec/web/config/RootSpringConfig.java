@@ -15,15 +15,21 @@
  */
 package org.raziskovalec.web.config;
 
+import java.util.Map;
+
 import org.raziskovalec.web.i18n.LocalizationBean;
+import org.raziskovalec.web.jsf.scopes.ViewScope;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.google.common.collect.Maps;
 
 /**
  * @author Rene Svetina
@@ -57,5 +63,18 @@ public class RootSpringConfig
 		
 		logger.trace("Leaving method msg(): {}", messageSource);
 		return messageSource;
+	}
+	
+	@Bean
+	public CustomScopeConfigurer scopeConfigurer()
+	{
+		final CustomScopeConfigurer scopeConfigurer = new CustomScopeConfigurer();
+		
+		final Map<String, Object> scopes = Maps.newHashMap();
+		scopes.put("view", new ViewScope());
+		
+		scopeConfigurer.setScopes(scopes);
+		
+		return scopeConfigurer;
 	}
 }
