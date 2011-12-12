@@ -200,18 +200,18 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
-				<version>1.6.3</version>
+				<version>1.6.4</version>
 				<scope>runtime</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
-				<version>1.6.3</version>
+				<version>1.6.4</version>
 			</dependency>
 			<dependency>
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
-				<version>0.9.30</version>
+				<version>1.0.0</version>
 				<scope>runtime</scope>
 			</dependency>
 			<dependency>
@@ -263,11 +263,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>2.0</version>
 			</dependency>
 			<dependency>
-				<groupId>joda-time</groupId>
-				<artifactId>joda-time-hibernate</artifactId>
-				<version>1.3</version>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 				<version>2.4.3</version>
@@ -289,11 +284,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			</dependency>
 			<dependency>
 				<groupId>org.raziskovalec</groupId>
-				<artifactId>raziskovalec-domain</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.raziskovalec</groupId>
 				<artifactId>raziskovalec-util</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -305,12 +295,12 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			<dependency>
 				<groupId>org.icefaces</groupId>
 				<artifactId>icefaces</artifactId>
-				<version>2.0.2</version>
+				<version>3.0.0.RC1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.icefaces</groupId>
 				<artifactId>icefaces-compat</artifactId>
-				<version>2.0.2</version>
+				<version>3.0.0.RC1</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sun.faces</groupId>
@@ -321,6 +311,11 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<groupId>com.sun.faces</groupId>
 				<artifactId>jsf-impl</artifactId>
 				<version>2.1.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.icepush</groupId>
+				<artifactId>icepush</artifactId>
+				<version>3.0.0.RC1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

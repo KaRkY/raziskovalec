@@ -40,15 +40,21 @@ import com.google.common.collect.Maps;
 @Import({ ResearcherBeansDeclaration.class })
 public class RootSpringConfig
 {
+	// ========================================================================
+	// Fields
+	// ========================================================================
 	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
 	
+	// ========================================================================
+	// Methods
+	// ========================================================================
 	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public LocalizationBean localizationBean()
 	{
 		logger.trace("Entering method localizationBean()");
 		final LocalizationBean localizationBean = new LocalizationBean();
-		logger.trace("Leaving method localizationBean(): {}", localizationBean);
+		logger.trace("Leaving method localizationBean(): '{}'", localizationBean);
 		return localizationBean;
 	}
 	
@@ -64,13 +70,15 @@ public class RootSpringConfig
 				"org.raziskovalec.messages.search.messages",
 		"org.raziskovalec.messages.researcher.messages" });
 		
-		logger.trace("Leaving method msg(): {}", messageSource);
+		logger.trace("Leaving method msg(): '{}'", messageSource);
 		return messageSource;
 	}
 	
 	@Bean
-	public CustomScopeConfigurer scopeConfigurer()
+	public static CustomScopeConfigurer scopeConfigurer()
 	{
+		final Logger logger = LoggerFactory.getLogger(RootSpringConfig.class);
+		logger.trace("Entering method scopeConfigurer()");
 		final CustomScopeConfigurer scopeConfigurer = new CustomScopeConfigurer();
 		
 		final Map<String, Object> scopes = Maps.newHashMap();
@@ -78,6 +86,7 @@ public class RootSpringConfig
 		
 		scopeConfigurer.setScopes(scopes);
 		
+		logger.trace("Leaving method scopeConfigurer(): '{}'", scopeConfigurer);
 		return scopeConfigurer;
 	}
 }

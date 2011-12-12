@@ -22,21 +22,35 @@ import javax.faces.convert.Converter;
 import org.joda.time.ReadableInstant;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.DateTimeFormatterBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LocalDateConverter implements Converter
 {
-	
 	private final DateTimeFormatter	dateTimeFormatter;
+	// ========================================================================
+	// Fields
+	// ========================================================================
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	// ========================================================================
+	// Constructors
+	// ========================================================================
 	public LocalDateConverter()
 	{
+		logger.trace("Creating LocalDateConverter");
 		final DateTimeFormatterBuilder formatterBuilder = new DateTimeFormatterBuilder()
 		.appendDayOfMonth(2)
 		.appendLiteral(':')
 		.appendMonthOfYear(2)
 		.appendYear(4, 4);
 		dateTimeFormatter = formatterBuilder.toFormatter();
+		logger.debug("Created formatter: '{}'", dateTimeFormatter);
 	}
+	
+	// ========================================================================
+	// Methods
+	// ========================================================================
 	
 	@Override
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value)

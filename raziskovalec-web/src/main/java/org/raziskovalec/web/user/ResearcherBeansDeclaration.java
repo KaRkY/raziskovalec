@@ -22,6 +22,10 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class ResearcherBeansDeclaration
 {
+	// ========================================================================
+	// Methods
+	// ========================================================================
+
 	@Bean
 	@Scope("view")
 	public ResearcherBean researcher()

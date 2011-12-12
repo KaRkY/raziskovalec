@@ -52,10 +52,6 @@ public class LocalizationBean implements Serializable
 	// ========================================================================
 	// Methods
 	// ========================================================================
-	public void changeLocale(final Locale locale)
-	{
-		setCurrentLocale(locale);
-	}
 	
 	public Locale getCurrentLocale()
 	{
@@ -69,7 +65,7 @@ public class LocalizationBean implements Serializable
 	
 	public void setCurrentLocale(final Locale currentLocale)
 	{
-		logger.debug("Setting locale to: '{}'", currentLocale);
+		logger.trace("Setting locale to: '{}'", currentLocale);
 		this.currentLocale = currentLocale;
 	}
 	

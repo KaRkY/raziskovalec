@@ -25,7 +25,14 @@ import org.springframework.web.context.request.FacesRequestAttributes;
 
 public class ViewScope implements Scope
 {
+	// ========================================================================
+	// Fields
+	// ========================================================================
 	public static final String	VIEW_SCOPE_CALLBACKS	= "viewScope.callbacks";
+	
+	// ========================================================================
+	// Methods
+	// ========================================================================
 	
 	@Override
 	public synchronized Object get(final String name, final ObjectFactory<?> objectFactory)

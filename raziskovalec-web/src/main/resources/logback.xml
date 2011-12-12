@@ -3,7 +3,7 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>[%date{dd MMM yyyy ;HH:mm:ss.SSS}] %-7([%level]) %-70(%logger{70}) - %msg%n
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
             </pattern>
         </encoder>
     </appender>
@@ -22,22 +22,22 @@
 
 
         <encoder>
-            <pattern>[%date{dd MMM yyyy ;HH:mm:ss.SSS}] %-7([%level]) %-70(%logger{70}) - %msg%n
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
             </pattern>
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="warn" />
+    <logger name="org.springframework" level="info" />
 
-    <logger name="org.apache" level="warn" />
+    <logger name="org.apache" level="info" />
     
-    <logger name="com.icesoft" leve="warn" />
+    <logger name="com.icesoft" level="info" />
     
-    <logger name="org.icefaces" level="warn" />
+    <logger name="org.icefaces" level="info" />
     
-    <logger name="org.raziskovalec.web.jsf" level="warn" />
+    <logger name="org.raziskovalec.web.jsf" level="info" />
     
-    <logger name="org.raziskovalec.web.i18n" level="warn" />
+    <logger name="org.raziskovalec.web.i18n" level="info" />
     
     <root level="trace">
         <appender-ref ref="STDOUT" />

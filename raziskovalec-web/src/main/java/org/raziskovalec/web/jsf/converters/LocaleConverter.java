@@ -23,7 +23,9 @@ import org.apache.commons.lang3.LocaleUtils;
 
 public class LocaleConverter implements Converter
 {
-	
+	// ========================================================================
+	// Methods
+	// ========================================================================
 	@Override
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value)
 	{

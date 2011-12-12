@@ -46,7 +46,7 @@ public class ResearcherAddBackingBean
 	
 	public String save()
 	{
-		logger.info("Saveing researcher: {}", researcher);
+		logger.info("Saveing researcher: '{}'", researcher);
 		return "/researcher/list?faces-redirect=true";
 	}
 }

@@ -27,6 +27,10 @@ import javax.faces.event.ViewMapListener;
 
 public class ViewScopeCallbackRegistrar implements ViewMapListener
 {
+	// ========================================================================
+	// Methods
+	// ========================================================================
+
 	@Override
 	public boolean isListenerForSource(final Object source)
 	{
