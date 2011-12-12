@@ -2,13 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://www.raziskovalec.org/functions"
+      >
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:param name="page" value="group" />
 
         <ui:define name="title">
-            #{msg['group']}
+            #{fn:msg('group')}
         </ui:define>
 	</ui:composition>
 </html>

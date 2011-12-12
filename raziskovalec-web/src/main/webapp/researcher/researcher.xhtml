@@ -3,45 +3,46 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:t="http://myfaces.apache.org/tomahawk">
+      xmlns:fn="http://www.raziskovalec.org/functions"
+      >
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:param name="page" value="researcher" />
     
         <ui:define name="title">
-            #{msg['researcher.title']}
+            #{fn:msg('researcher.title')}
         </ui:define>
         
         <ui:define name="body">
             <h:form id="researcher">
-                <t:panelGrid columns="3" cellpadding="2px">
+                <h:panelGrid columns="3">
                     <f:facet name="header">
-                        <h:outputText value="#{msg['researcher.add']}" />
+                        <h:outputText value="#{fn:msg('researcher.add')}" />
                     </f:facet>
                     
-                    <h:outputText value="#{msg['researcher.name']}:" />
+                    <h:outputText value="#{fn:msg('researcher.name')}:" />
                     <h:inputText id="txtName" value="#{researcher.name}" />
                     <h:message for="txtName"/>
                     
-                    <h:outputText value="#{msg['researcher.lastname']}:" />
+                    <h:outputText value="#{fn:msg('researcher.lastname')}:" />
                     <h:inputText id="txtLastname" value="#{researcher.lastname}" />
                     <h:message for="txtLastname"/>
                     
-                    <h:outputText value="#{msg['researcher.email']}:" />
+                    <h:outputText value="#{fn:msg('researcher.email')}:" />
                     <h:inputText id="txtEmail" value="#{researcher.email}" />
                     <h:message for="txtEmail"/>
                     
-                    <h:outputText value="#{msg['researcher.telephonenumber']}:" />
+                    <h:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
                     <h:inputText id="txtTelephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
                     <h:message for="txtTelephone"/>
                     
-                    <h:outputText value="#{msg['researcher.www']}:" />
+                    <h:outputText value="#{fn:msg('researcher.www')}:" />
                     <h:inputText id="txtWww" value="#{researcher.www}" />
                     <h:message for="txtWww"/>
-                </t:panelGrid>
+                </h:panelGrid>
                 
-                <t:commandButton value="#{msg['researcher.save']}" title="#{msg['researcher.save']}" action="#{researcherAdd.save}" />
-                <t:commandButton value="#{msg['researcher.cancel']}" title="#{msg['researcher.cancel']}" action="#{researcherAdd.cancel}" />
+                <h:commandButton value="#{fn:msg('researcher.save')}" title="#{fn:msg('researcher.save')}" action="#{researcherAdd.save}" />
+                <h:commandButton value="#{fn:msg('researcher.cancel')}" title="#{fn:msg('researcher.cancel')}" action="#{researcherAdd.cancel}" />
             </h:form>
         </ui:define>
         

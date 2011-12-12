@@ -69,6 +69,7 @@ public class LocalizationBean implements Serializable
 	
 	public void setCurrentLocale(final Locale currentLocale)
 	{
+		logger.debug("Setting locale to: '{}'", currentLocale);
 		this.currentLocale = currentLocale;
 	}
 	

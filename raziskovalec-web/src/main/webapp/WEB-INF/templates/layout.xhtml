@@ -3,102 +3,105 @@
     xmlns:h="http://java.sun.com/jsf/html" 
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:t="http://myfaces.apache.org/tomahawk"
+    xmlns:fn="http://www.raziskovalec.org/functions"
 >
-
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-    <link href="#{facesContext.externalContext.requestContextPath}/styles/html.css" rel="stylesheet" type="text/css" />
+<f:view locale="#{localizationBean.currentLocale}">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
-    <link href="#{facesContext.externalContext.requestContextPath}/styles/layout.css" rel="stylesheet" type="text/css" />
-
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/scripts/script.js" />
+        <link href="#{facesContext.externalContext.requestContextPath}/styles/html.css" rel="stylesheet" type="text/css" />
+        
+        <link href="#{facesContext.externalContext.requestContextPath}/styles/layout.css" rel="stylesheet" type="text/css" />
+        
+        <link href="./xmlhttp/css/rime/rime.css" rel="stylesheet" type="text/css" />
     
-    <ui:insert name="head" />
-
-    <title>Raziskovalec | <ui:insert name="title" /></title>
-</h:head>
-<h:body>
-    <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
-    <div id="content">
-        <!-- HEADER: Holds title, subtitle and header images -->
-        <div id="header">
-
-            <div id="title">
-                <h1>Raziskovalec.org</h1>
-                <h2>in the city</h2>
-            </div>
-            
-            <t:panelGroup styleClass="floatRight internationalization">
-                <ui:insert name="internationalization">
-                    <ui:include src="/WEB-INF/templates/internationalization.xhtml"></ui:include>
-                </ui:insert>
-            </t:panelGroup>
-            
-            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_left.jpg" alt="left slice" class="left" />
-            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/balloons.gif" alt="baloons" class="baloons" />
-            <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_right.jpg" alt="right slice" class="right" />
-        </div>
-
-
-
-        <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
-        <div id="mainMenu">
-            <ul class="floatRight">
-
-                <li><h:link title="#{msg['home']}" value="#{msg['home']}" outcome="/index" styleClass="#{page eq 'home'? 'here' : ''}" /></li>
-                <li><h:link title="#{msg['search']}" value="#{msg['search']}" outcome="/search/search" styleClass="#{page eq 'search'? 'here' : ''}" /></li>
-                <li><h:link title="#{msg['researcher']}" value="#{msg['researcher']}" outcome="/researcher/list" styleClass="#{page eq 'researcher'? 'here' : ''}" /></li>
-                <li><h:link title="#{msg['organization']}" value="#{msg['organization']}" outcome="/organization/list" styleClass="#{page eq 'organization'? 'here' : ''}" /></li>
-                <li><h:link title="#{msg['group']}" value="#{msg['group']}" outcome="/group/list" styleClass="#{page eq 'group'? 'here' : ''}" /></li>
-            </ul>
-        </div>
-
-
-
-
-        <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
-        <div id="page">
-
-
-            <!-- 25 percent width column, aligned to the left -->
-            <div class="width25 floatLeft leftColumn">
-
-                <h1><ui:insert name="title" /></h1>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/scripts/script.js" />
+        
+        <ui:insert name="head" />
+    
+        <title>Raziskovalec | <ui:insert name="title" /></title>
+    </h:head>
+    <h:body>
+        <!-- CONTENT: Holds all site content except for the footer.  This is what causes the footer to stick to the bottom -->
+        <div id="content">
+            <!-- HEADER: Holds title, subtitle and header images -->
+            <div id="header">
+    
+                <div id="title">
+                    <h1>Raziskovalec.org</h1>
+                    <h2>in the city</h2>
+                </div>
                 
-                <ui:insert name="leftColumn" />
+                <h:panelGroup styleClass="floatRight internationalization">
+                    <ui:insert name="internationalization">
+                        <ui:include src="/WEB-INF/templates/internationalization.xhtml"></ui:include>
+                    </ui:insert>
+                </h:panelGroup>
+                
+                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_left.jpg" alt="left slice" class="left" />
+                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/balloons.gif" alt="baloons" class="baloons" />
+                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_right.jpg" alt="right slice" class="right" />
             </div>
-
-
-
-
-            <!-- 75 percent width column, aligned to the right -->
-            <div class="width75 floatRight">
-                <ui:insert name="body" />
+    
+    
+    
+            <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
+            <div id="mainMenu">
+                <ul class="floatRight">
+    
+                    <li><h:link title="#{fn:msg('home')}" value="#{fn:msg('home')}" outcome="/index" styleClass="#{page eq 'home'? 'here' : ''}" /></li>
+                    <li><h:link title="#{fn:msg('search')}" value="#{fn:msg('search')}" outcome="/search/search" styleClass="#{page eq 'search'? 'here' : ''}" /></li>
+                    <li><h:link title="#{fn:msg('researcher')}" value="#{fn:msg('researcher')}" outcome="/researcher/list" styleClass="#{page eq 'researcher'? 'here' : ''}" /></li>
+                    <li><h:link title="#{fn:msg('organization')}" value="#{fn:msg('organization')}" outcome="/organization/list" styleClass="#{page eq 'organization'? 'here' : ''}" /></li>
+                    <li><h:link title="#{fn:msg('group')}" value="#{fn:msg('group')}" outcome="/group/list" styleClass="#{page eq 'group'? 'here' : ''}" /></li>
+                </ul>
+            </div>
+    
+    
+    
+    
+            <!-- PAGE CONTENT BEGINS: This is where you would define the columns (number, width and alignment) -->
+            <div id="page">
+    
+    
+                <!-- 25 percent width column, aligned to the left -->
+                <div class="width25 floatLeft leftColumn">
+    
+                    <h1><ui:insert name="title" /></h1>
+                    
+                    <ui:insert name="leftColumn" />
+                </div>
+    
+    
+    
+    
+                <!-- 75 percent width column, aligned to the right -->
+                <div class="width75 floatRight">
+                    <ui:insert name="body" />
+                </div>
+            </div>
+    
+    
+            <!-- FOOTER: Site footer for links, copyright, etc. -->
+            <div id="footer">
+    
+                <div id="width">
+                    <span class="floatLeft"> 
+                    <a href="http://www.raziskovalec.org">Raziskovalec.org</a>
+                    </span> 
+                    <span class="floatRight"> 
+                        <h:link title="#{fn:msg('home')}" value="#{fn:msg('home')}" outcome="/index" styleClass="#{page eq 'home'? 'here' : ''}" />
+                        <span class="grey">| </span><h:link title="#{fn:msg('search')}" value="#{fn:msg('search')}" outcome="/search/search" styleClass="#{page eq 'search'? 'here' : ''}" />
+                        <span class="grey">| </span><h:link title="#{fn:msg('researcher')}" value="#{fn:msg('researcher')}" outcome="/researcher/list" styleClass="#{page eq 'researcher'? 'here' : ''}" />
+                        <span class="grey">| </span><h:link title="#{fn:msg('organization')}" value="#{fn:msg('organization')}" outcome="/organization/list" styleClass="#{page eq 'organization'? 'here' : ''}" />
+                        <span class="grey">| </span><h:link title="#{fn:msg('group')}" value="#{fn:msg('group')}" outcome="/group/list" styleClass="#{page eq 'group'? 'here' : ''}" />
+                    </span>
+                </div>
+    
             </div>
         </div>
-
-
-        <!-- FOOTER: Site footer for links, copyright, etc. -->
-        <div id="footer">
-
-            <div id="width">
-                <span class="floatLeft"> 
-                <a href="http://www.raziskovalec.org">Raziskovalec.org</a>
-                </span> 
-                <span class="floatRight"> 
-                    <h:link title="#{msg['home']}" value="#{msg['home']}" outcome="/index" styleClass="#{page eq 'home'? 'here' : ''}" />
-                    <span class="grey">| </span><h:link title="#{msg['search']}" value="#{msg['search']}" outcome="/search/search" styleClass="#{page eq 'search'? 'here' : ''}" />
-                    <span class="grey">| </span><h:link title="#{msg['researcher']}" value="#{msg['researcher']}" outcome="/researcher/list" styleClass="#{page eq 'researcher'? 'here' : ''}" />
-                    <span class="grey">| </span><h:link title="#{msg['organization']}" value="#{msg['organization']}" outcome="/organization/list" styleClass="#{page eq 'organization'? 'here' : ''}" />
-                    <span class="grey">| </span><h:link title="#{msg['group']}" value="#{msg['group']}" outcome="/group/list" styleClass="#{page eq 'group'? 'here' : ''}" />
-                </span>
-            </div>
-
-        </div>
-    </div>
-</h:body>
+    </h:body>
+</f:view>
 </html>

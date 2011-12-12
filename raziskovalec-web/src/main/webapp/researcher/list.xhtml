@@ -2,17 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://www.raziskovalec.org/functions"
+      >
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
         <ui:param name="page" value="researcher" />
         
         <ui:define name="leftColumn">
-            <h:link title="#{msg['researcher.add']}" value="#{msg['researcher.add']}" outcome="researcher" />
+            <h:link title="#{fn:msg('researcher.add')}" value="#{fn:msg('researcher.add')}" outcome="researcher" />
         </ui:define>
 
         <ui:define name="title">
-            #{msg['researcher']}
+            #{fn:msg('researcher')}
         </ui:define>
 	</ui:composition>
 </html>
