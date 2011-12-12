@@ -7,4 +7,4 @@ target
 .settings
 /.git
 .pmd
-.jsfdia
+*.jsfdia
