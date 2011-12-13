@@ -328,5 +328,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 	<modules>
 		<module>raziskovalec-web</module>
 		<module>raziskovalec-util</module>
+		
 	</modules>
 </project>

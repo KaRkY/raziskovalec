@@ -3,22 +3,22 @@
     xmlns:h="http://java.sun.com/jsf/html" 
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:fn="http://www.raziskovalec.org/functions"
+    xmlns:fn="http://www.raziskovalec.org/comp"
 >
-<f:view locale="#{localizationBean.currentLocale}">
+<f:view locale="#{localization.currentLocale}">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     
-        <link href="#{facesContext.externalContext.requestContextPath}/styles/html.css" rel="stylesheet" type="text/css" />
+        <h:outputStylesheet name="styles/html.css" />
         
-        <link href="#{facesContext.externalContext.requestContextPath}/styles/layout.css" rel="stylesheet" type="text/css" />
+        <h:outputStylesheet name="styles/layout.css" />
+        
+        <h:outputScript name="scripts/jquery-1.7.1.js" />
+        
+        <h:outputScript name="scripts/script.js" />
         
         <link href="./xmlhttp/css/rime/rime.css" rel="stylesheet" type="text/css" />
     
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    
-        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/scripts/script.js" />
-        
         <ui:insert name="head" />
     
         <title>Raziskovalec | <ui:insert name="title" /></title>
@@ -40,9 +40,9 @@
                     </ui:insert>
                 </h:panelGroup>
                 
-                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_left.jpg" alt="left slice" class="left" />
-                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/balloons.gif" alt="baloons" class="baloons" />
-                <img src="#{facesContext.externalContext.requestContextPath}/images/bg/header_right.jpg" alt="right slice" class="right" />
+                <h:graphicImage name="images/bg/header_left.jpg" styleClass="left" />
+                <h:graphicImage name="images/bg/balloons.gif" styleClass="baloons" />
+                <h:graphicImage name="images/bg/header_right.jpg" styleClass="right" />
             </div>
     
     

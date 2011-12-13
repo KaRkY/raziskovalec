@@ -15,46 +15,34 @@
  */
 package org.raziskovalec.web.i18n;
 
-import java.io.Serializable;
 import java.util.Locale;
+import java.util.Map;
 
 import org.apache.commons.lang3.LocaleUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class LocalizationBean implements Serializable
+import com.google.common.collect.Maps;
+
+public class LocalizationDataBean
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long		serialVersionUID	= 2036176357496933262L;
-	private Locale					currentLocale;
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Map<String, Locale>	supportedLocales	= Maps.newHashMap();
 	
 	// ========================================================================
 	// Constructors
 	// ========================================================================
-	public LocalizationBean()
+	public LocalizationDataBean()
 	{
-		logger.debug("Creating localization bean.");
-		
-		currentLocale = LocaleUtils.toLocale("sl_SI");
+		supportedLocales.put("Slovenščina", LocaleUtils.toLocale("sl_SI"));
+		supportedLocales.put("English", LocaleUtils.toLocale("en_US"));
 	}
 	
 	// ========================================================================
 	// Methods
 	// ========================================================================
-	
-	public Locale getCurrentLocale()
+	public Map<String, Locale> getSupportedLocales()
 	{
-		return currentLocale;
+		return supportedLocales;
 	}
-	
-	
-	public void setCurrentLocale(final Locale currentLocale)
-	{
-		logger.trace("Setting locale to: '{}'", currentLocale);
-		this.currentLocale = currentLocale;
-	}
-	
 }

@@ -171,12 +171,12 @@ ul.sideMenu {
    padding-left: 35px;
    font: 400 0.55em verdana, arial, sans-serif;
    color: #FFF;
-   background: url(../images/bg/bullet.gif) no-repeat 10px 0px;
+   background: url(#{resource['images/bg/bullet.gif']}) no-repeat 10px 0px;
 }
 
 .sideMenu li.here ul li a:hover {
    color: #9FF3FF;
-   background: #5F5F5F url(../images/bg/bullet.gif) no-repeat 10px 0px;
+   background: #5F5F5F url(#{resource['images/bg/bullet.gif']}) no-repeat 10px 0px;
 }
 
 /**************************************************************
@@ -198,7 +198,7 @@ ul.sideMenu {
    width: 100%;
    clear: both;
    margin-top: -3.8em;
-   background: #000 url(../images/bg/footer.jpg) repeat-x top left;
+   background: #000 url(#{resource['images/bg/footer.jpg']}) repeat-x top left;
 }
 
 /* Sets the width of the footer content */
@@ -288,7 +288,7 @@ ul.sideMenu {
 
 .gradient {
    margin-bottom: 2em;
-   background: #555 url(../images/bg/gradient.jpg) repeat-x bottom left;
+   background: #555 url(#{resource['images/bg/gradient.jpg']}) repeat-x bottom left;
 }
 
 .search {

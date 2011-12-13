@@ -18,6 +18,7 @@ package org.raziskovalec.web.config;
 import java.util.Map;
 
 import org.raziskovalec.web.i18n.LocalizationBean;
+import org.raziskovalec.web.i18n.LocalizationDataBean;
 import org.raziskovalec.web.jsf.scopes.ViewScope;
 import org.raziskovalec.web.user.ResearcherBeansDeclaration;
 import org.slf4j.Logger;
@@ -50,12 +51,19 @@ public class RootSpringConfig
 	// ========================================================================
 	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-	public LocalizationBean localizationBean()
+	public LocalizationBean localization()
 	{
 		logger.trace("Entering method localizationBean()");
 		final LocalizationBean localizationBean = new LocalizationBean();
 		logger.trace("Leaving method localizationBean(): '{}'", localizationBean);
 		return localizationBean;
+	}
+	
+	@Bean
+	@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
+	public LocalizationDataBean localizationData()
+	{
+		return new LocalizationDataBean();
 	}
 	
 	@Bean
