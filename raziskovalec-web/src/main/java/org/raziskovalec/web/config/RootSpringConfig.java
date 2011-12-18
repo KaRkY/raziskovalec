@@ -15,8 +15,10 @@
  */
 package org.raziskovalec.web.config;
 
+import java.util.Locale;
 import java.util.Map;
 
+import org.apache.commons.lang3.LocaleUtils;
 import org.raziskovalec.web.i18n.LocalizationBean;
 import org.raziskovalec.web.i18n.LocalizationDataBean;
 import org.raziskovalec.web.jsf.scopes.ViewScope;
@@ -63,7 +65,7 @@ public class RootSpringConfig
 	@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
 	public LocalizationDataBean localizationData()
 	{
-		return new LocalizationDataBean();
+		return new LocalizationDataBean(LocaleUtils.toLocale("sl"), Locale.ENGLISH);
 	}
 	
 	@Bean

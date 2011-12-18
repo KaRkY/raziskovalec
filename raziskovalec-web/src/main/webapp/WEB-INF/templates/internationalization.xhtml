@@ -5,7 +5,7 @@
     
     <h:form id="internationalization">    
         <ice:selectOneMenu value="#{localization.currentLocale}" partialSubmit="true">
-            <f:selectItems itemLabel="#{locale.key}" itemValue="#{locale.value}" var="locale" value="#{localizationData.supportedLocales}"/>
+            <f:selectItems itemLabel="#{locale.getDisplayLanguage(locale)}" itemValue="#{locale}" var="locale" value="#{localizationData.supportedLocales}"/>
         </ice:selectOneMenu>
     </h:form>
     

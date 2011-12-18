@@ -15,33 +15,36 @@
  */
 package org.raziskovalec.web.i18n;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import org.apache.commons.lang3.LocaleUtils;
-
-import com.google.common.collect.Maps;
+import com.google.common.collect.Lists;
 
 public class LocalizationDataBean
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Map<String, Locale>	supportedLocales	= Maps.newHashMap();
+	private final List<Locale>	supportedLocales	= Lists.newArrayList();
 	
 	// ========================================================================
 	// Constructors
 	// ========================================================================
 	public LocalizationDataBean()
 	{
-		supportedLocales.put("Slovenščina", LocaleUtils.toLocale("sl_SI"));
-		supportedLocales.put("English", LocaleUtils.toLocale("en_US"));
+		this(Locale.getDefault());
+	}
+	
+	public LocalizationDataBean(final Locale... locales)
+	{
+		Collections.addAll(supportedLocales, locales);
 	}
 	
 	// ========================================================================
 	// Methods
 	// ========================================================================
-	public Map<String, Locale> getSupportedLocales()
+	public List<Locale> getSupportedLocales()
 	{
 		return supportedLocales;
 	}
