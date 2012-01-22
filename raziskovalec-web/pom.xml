@@ -80,11 +80,6 @@
 			<groupId>org.icepush</groupId>
 			<artifactId>icepush</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>raziskovalec-jsf-resources</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 	</dependencies>
 	<profiles>
 		<profile>
