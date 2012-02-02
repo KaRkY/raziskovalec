@@ -1,1 +1,5 @@
-name: raziskovalec-domain
+name: raziskovalec-util
+tests:
+  - name: raziskovalec-util
+    classes:
+    - org.raziskovalec.base.IdShould
