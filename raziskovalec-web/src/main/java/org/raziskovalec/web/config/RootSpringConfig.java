@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Rene Svetina
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 package org.raziskovalec.web.config;
 
@@ -47,7 +44,7 @@ public class RootSpringConfig
 	// Fields
 	// ========================================================================
 	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
-	
+
 	// ========================================================================
 	// Methods
 	// ========================================================================
@@ -60,42 +57,42 @@ public class RootSpringConfig
 		logger.trace("Leaving method localizationBean(): '{}'", localizationBean);
 		return localizationBean;
 	}
-	
+
 	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
 	public LocalizationDataBean localizationData()
 	{
 		return new LocalizationDataBean(LocaleUtils.toLocale("sl"), Locale.ENGLISH);
 	}
-	
+
 	@Bean
 	public ResourceBundleMessageSource msg()
 	{
 		logger.trace("Entering method msg()");
 		final ResourceBundleMessageSource messageSource = new
 				ResourceBundleMessageSource();
-		
+
 		messageSource.setBasenames(new String[] {
 				"org.raziskovalec.messages.menu",
 				"org.raziskovalec.messages.search.messages",
-		"org.raziskovalec.messages.researcher.messages" });
-		
+				"org.raziskovalec.messages.researcher.messages" });
+
 		logger.trace("Leaving method msg(): '{}'", messageSource);
 		return messageSource;
 	}
-	
+
 	@Bean
 	public static CustomScopeConfigurer scopeConfigurer()
 	{
 		final Logger logger = LoggerFactory.getLogger(RootSpringConfig.class);
 		logger.trace("Entering method scopeConfigurer()");
 		final CustomScopeConfigurer scopeConfigurer = new CustomScopeConfigurer();
-		
+
 		final Map<String, Object> scopes = Maps.newHashMap();
 		scopes.put("view", new ViewScope());
-		
+
 		scopeConfigurer.setScopes(scopes);
-		
+
 		logger.trace("Leaving method scopeConfigurer(): '{}'", scopeConfigurer);
 		return scopeConfigurer;
 	}

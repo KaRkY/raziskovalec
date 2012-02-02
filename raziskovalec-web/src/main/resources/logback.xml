@@ -41,6 +41,5 @@
     
     <root level="trace">
         <appender-ref ref="STDOUT" />
-        <appender-ref ref="FILE" />
     </root>
 </configuration>

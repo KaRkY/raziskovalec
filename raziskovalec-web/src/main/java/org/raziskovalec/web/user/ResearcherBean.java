@@ -1,17 +1,14 @@
 /**
  * Copyright 2011 Rene Svetina
  * 
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+ * the License. You may obtain a copy of the License at
  * 
- *      http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on
+ * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations under the License.
  */
 package org.raziskovalec.web.user;
 
@@ -31,11 +28,11 @@ public class ResearcherBean implements Serializable
 	private String				name;
 	private String				telephoneNumber;
 	private String				www;
-	
+
 	// ========================================================================
 	// Methods
 	// ========================================================================
-	
+
 	/**
 	 * @return the email
 	 */
@@ -43,7 +40,7 @@ public class ResearcherBean implements Serializable
 	{
 		return email;
 	}
-	
+
 	/**
 	 * @return the lastname
 	 */
@@ -51,7 +48,7 @@ public class ResearcherBean implements Serializable
 	{
 		return lastname;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
@@ -59,7 +56,7 @@ public class ResearcherBean implements Serializable
 	{
 		return name;
 	}
-	
+
 	/**
 	 * @return the telephoneNumber
 	 */
@@ -67,7 +64,7 @@ public class ResearcherBean implements Serializable
 	{
 		return telephoneNumber;
 	}
-	
+
 	/**
 	 * @return the www
 	 */
@@ -75,7 +72,7 @@ public class ResearcherBean implements Serializable
 	{
 		return www;
 	}
-	
+
 	/**
 	 * @param email
 	 *            the email to set
@@ -84,7 +81,7 @@ public class ResearcherBean implements Serializable
 	{
 		this.email = email;
 	}
-	
+
 	/**
 	 * @param lastname
 	 *            the lastname to set
@@ -93,7 +90,7 @@ public class ResearcherBean implements Serializable
 	{
 		this.lastname = lastname;
 	}
-	
+
 	/**
 	 * @param name
 	 *            the name to set
@@ -102,7 +99,7 @@ public class ResearcherBean implements Serializable
 	{
 		this.name = name;
 	}
-	
+
 	/**
 	 * @param telephoneNumber
 	 *            the telephoneNumber to set
@@ -111,7 +108,7 @@ public class ResearcherBean implements Serializable
 	{
 		this.telephoneNumber = telephoneNumber;
 	}
-	
+
 	/**
 	 * @param www
 	 *            the www to set
@@ -120,9 +117,10 @@ public class ResearcherBean implements Serializable
 	{
 		this.www = www;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
