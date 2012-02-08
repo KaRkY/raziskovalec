@@ -309,22 +309,22 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			<dependency>
 				<groupId>org.icefaces</groupId>
 				<artifactId>icefaces</artifactId>
-				<version>3.0.0.RC2</version>
+				<version>3.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.icefaces</groupId>
 				<artifactId>icefaces-compat</artifactId>
-				<version>3.0.0.RC2</version>
+				<version>3.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.icepush</groupId>
 				<artifactId>icepush</artifactId>
-				<version>3.0.0.RC2</version>
+				<version>3.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.icefaces</groupId>
 				<artifactId>icefaces-ace</artifactId>
-				<version>3.0.0.RC2</version>
+				<version>3.0.0</version>
 			</dependency>
 			<dependency>
 				<groupId>commons-codec</groupId>

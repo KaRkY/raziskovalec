@@ -26,12 +26,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
-public class Id
+public class Identifier
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final Cache<String, Id>	cache;
+	private static final Cache<String, Identifier>	cache;
 	private static Pattern					hashPattern;
 	private final String					hash;
 
@@ -47,13 +47,13 @@ public class Id
 		hashPattern = Pattern.compile("[A-Fa-f0-9]{40}");
 	}
 
-	private Id()
+	private Identifier()
 	{
 		UUID uuid = UUID.randomUUID();
 		hash = DigestUtils.shaHex(uuid.toString());
 	}
 
-	private Id(final String hash)
+	private Identifier(final String hash)
 	{
 		super();
 		this.hash = hash;
@@ -77,10 +77,10 @@ public class Id
 			return true;
 		if (obj.getClass() != getClass())
 			return false;
-		final Id equalTo = (Id) obj;
+		final Identifier o = (Identifier) obj;
 		EqualsBuilder builder = new EqualsBuilder();
 
-		builder.append(hash, equalTo.hash);
+		builder.append(hash, o.hash);
 
 		return builder.isEquals();
 	}
@@ -111,14 +111,14 @@ public class Id
 		return hash;
 	}
 
-	public static Id newId()
+	public static Identifier newId()
 	{
-		Id result = new Id();
+		Identifier result = new Identifier();
 		cache.put(result.toString(), result);
 		return result;
 	}
 
-	public static Id valueOf(final String hash)
+	public static Identifier valueOf(final String hash)
 	{
 		Matcher hashMatcher = hashPattern.matcher(hash);
 		if (!hashMatcher.matches())
@@ -127,13 +127,13 @@ public class Id
 
 		try
 		{
-			return cache.get(hash, new Callable<Id>()
+			return cache.get(hash, new Callable<Identifier>()
 			{
 
 				@Override
-				public Id call() throws Exception
+				public Identifier call() throws Exception
 				{
-					return new Id(hash);
+					return new Identifier(hash);
 				}
 
 			});

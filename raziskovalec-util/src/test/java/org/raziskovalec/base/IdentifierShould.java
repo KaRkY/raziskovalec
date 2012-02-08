@@ -6,15 +6,15 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
-public class IdShould
+public class IdentifierShould
 {
 	@Test
 	public void equalWithSameString()
 
 	{
 		String hash = "5678901234567890123456789012345678abcdef";
-		Id id1 = Id.valueOf(hash);
-		Id id2 = Id.valueOf(hash);
+		Identifier id1 = Identifier.valueOf(hash);
+		Identifier id2 = Identifier.valueOf(hash);
 
 		assertEquals(id1, id2);
 	}
@@ -23,13 +23,13 @@ public class IdShould
 	public void failOnIvalidHash()
 	{
 		String hash = "12rt";
-		Id.valueOf(hash);
+		Identifier.valueOf(hash);
 	}
 
 	@Test
 	public void generateNewId()
 	{
-		Id id = Id.newId();
+		Identifier id = Identifier.newId();
 
 		assertNotNull(id);
 	}
@@ -39,7 +39,7 @@ public class IdShould
 
 	{
 		String hash = "5678901234567890123456789012345678abcdef";
-		Id id = Id.valueOf(hash);
+		Identifier id = Identifier.valueOf(hash);
 
 		assertNotNull(id);
 	}
@@ -49,8 +49,8 @@ public class IdShould
 
 	{
 		String hash = "5678901234567890123456789012345678abcdef";
-		Id id1 = Id.valueOf(hash);
-		Id id2 = Id.valueOf(hash);
+		Identifier id1 = Identifier.valueOf(hash);
+		Identifier id2 = Identifier.valueOf(hash);
 
 		assertEquals(id1.hashCode(), id2.hashCode());
 	}
@@ -59,8 +59,8 @@ public class IdShould
 	public void getSameInstance()
 
 	{
-		Id id1 = Id.newId();
-		Id id2 = Id.valueOf(id1.toString());
+		Identifier id1 = Identifier.newId();
+		Identifier id2 = Identifier.valueOf(id1.toString());
 
 		assertTrue(id1 == id2);
 	}
@@ -70,7 +70,7 @@ public class IdShould
 
 	{
 		String hash = "5678901234567890123456789012345678abcdef";
-		Id id = Id.valueOf(hash);
+		Identifier id = Identifier.valueOf(hash);
 
 		assertEquals(id.toString(), hash);
 	}
