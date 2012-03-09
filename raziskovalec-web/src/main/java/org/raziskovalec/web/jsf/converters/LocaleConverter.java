@@ -18,7 +18,8 @@ import javax.faces.convert.Converter;
 
 import org.apache.commons.lang3.LocaleUtils;
 
-public class LocaleConverter implements Converter
+public class LocaleConverter implements
+		Converter
 {
 	// ========================================================================
 	// Methods
