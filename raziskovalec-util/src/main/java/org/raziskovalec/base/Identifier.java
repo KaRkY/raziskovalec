@@ -12,6 +12,8 @@
  */
 package org.raziskovalec.base;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -31,9 +33,9 @@ public class Identifier
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final Cache<String, Identifier>	cache;
-	private static Pattern					hashPattern;
-	private final String					hash;
+	private static final Cache<String, Identifier> cache;
+	private static Pattern hashPattern;
+	private final String hash;
 
 	// ========================================================================
 	// Constructors
@@ -121,9 +123,8 @@ public class Identifier
 	public static Identifier valueOf(final String hash)
 	{
 		Matcher hashMatcher = hashPattern.matcher(hash);
-		if (!hashMatcher.matches())
-			throw new IllegalArgumentException(String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}",
-					hash));
+		checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}",
+				hash));
 
 		try
 		{
