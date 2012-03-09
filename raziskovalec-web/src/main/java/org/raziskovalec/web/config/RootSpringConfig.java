@@ -34,6 +34,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.google.common.collect.Maps;
 
 /**
+ * Root spring configuration.
+ * 
  * @author Rene Svetina
  */
 @Configuration
