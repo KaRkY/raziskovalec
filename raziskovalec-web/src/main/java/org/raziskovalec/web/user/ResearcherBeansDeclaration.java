@@ -16,6 +16,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+/**
+ * Spring configuration for Researcher beans.
+ * 
+ * @author rene Svetina
+ * 
+ */
 @Configuration
 public class ResearcherBeansDeclaration
 {
@@ -23,6 +29,11 @@ public class ResearcherBeansDeclaration
 	// Methods
 	// ========================================================================
 
+	/**
+	 * Current researcher.
+	 * 
+	 * @return ResearcherBean
+	 */
 	@Bean
 	@Scope("view")
 	public ResearcherBean researcher()
@@ -30,6 +41,11 @@ public class ResearcherBeansDeclaration
 		return new ResearcherBean();
 	}
 
+	/**
+	 * Researcher add bean.
+	 * 
+	 * @return ResearcherAdd.
+	 */
 	@Bean
 	@Scope("request")
 	public ResearcherAddBackingBean researcherAdd()

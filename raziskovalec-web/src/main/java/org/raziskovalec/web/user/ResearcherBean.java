@@ -17,17 +17,24 @@ import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ResearcherBean implements Serializable
+/**
+ * Researcher data to be added.
+ * 
+ * @author Rene Svetina
+ * 
+ */
+public class ResearcherBean implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long	serialVersionUID	= 4905370220866247144L;
-	private String				email;
-	private String				lastname;
-	private String				name;
-	private String				telephoneNumber;
-	private String				www;
+	private static final long serialVersionUID = 4905370220866247144L;
+	private String email;
+	private String lastname;
+	private String name;
+	private String telephoneNumber;
+	private String www;
 
 	// ========================================================================
 	// Methods
@@ -120,7 +127,6 @@ public class ResearcherBean implements Serializable
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

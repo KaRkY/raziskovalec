@@ -23,12 +23,18 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.jsf.FacesContextUtils;
 
+/**
+ * JSF functions.
+ * 
+ * @author Rene Svetina
+ * 
+ */
 public final class Functions
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final Logger	logger	= LoggerFactory.getLogger(Functions.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Functions.class);
 
 	// ========================================================================
 	// Constructors
@@ -40,24 +46,33 @@ public final class Functions
 	// ========================================================================
 	// Methods
 	// ========================================================================
+	/**
+	 * Localized message.
+	 * 
+	 * @param path
+	 *            message path.
+	 * @return localized message.
+	 */
 	public static String msg(final String path)
 	{
-		logger.trace("Entering method msg(path: '{}')", path);
+		LOGGER.trace("Entering method msg(path: '{}')", path);
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		final WebApplicationContext applicationContext = FacesContextUtils
 				.getRequiredWebApplicationContext(facesContext);
 		final Map<String, MessageSource> messageSources = applicationContext.getBeansOfType(MessageSource.class);
 		for (final MessageSource messageSource : messageSources.values())
+		{
 			try
 			{
 				final String message = messageSource.getMessage(path, null, facesContext.getViewRoot().getLocale());
-				logger.trace("Leaving method msg(): '{}'", message);
+				LOGGER.trace("Leaving method msg(): '{}'", message);
 				return message;
-			}
-			catch (final NoSuchMessageException e)
+			} catch (final NoSuchMessageException e)
 			{
+				LOGGER.trace("No message found.");
 			}
-		logger.trace("Leaving method msg(): '{}'", path);
+		}
+		LOGGER.trace("Leaving method msg(): '{}'", path);
 		return path;
 	}
 }

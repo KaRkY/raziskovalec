@@ -15,17 +15,29 @@ package org.raziskovalec.web.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Researcher backing bean for adding new researchers.
+ * 
+ * @author Rene Svetina
+ * 
+ */
 public class ResearcherAddBackingBean
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
-	private final ResearcherBean	researcher;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final ResearcherBean researcher;
 
 	// ========================================================================
 	// Constructors
 	// ========================================================================
+	/**
+	 * Initialize bean with Researcher data.
+	 * 
+	 * @param researcher
+	 *            actual researcher.
+	 */
 	public ResearcherAddBackingBean(final ResearcherBean researcher)
 	{
 		this.researcher = researcher;
@@ -35,12 +47,22 @@ public class ResearcherAddBackingBean
 	// Methods
 	// ========================================================================
 
+	/**
+	 * Cancel adding.
+	 * 
+	 * @return redirect path.
+	 */
 	public String cancel()
 	{
 		logger.info("Canceling researcher save.");
 		return "/researcher/list?faces-redirect=true";
 	}
 
+	/**
+	 * Save researcher.
+	 * 
+	 * @return redirect path.
+	 */
 	public String save()
 	{
 		logger.info("Saveing researcher: '{}'", researcher);

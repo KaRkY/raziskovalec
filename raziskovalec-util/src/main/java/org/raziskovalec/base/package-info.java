@@ -15,9 +15,7 @@
  */
 
 /**
- * Osnovna konfiguracija projekta za spletno stran.
- * 
- * @author Rene Svetina
+ * Base utility package.
  */
-package org.raziskovalec.web.config;
+package org.raziskovalec.base;
 

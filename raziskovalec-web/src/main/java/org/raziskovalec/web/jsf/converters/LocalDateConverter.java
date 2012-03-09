@@ -22,17 +22,27 @@ import org.joda.time.format.DateTimeFormatterBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LocalDateConverter implements Converter
+/**
+ * Converter for converting LocalDate to String and back.
+ * 
+ * @author Rene Svetina
+ * 
+ */
+public class LocalDateConverter implements
+		Converter
 {
-	private final DateTimeFormatter	dateTimeFormatter;
+	private final DateTimeFormatter dateTimeFormatter;
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// ========================================================================
 	// Constructors
 	// ========================================================================
+	/**
+	 * Default constructor.
+	 */
 	public LocalDateConverter()
 	{
 		logger.trace("Creating LocalDateConverter");

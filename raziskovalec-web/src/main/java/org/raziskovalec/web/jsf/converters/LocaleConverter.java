@@ -18,6 +18,12 @@ import javax.faces.convert.Converter;
 
 import org.apache.commons.lang3.LocaleUtils;
 
+/**
+ * Locale to String converter.
+ * 
+ * @author Rene Svetina
+ * 
+ */
 public class LocaleConverter implements
 		Converter
 {

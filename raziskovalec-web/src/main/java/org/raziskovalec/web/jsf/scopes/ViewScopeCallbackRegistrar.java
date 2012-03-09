@@ -16,13 +16,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.faces.component.UIViewRoot;
-import javax.faces.event.AbortProcessingException;
 import javax.faces.event.PostConstructViewMapEvent;
 import javax.faces.event.PreDestroyViewMapEvent;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.ViewMapListener;
 
-public class ViewScopeCallbackRegistrar implements ViewMapListener
+/**
+ * For registering VievScope callbacks.
+ * 
+ * @author Rene Svetina
+ * 
+ */
+public class ViewScopeCallbackRegistrar implements
+		ViewMapListener
 {
 	// ========================================================================
 	// Methods
@@ -35,7 +41,7 @@ public class ViewScopeCallbackRegistrar implements ViewMapListener
 	}
 
 	@Override
-	public void processEvent(final SystemEvent event) throws AbortProcessingException
+	public void processEvent(final SystemEvent event)
 	{
 		if (event instanceof PostConstructViewMapEvent)
 		{
@@ -54,7 +60,9 @@ public class ViewScopeCallbackRegistrar implements ViewMapListener
 				if (callbacks != null)
 				{
 					for (final Runnable c : callbacks.values())
+					{
 						c.run();
+					}
 					callbacks.clear();
 				}
 			}

@@ -43,11 +43,14 @@ public class RootSpringConfig
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// ========================================================================
 	// Methods
 	// ========================================================================
+	/**
+	 * @return Returns LocalizationBean for current session.
+	 */
 	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public LocalizationBean localization()
@@ -58,6 +61,9 @@ public class RootSpringConfig
 		return localizationBean;
 	}
 
+	/**
+	 * @return Return localization data for this app.
+	 */
 	@Bean
 	@Scope(value = WebApplicationContext.SCOPE_APPLICATION)
 	public LocalizationDataBean localizationData()
@@ -65,6 +71,9 @@ public class RootSpringConfig
 		return new LocalizationDataBean(LocaleUtils.toLocale("sl"), Locale.ENGLISH);
 	}
 
+	/**
+	 * @return Return all localization bundles.
+	 */
 	@Bean
 	public ResourceBundleMessageSource msg()
 	{
@@ -81,10 +90,12 @@ public class RootSpringConfig
 		return messageSource;
 	}
 
+	/**
+	 * @return Custom scope cofigurer for view scope.
+	 */
 	@Bean
-	public static CustomScopeConfigurer scopeConfigurer()
+	public CustomScopeConfigurer scopeConfigurer()
 	{
-		final Logger logger = LoggerFactory.getLogger(RootSpringConfig.class);
 		logger.trace("Entering method scopeConfigurer()");
 		final CustomScopeConfigurer scopeConfigurer = new CustomScopeConfigurer();
 

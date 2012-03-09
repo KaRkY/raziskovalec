@@ -24,10 +24,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-web-api</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -83,6 +80,10 @@
 		<dependency>
 			<groupId>org.icefaces</groupId>
 			<artifactId>icefaces-ace</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
 		</dependency>
 	</dependencies>
 	<profiles>

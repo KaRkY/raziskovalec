@@ -10,37 +10,9 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.raziskovalec.base;
-
-import java.util.Set;
-
-import com.google.common.collect.Sets;
 
 /**
- * @author Rene Svetina
- * 
+ * JSF scopes.
  */
-public final class ObjectsUtil
-{
-	private ObjectsUtil()
-	{
-	}
+package org.raziskovalec.web.jsf.scopes;
 
-	/**
-	 * For null returns empty Set.
-	 * 
-	 * @param set
-	 *            Set for null check.
-	 * @param <E>
-	 *            Set generic type.
-	 * @return For null returns empty Set if not null then returns same Set.
-	 */
-	public static <E> Set<E> emptyForNull(final Set<E> set)
-	{
-		if (set == null)
-		{
-			return Sets.newHashSet();
-		}
-		return set;
-	}
-}

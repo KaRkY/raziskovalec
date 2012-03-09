@@ -20,12 +20,19 @@ import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.config.Scope;
 import org.springframework.web.context.request.FacesRequestAttributes;
 
-public class ViewScope implements Scope
+/**
+ * Spring ViewScope implementation.
+ * 
+ * @author Rene Svetina
+ * 
+ */
+public class ViewScope implements
+		Scope
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	public static final String	VIEW_SCOPE_CALLBACKS	= "viewScope.callbacks";
+	public static final String VIEW_SCOPE_CALLBACKS = "viewScope.callbacks";
 
 	// ========================================================================
 	// Methods
@@ -57,7 +64,9 @@ public class ViewScope implements Scope
 		@SuppressWarnings("unchecked")
 		final Map<String, Runnable> callbacks = (Map<String, Runnable>) getViewMap().get(VIEW_SCOPE_CALLBACKS);
 		if (callbacks != null)
+		{
 			callbacks.put(name, runnable);
+		}
 	}
 
 	@Override
@@ -69,7 +78,9 @@ public class ViewScope implements Scope
 			@SuppressWarnings("unchecked")
 			final Map<String, Runnable> callbacks = (Map<String, Runnable>) getViewMap().get(VIEW_SCOPE_CALLBACKS);
 			if (callbacks != null)
+			{
 				callbacks.remove(name);
+			}
 		}
 		return instance;
 	}

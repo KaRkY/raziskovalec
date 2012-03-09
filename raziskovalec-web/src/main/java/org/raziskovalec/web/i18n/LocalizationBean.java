@@ -19,18 +19,29 @@ import org.apache.commons.lang3.LocaleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LocalizationBean implements Serializable
+/**
+ * localization bean for holding current localization data.
+ * 
+ * @author ene Svetina
+ * 
+ */
+public class LocalizationBean implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long	serialVersionUID	= 2036176357496933262L;
-	private Locale				currentLocale;
-	private final Logger		logger				= LoggerFactory.getLogger(this.getClass());
+	private static final long serialVersionUID = 2036176357496933262L;
+	private Locale currentLocale;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	// ========================================================================
 	// Constructors
 	// ========================================================================
+
+	/**
+	 * Default constructor.
+	 */
 	public LocalizationBean()
 	{
 		logger.debug("Creating localization bean.");
@@ -42,11 +53,20 @@ public class LocalizationBean implements Serializable
 	// Methods
 	// ========================================================================
 
+	/**
+	 * @return Current locale.
+	 */
 	public Locale getCurrentLocale()
 	{
 		return currentLocale;
 	}
 
+	/**
+	 * Sets current locale.
+	 * 
+	 * @param currentLocale
+	 *            locale to be set.
+	 */
 	public void setCurrentLocale(final Locale currentLocale)
 	{
 		logger.trace("Setting locale to: '{}'", currentLocale);

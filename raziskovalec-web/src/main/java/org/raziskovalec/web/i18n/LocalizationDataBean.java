@@ -18,21 +18,37 @@ import java.util.Locale;
 
 import com.google.common.collect.Lists;
 
+/**
+ * Bean for holding all locales.
+ * 
+ * @author Rene Svetina
+ * 
+ */
 public class LocalizationDataBean
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final List<Locale>	supportedLocales	= Lists.newArrayList();
+	private final List<Locale> supportedLocales = Lists.newArrayList();
 
 	// ========================================================================
 	// Constructors
 	// ========================================================================
+
+	/**
+	 * Derfaul constructor.
+	 */
 	public LocalizationDataBean()
 	{
 		this(Locale.getDefault());
 	}
 
+	/**
+	 * Constructor that initialiyes all supported locales.
+	 * 
+	 * @param locales
+	 *            supported locales.
+	 */
 	public LocalizationDataBean(final Locale... locales)
 	{
 		Collections.addAll(supportedLocales, locales);
@@ -41,6 +57,11 @@ public class LocalizationDataBean
 	// ========================================================================
 	// Methods
 	// ========================================================================
+	/**
+	 * List of supported locales.
+	 * 
+	 * @return supported locales.
+	 */
 	public List<Locale> getSupportedLocales()
 	{
 		return supportedLocales;
