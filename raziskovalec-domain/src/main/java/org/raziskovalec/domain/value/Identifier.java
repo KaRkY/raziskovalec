@@ -36,13 +36,13 @@ import com.google.common.util.concurrent.ExecutionError;
  */
 public final class Identifier
 {
+	// ========================================================================
+	// Fields
+	// ========================================================================
 	private static final int HASH_MULTIPLIER = 31;
 	private static final int HASH_PRIME = 17;
 	private static final int CACHE_EXPIRE_TIME = 10;
 	private static final long CACHE_SIZE = 10000L;
-	// ========================================================================
-	// Fields
-	// ========================================================================
 	private static final Cache<String, Identifier> CACHE;
 	private static Pattern hashPattern;
 	private final String hash;
