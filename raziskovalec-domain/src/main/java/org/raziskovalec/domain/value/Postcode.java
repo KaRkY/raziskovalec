@@ -110,6 +110,10 @@ public final class Postcode
 		return valueOf(postalMatcher.group(1), postalMatcher.group(2));
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode()
 	{
@@ -120,6 +124,10 @@ public final class Postcode
 		return builder.build();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@Override
 	public boolean equals(final Object obj)
 	{
@@ -143,6 +151,10 @@ public final class Postcode
 		return builder.isEquals();
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString()
 	{
