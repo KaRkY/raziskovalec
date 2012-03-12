@@ -1,0 +1,5 @@
+name: raziskovalec-domain
+tests:
+  - name: raziskovalec-domain
+    classes:
+    - org.raziskovalec.domain.value.IdentifierShould

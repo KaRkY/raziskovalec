@@ -1,9 +1,10 @@
-package org.raziskovalec.base;
+package org.raziskovalec.domain.value;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
+import org.raziskovalec.domain.value.Identifier;
 import org.testng.annotations.Test;
 
 public class IdentifierShould
