@@ -12,6 +12,7 @@
  */
 package org.raziskovalec.web.i18n;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -24,11 +25,13 @@ import com.google.common.collect.Lists;
  * @author Rene Svetina
  * 
  */
-public class LocalizationDataBean
+public class LocalizationDataBean implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
+	private static final long serialVersionUID = -8548438244676199524L;
 	private final List<Locale> supportedLocales = Lists.newArrayList();
 
 	// ========================================================================
