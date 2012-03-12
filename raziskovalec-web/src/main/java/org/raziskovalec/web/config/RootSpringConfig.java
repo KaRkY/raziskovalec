@@ -27,7 +27,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -54,11 +53,11 @@ public class RootSpringConfig
 	 * @return Returns LocalizationBean for current session.
 	 */
 	@Bean
-	@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+	@Scope(value = WebApplicationContext.SCOPE_SESSION)
 	public LocalizationBean localization()
 	{
 		logger.trace("Entering method localizationBean()");
-		final LocalizationBean localizationBean = new LocalizationBean();
+		final LocalizationBean localizationBean = new LocalizationBean(localizationData());
 		logger.trace("Leaving method localizationBean(): '{}'", localizationBean);
 		return localizationBean;
 	}

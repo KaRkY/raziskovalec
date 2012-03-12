@@ -13,11 +13,18 @@
 package org.raziskovalec.web.i18n;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
+
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.LocaleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Maps;
 
 /**
  * localization bean for holding current localization data.
@@ -28,12 +35,15 @@ import org.slf4j.LoggerFactory;
 public class LocalizationBean implements
 		Serializable
 {
+	private static final int COOKIE_MAX_AGE = 31536000;
 	// ========================================================================
 	// Fields
 	// ========================================================================
 	private static final long serialVersionUID = 2036176357496933262L;
+	private static final String LOCALE_COOKIE_NAME = "org.raziskovalec.localization.LOCALE";
 	private Locale currentLocale;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private Map<String, Object> cookieProperties;
 
 	// ========================================================================
 	// Constructors
@@ -41,12 +51,46 @@ public class LocalizationBean implements
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param localizationData
+	 *            for supported locales.
 	 */
-	public LocalizationBean()
+	public LocalizationBean(final LocalizationDataBean localizationData)
 	{
 		logger.debug("Creating localization bean.");
 
-		currentLocale = LocaleUtils.toLocale("sl_SI");
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		Map<String, Object> requestCookieMap = externalContext
+				.getRequestCookieMap();
+
+		cookieProperties = Maps.newHashMap();
+		cookieProperties.put("maxAge", new Integer(COOKIE_MAX_AGE));
+
+		if (!requestCookieMap.containsKey(LOCALE_COOKIE_NAME))
+		{
+			Iterator<Locale> requestLocales = externalContext.getRequestLocales();
+			for (Locale requestLocale = requestLocales.next(); requestLocales.hasNext(); requestLocale = requestLocales
+					.next())
+			{
+				if (localizationData.getSupportedLocales().contains(requestLocale))
+				{
+					currentLocale = requestLocale;
+
+					break;
+				}
+			}
+
+			if (currentLocale == null)
+			{
+				currentLocale = localizationData.getSupportedLocales().get(0);
+			}
+
+			externalContext.addResponseCookie(LOCALE_COOKIE_NAME, currentLocale.toString(), cookieProperties);
+		}
+		else
+		{
+			currentLocale = LocaleUtils.toLocale(requestCookieMap.get(LOCALE_COOKIE_NAME).toString());
+		}
 	}
 
 	// ========================================================================
@@ -71,6 +115,8 @@ public class LocalizationBean implements
 	{
 		logger.trace("Setting locale to: '{}'", currentLocale);
 		this.currentLocale = currentLocale;
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		externalContext.addResponseCookie(LOCALE_COOKIE_NAME, currentLocale.toString(), cookieProperties);
 	}
 
 }
