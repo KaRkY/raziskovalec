@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
->
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.raziskovalec</groupId>
 	<artifactId>raziskovalec</artifactId>
@@ -25,6 +26,10 @@
 	<description>Projekt ki sem ga začel zaradi diplome. 
 Projekt bi naj omogočal delo z raziskovalci 
 in njihovimi patenti ter projekti, ki jih izvajajo.</description>
+	<organization>
+		<name>raziskovalec.org</name>
+		<url>http://www.raziskovalec.org</url>
+	</organization>
 	<scm>
 		<connection>scm:git:git://github.com/KaRkY/Raziskovalci.git</connection>
 		<url>https://github.com/KaRkY/Raziskovalci</url>
@@ -111,6 +116,21 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 							<link>http://commons.apache.org/lang/api-release/</link>
 						</links>
 						<linksource>true</linksource>
+						<doctitle>raziskovalec.org</doctitle>
+						<groups>
+							<group>
+								<title>Raziskovalec web</title>
+								<packages>org.raziskovalec.web*</packages>
+							</group>
+							<group>
+								<title>Raziskovalec domain</title>
+								<packages>org.raziskovalec.domain*</packages>
+							</group>
+							<group>
+								<title>Raziskovalec util</title>
+								<packages>org.raziskovalec.base*</packages>
+							</group>
+						</groups>
 					</configuration>
 				</plugin>
 				<plugin>

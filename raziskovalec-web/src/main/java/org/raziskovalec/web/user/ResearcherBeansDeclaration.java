@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Scope;
 /**
  * Spring configuration for Researcher beans.
  * 
- * @author rene Svetina
+ * @author Rene Svetina
  * 
  */
 @Configuration

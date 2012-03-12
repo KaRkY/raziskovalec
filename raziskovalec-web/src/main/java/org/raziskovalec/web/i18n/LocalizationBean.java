@@ -29,7 +29,7 @@ import com.google.common.collect.Maps;
 /**
  * localization bean for holding current localization data.
  * 
- * @author ene Svetina
+ * @author Rene Svetina
  * 
  */
 public class LocalizationBean implements
