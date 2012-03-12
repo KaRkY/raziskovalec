@@ -15,6 +15,8 @@ package org.raziskovalec.domain.value;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.Serializable;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -24,11 +26,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rene Svetina
  * 
  */
-public final class Name
+public final class Name implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
+	private static final long serialVersionUID = -7175433342123178074L;
 	private static final int HASH_MULTIPLIER = 31;
 	private static final int HASH_PRIME = 17;
 	public static final Name EMPTY = new Name();

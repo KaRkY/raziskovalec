@@ -14,6 +14,7 @@ package org.raziskovalec.domain.value;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.io.Serializable;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -34,11 +35,13 @@ import com.google.common.util.concurrent.ExecutionError;
  * 
  * @author Rene Svetina
  */
-public final class Identifier
+public final class Identifier implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
+	private static final long serialVersionUID = 6346749479769179997L;
 	private static final int HASH_MULTIPLIER = 31;
 	private static final int HASH_PRIME = 17;
 	private static final int CACHE_EXPIRE_TIME = 10;

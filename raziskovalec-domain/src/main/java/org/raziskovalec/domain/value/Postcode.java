@@ -15,6 +15,7 @@ package org.raziskovalec.domain.value;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,11 +28,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rene Svetina
  * 
  */
-public final class Postcode
+public final class Postcode implements
+		Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
+	private static final long serialVersionUID = 8996124494460276539L;
 	private static final int HASH_PRIME = 17;
 	private static final int HASH_MULTIPLIER = 31;
 	private final String code;
