@@ -15,7 +15,7 @@
         
         <ui:define name="body">
         
-        	<h:messages />
+        	<h:messages globalOnly="true" />
         
             <h:form id="researcher">
                 <h:panelGrid columns="3">
@@ -24,24 +24,24 @@
                     </f:facet>
                     
                     <h:outputText value="#{fn:msg('researcher.name')}:" />
-                    <h:inputText id="txtName" value="#{researcher.name}" />
-                    <h:message for="txtName"/>
+                    <h:inputText id="name" value="#{researcher.name}" />
+                    <h:message for="name"/>
                     
                     <h:outputText value="#{fn:msg('researcher.lastname')}:" />
-                    <h:inputText id="txtLastname" value="#{researcher.lastname}"/>
-                    <h:message for="txtLastname"/>
+                    <h:inputText id="lastname" value="#{researcher.lastname}"/>
+                    <h:message for="lastname"/>
                     
                     <h:outputText value="#{fn:msg('researcher.email')}:" />
-                    <h:inputText id="txtEmail" value="#{researcher.email}" />
-                    <h:message for="txtEmail"/>
+                    <h:inputText id="email" value="#{researcher.email}" />
+                    <h:message for="email"/>
                     
                     <h:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
-                    <h:inputText id="txtTelephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
-                    <h:message for="txtTelephone"/>
+                    <h:inputText id="telephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
+                    <h:message for="telephone"/>
                     
                     <h:outputText value="#{fn:msg('researcher.www')}:" />
-                    <h:inputText id="txtWww" value="#{researcher.www}" />
-                    <h:message for="txtWww"/>
+                    <h:inputText id="www" value="#{researcher.www}" />
+                    <h:message for="www"/>
                 </h:panelGrid>
                 
                 <h:commandButton value="#{fn:msg('researcher.save')}" title="#{fn:msg('researcher.save')}" action="#{researcherAdd.save}" />
