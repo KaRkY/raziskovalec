@@ -55,6 +55,20 @@ public final class Functions
 	 */
 	public static String msg(final String path)
 	{
+		return msg(path, (Object[]) null);
+	}
+
+	/**
+	 * Localized message with arguments.
+	 * 
+	 * @param path
+	 *            localized message path.
+	 * @param args
+	 *            arguments.
+	 * @return actual message.
+	 */
+	public static String msg(final String path, final Object... args)
+	{
 		LOGGER.trace("Entering method msg(path: '{}')", path);
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		final WebApplicationContext applicationContext = FacesContextUtils
@@ -64,7 +78,7 @@ public final class Functions
 		{
 			try
 			{
-				final String message = messageSource.getMessage(path, null, facesContext.getViewRoot().getLocale());
+				final String message = messageSource.getMessage(path, args, facesContext.getViewRoot().getLocale());
 				LOGGER.trace("Leaving method msg(): '{}'", message);
 				return message;
 			} catch (final NoSuchMessageException e)

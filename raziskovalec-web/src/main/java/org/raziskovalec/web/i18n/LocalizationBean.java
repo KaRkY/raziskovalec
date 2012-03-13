@@ -19,6 +19,7 @@ import java.util.Map;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.Cookie;
 
 import org.apache.commons.lang3.LocaleUtils;
 import org.slf4j.Logger;
@@ -35,11 +36,11 @@ import com.google.common.collect.Maps;
 public class LocalizationBean implements
 		Serializable
 {
-	private static final int COOKIE_MAX_AGE = 31536000;
 	// ========================================================================
 	// Fields
 	// ========================================================================
 	private static final long serialVersionUID = 2036176357496933262L;
+	private static final int COOKIE_MAX_AGE = 31536000;
 	private static final String LOCALE_COOKIE_NAME = "org.raziskovalec.localization.LOCALE";
 	private Locale currentLocale;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -89,7 +90,8 @@ public class LocalizationBean implements
 		}
 		else
 		{
-			currentLocale = LocaleUtils.toLocale(requestCookieMap.get(LOCALE_COOKIE_NAME).toString());
+			Cookie cookie = (Cookie) requestCookieMap.get(LOCALE_COOKIE_NAME);
+			currentLocale = LocaleUtils.toLocale(cookie.getValue());
 		}
 	}
 
