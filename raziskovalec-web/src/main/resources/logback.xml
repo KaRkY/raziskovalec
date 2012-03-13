@@ -27,17 +27,17 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="info" />
+<!--     <logger name="org.springframework" level="info" /> -->
 
-    <logger name="org.apache" level="info" />
+<!--     <logger name="org.apache" level="info" /> -->
     
-    <logger name="com.icesoft" level="info" />
+<!--     <logger name="com.icesoft" level="info" /> -->
     
-    <logger name="org.icefaces" level="info" />
+<!--     <logger name="org.icefaces" level="info" /> -->
     
-    <logger name="org.raziskovalec.web.jsf" level="info" />
+<!--     <logger name="org.raziskovalec.web.jsf" level="info" /> -->
     
-    <logger name="org.raziskovalec.web.i18n" level="info" />
+<!--     <logger name="org.raziskovalec.web.i18n" level="info" /> -->
     
     <root level="trace">
         <appender-ref ref="STDOUT" />

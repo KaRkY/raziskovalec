@@ -24,7 +24,10 @@
                     </f:facet>
                     
                     <h:outputText value="#{fn:msg('researcher.name')}:" />
-                    <h:inputText id="name" value="#{researcher.name}" />
+                    <h:inputText id="name" value="#{researcher.name}" >
+                    	<f:validator validatorId="length-validator"/>
+                    	<f:attribute name="min" value="1" />
+                    </h:inputText>
                     <h:message for="name"/>
                     
                     <h:outputText value="#{fn:msg('researcher.lastname')}:" />
