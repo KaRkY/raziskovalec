@@ -15,7 +15,7 @@
  */
 
 /**
- * Osnovna konfiguracija projekta za spletno stran.
+ * Spring configuretion package.
  * 
  * @author Rene Svetina
  */
