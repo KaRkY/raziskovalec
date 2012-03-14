@@ -27,4 +27,8 @@
  	<validator-id>emailValidator</validator-id>
  	<validator-class>org.raziskovalec.web.validation.EmailValidator</validator-class>
  </validator>
+ <validator>
+ 	<validator-id>phoneNumberValidator</validator-id>
+ 	<validator-class>org.raziskovalec.web.validation.PhoneNumberValidator</validator-class>
+ </validator>
 </faces-config>
