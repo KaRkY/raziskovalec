@@ -41,7 +41,11 @@
                     <ice:message for="lastname"/>
                     
                     <ice:outputText value="#{fn:msg('researcher.email')}:" />
-                    <ice:inputText id="email" value="#{researcher.email}" />
+                    <ice:inputText id="email" value="#{researcher.email}" >
+                    	<f:validator validatorId="emailValidator"/>
+                    	<f:attribute name="numberOfAddresses" value="1"/>
+                    	<f:attribute name="label" value="#{fn:msg('researcher.email')}"/>
+                    </ice:inputText>
                     <ice:message for="email"/>
                     
                     <ice:outputText value="#{fn:msg('researcher.telephonenumber')}:" />

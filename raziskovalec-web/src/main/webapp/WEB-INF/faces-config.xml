@@ -22,18 +22,9 @@
  <validator>
  	<validator-id>lengthValidator</validator-id>
  	<validator-class>org.raziskovalec.web.validation.LengthValidator</validator-class>
- 	<attribute>
- 		<attribute-name>min</attribute-name>
- 		<attribute-class>java.lang.Integer</attribute-class>
- 		<default-value>0</default-value>
- 	</attribute>
- 	<attribute>
- 		<attribute-name>max</attribute-name>
- 		<attribute-class>java.lang.Integer</attribute-class>
- 	</attribute>
- 	<attribute>
- 		<attribute-name>label</attribute-name>
- 		<attribute-class>java.lang.String</attribute-class>
- 	</attribute>
+ </validator>
+ <validator>
+ 	<validator-id>emailValidator</validator-id>
+ 	<validator-class>org.raziskovalec.web.validation.EmailValidator</validator-class>
  </validator>
 </faces-config>
