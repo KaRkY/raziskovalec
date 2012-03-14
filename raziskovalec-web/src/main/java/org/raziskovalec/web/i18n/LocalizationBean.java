@@ -31,20 +31,19 @@ import com.google.common.collect.Maps;
  * localization bean for holding current localization data.
  * 
  * @author Rene Svetina
- * 
  */
-public class LocalizationBean implements
-		Serializable
+public final class LocalizationBean implements
+									Serializable
 {
+	private static final int			COOKIE_MAX_AGE		= 31536000;
+	private static final String			LOCALE_COOKIE_NAME	= "org.raziskovalec.localization.LOCALE";
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long serialVersionUID = 2036176357496933262L;
-	private static final int COOKIE_MAX_AGE = 31536000;
-	private static final String LOCALE_COOKIE_NAME = "org.raziskovalec.localization.LOCALE";
-	private Locale currentLocale;
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private Map<String, Object> cookieProperties;
+	private static final long			serialVersionUID	= 2036176357496933262L;
+	private final Map<String, Object>	cookieProperties;
+	private Locale						currentLocale;
+	private final Logger				logger				= LoggerFactory.getLogger(this.getClass());
 
 	// ========================================================================
 	// Constructors

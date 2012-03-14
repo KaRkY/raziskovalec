@@ -20,10 +20,9 @@ import org.springframework.context.annotation.Scope;
  * Spring configuration for Researcher beans.
  * 
  * @author Rene Svetina
- * 
  */
 @Configuration
-public class ResearcherBeansDeclaration
+public final class ResearcherBeansDeclaration
 {
 	// ========================================================================
 	// Methods

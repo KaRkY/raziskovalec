@@ -33,15 +33,14 @@ import com.sun.faces.util.MessageFactory;
  * Length validator.
  * 
  * @author Rene Svetina
- * 
  */
-public class LengthValidator implements
-		Validator
+public final class LengthValidator implements
+									Validator
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger	logger	= LoggerFactory.getLogger(getClass());
 
 	// ========================================================================
 	// Constructors
@@ -59,10 +58,16 @@ public class LengthValidator implements
 	// Methods
 	// ========================================================================
 
+	private String getAttribute(final String name, final UIComponent component)
+	{
+		return ObjectsUtil.toStringOrNull(component.getAttributes().get(name));
+	}
+
 	/*
 	 * (non-Javadoc)
-	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext,
-	 * javax.faces.component.UIComponent, java.lang.Object)
+	 * @see
+	 * javax.faces.validator.Validator#validate(javax.faces.context.FacesContext
+	 * , javax.faces.component.UIComponent, java.lang.Object)
 	 */
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
@@ -99,10 +104,4 @@ public class LengthValidator implements
 			}
 		}
 	}
-
-	private String getAttribute(final String name, final UIComponent component)
-	{
-		return ObjectsUtil.toStringOrNull(component.getAttributes().get(name));
-	}
-
 }

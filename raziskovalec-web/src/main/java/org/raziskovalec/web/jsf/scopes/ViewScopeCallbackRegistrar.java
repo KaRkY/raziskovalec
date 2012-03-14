@@ -25,10 +25,9 @@ import javax.faces.event.ViewMapListener;
  * For registering VievScope callbacks.
  * 
  * @author Rene Svetina
- * 
  */
-public class ViewScopeCallbackRegistrar implements
-		ViewMapListener
+public final class ViewScopeCallbackRegistrar implements
+												ViewMapListener
 {
 	// ========================================================================
 	// Methods

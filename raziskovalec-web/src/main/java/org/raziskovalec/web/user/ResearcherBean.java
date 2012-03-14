@@ -14,6 +14,7 @@ package org.raziskovalec.web.user;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -21,24 +22,35 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * Researcher data to be added.
  * 
  * @author Rene Svetina
- * 
  */
-public class ResearcherBean implements
-		Serializable
+public final class ResearcherBean implements
+									Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long serialVersionUID = 4905370220866247144L;
-	private String email;
-	private String lastname;
-	private String name;
-	private String telephoneNumber;
-	private String www;
+	private static final long	serialVersionUID	= 4905370220866247144L;
+	private String				email;
+	private String				lastname;
+	private String				name;
+	private String				telephoneNumber;
+	private String				www;
 
 	// ========================================================================
 	// Methods
 	// ========================================================================
+
+	/**
+	 * Clears all properties to empty string.
+	 */
+	public void clear()
+	{
+		name = StringUtils.EMPTY;
+		lastname = StringUtils.EMPTY;
+		email = StringUtils.EMPTY;
+		telephoneNumber = StringUtils.EMPTY;
+		www = StringUtils.EMPTY;
+	}
 
 	/**
 	 * @return the email

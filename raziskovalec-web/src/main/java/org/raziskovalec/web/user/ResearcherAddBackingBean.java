@@ -19,15 +19,14 @@ import org.slf4j.LoggerFactory;
  * Researcher backing bean for adding new researchers.
  * 
  * @author Rene Svetina
- * 
  */
-public class ResearcherAddBackingBean
+public final class ResearcherAddBackingBean
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	private final ResearcherBean researcherBean;
+	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
+	private final ResearcherBean	researcherBean;
 
 	// ========================================================================
 	// Constructors

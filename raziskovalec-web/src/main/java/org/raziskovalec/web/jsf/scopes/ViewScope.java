@@ -24,15 +24,17 @@ import org.springframework.web.context.request.FacesRequestAttributes;
  * Spring ViewScope implementation.
  * 
  * @author Rene Svetina
- * 
  */
-public class ViewScope implements
-		Scope
+public final class ViewScope implements
+							Scope
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	public static final String VIEW_SCOPE_CALLBACKS = "viewScope.callbacks";
+	/**
+	 * Callback name.
+	 */
+	public static final String	VIEW_SCOPE_CALLBACKS	= "viewScope.callbacks";
 
 	// ========================================================================
 	// Methods
@@ -56,6 +58,11 @@ public class ViewScope implements
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		final FacesRequestAttributes facesRequestAttributes = new FacesRequestAttributes(facesContext);
 		return facesRequestAttributes.getSessionId() + "-" + facesContext.getViewRoot().getViewId();
+	}
+
+	private Map<String, Object> getViewMap()
+	{
+		return FacesContext.getCurrentInstance().getViewRoot().getViewMap();
 	}
 
 	@Override
@@ -91,10 +98,5 @@ public class ViewScope implements
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		final FacesRequestAttributes facesRequestAttributes = new FacesRequestAttributes(facesContext);
 		return facesRequestAttributes.resolveReference(name);
-	}
-
-	private Map<String, Object> getViewMap()
-	{
-		return FacesContext.getCurrentInstance().getViewRoot().getViewMap();
 	}
 }

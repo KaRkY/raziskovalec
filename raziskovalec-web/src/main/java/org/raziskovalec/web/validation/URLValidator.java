@@ -35,21 +35,24 @@ import com.sun.faces.util.MessageFactory;
  * Validates URL's.
  * 
  * @author Rene Svetina
- * 
  */
-public class URLValidator implements
-		Validator
+public final class URLValidator implements
+								Validator
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private static final Pattern URL_PATTERN = Pattern
-			.compile("^http[s]?://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(/\\S*)?$");
+	private static final Pattern	URL_PATTERN;
+	private final Logger			logger	= LoggerFactory.getLogger(getClass());
 
 	// ========================================================================
 	// Constructors
 	// ========================================================================
+
+	static
+	{
+		URL_PATTERN = Pattern.compile("^http[s]?://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(/\\S*)?$");
+	}
 
 	/**
 	 * Default constructor.

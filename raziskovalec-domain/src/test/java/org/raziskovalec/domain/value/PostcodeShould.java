@@ -19,20 +19,28 @@ import org.testng.annotations.Test;
 
 public class PostcodeShould
 {
-	@Test
-	public void returnPostalCode()
+	@Test(expectedExceptions = { IllegalArgumentException.class })
+	public void failOnEmptyCode()
 	{
-		Postcode postcode = Postcode.valueOf("2361", "Ožbalt ob Dravi");
-
-		assertNotNull(postcode);
+		Postcode.valueOf("", "Ožbalt ob dravi");
 	}
 
-	@Test
-	public void returnPostalCodeFromCodeString()
+	@Test(expectedExceptions = { IllegalArgumentException.class })
+	public void failOnEmptyName()
 	{
-		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
+		Postcode.valueOf("2361", "");
+	}
 
-		assertNotNull(postcode);
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void failOnNullCode()
+	{
+		Postcode.valueOf(null, "Ožbalt ob dravi");
+	}
+
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void failOnNullName()
+	{
+		Postcode.valueOf("2361", null);
 	}
 
 	@Test
@@ -54,27 +62,19 @@ public class PostcodeShould
 		assertEquals(postcode.getName(), postcode1.getName(), "Expected equal postal name.");
 	}
 
-	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullCode()
+	@Test
+	public void returnPostalCode()
 	{
-		Postcode.valueOf(null, "Ožbalt ob dravi");
+		Postcode postcode = Postcode.valueOf("2361", "Ožbalt ob Dravi");
+
+		assertNotNull(postcode);
 	}
 
-	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullName()
+	@Test
+	public void returnPostalCodeFromCodeString()
 	{
-		Postcode.valueOf("2361", null);
-	}
+		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyCode()
-	{
-		Postcode.valueOf("", "Ožbalt ob dravi");
-	}
-
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyName()
-	{
-		Postcode.valueOf("2361", "");
+		assertNotNull(postcode);
 	}
 }

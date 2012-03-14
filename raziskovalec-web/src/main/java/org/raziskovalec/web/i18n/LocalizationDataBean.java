@@ -23,16 +23,15 @@ import com.google.common.collect.Lists;
  * Bean for holding all locales.
  * 
  * @author Rene Svetina
- * 
  */
-public class LocalizationDataBean implements
-		Serializable
+public final class LocalizationDataBean implements
+										Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long serialVersionUID = -8548438244676199524L;
-	private final List<Locale> supportedLocales = Lists.newArrayList();
+	private static final long	serialVersionUID	= -8548438244676199524L;
+	private final List<Locale>	supportedLocales	= Lists.newArrayList();
 
 	// ========================================================================
 	// Constructors

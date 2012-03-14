@@ -35,16 +35,15 @@ import com.sun.faces.util.MessageFactory;
  * Telephone number validator.
  * 
  * @author Rene Svetina
- * 
  */
-public class PhoneNumberValidator implements
-		Validator
+public final class PhoneNumberValidator implements
+										Validator
 {
+	private static final Pattern	PHONE_NUMBER_PATTERN	= Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private static final Pattern PHONE_NUMBER_PATTERN = Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
+	private final Logger			logger					= LoggerFactory.getLogger(getClass());
 
 	// ========================================================================
 	// Constructors

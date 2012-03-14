@@ -26,16 +26,15 @@ import org.slf4j.LoggerFactory;
  * Converter for converting LocalDate to String and back.
  * 
  * @author Rene Svetina
- * 
  */
-public class LocalDateConverter implements
-		Converter
+public final class LocalDateConverter implements
+										Converter
 {
-	private final DateTimeFormatter dateTimeFormatter;
+	private final DateTimeFormatter	dateTimeFormatter;
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
 
 	// ========================================================================
 	// Constructors

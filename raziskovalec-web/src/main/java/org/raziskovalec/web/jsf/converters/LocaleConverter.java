@@ -22,10 +22,9 @@ import org.apache.commons.lang3.LocaleUtils;
  * Locale to String converter.
  * 
  * @author Rene Svetina
- * 
  */
-public class LocaleConverter implements
-		Converter
+public final class LocaleConverter implements
+									Converter
 {
 	// ========================================================================
 	// Methods

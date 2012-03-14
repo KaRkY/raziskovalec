@@ -32,15 +32,14 @@ import com.sun.faces.util.MessageFactory;
  * Validates if field is empty.
  * 
  * @author Rene Svetina
- * 
  */
-public class RequiredValidator implements
-		Validator
+public final class RequiredValidator implements
+									Validator
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger	logger	= LoggerFactory.getLogger(getClass());
 
 	// ========================================================================
 	// Constructors
