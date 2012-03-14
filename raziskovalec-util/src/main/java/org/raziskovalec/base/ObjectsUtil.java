@@ -43,4 +43,23 @@ public final class ObjectsUtil
 		}
 		return set;
 	}
+
+	/**
+	 * Returns string representation or null.
+	 * 
+	 * @param o
+	 *            any object
+	 * @return string representation
+	 */
+	public static String toStringOrNull(final Object o)
+	{
+		if (o == null)
+		{
+			return null;
+		}
+		else
+		{
+			return o.toString();
+		}
+	}
 }

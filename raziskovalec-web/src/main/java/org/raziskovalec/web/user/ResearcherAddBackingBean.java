@@ -107,38 +107,19 @@ public class ResearcherAddBackingBean
 	public String save()
 	{
 		logger.info("Saveing researcher: '{}'", researcherBean);
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		try
-		{
-			boolean ok = validate(true);
-
-			if (ok)
-			{
-				Researcher researcher = new Researcher();
-				researcher.setName(Name.valueOf(researcherBean.getName()));
-				researcher.setLastName(Name.valueOf(researcherBean.getLastname()));
-				InternetAddress[] internetAddresses = InternetAddress.parse(researcherBean.getEmail());
-				researcher.setEmail(internetAddresses[0]);
-				logger.trace("Saved researcher: {}", researcher);
-			}
-			else
-			{
-				return "";
-			}
-
-		} catch (AddressException e)
-		{
-			logger.debug("Adding researcher fail address format wrong.", e);
-
-			FacesMessage message = new FacesMessage();
-			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-			message.setSummary(Functions.msg("researcher.error.emailformat.summary"));
-			message.setDetail(Functions.msg("researcher.error.emailformat.detail", researcherBean.getName()));
-
-			facesContext.addMessage(null, message);
-
-			return "";
-		}
-		return "/researcher/list?faces-redirect=true";
+		/*
+		 * FacesContext facesContext = FacesContext.getCurrentInstance(); try { boolean ok = validate(true); if (ok) {
+		 * Researcher researcher = new Researcher(); researcher.setName(Name.valueOf(researcherBean.getName()));
+		 * researcher.setLastName(Name.valueOf(researcherBean.getLastname())); InternetAddress[] internetAddresses =
+		 * InternetAddress.parse(researcherBean.getEmail()); researcher.setEmail(internetAddresses[0]);
+		 * logger.trace("Saved researcher: {}", researcher); } else { return ""; } } catch (AddressException e) {
+		 * logger.debug("Adding researcher fail address format wrong.", e); FacesMessage message = new FacesMessage();
+		 * message.setSeverity(FacesMessage.SEVERITY_ERROR);
+		 * message.setSummary(Functions.msg("researcher.error.emailformat.summary"));
+		 * message.setDetail(Functions.msg("researcher.error.emailformat.detail", researcherBean.getName()));
+		 * facesContext.addMessage(null, message); return ""; }
+		 */
+		// return "/researcher/list?faces-redirect=true";
+		return "";
 	}
 }

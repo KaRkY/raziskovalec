@@ -4,6 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:fn="http://www.raziskovalec.org/comp"
+      xmlns:ice="http://www.icesoft.com/icefaces/component"
       >
 
 	<ui:composition template="/WEB-INF/templates/layout.xhtml">
@@ -15,41 +16,46 @@
         
         <ui:define name="body">
         
-        	<h:messages globalOnly="true" />
+        	<ice:messages globalOnly="true" />
         
-            <h:form id="researcher">
-                <h:panelGrid columns="3">
+            <ice:form id="researcher">
+                <ice:panelGrid columns="3">
                     <f:facet name="header">
-                        <h:outputText value="#{fn:msg('researcher.add')}" />
+                        <ice:outputText value="#{fn:msg('researcher.add')}" />
                     </f:facet>
                     
-                    <h:outputText value="#{fn:msg('researcher.name')}:" />
-                    <h:inputText id="name" value="#{researcher.name}" >
-                    	<f:validator validatorId="length-validator"/>
+                    <ice:outputText value="#{fn:msg('researcher.name')}:" />
+                    <ice:inputText id="name" value="#{researcher.name}">
+                    	<f:validator validatorId="lengthValidator"/>
                     	<f:attribute name="min" value="1" />
-                    </h:inputText>
-                    <h:message for="name"/>
+                    	<f:attribute name="label" value="#{fn:msg('researcher.name')}"/>
+                    </ice:inputText>
+                    <ice:message for="name"/>
                     
-                    <h:outputText value="#{fn:msg('researcher.lastname')}:" />
-                    <h:inputText id="lastname" value="#{researcher.lastname}"/>
-                    <h:message for="lastname"/>
+                    <ice:outputText value="#{fn:msg('researcher.lastname')}:" />
+                    <ice:inputText id="lastname" value="#{researcher.lastname}">
+                    	<f:validator validatorId="lengthValidator"/>
+                    	<f:attribute name="min" value="1" />
+                    	<f:attribute name="label" value="#{fn:msg('researcher.lastname')}"/>
+                    </ice:inputText>
+                    <ice:message for="lastname"/>
                     
-                    <h:outputText value="#{fn:msg('researcher.email')}:" />
-                    <h:inputText id="email" value="#{researcher.email}" />
-                    <h:message for="email"/>
+                    <ice:outputText value="#{fn:msg('researcher.email')}:" />
+                    <ice:inputText id="email" value="#{researcher.email}" />
+                    <ice:message for="email"/>
                     
-                    <h:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
-                    <h:inputText id="telephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
-                    <h:message for="telephone"/>
+                    <ice:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
+                    <ice:inputText id="telephone" value="#{researcher.telephoneNumber}" maxlength="16"/>
+                    <ice:message for="telephone"/>
                     
-                    <h:outputText value="#{fn:msg('researcher.www')}:" />
-                    <h:inputText id="www" value="#{researcher.www}" />
-                    <h:message for="www"/>
-                </h:panelGrid>
+                    <ice:outputText value="#{fn:msg('researcher.www')}:" />
+                    <ice:inputText id="www" value="#{researcher.www}" />
+                    <ice:message for="www"/>
+                </ice:panelGrid>
                 
-                <h:commandButton value="#{fn:msg('researcher.save')}" title="#{fn:msg('researcher.save')}" action="#{researcherAdd.save}" />
-                <h:commandButton value="#{fn:msg('researcher.cancel')}" title="#{fn:msg('researcher.cancel')}" action="#{researcherAdd.cancel}" />
-            </h:form>
+                <ice:commandButton value="#{fn:msg('researcher.save')}" title="#{fn:msg('researcher.save')}" action="#{researcherAdd.save}" />
+                <ice:commandButton value="#{fn:msg('researcher.cancel')}" title="#{fn:msg('researcher.cancel')}" action="#{researcherAdd.cancel}" />
+            </ice:form>
         </ui:define>
         
 	</ui:composition>

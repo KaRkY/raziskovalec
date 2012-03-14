@@ -85,7 +85,8 @@ public class RootSpringConfig
 		messageSource.setBasenames(new String[] {
 				"org.raziskovalec.messages.menu",
 				"org.raziskovalec.messages.search.messages",
-				"org.raziskovalec.messages.researcher.messages" });
+				"org.raziskovalec.messages.researcher.messages",
+				"org.raziskovalec.messages.validation.messages" });
 
 		logger.trace("Leaving method msg(): '{}'", messageSource);
 		return messageSource;
