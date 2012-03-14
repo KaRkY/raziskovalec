@@ -22,7 +22,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.web.jsf.Functions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,12 +29,12 @@ import org.slf4j.LoggerFactory;
 import com.sun.faces.util.MessageFactory;
 
 /**
- * Length validator.
+ * Validates if field is empty.
  * 
  * @author Rene Svetina
  * 
  */
-public class LengthValidator implements
+public class RequiredValidator implements
 		Validator
 {
 	// ========================================================================
@@ -50,59 +49,30 @@ public class LengthValidator implements
 	/**
 	 * Default constructor.
 	 */
-	public LengthValidator()
+	public RequiredValidator()
 	{
-		logger.trace("Creating length validator.");
+		logger.trace("Creating email validator.");
 	}
 
 	// ========================================================================
 	// Methods
 	// ========================================================================
-
-	/*
-	 * (non-Javadoc)
-	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext,
-	 * javax.faces.component.UIComponent, java.lang.Object)
-	 */
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
-		if (!UIInput.isEmpty(value))
+		if (UIInput.isEmpty(value))
 		{
-			Integer min = Integer.parseInt(getAttribute("min", component));
-			Integer max = null;
-			String sMax = getAttribute("max", component);
-			if (sMax != null)
-			{
-				max = Integer.parseInt(sMax);
-			}
-			else
-			{
-				sMax = Functions.msg("org.raziskovalec.web.validation.unlimited");
-			}
+			FacesMessage message = new FacesMessage();
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			message.setSummary(Functions
+					.msg("org.raziskovalec.web.validation.RequiredValidator.summary",
+							MessageFactory.getLabel(context, component)));
+			message.setDetail(Functions
+					.msg("org.raziskovalec.web.validation.RequiredValidator.detail",
+							MessageFactory.getLabel(context, component)));
 
-			String sValue = value.toString();
-			if (sValue.length() < min || max != null && sValue.length() > max)
-			{
-				FacesMessage message = new FacesMessage();
-				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				message.setSummary(Functions.msg("org.raziskovalec.web.validation.LengthValidator.summary",
-						min,
-						sMax,
-						MessageFactory.getLabel(context, component)));
-				message.setDetail(Functions.msg("org.raziskovalec.web.validation.LengthValidator.detail",
-						min,
-						sMax,
-						MessageFactory.getLabel(context, component)));
-
-				throw new ValidatorException(message);
-			}
+			throw new ValidatorException(message);
 		}
-	}
-
-	private String getAttribute(final String name, final UIComponent component)
-	{
-		return ObjectsUtil.toStringOrNull(component.getAttributes().get(name));
 	}
 
 }

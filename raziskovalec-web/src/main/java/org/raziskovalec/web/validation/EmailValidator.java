@@ -17,6 +17,7 @@ package org.raziskovalec.web.validation;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
@@ -63,37 +64,39 @@ public class EmailValidator implements
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
-		try
+		if (!UIInput.isEmpty(value))
 		{
-			InternetAddress[] internetAddresses = InternetAddress.parse(value.toString());
-			if (internetAddresses.length != Integer.parseInt(getAttribute("numberOfAddresses", component)))
+			try
+			{
+				InternetAddress[] internetAddresses = InternetAddress.parse(value.toString());
+				if (internetAddresses.length != Integer.parseInt(getAttribute("numberOfAddresses", component)))
+				{
+					FacesMessage message = new FacesMessage();
+					message.setSeverity(FacesMessage.SEVERITY_ERROR);
+					message.setSummary(Functions
+							.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.summary",
+									getAttribute("numberOfAddresses", component),
+									MessageFactory.getLabel(context, component)));
+					message.setDetail(Functions
+							.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.detail",
+									getAttribute("numberOfAddresses", component),
+									MessageFactory.getLabel(context, component)));
+
+					throw new ValidatorException(message);
+				}
+
+			} catch (AddressException e)
 			{
 				FacesMessage message = new FacesMessage();
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				message.setSummary(Functions
-						.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.summary",
-								getAttribute("numberOfAddresses", component),
-								MessageFactory.getLabel(context, component)));
-				message.setDetail(Functions
-						.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.detail",
-								getAttribute("numberOfAddresses", component),
-								MessageFactory.getLabel(context, component)));
+				message.setSummary(Functions.msg("org.raziskovalec.web.validation.EmailValidator.summary",
+						MessageFactory.getLabel(context, component)));
+				message.setDetail(Functions.msg("org.raziskovalec.web.validation.EmailValidator.detail",
+						MessageFactory.getLabel(context, component)));
 
 				throw new ValidatorException(message);
 			}
-
-		} catch (AddressException e)
-		{
-			FacesMessage message = new FacesMessage();
-			message.setSeverity(FacesMessage.SEVERITY_ERROR);
-			message.setSummary(Functions.msg("org.raziskovalec.web.validation.EmailValidator.summary",
-					MessageFactory.getLabel(context, component)));
-			message.setDetail(Functions.msg("org.raziskovalec.web.validation.EmailValidator.detail",
-					MessageFactory.getLabel(context, component)));
-
-			throw new ValidatorException(message);
 		}
-
 	}
 
 	private String getAttribute(final String name, final UIComponent component)

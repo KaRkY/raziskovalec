@@ -20,11 +20,11 @@ import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.web.jsf.Functions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,7 +66,7 @@ public class URLValidator implements
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
-		if (ObjectsUtil.isNotNullOrEmpty(value))
+		if (!UIInput.isEmpty(value))
 		{
 			Matcher urlMatcher = URL_PATTERN.matcher(value.toString());
 

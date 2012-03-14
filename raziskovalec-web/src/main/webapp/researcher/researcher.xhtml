@@ -15,7 +15,7 @@
 
 	<ui:define name="body">
 
-		<ice:messages globalOnly="true" />
+		<ice:messages />
 
 		<ice:form id="researcher" partialSubmit="true">
 			<ice:panelGrid columns="3">
@@ -26,6 +26,7 @@
 				<ice:outputText value="#{fn:msg('researcher.name')}:" />
 				<ice:inputText id="name" value="#{researcher.name}">
 					<f:validator validatorId="lengthValidator" />
+					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="min" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.name')}" />
 				</ice:inputText>
@@ -34,6 +35,7 @@
 				<ice:outputText value="#{fn:msg('researcher.lastname')}:" />
 				<ice:inputText id="lastname" value="#{researcher.lastname}">
 					<f:validator validatorId="lengthValidator" />
+					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="min" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.lastname')}" />
 				</ice:inputText>
@@ -42,6 +44,7 @@
 				<ice:outputText value="#{fn:msg('researcher.email')}:" />
 				<ice:inputText id="email" value="#{researcher.email}">
 					<f:validator validatorId="emailValidator" />
+					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="numberOfAddresses" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.email')}" />
 				</ice:inputText>
