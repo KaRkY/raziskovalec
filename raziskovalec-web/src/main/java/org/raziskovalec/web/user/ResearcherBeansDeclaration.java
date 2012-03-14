@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Scope;
  * @author Rene Svetina
  */
 @Configuration
-public final class ResearcherBeansDeclaration
+public class ResearcherBeansDeclaration
 {
 	// ========================================================================
 	// Methods

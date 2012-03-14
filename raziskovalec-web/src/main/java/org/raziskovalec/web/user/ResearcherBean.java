@@ -14,7 +14,6 @@ package org.raziskovalec.web.user;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -39,18 +38,6 @@ public final class ResearcherBean implements
 	// ========================================================================
 	// Methods
 	// ========================================================================
-
-	/**
-	 * Clears all properties to empty string.
-	 */
-	public void clear()
-	{
-		name = StringUtils.EMPTY;
-		lastname = StringUtils.EMPTY;
-		email = StringUtils.EMPTY;
-		telephoneNumber = StringUtils.EMPTY;
-		www = StringUtils.EMPTY;
-	}
 
 	/**
 	 * @return the email
