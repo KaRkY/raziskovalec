@@ -57,7 +57,11 @@
 				<ice:message for="telephone" />
 
 				<ice:outputText value="#{fn:msg('researcher.www')}:" />
-				<ice:inputText id="www" value="#{researcher.www}" />
+				<ice:inputText id="www" value="#{researcher.www}" >
+				<f:validator validatorId="urlValidator" />
+					<f:attribute name="label"
+						value="#{fn:msg('researcher.www')}" />
+				</ice:inputText>
 				<ice:message for="www" />
 			</ice:panelGrid>
 

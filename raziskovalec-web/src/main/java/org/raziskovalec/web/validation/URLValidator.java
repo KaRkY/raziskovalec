@@ -32,19 +32,20 @@ import org.slf4j.LoggerFactory;
 import com.sun.faces.util.MessageFactory;
 
 /**
- * Telephone number validator.
+ * Validates URL's.
  * 
  * @author Rene Svetina
  * 
  */
-public class PhoneNumberValidator implements
+public class URLValidator implements
 		Validator
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	private static final Pattern PHONE_NUMBER_PATTERN = Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
+	private static final Pattern URL_PATTERN = Pattern
+			.compile("^http[s]?://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(/\\S*)?$");
 
 	// ========================================================================
 	// Constructors
@@ -53,29 +54,31 @@ public class PhoneNumberValidator implements
 	/**
 	 * Default constructor.
 	 */
-	public PhoneNumberValidator()
+	public URLValidator()
 	{
-		logger.trace("Creating telephone number validator.");
+		logger.trace("Creating URL validator.");
 	}
 
 	// ========================================================================
 	// Methods
 	// ========================================================================
+
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
 		if (ObjectsUtil.isNotNullOrEmpty(value))
 		{
-			Matcher phoneNumberMatcher = PHONE_NUMBER_PATTERN.matcher(value.toString());
-			if (!phoneNumberMatcher.matches())
+			Matcher urlMatcher = URL_PATTERN.matcher(value.toString());
+
+			if (!urlMatcher.matches())
 			{
 				FacesMessage message = new FacesMessage();
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
 				message.setSummary(Functions
-						.msg("org.raziskovalec.web.validation.TelephoneNumberValidator.summary",
+						.msg("org.raziskovalec.web.validation.URLValidator.summary",
 								MessageFactory.getLabel(context, component)));
 				message.setDetail(Functions
-						.msg("org.raziskovalec.web.validation.TelephoneNumberValidator.detail",
+						.msg("org.raziskovalec.web.validation.URLValidator.detail",
 								MessageFactory.getLabel(context, component)));
 
 				throw new ValidatorException(message);

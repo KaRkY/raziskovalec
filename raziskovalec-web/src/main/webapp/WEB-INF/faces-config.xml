@@ -31,4 +31,8 @@
  	<validator-id>phoneNumberValidator</validator-id>
  	<validator-class>org.raziskovalec.web.validation.PhoneNumberValidator</validator-class>
  </validator>
+ <validator>
+ 	<validator-id>urlValidator</validator-id>
+ 	<validator-class>org.raziskovalec.web.validation.URLValidator</validator-class>
+ </validator>
 </faces-config>

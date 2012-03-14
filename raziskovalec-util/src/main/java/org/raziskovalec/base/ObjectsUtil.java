@@ -62,4 +62,26 @@ public final class ObjectsUtil
 			return o.toString();
 		}
 	}
+
+	/**
+	 * Returns true for not empty toString.
+	 * 
+	 * @param o
+	 *            object to test
+	 * @return true for not empty false for null or empty.
+	 */
+	public static boolean isNotNullOrEmpty(final Object o)
+	{
+		if (o == null)
+		{
+			return false;
+		}
+
+		if (o.toString().isEmpty())
+		{
+			return false;
+		}
+
+		return true;
+	}
 }
