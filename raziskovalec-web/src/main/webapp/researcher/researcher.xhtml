@@ -15,68 +15,70 @@
 
 	<ui:define name="body">
 
-		<ice:messages />
-
 		<ice:form id="researcher" partialSubmit="true">
 			<ice:panelGrid columns="3">
 				<f:facet name="header">
 					<ice:outputText value="#{fn:msg('researcher.add')}" />
+					<ice:messages errorClass="error" warnClass="warn" infoClass="info" />
 				</f:facet>
 
 				<ice:outputText value="#{fn:msg('researcher.name')}:" />
-				<ice:inputText id="name" value="#{researcher.name}">
+				<ice:inputText id="name" value="#{researcher.name}" size="20">
 					<f:validator validatorId="lengthValidator" />
 					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="min" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.name')}" />
 				</ice:inputText>
-				<ice:message for="name" />
+				<ice:message for="name" errorClass="error" warnClass="warn"
+					infoClass="info" />
 
 				<ice:outputText value="#{fn:msg('researcher.lastname')}:" />
-				<ice:inputText id="lastname" value="#{researcher.lastname}">
+				<ice:inputText id="lastname" value="#{researcher.lastname}"
+					size="20">
 					<f:validator validatorId="lengthValidator" />
 					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="min" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.lastname')}" />
 				</ice:inputText>
-				<ice:message for="lastname" />
+				<ice:message for="lastname" errorClass="error" warnClass="warn"
+					infoClass="info" />
 
 				<ice:outputText value="#{fn:msg('researcher.email')}:" />
-				<ice:inputText id="email" value="#{researcher.email}">
+				<ice:inputText id="email" value="#{researcher.email}" size="30">
 					<f:validator validatorId="emailValidator" />
 					<f:validator validatorId="requiredValidator" />
 					<f:attribute name="numberOfAddresses" value="1" />
 					<f:attribute name="label" value="#{fn:msg('researcher.email')}" />
 				</ice:inputText>
-				<ice:message for="email" />
+				<ice:message for="email" errorClass="error" warnClass="warn"
+					infoClass="info" />
 
 				<ice:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
 				<ice:inputText id="telephone" value="#{researcher.telephoneNumber}"
-					maxlength="16">
+					maxlength="16" size="16">
 					<f:validator validatorId="phoneNumberValidator" />
 					<f:attribute name="label"
 						value="#{fn:msg('researcher.telephonenumber')}" />
 				</ice:inputText>
-				<ice:message for="telephone" />
+				<ice:message for="telephone" errorClass="error" warnClass="warn"
+					infoClass="info" />
 
 				<ice:outputText value="#{fn:msg('researcher.www')}:" />
-				<ice:inputText id="www" value="#{researcher.www}" >
-				<f:validator validatorId="urlValidator" />
-					<f:attribute name="label"
-						value="#{fn:msg('researcher.www')}" />
+				<ice:inputText id="www" value="#{researcher.www}" size="30">
+					<f:validator validatorId="urlValidator" />
+					<f:attribute name="label" value="#{fn:msg('researcher.www')}" />
 				</ice:inputText>
-				<ice:message for="www" />
+				<ice:message for="www" errorClass="error" warnClass="warn"
+					infoClass="info" />
 			</ice:panelGrid>
 
 			<ice:commandButton value="#{fn:msg('researcher.save')}"
 				title="#{fn:msg('researcher.save')}" action="#{researcherAdd.save}" />
 			<ice:commandButton value="#{fn:msg('researcher.cancel')}"
 				title="#{fn:msg('researcher.cancel')}"
-				action="#{researcherAdd.cancel}"
-				immediate="true" />
+				action="#{researcherAdd.cancel}" immediate="true" />
 			<ice:commandButton value="#{fn:msg('researcher.clear')}"
-				title="#{fn:msg('researcher.clear')}"
-				type="reset" />
+				title="#{fn:msg('researcher.clear')}" type="reset" />
 		</ice:form>
 	</ui:define>
 

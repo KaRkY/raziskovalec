@@ -210,3 +210,18 @@ a:hover img { /* Fixes IE bug - IE doesn't correctly apply the style on a:hover 
    border: 2px solid #FFF !important;
    border: 2px solid #8BE6FA;
 }
+
+.error{
+	color: rgb(255, 127, 127);
+	font-weight: bold;
+}
+
+.warn{
+	color: rgb(255, 255, 0);
+	font-weight: bold;
+}
+
+.info{
+	color: rgb(255, 255, 255);
+	font-weight: bold;
+}
