@@ -17,32 +17,52 @@ import static org.testng.Assert.assertNotNull;
 
 import org.testng.annotations.Test;
 
+/**
+ * Postcode tests.
+ * 
+ * @author Rene Svetina
+ */
 public class PostcodeShould
 {
+	/**
+	 * Fail on empty code.
+	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
 	public void failOnEmptyCode()
 	{
 		Postcode.valueOf("", "Ožbalt ob dravi");
 	}
 
+	/**
+	 * Fail on empty name.
+	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
 	public void failOnEmptyName()
 	{
 		Postcode.valueOf("2361", "");
 	}
 
+	/**
+	 * Fail on null code.
+	 */
 	@Test(expectedExceptions = { NullPointerException.class })
 	public void failOnNullCode()
 	{
 		Postcode.valueOf(null, "Ožbalt ob dravi");
 	}
 
+	/**
+	 * Fail on null name.
+	 */
 	@Test(expectedExceptions = { NullPointerException.class })
 	public void failOnNullName()
 	{
 		Postcode.valueOf("2361", null);
 	}
 
+	/**
+	 * Success on equal postal name.
+	 */
 	@Test
 	public void returnEqualPostalCode()
 	{
@@ -52,6 +72,9 @@ public class PostcodeShould
 		assertEquals(postcode, postcode1);
 	}
 
+	/**
+	 * Success on equal postal code.
+	 */
 	@Test
 	public void returnEqualPostalCodeValues()
 	{
@@ -62,6 +85,9 @@ public class PostcodeShould
 		assertEquals(postcode.getName(), postcode1.getName(), "Expected equal postal name.");
 	}
 
+	/**
+	 * Return non null postal code.
+	 */
 	@Test
 	public void returnPostalCode()
 	{
@@ -70,6 +96,9 @@ public class PostcodeShould
 		assertNotNull(postcode);
 	}
 
+	/**
+	 * Return postal code on post string.
+	 */
 	@Test
 	public void returnPostalCodeFromCodeString()
 	{

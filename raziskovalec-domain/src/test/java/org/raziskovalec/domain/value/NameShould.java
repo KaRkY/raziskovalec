@@ -17,8 +17,16 @@ import static org.testng.Assert.assertNotNull;
 
 import org.testng.annotations.Test;
 
+/**
+ * Name tests.
+ * 
+ * @author Rene Svetina
+ */
 public class NameShould
 {
+	/**
+	 * Equal with same name.
+	 */
 	@Test
 	public void equalWithSameString()
 	{
@@ -29,24 +37,36 @@ public class NameShould
 		assertEquals(name1, name2);
 	}
 
-	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullName()
-	{
-		Name.valueOf(null);
-	}
-
+	/**
+	 * Fail on empty name.
+	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
 	public void failOnEmptyName()
 	{
 		Name.valueOf("");
 	}
 
+	/**
+	 * Fail on N/A string.
+	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
 	public void failOnNAName()
 	{
 		Name.valueOf("N/A");
 	}
 
+	/**
+	 * Fail on null name.
+	 */
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void failOnNullName()
+	{
+		Name.valueOf(null);
+	}
+
+	/**
+	 * Return valid name.
+	 */
 	@Test
 	protected void returnName()
 	{

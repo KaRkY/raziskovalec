@@ -24,19 +24,21 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * Value class for handling personal names.
  * 
  * @author Rene Svetina
- * 
  */
 public final class Name implements
-		Serializable
+						Serializable
 {
 	// ========================================================================
 	// Fields
 	// ========================================================================
-	private static final long serialVersionUID = -7175433342123178074L;
-	private static final int HASH_MULTIPLIER = 31;
-	private static final int HASH_PRIME = 17;
-	public static final Name EMPTY = new Name();
-	private final String name;
+	/**
+	 * Empty name.
+	 */
+	public static final Name	EMPTY				= new Name();
+	private static final int	HASH_MULTIPLIER		= 31;
+	private static final int	HASH_PRIME			= 17;
+	private static final long	serialVersionUID	= -7175433342123178074L;
+	private final String		name;
 
 	// ========================================================================
 	// Constructors
@@ -58,32 +60,6 @@ public final class Name implements
 	// ========================================================================
 	// Methods
 	// ========================================================================
-
-	/**
-	 * Return a Name respresentation of string.
-	 * 
-	 * @param name
-	 *            Name
-	 * @return Name
-	 */
-	public static Name valueOf(final String name)
-	{
-		return new Name(name);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode()
-	{
-		HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
-
-		builder.append(name);
-
-		return builder.build();
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -115,6 +91,20 @@ public final class Name implements
 
 	/*
 	 * (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
+
+		builder.append(name);
+
+		return builder.build();
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -128,5 +118,17 @@ public final class Name implements
 		{
 			return "N/A";
 		}
+	}
+
+	/**
+	 * Return a Name respresentation of string.
+	 * 
+	 * @param name
+	 *            Name
+	 * @return Name
+	 */
+	public static Name valueOf(final String name)
+	{
+		return new Name(name);
 	}
 }

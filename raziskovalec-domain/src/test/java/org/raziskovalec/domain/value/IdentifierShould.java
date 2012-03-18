@@ -18,8 +18,16 @@ import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.Test;
 
+/**
+ * Testing Identifier.
+ * 
+ * @author Rene Svetina
+ */
 public class IdentifierShould
 {
+	/**
+	 * 2 Identifiers with same hash should equal.
+	 */
 	@Test
 	public void equalWithSameString()
 
@@ -31,6 +39,9 @@ public class IdentifierShould
 		assertEquals(id1, id2);
 	}
 
+	/**
+	 * Creation should fail on invalid hash.
+	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
 	public void failOnIvalidHash()
 	{
@@ -38,6 +49,9 @@ public class IdentifierShould
 		Identifier.valueOf(hash);
 	}
 
+	/**
+	 * Should generate random unique id.
+	 */
 	@Test
 	public void generateNewId()
 	{
@@ -46,6 +60,9 @@ public class IdentifierShould
 		assertNotNull(id);
 	}
 
+	/**
+	 * Should get valid id from string.
+	 */
 	@Test
 	public void getIdFromString()
 
@@ -56,6 +73,9 @@ public class IdentifierShould
 		assertNotNull(id);
 	}
 
+	/**
+	 * Should generate same hashcode.
+	 */
 	@Test
 	public void getSameHashOnSameString()
 
@@ -67,6 +87,9 @@ public class IdentifierShould
 		assertEquals(id1.hashCode(), id2.hashCode());
 	}
 
+	/**
+	 * Should return same instance.
+	 */
 	@Test
 	public void getSameInstance()
 
@@ -77,6 +100,9 @@ public class IdentifierShould
 		assertTrue(id1 == id2);
 	}
 
+	/**
+	 * Should return string representation.
+	 */
 	@Test
 	public void getStringRepresentationOfId()
 
