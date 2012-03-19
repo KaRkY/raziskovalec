@@ -27,7 +27,7 @@ import org.apache.commons.lang3.LocaleUtils;
  * @author Rene Svetina
  */
 public final class LocaleConverter implements
-		Converter
+									Converter
 {
 	// =================================================================================================================
 	// Methods

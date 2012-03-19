@@ -39,7 +39,7 @@ import com.google.common.util.concurrent.ExecutionError;
  * @author Rene Svetina
  */
 public final class Identifier implements
-		Serializable
+								Serializable
 {
 	// =================================================================================================================
 	// Fields

@@ -29,7 +29,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rene Svetina
  */
 public final class Name implements
-		Serializable
+						Serializable
 {
 	// =================================================================================================================
 	// Fields

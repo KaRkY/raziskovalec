@@ -84,7 +84,7 @@ public class RootSpringConfig
 	{
 		logger.trace("Entering method msg()");
 		final ResourceBundleMessageSource messageSource = new
-				ResourceBundleMessageSource();
+			ResourceBundleMessageSource();
 
 		messageSource.setBasenames(new String[] {
 				"org.raziskovalec.messages.menu",

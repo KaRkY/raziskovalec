@@ -36,7 +36,7 @@ import com.google.common.collect.Maps;
  * @author Rene Svetina
  */
 public final class LocalizationBean implements
-		Serializable
+									Serializable
 {
 	// =================================================================================================================
 	// Fields

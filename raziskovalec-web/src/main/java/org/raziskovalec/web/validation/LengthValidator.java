@@ -50,7 +50,7 @@ import com.sun.faces.util.MessageFactory;
  * @author Rene Svetina
  */
 public final class LengthValidator implements
-		Validator
+									Validator
 {
 	// =================================================================================================================
 	// Fields
@@ -80,8 +80,9 @@ public final class LengthValidator implements
 
 	/*
 	 * (non-Javadoc)
-	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext ,
-	 * javax.faces.component.UIComponent, java.lang.Object)
+	 * @see
+	 * javax.faces.validator.Validator#validate(javax.faces.context.FacesContext
+	 * , javax.faces.component.UIComponent, java.lang.Object)
 	 */
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)

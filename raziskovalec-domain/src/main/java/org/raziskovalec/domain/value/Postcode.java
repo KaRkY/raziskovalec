@@ -29,10 +29,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * Postcode for address.
  * 
  * @author Rene Svetina
- * 
  */
 public final class Postcode implements
-		Serializable
+							Serializable
 {
 	// =================================================================================================================
 	// Fields

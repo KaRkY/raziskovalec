@@ -49,7 +49,7 @@ import com.sun.faces.util.MessageFactory;
  * @author Rene Svetina
  */
 public final class RequiredValidator implements
-		Validator
+									Validator
 {
 	// =================================================================================================================
 	// Fields
