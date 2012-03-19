@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.domain;
 
 import java.io.Serializable;
@@ -35,16 +35,21 @@ import org.raziskovalec.domain.value.Name;
 public class Researcher implements
 		Serializable
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
-	private static final long serialVersionUID = 5018104292542842256L;
-	private static final int HASH_MULTIPLIER = 31;
-	private static final int HASH_PRIME = 17;
-	private final Identifier id;
-	private Name name;
-	private Name lastName;
-	private InternetAddress email;
+	// =================================================================================================================
+
+	private static final long	serialVersionUID	= 5018104292542842256L;
+	private static final int	HASH_MULTIPLIER		= 31;
+	private static final int	HASH_PRIME			= 17;
+	private final Identifier	id;
+	private Name				name;
+	private Name				lastName;
+	private InternetAddress		email;
+
+	// =================================================================================================================
+	// Constructors
+	// =================================================================================================================
 
 	/**
 	 * Default constructor.
@@ -70,6 +75,10 @@ public class Researcher implements
 		this.name = name;
 		this.lastName = lastName;
 	}
+
+	// =================================================================================================================
+	// Methods
+	// =================================================================================================================
 
 	/**
 	 * @return the name

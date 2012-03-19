@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 /*
  * Copyright 2011 Rene Svetina.
  *
@@ -49,16 +49,16 @@ import com.sun.faces.util.MessageFactory;
  * @author Rene Svetina
  */
 public final class RequiredValidator implements
-									Validator
+		Validator
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
 	private final Logger	logger	= LoggerFactory.getLogger(getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * Default constructor.
@@ -68,9 +68,9 @@ public final class RequiredValidator implements
 		logger.trace("Creating email validator.");
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{

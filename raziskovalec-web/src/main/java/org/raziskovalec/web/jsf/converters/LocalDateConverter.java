@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.jsf.converters;
 
 import javax.faces.component.UIComponent;
@@ -31,17 +31,18 @@ import org.slf4j.LoggerFactory;
  * @author Rene Svetina
  */
 public final class LocalDateConverter implements
-										Converter
+		Converter
 {
-	private final DateTimeFormatter	dateTimeFormatter;
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
+	private final DateTimeFormatter	dateTimeFormatter;
 	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
+
 	/**
 	 * Default constructor.
 	 */
@@ -57,9 +58,9 @@ public final class LocalDateConverter implements
 		logger.debug("Created formatter: '{}'", dateTimeFormatter);
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	@Override
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value)

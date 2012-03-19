@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 /*
  * Copyright 2011 Rene Svetina.
  *
@@ -52,17 +52,17 @@ import com.sun.faces.util.MessageFactory;
  * @author Rene Svetina
  */
 public final class URLValidator implements
-								Validator
+		Validator
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
 	private static final Pattern	URL_PATTERN;
 	private final Logger			logger	= LoggerFactory.getLogger(getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 
 	static
 	{
@@ -77,9 +77,9 @@ public final class URLValidator implements
 		logger.trace("Creating URL validator.");
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.domain.value;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -34,19 +34,19 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public final class Postcode implements
 		Serializable
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
-	private static final long serialVersionUID = 8996124494460276539L;
-	private static final int HASH_PRIME = 17;
-	private static final int HASH_MULTIPLIER = 31;
-	private final String code;
-	private final String name;
-	private static Pattern postalPattern;
+	// =================================================================================================================
+	private static final long	serialVersionUID	= 8996124494460276539L;
+	private static final int	HASH_PRIME			= 17;
+	private static final int	HASH_MULTIPLIER		= 31;
+	private final String		code;
+	private final String		name;
+	private static Pattern		postalPattern;
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 	static
 	{
 		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
@@ -63,9 +63,9 @@ public final class Postcode implements
 		this.name = name;
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * Postal code.

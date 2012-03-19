@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.i18n;
 
 import java.io.Serializable;
@@ -28,17 +28,17 @@ import com.google.common.collect.Lists;
  * @author Rene Svetina
  */
 public final class LocalizationDataBean implements
-										Serializable
+		Serializable
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
 	private static final long	serialVersionUID	= -8548438244676199524L;
 	private final List<Locale>	supportedLocales	= Lists.newArrayList();
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * Derfaul constructor.
@@ -59,9 +59,9 @@ public final class LocalizationDataBean implements
 		Collections.addAll(supportedLocales, locales);
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 	/**
 	 * List of supported locales.
 	 * 

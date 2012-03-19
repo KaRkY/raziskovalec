@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 /*
  * Copyright 2011 Rene Svetina.
  *
@@ -52,17 +52,17 @@ import com.sun.faces.util.MessageFactory;
  * @author Rene Svetina
  */
 public final class PhoneNumberValidator implements
-										Validator
+		Validator
 {
-	private static final Pattern	PHONE_NUMBER_PATTERN	= Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
+	private static final Pattern	PHONE_NUMBER_PATTERN	= Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
 	private final Logger			logger					= LoggerFactory.getLogger(getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * Default constructor.
@@ -72,9 +72,9 @@ public final class PhoneNumberValidator implements
 		logger.trace("Creating telephone number validator.");
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{

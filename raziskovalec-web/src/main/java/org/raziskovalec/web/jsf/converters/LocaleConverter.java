@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.jsf.converters;
 
 import javax.faces.component.UIComponent;
@@ -27,11 +27,11 @@ import org.apache.commons.lang3.LocaleUtils;
  * @author Rene Svetina
  */
 public final class LocaleConverter implements
-									Converter
+		Converter
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 	@Override
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value)
 	{

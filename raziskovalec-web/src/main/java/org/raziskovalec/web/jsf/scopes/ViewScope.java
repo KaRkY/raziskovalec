@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.jsf.scopes;
 
 import java.util.Map;
@@ -29,19 +29,20 @@ import org.springframework.web.context.request.FacesRequestAttributes;
  * @author Rene Svetina
  */
 public final class ViewScope implements
-							Scope
+		Scope
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
+
 	/**
 	 * Callback name.
 	 */
 	public static final String	VIEW_SCOPE_CALLBACKS	= "viewScope.callbacks";
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	@Override
 	public synchronized Object get(final String name, final ObjectFactory<?> objectFactory)

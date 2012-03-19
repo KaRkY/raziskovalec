@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.domain.value;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -41,21 +41,23 @@ import com.google.common.util.concurrent.ExecutionError;
 public final class Identifier implements
 		Serializable
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
-	private static final long serialVersionUID = 6346749479769179997L;
-	private static final int HASH_MULTIPLIER = 31;
-	private static final int HASH_PRIME = 17;
-	private static final int CACHE_EXPIRE_TIME = 10;
-	private static final long CACHE_SIZE = 10000L;
-	private static final Cache<String, Identifier> CACHE;
-	private static Pattern hashPattern;
-	private final String hash;
+	// =================================================================================================================
 
-	// ========================================================================
+	private static final long						serialVersionUID	= 6346749479769179997L;
+	private static final int						HASH_MULTIPLIER		= 31;
+	private static final int						HASH_PRIME			= 17;
+	private static final int						CACHE_EXPIRE_TIME	= 10;
+	private static final long						CACHE_SIZE			= 10000L;
+	private static final Cache<String, Identifier>	CACHE;
+	private static Pattern							hashPattern;
+	private final String							hash;
+
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
+
 	static
 	{
 		CACHE = CacheBuilder.newBuilder()
@@ -77,9 +79,9 @@ public final class Identifier implements
 		this.hash = hash;
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	/*
 	 * (non-Javadoc)

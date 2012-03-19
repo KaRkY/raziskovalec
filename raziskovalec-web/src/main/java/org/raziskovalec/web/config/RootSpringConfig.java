@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.config;
 
 import java.util.Locale;
@@ -44,14 +44,15 @@ import com.google.common.collect.Maps;
 @Import({ ResearcherBeansDeclaration.class })
 public class RootSpringConfig
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	// =================================================================================================================
+	private final Logger	logger	= LoggerFactory.getLogger(this.getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
+
 	/**
 	 * @return Returns LocalizationBean for current session.
 	 */

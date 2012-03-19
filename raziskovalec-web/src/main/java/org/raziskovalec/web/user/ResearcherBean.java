@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.user;
 
 import java.io.Serializable;
@@ -26,11 +26,11 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Rene Svetina
  */
 public final class ResearcherBean implements
-									Serializable
+		Serializable
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Fields
-	// ========================================================================
+	// =================================================================================================================
 	private static final long	serialVersionUID	= 4905370220866247144L;
 	private String				email;
 	private String				lastname;
@@ -38,9 +38,9 @@ public final class ResearcherBean implements
 	private String				telephoneNumber;
 	private String				www;
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * @return the email

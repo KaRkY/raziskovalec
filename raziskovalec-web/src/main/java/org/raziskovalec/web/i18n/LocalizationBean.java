@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.i18n;
 
 import java.io.Serializable;
@@ -36,21 +36,21 @@ import com.google.common.collect.Maps;
  * @author Rene Svetina
  */
 public final class LocalizationBean implements
-									Serializable
+		Serializable
 {
+	// =================================================================================================================
+	// Fields
+	// =================================================================================================================
 	private static final int			COOKIE_MAX_AGE		= 31536000;
 	private static final String			LOCALE_COOKIE_NAME	= "org.raziskovalec.localization.LOCALE";
-	// ========================================================================
-	// Fields
-	// ========================================================================
 	private static final long			serialVersionUID	= 2036176357496933262L;
 	private final Map<String, Object>	cookieProperties;
 	private Locale						currentLocale;
 	private final Logger				logger				= LoggerFactory.getLogger(this.getClass());
 
-	// ========================================================================
+	// =================================================================================================================
 	// Constructors
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * Default constructor.
@@ -97,9 +97,9 @@ public final class LocalizationBean implements
 		}
 	}
 
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	/**
 	 * @return Current locale.

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
-*/
+ */
 package org.raziskovalec.web.jsf.scopes;
 
 import java.util.HashMap;
@@ -30,11 +30,11 @@ import javax.faces.event.ViewMapListener;
  * @author Rene Svetina
  */
 public final class ViewScopeCallbackRegistrar implements
-												ViewMapListener
+		ViewMapListener
 {
-	// ========================================================================
+	// =================================================================================================================
 	// Methods
-	// ========================================================================
+	// =================================================================================================================
 
 	@Override
 	public boolean isListenerForSource(final Object source)
