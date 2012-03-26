@@ -54,6 +54,8 @@
     
     <logger name="org.raziskovalec.web.i18n" level="info" />
     
+    <logger name="org.raziskovalec.web.validation" level ="info" />
+    
     <root level="trace">
         <appender-ref ref="STDOUT" />
     </root>

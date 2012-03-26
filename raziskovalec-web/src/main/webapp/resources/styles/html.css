@@ -26,7 +26,6 @@ body {
    height: 100%;
    margin: 0;
    padding: 0;
-   text-align: center;
    font: 400 0.8em verdana, arial, sans-serif;
    line-height: 170%;
    background: #666 url(#{resource['images/bg/header.jpg']}) repeat-x top left;
