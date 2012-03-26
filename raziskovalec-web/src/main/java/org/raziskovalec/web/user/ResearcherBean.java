@@ -26,7 +26,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Rene Svetina
  */
 public final class ResearcherBean implements
-		Serializable
+									Serializable
 {
 	// =================================================================================================================
 	// Fields

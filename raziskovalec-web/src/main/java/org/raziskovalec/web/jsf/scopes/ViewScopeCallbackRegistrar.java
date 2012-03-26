@@ -30,7 +30,7 @@ import javax.faces.event.ViewMapListener;
  * @author Rene Svetina
  */
 public final class ViewScopeCallbackRegistrar implements
-		ViewMapListener
+												ViewMapListener
 {
 	// =================================================================================================================
 	// Methods

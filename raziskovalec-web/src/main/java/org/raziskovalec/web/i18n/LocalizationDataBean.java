@@ -28,7 +28,7 @@ import com.google.common.collect.Lists;
  * @author Rene Svetina
  */
 public final class LocalizationDataBean implements
-		Serializable
+										Serializable
 {
 	// =================================================================================================================
 	// Fields

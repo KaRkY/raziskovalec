@@ -30,7 +30,6 @@ import org.springframework.web.jsf.FacesContextUtils;
  * JSF functions.
  * 
  * @author Rene Svetina
- * 
  */
 public final class Functions
 {

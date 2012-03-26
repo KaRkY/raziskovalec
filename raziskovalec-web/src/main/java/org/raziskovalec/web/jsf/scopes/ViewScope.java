@@ -29,7 +29,7 @@ import org.springframework.web.context.request.FacesRequestAttributes;
  * @author Rene Svetina
  */
 public final class ViewScope implements
-		Scope
+							Scope
 {
 	// =================================================================================================================
 	// Fields

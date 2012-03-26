@@ -30,10 +30,9 @@ import org.raziskovalec.domain.value.Name;
  * Researcher domain class.
  * 
  * @author Rene Svetina
- * 
  */
 public class Researcher implements
-		Serializable
+						Serializable
 {
 	// =================================================================================================================
 	// Fields
