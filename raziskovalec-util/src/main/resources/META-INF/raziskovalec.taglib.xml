@@ -23,7 +23,7 @@
 	<namespace>http://www.raziskovalec.org/comp</namespace>
 	<function>
 		<function-name>msg</function-name>
-		<function-class>org.raziskovalec.web.jsf.Functions</function-class>
+		<function-class>org.raziskovalec.jsf.Functions</function-class>
 		<function-signature>java.lang.String msg(java.lang.String)</function-signature>
 	</function>
 </facelet-taglib>
