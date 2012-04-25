@@ -34,5 +34,5 @@
  * 
  * @author Rene Svetina
  */
-package org.raziskovalec.web.validation;
+package org.raziskovalec.jsf.validation;
 

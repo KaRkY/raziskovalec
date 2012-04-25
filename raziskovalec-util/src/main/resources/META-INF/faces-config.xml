@@ -3,5 +3,32 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
 >
 
+	<application>
+		<system-event-listener>
+			<system-event-listener-class>org.raziskovalec.jsf.LabelProvider</system-event-listener-class>
+			<system-event-class>javax.faces.event.PreValidateEvent</system-event-class>
+			<source-class>com.icesoft.faces.component.ext.HtmlOutputLabel</source-class>
+		</system-event-listener>
+	</application>
 
+	<validator>
+		<validator-id>lengthValidator</validator-id>
+		<validator-class>org.raziskovalec.jsf.validation.LengthValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>emailValidator</validator-id>
+		<validator-class>org.raziskovalec.jsf.validation.EmailValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>phoneNumberValidator</validator-id>
+		<validator-class>org.raziskovalec.jsf.validation.PhoneNumberValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>urlValidator</validator-id>
+		<validator-class>org.raziskovalec.jsf.validation.URLValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>requiredValidator</validator-id>
+		<validator-class>org.raziskovalec.jsf.validation.RequiredValidator</validator-class>
+	</validator>
 </faces-config>

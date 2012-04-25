@@ -10,7 +10,7 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package org.raziskovalec.web.validation;
+package org.raziskovalec.jsf.validation;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -21,12 +21,10 @@ import javax.faces.validator.ValidatorException;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.jsf.Functions;
+import org.raziskovalec.jsf.JSFUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.sun.faces.util.MessageFactory;
 
 /**
  * For email validation.
@@ -40,6 +38,7 @@ public final class EmailValidator implements
 	// Fields
 	// =================================================================================================================
 	private final Logger	logger	= LoggerFactory.getLogger(getClass());
+	private Integer			numberOfAddresses;
 
 	// =================================================================================================================
 	// Constructors
@@ -57,11 +56,6 @@ public final class EmailValidator implements
 	// Methods
 	// =================================================================================================================
 
-	private String getAttribute(final String name, final UIComponent component)
-	{
-		return ObjectsUtil.toStringOrNull(component.getAttributes().get(name));
-	}
-
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
@@ -70,18 +64,18 @@ public final class EmailValidator implements
 			try
 			{
 				InternetAddress[] internetAddresses = InternetAddress.parse(value.toString());
-				if (internetAddresses.length != Integer.parseInt(getAttribute("numberOfAddresses", component)))
+				if (internetAddresses.length != getNumberOfAddresses())
 				{
 					FacesMessage message = new FacesMessage();
 					message.setSeverity(FacesMessage.SEVERITY_ERROR);
 					message.setSummary(Functions
 							.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.summary",
-									getAttribute("numberOfAddresses", component),
-									MessageFactory.getLabel(context, component)));
+									getNumberOfAddresses(),
+									JSFUtils.getLabel(context, component)));
 					message.setDetail(Functions
 							.msg("org.raziskovalec.web.validation.EmailValidator.numberOfAddresses.detail",
-									getAttribute("numberOfAddresses", component),
-									MessageFactory.getLabel(context, component)));
+									getNumberOfAddresses(),
+									JSFUtils.getLabel(context, component)));
 
 					throw new ValidatorException(message);
 				}
@@ -91,12 +85,29 @@ public final class EmailValidator implements
 				FacesMessage message = new FacesMessage();
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
 				message.setSummary(Functions.msg("org.raziskovalec.web.validation.EmailValidator.summary",
-						MessageFactory.getLabel(context, component)));
+						JSFUtils.getLabel(context, component)));
 				message.setDetail(Functions.msg("org.raziskovalec.web.validation.EmailValidator.detail",
-						MessageFactory.getLabel(context, component)));
+						JSFUtils.getLabel(context, component)));
 
 				throw new ValidatorException(message);
 			}
 		}
+	}
+
+	/**
+	 * @return the numberOfAddresses
+	 */
+	public Integer getNumberOfAddresses()
+	{
+		return numberOfAddresses;
+	}
+
+	/**
+	 * @param numberOfAddresses
+	 *            the numberOfAddresses to set
+	 */
+	public void setNumberOfAddresses(final Integer numberOfAddresses)
+	{
+		this.numberOfAddresses = numberOfAddresses;
 	}
 }

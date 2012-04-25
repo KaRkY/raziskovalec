@@ -15,44 +15,36 @@
 					<ice:messages errorClass="error" warnClass="warn" infoClass="info" />
 				</f:facet>
 
-				<ice:outputText value="#{fn:msg('researcher.name')}:" />
+				<ice:outputLabel value="#{fn:msg('researcher.name')}" for="name" />
 				<ice:inputText id="name" value="#{researcher.name}" size="20">
-					<f:validator validatorId="lengthValidator" />
-					<f:validator validatorId="requiredValidator" />
-					<f:attribute name="min" value="1" />
-					<f:attribute name="label" value="#{fn:msg('researcher.name')}" />
+					<fn:lengthValidator min="1" />
+					<fn:requiredValidator />
 				</ice:inputText>
 				<ice:message for="name" errorClass="error" warnClass="warn" infoClass="info" />
 
-				<ice:outputText value="#{fn:msg('researcher.lastname')}:" />
+				<ice:outputLabel value="#{fn:msg('researcher.lastname')}" for="lastname" />
 				<ice:inputText id="lastname" value="#{researcher.lastname}" size="20">
-					<f:validator validatorId="lengthValidator" />
-					<f:validator validatorId="requiredValidator" />
-					<f:attribute name="min" value="1" />
-					<f:attribute name="label" value="#{fn:msg('researcher.lastname')}" />
+					<fn:lengthValidator min="1" />
+					<fn:requiredValidator />
 				</ice:inputText>
 				<ice:message for="lastname" errorClass="error" warnClass="warn" infoClass="info" />
 
-				<ice:outputText value="#{fn:msg('researcher.email')}:" />
+				<ice:outputLabel value="#{fn:msg('researcher.email')}" for="email" />
 				<ice:inputText id="email" value="#{researcher.email}" size="30">
-					<f:validator validatorId="emailValidator" />
-					<f:validator validatorId="requiredValidator" />
-					<f:attribute name="numberOfAddresses" value="1" />
-					<f:attribute name="label" value="#{fn:msg('researcher.email')}" />
+					<fn:emailValidator numberOfAddresses="1" />
+					<fn:requiredValidator />
 				</ice:inputText>
 				<ice:message for="email" errorClass="error" warnClass="warn" infoClass="info" />
 
-				<ice:outputText value="#{fn:msg('researcher.telephonenumber')}:" />
+				<ice:outputLabel value="#{fn:msg('researcher.telephonenumber')}" for="telephone" />
 				<ice:inputText id="telephone" value="#{researcher.telephoneNumber}" maxlength="16" size="16">
-					<f:validator validatorId="phoneNumberValidator" />
-					<f:attribute name="label" value="#{fn:msg('researcher.telephonenumber')}" />
+					<fn:phoneNumberValidator />
 				</ice:inputText>
 				<ice:message for="telephone" errorClass="error" warnClass="warn" infoClass="info" />
 
-				<ice:outputText value="#{fn:msg('researcher.www')}:" />
+				<ice:outputLabel value="#{fn:msg('researcher.www')}" for="www" />
 				<ice:inputText id="www" value="#{researcher.www}" size="30">
-					<f:validator validatorId="urlValidator" />
-					<f:attribute name="label" value="#{fn:msg('researcher.www')}" />
+					<fn:urlValidator />
 				</ice:inputText>
 				<ice:message for="www" errorClass="error" warnClass="warn" infoClass="info" />
 

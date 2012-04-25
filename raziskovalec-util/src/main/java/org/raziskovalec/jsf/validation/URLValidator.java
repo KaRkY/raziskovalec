@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.web.validation;
+package org.raziskovalec.jsf.validation;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -22,85 +25,67 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.jsf.Functions;
+import org.raziskovalec.jsf.JSFUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.faces.util.MessageFactory;
-
 /**
- * Length validator.
+ * Validates URL's.
  * 
  * @author Rene Svetina
  */
-public final class LengthValidator implements
+public final class URLValidator implements
 		Validator
 {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private final Logger	logger	= LoggerFactory.getLogger(getClass());
+	private static final Pattern	URL_PATTERN;
+	private final Logger			logger	= LoggerFactory.getLogger(getClass());
 
 	// =================================================================================================================
 	// Constructors
 	// =================================================================================================================
 
+	static
+	{
+		URL_PATTERN = Pattern.compile("^http[s]?://[a-zA-Z0-9\\-\\.]+\\.[a-zA-Z]{2,3}(/\\S*)?$");
+	}
+
 	/**
 	 * Default constructor.
 	 */
-	public LengthValidator()
+	public URLValidator()
 	{
-		logger.trace("Creating length validator.");
+		logger.trace("Creating URL validator.");
 	}
 
 	// =================================================================================================================
 	// Methods
 	// =================================================================================================================
 
-	private String getAttribute(final String name, final UIComponent component)
-	{
-		return ObjectsUtil.toStringOrNull(component.getAttributes().get(name));
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext ,
-	 * javax.faces.component.UIComponent, java.lang.Object)
-	 */
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
 		if (!UIInput.isEmpty(value))
 		{
-			Integer min = Integer.parseInt(getAttribute("min", component));
-			Integer max = null;
-			String sMax = getAttribute("max", component);
-			if (sMax != null)
-			{
-				max = Integer.parseInt(sMax);
-			}
-			else
-			{
-				sMax = Functions.msg("org.raziskovalec.web.validation.unlimited");
-			}
+			Matcher urlMatcher = URL_PATTERN.matcher(value.toString());
 
-			String sValue = value.toString();
-			if (sValue.length() < min || max != null && sValue.length() > max)
+			if (!urlMatcher.matches())
 			{
 				FacesMessage message = new FacesMessage();
 				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				message.setSummary(Functions.msg("org.raziskovalec.web.validation.LengthValidator.summary",
-						min,
-						sMax,
-						MessageFactory.getLabel(context, component)));
-				message.setDetail(Functions.msg("org.raziskovalec.web.validation.LengthValidator.detail",
-						min,
-						sMax,
-						MessageFactory.getLabel(context, component)));
+				message.setSummary(Functions
+						.msg("org.raziskovalec.web.validation.URLValidator.summary",
+								JSFUtils.getLabel(context, component)));
+				message.setDetail(Functions
+						.msg("org.raziskovalec.web.validation.URLValidator.detail",
+								JSFUtils.getLabel(context, component)));
 
 				throw new ValidatorException(message);
 			}
 		}
 	}
+
 }

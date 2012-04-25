@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.web.validation;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package org.raziskovalec.jsf.validation;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -26,24 +23,22 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import org.raziskovalec.jsf.Functions;
+import org.raziskovalec.jsf.JSFUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.faces.util.MessageFactory;
-
 /**
- * Telephone number validator.
+ * Validates if field is empty.
  * 
  * @author Rene Svetina
  */
-public final class PhoneNumberValidator implements
+public final class RequiredValidator implements
 		Validator
 {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private static final Pattern	PHONE_NUMBER_PATTERN	= Pattern.compile("[+]?(0-9){0,3}[0-9- ]+");
-	private final Logger			logger					= LoggerFactory.getLogger(getClass());
+	private final Logger	logger	= LoggerFactory.getLogger(getClass());
 
 	// =================================================================================================================
 	// Constructors
@@ -52,9 +47,9 @@ public final class PhoneNumberValidator implements
 	/**
 	 * Default constructor.
 	 */
-	public PhoneNumberValidator()
+	public RequiredValidator()
 	{
-		logger.trace("Creating telephone number validator.");
+		logger.trace("Creating email validator.");
 	}
 
 	// =================================================================================================================
@@ -63,22 +58,18 @@ public final class PhoneNumberValidator implements
 	@Override
 	public void validate(final FacesContext context, final UIComponent component, final Object value)
 	{
-		if (!UIInput.isEmpty(value))
+		if (UIInput.isEmpty(value))
 		{
-			Matcher phoneNumberMatcher = PHONE_NUMBER_PATTERN.matcher(value.toString());
-			if (!phoneNumberMatcher.matches())
-			{
-				FacesMessage message = new FacesMessage();
-				message.setSeverity(FacesMessage.SEVERITY_ERROR);
-				message.setSummary(Functions
-						.msg("org.raziskovalec.web.validation.TelephoneNumberValidator.summary",
-								MessageFactory.getLabel(context, component)));
-				message.setDetail(Functions
-						.msg("org.raziskovalec.web.validation.TelephoneNumberValidator.detail",
-								MessageFactory.getLabel(context, component)));
+			FacesMessage message = new FacesMessage();
+			message.setSeverity(FacesMessage.SEVERITY_ERROR);
+			message.setSummary(Functions
+					.msg("org.raziskovalec.web.validation.RequiredValidator.summary",
+							JSFUtils.getLabel(context, component)));
+			message.setDetail(Functions
+					.msg("org.raziskovalec.web.validation.RequiredValidator.detail",
+							JSFUtils.getLabel(context, component)));
 
-				throw new ValidatorException(message);
-			}
+			throw new ValidatorException(message);
 		}
 	}
 

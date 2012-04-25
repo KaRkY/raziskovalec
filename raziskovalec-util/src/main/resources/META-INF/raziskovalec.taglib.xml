@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright 2012 Rene Svetina
-  
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  
-    http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
--->
-<facelet-taglib
-	version="2.0"
-	xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- Copyright 2012 Rene Svetina Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file 
+	except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS 
+	IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language 
+	governing permissions and limitations under the License. -->
+<facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
 >
 	<namespace>http://www.raziskovalec.org/comp</namespace>
@@ -26,4 +13,54 @@
 		<function-class>org.raziskovalec.jsf.Functions</function-class>
 		<function-signature>java.lang.String msg(java.lang.String)</function-signature>
 	</function>
+
+	<tag>
+		<tag-name>emailValidator</tag-name>
+		<validator>
+			<validator-id>emailValidator</validator-id>
+		</validator>
+		<attribute>
+			<name>numberOfAddresses</name>
+			<required>true</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+	</tag>
+
+	<tag>
+		<tag-name>requiredValidator</tag-name>
+		<validator>
+			<validator-id>requiredValidator</validator-id>
+		</validator>
+	</tag>
+
+	<tag>
+		<tag-name>lengthValidator</tag-name>
+		<validator>
+			<validator-id>lengthValidator</validator-id>
+		</validator>
+		<attribute>
+			<name>min</name>
+			<required>true</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<name>max</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+	</tag>
+
+	<tag>
+		<tag-name>phoneNumberValidator</tag-name>
+		<validator>
+			<validator-id>phoneNumberValidator</validator-id>
+		</validator>
+	</tag>
+
+	<tag>
+		<tag-name>urlValidator</tag-name>
+		<validator>
+			<validator-id>urlValidator</validator-id>
+		</validator>
+	</tag>
 </facelet-taglib>

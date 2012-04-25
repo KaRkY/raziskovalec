@@ -28,24 +28,4 @@
 		</system-event-listener>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
-	<validator>
-		<validator-id>lengthValidator</validator-id>
-		<validator-class>org.raziskovalec.web.validation.LengthValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>emailValidator</validator-id>
-		<validator-class>org.raziskovalec.web.validation.EmailValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>phoneNumberValidator</validator-id>
-		<validator-class>org.raziskovalec.web.validation.PhoneNumberValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>urlValidator</validator-id>
-		<validator-class>org.raziskovalec.web.validation.URLValidator</validator-class>
-	</validator>
-	<validator>
-		<validator-id>requiredValidator</validator-id>
-		<validator-class>org.raziskovalec.web.validation.RequiredValidator</validator-class>
-	</validator>
 </faces-config>
