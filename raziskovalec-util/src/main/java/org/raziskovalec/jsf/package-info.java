@@ -16,5 +16,5 @@
 /**
  * General JSF package.
  */
-package org.raziskovalec.web.jsf;
+package org.raziskovalec.jsf;
 
