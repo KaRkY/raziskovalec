@@ -10,6 +10,7 @@
 	<bean id="researcherAdd" class="org.raziskovalec.web.user.ResearcherAddBackingBean" scope="request">
 		<constructor-arg index="0" ref="researcher" />
 		<constructor-arg index="1" ref="mailSession" />
+		<constructor-arg index="2" ref="freemarkerConfiguration" />
 	</bean>
 
 </beans>

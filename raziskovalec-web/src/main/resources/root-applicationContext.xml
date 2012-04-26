@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:c="http://www.springframework.org/schema/c"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:util="http://www.springframework.org/schema/util"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
-
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd"
+>
 	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
 		<property name="scopes">
 			<map>
@@ -20,7 +16,12 @@
 			</map>
 		</property>
 	</bean>
-	
+
+	<bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="classpath:/" />
+	</bean>
+
+
 	<bean class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
@@ -31,7 +32,6 @@
 			</list>
 		</property>
 	</bean>
-
 	<bean id="localizationData" class="org.raziskovalec.web.i18n.LocalizationDataBean" scope="application">
 		<constructor-arg index="0">
 			<list>
@@ -40,14 +40,14 @@
 			</list>
 		</constructor-arg>
 	</bean>
-	
+
 	<bean id="localization" class="org.raziskovalec.web.i18n.LocalizationBean" scope="session">
 		<constructor-arg index="0" ref="localizationData" />
 	</bean>
-	
+
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/raziskovalecDB">
 	</jee:jndi-lookup>
-	
+
 	<jee:jndi-lookup id="mailSession" jndi-name="mail/gmail">
 	</jee:jndi-lookup>
 </beans>
