@@ -15,6 +15,13 @@
  */
 package org.raziskovalec.web.user;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +37,7 @@ public final class ResearcherAddBackingBean
 	// =================================================================================================================
 	private final Logger			logger	= LoggerFactory.getLogger(this.getClass());
 	private final ResearcherBean	researcherBean;
+	private final Session			session;
 
 	// =================================================================================================================
 	// Constructors
@@ -41,9 +49,10 @@ public final class ResearcherAddBackingBean
 	 * @param researcherBean
 	 *            actual researcher.
 	 */
-	public ResearcherAddBackingBean(final ResearcherBean researcherBean)
+	public ResearcherAddBackingBean(final ResearcherBean researcherBean, final Session session)
 	{
 		this.researcherBean = researcherBean;
+		this.session = session;
 	}
 
 	// =================================================================================================================
@@ -69,6 +78,27 @@ public final class ResearcherAddBackingBean
 	public String save()
 	{
 		logger.info("Saveing researcher: '{}'", researcherBean);
+
+		try
+		{
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("Rene Svetina<rene.svetina@gmail.com>"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("rene.svetina@gmail.com"));
+			message.setSubject("Raziskovalec mail");
+			message.setText(String.format("Prijavljeni ste v bazo raziskovalce: \nIme in priimek: %s %s\nEmail: %s",
+					researcherBean.getName(),
+					researcherBean.getLastname(),
+					researcherBean.getEmail()));
+
+			Transport.send(message);
+
+		} catch (MessagingException e)
+		{
+			throw new RuntimeException(e);
+		}
+
 		// return "/researcher/list?faces-redirect=true";
 		return "";
 	}
