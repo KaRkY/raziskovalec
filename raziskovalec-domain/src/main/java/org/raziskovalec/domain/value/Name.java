@@ -16,12 +16,11 @@
 package org.raziskovalec.domain.value;
 
 import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
+import com.google.common.base.Optional;
 
 /**
  * Value class for handling personal names.
@@ -29,7 +28,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rene Svetina
  */
 public final class Name implements
-						Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
@@ -38,11 +37,8 @@ public final class Name implements
 	/**
 	 * Empty name.
 	 */
-	public static final Name	EMPTY				= new Name();
-	private static final int	HASH_MULTIPLIER		= 31;
-	private static final int	HASH_PRIME			= 17;
-	private static final long	serialVersionUID	= -7175433342123178074L;
-	private final String		name;
+	private static final long		serialVersionUID	= -7175433342123178074L;
+	private final Optional<String>	name;
 
 	// =================================================================================================================
 	// Constructors
@@ -50,16 +46,14 @@ public final class Name implements
 
 	private Name()
 	{
-		name = null;
+		name = Optional.absent();
 	}
 
 	private Name(final String name)
 	{
-		checkNotNull(name, "Name can not be null.");
-		checkArgument(!name.isEmpty(), "Name can not be empty.");
-		checkArgument(!name.equals("N/A"), "Name can not be N/A");
-
-		this.name = name;
+		this.name = Optional.fromNullable(name);
+		checkArgument(!this.name.isPresent() || !this.name.get().isEmpty(), "Name can not be empty.");
+		checkArgument(!this.name.isPresent() || !this.name.get().equals("N/A"), "Name can not be N/A");
 	}
 
 	// =================================================================================================================
@@ -73,25 +67,15 @@ public final class Name implements
 	@Override
 	public boolean equals(final Object obj)
 	{
-		if (obj == null)
+		if (obj instanceof Name)
+		{
+			Name other = (Name) obj;
+			return Objects.equal(name, other.name);
+		}
+		else
 		{
 			return false;
 		}
-		if (obj == this)
-		{
-			return true;
-		}
-		if (getClass() != obj.getClass())
-		{
-			return false;
-		}
-		Name that = (Name) obj;
-
-		EqualsBuilder builder = new EqualsBuilder();
-
-		builder.append(name, that.name);
-
-		return builder.build();
 	}
 
 	/*
@@ -101,11 +85,7 @@ public final class Name implements
 	@Override
 	public int hashCode()
 	{
-		HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
-
-		builder.append(name);
-
-		return builder.build();
+		return Objects.hashCode(name);
 	}
 
 	/*
@@ -115,14 +95,7 @@ public final class Name implements
 	@Override
 	public String toString()
 	{
-		if (name != null)
-		{
-			return name;
-		}
-		else
-		{
-			return "N/A";
-		}
+		return name.or("N/A");
 	}
 
 	/**

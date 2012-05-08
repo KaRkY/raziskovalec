@@ -24,7 +24,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 
-import org.apache.commons.lang3.LocaleUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +35,7 @@ import com.google.common.collect.Maps;
  * @author Rene Svetina
  */
 public final class LocalizationBean implements
-									Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
@@ -93,7 +92,7 @@ public final class LocalizationBean implements
 		else
 		{
 			Cookie cookie = (Cookie) requestCookieMap.get(LOCALE_COOKIE_NAME);
-			currentLocale = LocaleUtils.toLocale(cookie.getValue());
+			currentLocale = Locale.forLanguageTag(cookie.getValue());
 		}
 	}
 

@@ -17,8 +17,7 @@ package org.raziskovalec.web.user;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import com.google.common.base.Objects;
 
 /**
  * Researcher data to be added.
@@ -26,7 +25,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  * @author Rene Svetina
  */
 public final class ResearcherBean implements
-									Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
@@ -134,12 +133,12 @@ public final class ResearcherBean implements
 	@Override
 	public String toString()
 	{
-		return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-				.append("Name", getName())
-				.append("Lastname", getLastname())
-				.append("Email", getEmail())
-				.append("Telephonenumber", getTelephoneNumber())
-				.append("WWW", getWww())
-				.build();
+		return Objects.toStringHelper(this)
+				.add("name", getName())
+				.add("lastname", getLastname())
+				.add("email", getEmail())
+				.add("telephonenumber", getTelephoneNumber())
+				.add("www", getWww())
+				.toString();
 	}
 }

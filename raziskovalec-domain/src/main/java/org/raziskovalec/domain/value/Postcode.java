@@ -22,8 +22,7 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import com.google.common.base.Objects;
 
 /**
  * Postcode for address.
@@ -31,14 +30,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rene Svetina
  */
 public final class Postcode implements
-							Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
 	private static final long	serialVersionUID	= 8996124494460276539L;
-	private static final int	HASH_PRIME			= 17;
-	private static final int	HASH_MULTIPLIER		= 31;
 	private final String		code;
 	private final String		name;
 	private static Pattern		postalPattern;
@@ -122,11 +119,7 @@ public final class Postcode implements
 	@Override
 	public int hashCode()
 	{
-		final HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
-
-		builder.append(code);
-
-		return builder.build();
+		return Objects.hashCode(code);
 	}
 
 	/*
@@ -136,24 +129,16 @@ public final class Postcode implements
 	@Override
 	public boolean equals(final Object obj)
 	{
-		if (obj == null)
+		if (obj instanceof Postcode)
+		{
+			Postcode other = (Postcode) obj;
+
+			return Objects.equal(code, other.code);
+		}
+		else
 		{
 			return false;
 		}
-		if (obj == this)
-		{
-			return true;
-		}
-		if (obj.getClass() != getClass())
-		{
-			return false;
-		}
-		final Postcode that = (Postcode) obj;
-		final EqualsBuilder builder = new EqualsBuilder();
-
-		builder.append(code, that.code);
-
-		return builder.isEquals();
 	}
 
 	/*

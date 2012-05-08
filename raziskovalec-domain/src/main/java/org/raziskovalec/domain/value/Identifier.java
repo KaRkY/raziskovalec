@@ -25,12 +25,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
+import com.google.common.base.Objects;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import com.google.common.hash.HashFunction;
+import com.google.common.hash.Hasher;
+import com.google.common.hash.Hashing;
 import com.google.common.util.concurrent.ExecutionError;
 
 /**
@@ -39,17 +39,16 @@ import com.google.common.util.concurrent.ExecutionError;
  * @author Rene Svetina
  */
 public final class Identifier implements
-								Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
 
 	private static final long						serialVersionUID	= 6346749479769179997L;
-	private static final int						HASH_MULTIPLIER		= 31;
-	private static final int						HASH_PRIME			= 17;
 	private static final int						CACHE_EXPIRE_TIME	= 10;
 	private static final long						CACHE_SIZE			= 10000L;
+	private static final HashFunction				HF					= Hashing.sha1();
 	private static final Cache<String, Identifier>	CACHE;
 	private static Pattern							hashPattern;
 	private final String							hash;
@@ -70,7 +69,9 @@ public final class Identifier implements
 	private Identifier()
 	{
 		final UUID uuid = UUID.randomUUID();
-		hash = DigestUtils.shaHex(uuid.toString());
+		Hasher hasher = HF.newHasher();
+		hasher.putString(uuid.toString());
+		hash = hasher.hash().toString();
 	}
 
 	private Identifier(final String hash)
@@ -90,24 +91,15 @@ public final class Identifier implements
 	@Override
 	public boolean equals(final Object obj)
 	{
-		if (obj == null)
+		if (obj instanceof Identifier)
+		{
+			Identifier other = (Identifier) obj;
+			return Objects.equal(hash, other.hash);
+		}
+		else
 		{
 			return false;
 		}
-		if (obj == this)
-		{
-			return true;
-		}
-		if (obj.getClass() != getClass())
-		{
-			return false;
-		}
-		final Identifier that = (Identifier) obj;
-		final EqualsBuilder builder = new EqualsBuilder();
-
-		builder.append(hash, that.hash);
-
-		return builder.isEquals();
 	}
 
 	/*
@@ -117,11 +109,7 @@ public final class Identifier implements
 	@Override
 	public int hashCode()
 	{
-		final HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
-
-		builder.append(hash);
-
-		return builder.build();
+		return Objects.hashCode(hash);
 	}
 
 	/*

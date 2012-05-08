@@ -19,12 +19,10 @@ import java.io.Serializable;
 
 import javax.mail.internet.InternetAddress;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.raziskovalec.domain.value.Identifier;
 import org.raziskovalec.domain.value.Name;
+
+import com.google.common.base.Objects;
 
 /**
  * Researcher domain class.
@@ -32,15 +30,13 @@ import org.raziskovalec.domain.value.Name;
  * @author Rene Svetina
  */
 public class Researcher implements
-						Serializable
+		Serializable
 {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
 
 	private static final long	serialVersionUID	= 5018104292542842256L;
-	private static final int	HASH_MULTIPLIER		= 31;
-	private static final int	HASH_PRIME			= 17;
 	private final Identifier	id;
 	private Name				name;
 	private Name				lastName;
@@ -141,46 +137,28 @@ public class Researcher implements
 	@Override
 	public int hashCode()
 	{
-		HashCodeBuilder builder = new HashCodeBuilder(HASH_PRIME, HASH_MULTIPLIER);
-
-		builder.append(id);
-
-		return builder.build();
+		return Objects.hashCode(id);
 	}
 
 	@Override
 	public boolean equals(final Object obj)
 	{
-		if (obj == null)
+		if (obj instanceof Researcher)
+		{
+			Researcher other = (Researcher) obj;
+
+			return Objects.equal(id, other.id);
+		}
+		else
 		{
 			return false;
 		}
-		if (obj == this)
-		{
-			return true;
-		}
-		if (obj.getClass() != getClass())
-		{
-			return false;
-		}
-		final Researcher that = (Researcher) obj;
-		final EqualsBuilder builder = new EqualsBuilder();
-
-		builder.append(id, that.id);
-
-		return builder.isEquals();
 	}
 
 	@Override
 	public String toString()
 	{
-		ToStringBuilder builder = new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE);
-
-		builder.append("id", id);
-		builder.append("name", name);
-		builder.append("lastName", lastName);
-		builder.append("email", email);
-
-		return builder.build();
+		return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName)
+				.add("email", email).toString();
 	}
 }

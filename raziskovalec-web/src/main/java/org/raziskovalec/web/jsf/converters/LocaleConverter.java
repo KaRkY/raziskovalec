@@ -15,11 +15,11 @@
  */
 package org.raziskovalec.web.jsf.converters;
 
+import java.util.Locale;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-
-import org.apache.commons.lang3.LocaleUtils;
 
 /**
  * Locale to String converter.
@@ -27,7 +27,7 @@ import org.apache.commons.lang3.LocaleUtils;
  * @author Rene Svetina
  */
 public final class LocaleConverter implements
-									Converter
+		Converter
 {
 	// =================================================================================================================
 	// Methods
@@ -35,7 +35,7 @@ public final class LocaleConverter implements
 	@Override
 	public Object getAsObject(final FacesContext context, final UIComponent component, final String value)
 	{
-		return LocaleUtils.toLocale(value);
+		return Locale.forLanguageTag(value);
 	}
 
 	@Override
