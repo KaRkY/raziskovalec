@@ -22,6 +22,8 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.base.Objects;
 
 /**
@@ -48,7 +50,7 @@ public final class Postcode implements
 		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
 	}
 
-	private Postcode(final String code, final String name)
+	private Postcode(final @Nonnull String code, final @Nonnull String name)
 	{
 		checkNotNull(code, "Code should not be null.");
 		checkNotNull(name, "name should not be null.");
@@ -92,7 +94,7 @@ public final class Postcode implements
 	 *            postal name
 	 * @return Postcode
 	 */
-	public static Postcode valueOf(final String code, final String name)
+	public static Postcode valueOf(final @Nonnull String code, final @Nonnull String name)
 	{
 		return new Postcode(code, name);
 	}
@@ -104,7 +106,7 @@ public final class Postcode implements
 	 *            formated string.
 	 * @return Postcode
 	 */
-	public static Postcode valueOf(final String postalCode)
+	public static Postcode valueOf(final @Nonnull String postalCode)
 	{
 		Matcher postalMatcher = postalPattern.matcher(postalCode);
 		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");

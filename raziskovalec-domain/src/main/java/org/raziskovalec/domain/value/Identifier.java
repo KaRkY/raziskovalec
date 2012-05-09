@@ -25,6 +25,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nonnull;
+
 import com.google.common.base.Objects;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -74,7 +76,7 @@ public final class Identifier implements
 		hash = hasher.hash().toString();
 	}
 
-	private Identifier(final String hash)
+	private Identifier(final @Nonnull String hash)
 	{
 		super();
 		this.hash = hash;
@@ -137,7 +139,7 @@ public final class Identifier implements
 	 *            String representation of Identifier.
 	 * @return Identifier representation of hash string.
 	 */
-	public static Identifier valueOf(final String hash)
+	public static Identifier valueOf(final @Nonnull String hash)
 	{
 		final Matcher hashMatcher = hashPattern.matcher(hash);
 		checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}",
