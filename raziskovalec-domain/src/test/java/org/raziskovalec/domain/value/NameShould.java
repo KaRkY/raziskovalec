@@ -15,8 +15,10 @@
  */
 package org.raziskovalec.domain.value;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 import org.testng.annotations.Test;
 
@@ -25,56 +27,42 @@ import org.testng.annotations.Test;
  * 
  * @author Rene Svetina
  */
-public class NameShould
-{
-	/**
-	 * Equal with same name.
-	 */
-	@Test
-	public void equalWithSameString()
-	{
-		String name = "Rene";
-		Name name1 = Name.valueOf(name);
-		Name name2 = Name.valueOf("Rene");
+public class NameShould {
+    /**
+     * Equal with same name.
+     */
+    @Test
+    public void equalWithSameString() {
+	String name = "Rene";
+	Name name1 = Name.valueOf(name);
+	Name name2 = Name.valueOf("Rene");
 
-		assertEquals(name1, name2);
-	}
+	assertThat(name1, is(equalTo(name2)));
+    }
 
-	/**
-	 * Fail on empty name.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyName()
-	{
-		Name.valueOf("");
-	}
+    /**
+     * Fail on empty name.
+     */
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public void failOnEmptyName() {
+	Name.valueOf("");
+    }
 
-	/**
-	 * Fail on N/A string.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnNAName()
-	{
-		Name.valueOf("N/A");
-	}
+    /**
+     * Fail on N/A string.
+     */
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public void failOnNAName() {
+	Name.valueOf("N/A");
+    }
 
-	/**
-	 * Fail on null name.
-	 */
-	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullName()
-	{
-		Name.valueOf(null);
-	}
+    /**
+     * Return valid name.
+     */
+    @Test
+    protected void returnName() {
+	Name name = Name.valueOf("Rene");
 
-	/**
-	 * Return valid name.
-	 */
-	@Test
-	protected void returnName()
-	{
-		Name name = Name.valueOf("Rene");
-
-		assertNotNull(name);
-	}
+	assertThat(name, is(notNullValue()));
+    }
 }

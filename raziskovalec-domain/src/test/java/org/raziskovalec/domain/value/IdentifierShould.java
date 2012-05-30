@@ -15,9 +15,11 @@
  */
 package org.raziskovalec.domain.value;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.sameInstance;
 
 import org.testng.annotations.Test;
 
@@ -26,93 +28,90 @@ import org.testng.annotations.Test;
  * 
  * @author Rene Svetina
  */
-public class IdentifierShould
-{
-	/**
-	 * 2 Identifiers with same hash should equal.
-	 */
-	@Test
-	public void equalWithSameString()
+public class IdentifierShould {
+    /**
+     * 2 Identifiers with same hash should equal.
+     */
+    @Test
+    public void equalWithSameString()
 
-	{
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id1 = Identifier.valueOf(hash);
-		Identifier id2 = Identifier.valueOf(hash);
+    {
+	String hash = "5678901234567890123456789012345678abcdef";
+	Identifier id1 = Identifier.valueOf(hash);
+	Identifier id2 = Identifier.valueOf(hash);
 
-		assertEquals(id1, id2);
-	}
+	assertThat(id1, is(equalTo(id2)));
+    }
 
-	/**
-	 * Creation should fail on invalid hash.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnIvalidHash()
-	{
-		String hash = "12rt";
-		Identifier.valueOf(hash);
-	}
+    /**
+     * Creation should fail on invalid hash.
+     */
+    @Test(expectedExceptions = { IllegalArgumentException.class })
+    public void failOnIvalidHash() {
+	String hash = "12rt";
+	Identifier.valueOf(hash);
+    }
 
-	/**
-	 * Should generate random unique id.
-	 */
-	@Test
-	public void generateNewId()
-	{
-		Identifier id = Identifier.newId();
+    /**
+     * Should generate random unique id.
+     */
+    @Test
+    public void generateNewId() {
+	Identifier id = Identifier.newId();
 
-		assertNotNull(id);
-	}
+	assertThat(id, is(notNullValue()));
+    }
 
-	/**
-	 * Should get valid id from string.
-	 */
-	@Test
-	public void getIdFromString()
+    /**
+     * Should get valid id from string.
+     */
+    @Test
+    public void getIdFromString()
 
-	{
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id = Identifier.valueOf(hash);
+    {
+	String hash = "5678901234567890123456789012345678abcdef";
+	Identifier id = Identifier.valueOf(hash);
 
-		assertNotNull(id);
-	}
+	assertThat(id, is(notNullValue()));
+    }
 
-	/**
-	 * Should generate same hashcode.
-	 */
-	@Test
-	public void getSameHashOnSameString()
+    /**
+     * Should generate same hashcode.
+     */
+    @Test
+    public void getSameHashOnSameString()
 
-	{
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id1 = Identifier.valueOf(hash);
-		Identifier id2 = Identifier.valueOf(hash);
+    {
+	String hash = "5678901234567890123456789012345678abcdef";
+	Identifier id1 = Identifier.valueOf(hash);
+	Identifier id2 = Identifier.valueOf(hash);
 
-		assertEquals(id1.hashCode(), id2.hashCode());
-	}
+	assertThat(id1.hashCode(), is(equalTo(id2.hashCode())));
+    }
 
-	/**
-	 * Should return same instance.
-	 */
-	@Test
-	public void getSameInstance()
+    /**
+     * Should return same instance.
+     */
+    @Test
+    public void getSameInstance()
 
-	{
-		Identifier id1 = Identifier.newId();
-		Identifier id2 = Identifier.valueOf(id1.toString());
+    {
+	Identifier id1 = Identifier.newId();
+	Identifier id2 = Identifier.valueOf(id1.toString());
 
-		assertTrue(id1 == id2);
-	}
+	assertThat(id1, is(sameInstance(id2)));
+    }
 
-	/**
-	 * Should return string representation.
-	 */
-	@Test
-	public void getStringRepresentationOfId()
+    /**
+     * Should return string representation.
+     */
+    @Test
+    public void getStringRepresentationOfId()
 
-	{
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id = Identifier.valueOf(hash);
+    {
+	String hash = "5678901234567890123456789012345678abcdef";
+	Identifier id = Identifier.valueOf(hash);
 
-		assertEquals(id.toString(), hash);
-	}
+	assertThat(id.toString(), is(equalTo(hash)));
+    }
 }
