@@ -268,6 +268,11 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>3.1.1.RELEASE</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
 				<version>3.1.1.RELEASE</version>
 			</dependency>
@@ -308,41 +313,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>jstl</artifactId>
-				<version>1.2</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-api</artifactId>
-				<version>2.1.7</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.faces</groupId>
-				<artifactId>jsf-impl</artifactId>
-				<version>2.1.7</version>
-			</dependency>
-			<dependency>
-				<groupId>org.icefaces</groupId>
-				<artifactId>icefaces</artifactId>
-				<version>3.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.icefaces</groupId>
-				<artifactId>icefaces-compat</artifactId>
-				<version>3.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.icepush</groupId>
-				<artifactId>icepush</artifactId>
-				<version>3.0.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.icefaces</groupId>
-				<artifactId>icefaces-ace</artifactId>
-				<version>3.0.0</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.mail</groupId>
 				<artifactId>mail</artifactId>
 				<version>1.4.5</version>
@@ -358,6 +328,16 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<groupId>org.freemarker</groupId>
 				<artifactId>freemarker</artifactId>
 				<version>2.3.19</version>
+			</dependency>
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf</artifactId>
+				<version>2.0.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.thymeleaf</groupId>
+				<artifactId>thymeleaf-spring3</artifactId>
+				<version>2.0.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

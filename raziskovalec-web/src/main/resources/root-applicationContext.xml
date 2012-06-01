@@ -7,43 +7,11 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd"
 >
-	<bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
-		<property name="scopes">
-			<map>
-				<entry key="view">
-					<bean class="org.raziskovalec.web.jsf.scopes.ViewScope" />
-				</entry>
-			</map>
-		</property>
-	</bean>
 
 	<bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
 		<property name="templateLoaderPath" value="classpath:/" />
 	</bean>
 
-
-	<bean class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>org.raziskovalec.messages.menu</value>
-				<value>org.raziskovalec.messages.search.messages</value>
-				<value>org.raziskovalec.messages.researcher.messages</value>
-				<value>org.raziskovalec.messages.validation.messages</value>
-			</list>
-		</property>
-	</bean>
-	<bean id="localizationData" class="org.raziskovalec.web.i18n.LocalizationDataBean" scope="application">
-		<constructor-arg index="0">
-			<list>
-				<value>sl</value>
-				<value>en</value>
-			</list>
-		</constructor-arg>
-	</bean>
-
-	<bean id="localization" class="org.raziskovalec.web.i18n.LocalizationBean" scope="session">
-		<constructor-arg index="0" ref="localizationData" />
-	</bean>
 
 	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/raziskovalecDB">
 	</jee:jndi-lookup>
