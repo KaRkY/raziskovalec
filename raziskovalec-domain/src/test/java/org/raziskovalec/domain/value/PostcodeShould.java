@@ -15,8 +15,10 @@
  */
 package org.raziskovalec.domain.value;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 import org.testng.annotations.Test;
 
@@ -72,7 +74,7 @@ public class PostcodeShould
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 		Postcode postcode1 = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
-		assertEquals(postcode, postcode1);
+		assertThat(postcode, is(equalTo(postcode1)));
 	}
 
 	/**
@@ -84,8 +86,10 @@ public class PostcodeShould
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 		Postcode postcode1 = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
-		assertEquals(postcode.getCode(), postcode1.getCode(), "Expected equal postal code.");
-		assertEquals(postcode.getName(), postcode1.getName(), "Expected equal postal name.");
+		assertThat("Expected equal postal code.", postcode.getCode(),
+				is(equalTo(postcode1.getCode())));
+		assertThat("Expected equal postal name.", postcode.getName(),
+				is(equalTo(postcode1.getName())));
 	}
 
 	/**
@@ -96,7 +100,7 @@ public class PostcodeShould
 	{
 		Postcode postcode = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
-		assertNotNull(postcode);
+		assertThat(postcode, is(notNullValue()));
 	}
 
 	/**
@@ -107,6 +111,6 @@ public class PostcodeShould
 	{
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 
-		assertNotNull(postcode);
+		assertThat(postcode, is(notNullValue()));
 	}
 }
