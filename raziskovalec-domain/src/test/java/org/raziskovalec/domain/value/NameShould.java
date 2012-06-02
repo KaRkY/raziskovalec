@@ -59,15 +59,6 @@ public class NameShould
 	}
 
 	/**
-	 * Fail on null name.
-	 */
-	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullName()
-	{
-		Name.valueOf(null);
-	}
-
-	/**
 	 * Return valid name.
 	 */
 	@Test
