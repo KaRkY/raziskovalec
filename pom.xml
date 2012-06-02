@@ -306,11 +306,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>12.0</version>
 			</dependency>
 			<dependency>
-				<groupId>org.raziskovalec</groupId>
-				<artifactId>raziskovalec-util</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>javax.mail</groupId>
 				<artifactId>mail</artifactId>
 				<version>1.4.5</version>
@@ -354,7 +349,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 	<modules>
 		<module>raziskovalec-web</module>
 		<module>raziskovalec-util</module>
-
 		<module>raziskovalec-domain</module>
 	</modules>
 </project>
