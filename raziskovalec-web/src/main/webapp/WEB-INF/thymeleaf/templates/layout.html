@@ -29,13 +29,13 @@
 					th:class="${title == current ? 'selected' : ''}">Home</a></li>
 				<li><a th:href="@{/search}" th:text="#{search}" th:with="current=#{search}"
 					th:class="${title == current ? 'selected' : ''}">Search</a></li>
-				<li><a href="#" th:text="#{researcher}"
+				<li><a th:href="@{/researcher}" th:text="#{researcher}"
 					th:with="current=#{researcher}"
 					th:class="${title == current ? 'selected' : ''}">Researcher</a></li>
-				<li><a href="#" th:text="#{organization}"
+				<li><a th:href="@{/organization}" th:text="#{organization}"
 					th:with="current=#{organization}"
 					th:class="${title == current ? 'selected' : ''}">Organizations</a></li>
-				<li><a href="#" th:text="#{group}" th:with="current=#{group}"
+				<li><a th:href="@{/group}" th:text="#{group}" th:with="current=#{group}"
 					th:class="${title == current ? 'selected' : ''}">Groups</a></li>
 			</ul>
 		</nav>

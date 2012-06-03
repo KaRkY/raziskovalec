@@ -4,7 +4,7 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en"
-	th:with="title=#{search}">
+	th:with="title=#{researcher}">
 <!--<![endif]-->
 <head th:substituteby="templates/layout::head" >
 <meta charset="utf-8" />
@@ -34,13 +34,6 @@
 		
 		<div id="content">
 			
-			<div id="search">
-				<form action="#" method="post" th:object="${search}" th:action="@{/search}">
-					<input type="text" th:field="*{searchTerm}" />
-					<input type="submit" name="search" th:value="#{search.button}" />
-				</form>
-			</div>
-
 		</div>
 		<footer th:substituteby="templates/layout::footer" > Raziskovalec.org </footer>
 	</div>
