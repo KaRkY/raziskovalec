@@ -61,10 +61,8 @@ public final class Identifier implements
 
 	static
 	{
-		CACHE = CacheBuilder.newBuilder()
-				.maximumSize(CACHE_SIZE)
-				.expireAfterAccess(CACHE_EXPIRE_TIME, TimeUnit.MINUTES)
-				.build();
+		CACHE = CacheBuilder.newBuilder().maximumSize(CACHE_SIZE)
+				.expireAfterAccess(CACHE_EXPIRE_TIME, TimeUnit.MINUTES).build();
 		hashPattern = Pattern.compile("[A-Fa-f0-9]{40}");
 	}
 
@@ -141,12 +139,15 @@ public final class Identifier implements
 	 */
 	public static Identifier valueOf(final @Nonnull String hash)
 	{
+		// Validates hash pattern.
 		final Matcher hashMatcher = hashPattern.matcher(hash);
-		checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}",
-				hash));
+		checkArgument(hashMatcher.matches(),
+				String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
 
 		try
 		{
+			// Trys to resolve Identity from cache. If Identity is not in cache
+			// it creates a new random unique Identity.
 			return CACHE.get(hash, new Callable<Identifier>()
 			{
 
