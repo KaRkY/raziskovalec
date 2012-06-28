@@ -184,14 +184,27 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 		</plugins>
 	</build>
 	<dependencies>
+		<!-- Testing -->
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>hamcrest-core</artifactId>
+					<groupId>org.hamcrest</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+		</dependency>
+
+		<!-- Common -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -200,10 +213,21 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-jdbc</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- Testing -->
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
@@ -216,6 +240,14 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>1.9.0</version>
 				<scope>test</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>1.1</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Logging -->
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>jcl-over-slf4j</artifactId>
@@ -233,6 +265,8 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>1.0.3</version>
 				<scope>runtime</scope>
 			</dependency>
+			
+			<!-- Core Spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -271,9 +305,11 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
-				<artifactId>spring-tx</artifactId>
+				<artifactId>spring-aop</artifactId>
 				<version>3.1.1.RELEASE</version>
 			</dependency>
+			
+			<!-- Spring security -->
 			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-core</artifactId>
@@ -285,15 +321,12 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<version>3.1.0.RELEASE</version>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-jdbc</artifactId>
-				<version>3.1.1.RELEASE</version>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>3.1.0.RELEASE</version>
 			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-aop</artifactId>
-				<version>3.1.1.RELEASE</version>
-			</dependency>
+			
+			<!-- Util -->
 			<dependency>
 				<groupId>cglib</groupId>
 				<artifactId>cglib</artifactId>
@@ -304,16 +337,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-				<version>2.6.0</version>
-			</dependency>
-			<dependency>
-				<groupId>org.codehaus.jackson</groupId>
-				<artifactId>jackson-jaxrs</artifactId>
-				<version>1.9.7</version>
 			</dependency>
 			<dependency>
 				<groupId>com.google.guava</groupId>
@@ -346,17 +369,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
 				<groupId>org.thymeleaf</groupId>
 				<artifactId>thymeleaf-spring3</artifactId>
 				<version>2.0.4</version>
-			</dependency>
-			<dependency>
-				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-all</artifactId>
-				<version>1.1</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.security</groupId>
-				<artifactId>spring-security-config</artifactId>
-				<version>3.1.0.RELEASE</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
