@@ -42,11 +42,11 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="info" />
+    <logger name="org.springframework" level="warn" />
 
-    <logger name="org.apache" level="info" />
+    <logger name="org.apache" level="warn" />
     
-    <logger name="org.thymeleaf" level="info" />
+    <logger name="org.thymeleaf" level="warn" />
     
     <root level="trace">
         <appender-ref ref="STDOUT" />

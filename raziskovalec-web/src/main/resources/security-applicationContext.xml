@@ -12,9 +12,6 @@
 	http://www.springframework.org/schema/security/spring-security-3.1.xsd"
 >
 	<http auto-config="true">
-		<intercept-url
-			pattern="/search*"
-			access="ROLE_USER" />
 	</http>
 
 	<authentication-manager>
