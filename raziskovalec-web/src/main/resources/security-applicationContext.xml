@@ -19,7 +19,7 @@
 
 	<authentication-manager>
 		<authentication-provider>
-		<password-encoder  />
+		<password-encoder hash="plaintext"  />
 			<user-service>
 				<user
 					name="mkyong"
