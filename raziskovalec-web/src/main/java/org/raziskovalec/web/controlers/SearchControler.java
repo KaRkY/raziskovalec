@@ -23,12 +23,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * @author Rene Svetina
  */
 @Controller
 @RequestMapping("/search")
+@SessionAttributes({"search"})
 public class SearchControler
 {
 	// =================================================================================================================
@@ -43,6 +45,12 @@ public class SearchControler
 	// =================================================================================================================
 	// Methods
 	// =================================================================================================================
+	@ModelAttribute("search")
+	public SearchForm getSearch() {
+		return new SearchForm();
+	}
+	
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model)
 	{
