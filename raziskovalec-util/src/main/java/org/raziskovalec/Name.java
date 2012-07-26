@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.domain.value;
+package org.raziskovalec;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -27,9 +27,7 @@ import com.google.common.base.Optional;
  * 
  * @author Rene Svetina
  */
-public final class Name implements
-		Serializable
-{
+public final class Name implements Serializable {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
@@ -37,20 +35,18 @@ public final class Name implements
 	/**
 	 * Empty name.
 	 */
-	private static final long		serialVersionUID	= -7175433342123178074L;
-	private final Optional<String>	name;
+	private static final long serialVersionUID = -7175433342123178074L;
+	private final Optional<String> name;
 
 	// =================================================================================================================
 	// Constructors
 	// =================================================================================================================
 
-	private Name()
-	{
+	private Name() {
 		name = Optional.absent();
 	}
 
-	private Name(final String name)
-	{
+	private Name(final String name) {
 		this.name = Optional.fromNullable(name);
 		checkArgument(!this.name.isPresent() || !this.name.get().isEmpty(), "Name can not be empty.");
 		checkArgument(!this.name.isPresent() || !this.name.get().equals("N/A"), "Name can not be N/A");
@@ -62,39 +58,36 @@ public final class Name implements
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(final Object obj)
-	{
-		if (obj instanceof Name)
-		{
+	public boolean equals(final Object obj) {
+		if (obj instanceof Name) {
 			Name other = (Name) obj;
 			return Objects.equal(name, other.name);
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
-	public int hashCode()
-	{
+	public int hashCode() {
 		return Objects.hashCode(name);
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return name.or("N/A");
 	}
 
@@ -105,8 +98,7 @@ public final class Name implements
 	 *            Name
 	 * @return Name
 	 */
-	public static Name valueOf(final String name)
-	{
+	public static Name valueOf(final String name) {
 		return new Name(name);
 	}
 }

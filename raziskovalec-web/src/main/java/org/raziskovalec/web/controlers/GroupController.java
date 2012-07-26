@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/group")
-public class GroupController
-{
+public class GroupController {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
@@ -38,8 +37,7 @@ public class GroupController
 	// Methods
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
-	public String search()
-	{
+	public String search() {
 		return "group/search";
 	}
 }

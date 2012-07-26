@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/organization")
-public class OrganizationController
-{
+public class OrganizationController {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
@@ -38,8 +37,7 @@ public class OrganizationController
 	// Methods
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
-	public String search()
-	{
+	public String search() {
 		return "organization/search";
 	}
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.raziskovalec.domain.value;
+package org.raziskovalec;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -31,27 +31,23 @@ import com.google.common.base.Objects;
  * 
  * @author Rene Svetina
  */
-public final class Postcode implements
-		Serializable
-{
+public final class Postcode implements Serializable {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private static final long	serialVersionUID	= 8996124494460276539L;
-	private final String		code;
-	private final String		name;
-	private static Pattern		postalPattern;
+	private static final long serialVersionUID = 8996124494460276539L;
+	private final String code;
+	private final String name;
+	private static Pattern postalPattern;
 
 	// =================================================================================================================
 	// Constructors
 	// =================================================================================================================
-	static
-	{
+	static {
 		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
 	}
 
-	private Postcode(final @Nonnull String code, final @Nonnull String name)
-	{
+	private Postcode(final @Nonnull String code, final @Nonnull String name) {
 		checkNotNull(code, "Code should not be null.");
 		checkNotNull(name, "name should not be null.");
 		checkArgument(!code.isEmpty(), "Code should not be empty.");
@@ -70,8 +66,7 @@ public final class Postcode implements
 	 * 
 	 * @return Postal code.
 	 */
-	public String getCode()
-	{
+	public String getCode() {
 		return code;
 	}
 
@@ -80,8 +75,7 @@ public final class Postcode implements
 	 * 
 	 * @return Postal name.
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
@@ -94,8 +88,7 @@ public final class Postcode implements
 	 *            postal name
 	 * @return Postcode
 	 */
-	public static Postcode valueOf(final @Nonnull String code, final @Nonnull String name)
-	{
+	public static Postcode valueOf(final @Nonnull String code, final @Nonnull String name) {
 		return new Postcode(code, name);
 	}
 
@@ -106,8 +99,7 @@ public final class Postcode implements
 	 *            formated string.
 	 * @return Postcode
 	 */
-	public static Postcode valueOf(final @Nonnull String postalCode)
-	{
+	public static Postcode valueOf(final @Nonnull String postalCode) {
 		Matcher postalMatcher = postalPattern.matcher(postalCode);
 		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
 
@@ -116,40 +108,37 @@ public final class Postcode implements
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
-	public int hashCode()
-	{
+	public int hashCode() {
 		return Objects.hashCode(code);
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(final Object obj)
-	{
-		if (obj instanceof Postcode)
-		{
+	public boolean equals(final Object obj) {
+		if (obj instanceof Postcode) {
 			Postcode other = (Postcode) obj;
 
 			return Objects.equal(code, other.code);
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 	}
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		return String.format("[%s]%s", code, name);
 	}
 }

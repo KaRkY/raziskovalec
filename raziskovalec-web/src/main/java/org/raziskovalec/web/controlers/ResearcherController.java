@@ -24,8 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/researcher")
-public class ResearcherController
-{
+public class ResearcherController {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
@@ -38,8 +37,7 @@ public class ResearcherController
 	// Methods
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
-	public String search()
-	{
+	public String search() {
 		return "researcher/search";
 	}
 }

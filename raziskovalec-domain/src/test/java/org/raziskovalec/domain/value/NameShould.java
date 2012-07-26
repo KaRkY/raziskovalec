@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
+import org.raziskovalec.Name;
 import org.testng.annotations.Test;
 
 /**
@@ -27,14 +28,12 @@ import org.testng.annotations.Test;
  * 
  * @author Rene Svetina
  */
-public class NameShould
-{
+public class NameShould {
 	/**
 	 * Equal with same name.
 	 */
 	@Test
-	public void equalWithSameString()
-	{
+	public void equalWithSameString() {
 		String name = "Rene";
 		Name name1 = Name.valueOf(name);
 		Name name2 = Name.valueOf("Rene");
@@ -46,8 +45,7 @@ public class NameShould
 	 * Fail on empty name.
 	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyName()
-	{
+	public void failOnEmptyName() {
 		Name.valueOf("");
 	}
 
@@ -55,8 +53,7 @@ public class NameShould
 	 * Fail on N/A string.
 	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnNAName()
-	{
+	public void failOnNAName() {
 		Name.valueOf("N/A");
 	}
 
@@ -64,8 +61,7 @@ public class NameShould
 	 * Return valid name.
 	 */
 	@Test
-	protected void returnName()
-	{
+	protected void returnName() {
 		Name name = Name.valueOf("Rene");
 
 		assertThat(name, is(notNullValue()));

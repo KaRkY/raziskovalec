@@ -18,12 +18,11 @@ package org.raziskovalec.web.form;
 /**
  * @author Rene Svetina
  */
-public class SearchForm
-{
+public class SearchForm {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private String	searchTerm;
+	private String searchTerm;
 
 	// =================================================================================================================
 	// Constructors
@@ -32,13 +31,11 @@ public class SearchForm
 	// =================================================================================================================
 	// Methods
 	// =================================================================================================================
-	public String getSearchTerm()
-	{
+	public String getSearchTerm() {
 		return searchTerm;
 	}
 
-	public void setSearchTerm(final String searchTerm)
-	{
+	public void setSearchTerm(final String searchTerm) {
 		this.searchTerm = searchTerm;
 	}
 }

@@ -22,8 +22,7 @@ import com.google.common.collect.Sets;
 /**
  * @author Rene Svetina
  */
-public final class ObjectsUtil
-{
+public final class ObjectsUtil {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
@@ -31,8 +30,7 @@ public final class ObjectsUtil
 	// =================================================================================================================
 	// Constructors
 	// =================================================================================================================
-	private ObjectsUtil()
-	{
+	private ObjectsUtil() {
 	}
 
 	// =================================================================================================================
@@ -48,10 +46,8 @@ public final class ObjectsUtil
 	 *            Set generic type.
 	 * @return For null returns empty Set if not null then returns same Set.
 	 */
-	public static <E> Set<E> emptyForNull(final Set<E> set)
-	{
-		if (set == null)
-		{
+	public static <E> Set<E> emptyForNull(final Set<E> set) {
+		if (set == null) {
 			return Sets.newHashSet();
 		}
 		return set;
@@ -64,15 +60,12 @@ public final class ObjectsUtil
 	 *            object to test
 	 * @return true for not empty false for null or empty.
 	 */
-	public static boolean isNotNullOrEmpty(final Object o)
-	{
-		if (o == null)
-		{
+	public static boolean isNotNullOrEmpty(final Object o) {
+		if (o == null) {
 			return false;
 		}
 
-		if (o.toString().isEmpty())
-		{
+		if (o.toString().isEmpty()) {
 			return false;
 		}
 
@@ -86,14 +79,10 @@ public final class ObjectsUtil
 	 *            any object
 	 * @return string representation
 	 */
-	public static String toStringOrNull(final Object o)
-	{
-		if (o == null)
-		{
+	public static String toStringOrNull(final Object o) {
+		if (o == null) {
 			return null;
-		}
-		else
-		{
+		} else {
 			return o.toString();
 		}
 	}
