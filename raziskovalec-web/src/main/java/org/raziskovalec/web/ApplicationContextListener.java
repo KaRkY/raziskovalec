@@ -6,19 +6,16 @@ import javax.servlet.ServletContextListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ApplicationContextListener implements ServletContextListener
-{
+public class ApplicationContextListener implements ServletContextListener {
 	private final Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent)
-	{
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		logger.info("Application {} stopped.", servletContextEvent.getServletContext().getServletContextName());
 	}
 
 	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent)
-	{
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		logger.info("Application {} started.", servletContextEvent.getServletContext().getServletContextName());
 	}
 

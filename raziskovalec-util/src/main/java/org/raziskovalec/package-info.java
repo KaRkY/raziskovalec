@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 /**
- * Value classes.
+ * Basic value classes.
  */
-package org.raziskovalec.domain.value;
+package org.raziskovalec;
 

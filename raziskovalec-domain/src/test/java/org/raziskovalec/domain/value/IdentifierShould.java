@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.sameInstance;
 
+import org.raziskovalec.Identifier;
 import org.testng.annotations.Test;
 
 /**
@@ -28,14 +29,12 @@ import org.testng.annotations.Test;
  * 
  * @author Rene Svetina
  */
-public class IdentifierShould
-{
+public class IdentifierShould {
 	/**
 	 * 2 Identifiers with same hash should equal.
 	 */
 	@Test
-	public void equalWithSameString()
-	{
+	public void equalWithSameString() {
 		String hash = "5678901234567890123456789012345678abcdef";
 		Identifier id1 = Identifier.valueOf(hash);
 		Identifier id2 = Identifier.valueOf(hash);
@@ -47,8 +46,7 @@ public class IdentifierShould
 	 * Creation should fail on invalid hash.
 	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnIvalidHash()
-	{
+	public void failOnIvalidHash() {
 		String hash = "12rt";
 		Identifier.valueOf(hash);
 	}
@@ -57,8 +55,7 @@ public class IdentifierShould
 	 * Should generate random unique id.
 	 */
 	@Test
-	public void generateNewId()
-	{
+	public void generateNewId() {
 		Identifier id = Identifier.newId();
 
 		assertThat(id, is(notNullValue()));
@@ -68,8 +65,7 @@ public class IdentifierShould
 	 * Should get valid id from string.
 	 */
 	@Test
-	public void getIdFromString()
-	{
+	public void getIdFromString() {
 		String hash = "5678901234567890123456789012345678abcdef";
 		Identifier id = Identifier.valueOf(hash);
 
@@ -80,8 +76,7 @@ public class IdentifierShould
 	 * Should generate same hashcode.
 	 */
 	@Test
-	public void getSameHashOnSameString()
-	{
+	public void getSameHashOnSameString() {
 		String hash = "5678901234567890123456789012345678abcdef";
 		Identifier id1 = Identifier.valueOf(hash);
 		Identifier id2 = Identifier.valueOf(hash);
@@ -93,8 +88,7 @@ public class IdentifierShould
 	 * Should return same instance.
 	 */
 	@Test
-	public void getSameInstance()
-	{
+	public void getSameInstance() {
 		Identifier id1 = Identifier.newId();
 		Identifier id2 = Identifier.valueOf(id1.toString());
 
@@ -105,8 +99,7 @@ public class IdentifierShould
 	 * Should return string representation.
 	 */
 	@Test
-	public void getStringRepresentationOfId()
-	{
+	public void getStringRepresentationOfId() {
 		String hash = "5678901234567890123456789012345678abcdef";
 		Identifier id = Identifier.valueOf(hash);
 

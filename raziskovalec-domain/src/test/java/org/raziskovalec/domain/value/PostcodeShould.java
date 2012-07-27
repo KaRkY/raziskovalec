@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
+import org.raziskovalec.Postcode;
 import org.testng.annotations.Test;
 
 /**
@@ -27,14 +28,12 @@ import org.testng.annotations.Test;
  * 
  * @author Rene Svetina
  */
-public class PostcodeShould
-{
+public class PostcodeShould {
 	/**
 	 * Fail on empty code.
 	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyCode()
-	{
+	public void failOnEmptyCode() {
 		Postcode.valueOf("", "Ožbalt ob dravi");
 	}
 
@@ -42,8 +41,7 @@ public class PostcodeShould
 	 * Fail on empty name.
 	 */
 	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyName()
-	{
+	public void failOnEmptyName() {
 		Postcode.valueOf("2361", "");
 	}
 
@@ -51,8 +49,7 @@ public class PostcodeShould
 	 * Fail on null code.
 	 */
 	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullCode()
-	{
+	public void failOnNullCode() {
 		Postcode.valueOf(null, "Ožbalt ob dravi");
 	}
 
@@ -60,8 +57,7 @@ public class PostcodeShould
 	 * Fail on null name.
 	 */
 	@Test(expectedExceptions = { NullPointerException.class })
-	public void failOnNullName()
-	{
+	public void failOnNullName() {
 		Postcode.valueOf("2361", null);
 	}
 
@@ -69,8 +65,7 @@ public class PostcodeShould
 	 * Success on equal postal name.
 	 */
 	@Test
-	public void returnEqualPostalCode()
-	{
+	public void returnEqualPostalCode() {
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 		Postcode postcode1 = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
@@ -81,23 +76,19 @@ public class PostcodeShould
 	 * Success on equal postal code.
 	 */
 	@Test
-	public void returnEqualPostalCodeValues()
-	{
+	public void returnEqualPostalCodeValues() {
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 		Postcode postcode1 = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
-		assertThat("Expected equal postal code.", postcode.getCode(),
-				is(equalTo(postcode1.getCode())));
-		assertThat("Expected equal postal name.", postcode.getName(),
-				is(equalTo(postcode1.getName())));
+		assertThat("Expected equal postal code.", postcode.getCode(), is(equalTo(postcode1.getCode())));
+		assertThat("Expected equal postal name.", postcode.getName(), is(equalTo(postcode1.getName())));
 	}
 
 	/**
 	 * Return non null postal code.
 	 */
 	@Test
-	public void returnPostalCode()
-	{
+	public void returnPostalCode() {
 		Postcode postcode = Postcode.valueOf("2361", "Ožbalt ob Dravi");
 
 		assertThat(postcode, is(notNullValue()));
@@ -107,8 +98,7 @@ public class PostcodeShould
 	 * Return postal code on post string.
 	 */
 	@Test
-	public void returnPostalCodeFromCodeString()
-	{
+	public void returnPostalCodeFromCodeString() {
 		Postcode postcode = Postcode.valueOf("[2361]Ožbalt ob Dravi");
 
 		assertThat(postcode, is(notNullValue()));
