@@ -15,141 +15,129 @@
  */
 package org.raziskovalec.domain.value;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 
 /**
  * Postcode for address.
  * 
  * @author Rene Svetina
  */
-public final class Postcode implements
-		Serializable
-{
-	// =================================================================================================================
-	// Fields
-	// =================================================================================================================
-	private static final long	serialVersionUID	= 8996124494460276539L;
-	private final String		code;
-	private final String		name;
-	private static Pattern		postalPattern;
+public final class Postcode implements Serializable {
+    // =================================================================================================================
+    // Fields
+    // =================================================================================================================
+    private static final long serialVersionUID = 8996124494460276539L;
+    private final String code;
+    private final String name;
+    private static Pattern postalPattern;
 
-	// =================================================================================================================
-	// Constructors
-	// =================================================================================================================
-	static
-	{
-		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
-	}
+    // =================================================================================================================
+    // Constructors
+    // =================================================================================================================
+    static {
+	Postcode.postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
+    }
 
-	private Postcode(final @Nonnull String code, final @Nonnull String name)
-	{
-		checkNotNull(code, "Code should not be null.");
-		checkNotNull(name, "name should not be null.");
-		checkArgument(!code.isEmpty(), "Code should not be empty.");
-		checkArgument(!name.isEmpty(), "Name should not be empty.");
+    private Postcode(final String code, final String name) {
+	Preconditions.checkNotNull(code, "Code should not be null.");
+	Preconditions.checkNotNull(name, "name should not be null.");
+	Preconditions.checkArgument(!code.isEmpty(),
+		"Code should not be empty.");
+	Preconditions.checkArgument(!name.isEmpty(),
+		"Name should not be empty.");
 
-		this.code = code;
-		this.name = name;
-	}
+	this.code = code;
+	this.name = name;
+    }
 
-	// =================================================================================================================
-	// Methods
-	// =================================================================================================================
+    // =================================================================================================================
+    // Methods
+    // =================================================================================================================
 
-	/**
-	 * Postal code.
-	 * 
-	 * @return Postal code.
-	 */
-	public String getCode()
-	{
-		return code;
-	}
+    /**
+     * Postcode from format string [code]name.
+     * 
+     * @param postalCode
+     *            formated string.
+     * @return Postcode
+     */
+    public static Postcode valueOf(final String postalCode) {
+	final Matcher postalMatcher = Postcode.postalPattern
+		.matcher(postalCode);
+	Preconditions.checkArgument(postalMatcher.matches(),
+		"Wrong postalCode format, format should be [<code>]<name>");
 
-	/**
-	 * Postal name.
-	 * 
-	 * @return Postal name.
-	 */
-	public String getName()
-	{
-		return name;
-	}
+	return Postcode.valueOf(postalMatcher.group(1), postalMatcher.group(2));
+    }
 
-	/**
-	 * Postalcode.
-	 * 
-	 * @param code
-	 *            postal code
-	 * @param name
-	 *            postal name
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final @Nonnull String code, final @Nonnull String name)
-	{
-		return new Postcode(code, name);
-	}
+    /**
+     * Postalcode.
+     * 
+     * @param code
+     *            postal code
+     * @param name
+     *            postal name
+     * @return Postcode
+     */
+    public static Postcode valueOf(final String code, final String name) {
+	return new Postcode(code, name);
+    }
 
-	/**
-	 * Postcode from format string [code]name.
-	 * 
-	 * @param postalCode
-	 *            formated string.
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final @Nonnull String postalCode)
-	{
-		Matcher postalMatcher = postalPattern.matcher(postalCode);
-		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals(final Object obj) {
+	if (obj instanceof Postcode) {
+	    final Postcode other = (Postcode) obj;
 
-		return valueOf(postalMatcher.group(1), postalMatcher.group(2));
-	}
+	    return Objects.equal(code, other.code);
+	} else
+	    return false;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode()
-	{
-		return Objects.hashCode(code);
-	}
+    /**
+     * Postal code.
+     * 
+     * @return Postal code.
+     */
+    public String getCode() {
+	return code;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj)
-	{
-		if (obj instanceof Postcode)
-		{
-			Postcode other = (Postcode) obj;
+    /**
+     * Postal name.
+     * 
+     * @return Postal name.
+     */
+    public String getName() {
+	return name;
+    }
 
-			return Objects.equal(code, other.code);
-		}
-		else
-		{
-			return false;
-		}
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+	return Objects.hashCode(code);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		return String.format("[%s]%s", code, name);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString() {
+	return String.format("[%s]%s", code, name);
+    }
 }
