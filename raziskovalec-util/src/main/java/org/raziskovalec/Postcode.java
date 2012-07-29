@@ -22,8 +22,6 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Objects;
 
 /**
@@ -35,10 +33,10 @@ public final class Postcode implements Serializable {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private static final long serialVersionUID = 8996124494460276539L;
-	private final String code;
-	private final String name;
-	private static Pattern postalPattern;
+	private static final long	serialVersionUID	= 8996124494460276539L;
+	private final String		code;
+	private final String		name;
+	private static Pattern		postalPattern;
 
 	// =================================================================================================================
 	// Constructors
@@ -47,7 +45,7 @@ public final class Postcode implements Serializable {
 		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
 	}
 
-	private Postcode(final @Nonnull String code, final @Nonnull String name) {
+	private Postcode(final String code, final String name) {
 		checkNotNull(code, "Code should not be null.");
 		checkNotNull(name, "name should not be null.");
 		checkArgument(!code.isEmpty(), "Code should not be empty.");
@@ -60,6 +58,48 @@ public final class Postcode implements Serializable {
 	// =================================================================================================================
 	// Methods
 	// =================================================================================================================
+
+	/**
+	 * Postcode from format string [code]name.
+	 * 
+	 * @param postalCode
+	 *            formated string.
+	 * @return Postcode
+	 */
+	public static Postcode valueOf(final String postalCode) {
+		final Matcher postalMatcher = postalPattern.matcher(postalCode);
+		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
+
+		return valueOf(postalMatcher.group(1), postalMatcher.group(2));
+	}
+
+	/**
+	 * Postalcode.
+	 * 
+	 * @param code
+	 *            postal code
+	 * @param name
+	 *            postal name
+	 * @return Postcode
+	 */
+	public static Postcode valueOf(final String code, final String name) {
+		return new Postcode(code, name);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (obj instanceof Postcode) {
+			final Postcode other = (Postcode) obj;
+
+			return Objects.equal(code, other.code);
+		} else
+			return false;
+	}
 
 	/**
 	 * Postal code.
@@ -79,33 +119,6 @@ public final class Postcode implements Serializable {
 		return name;
 	}
 
-	/**
-	 * Postalcode.
-	 * 
-	 * @param code
-	 *            postal code
-	 * @param name
-	 *            postal name
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final @Nonnull String code, final @Nonnull String name) {
-		return new Postcode(code, name);
-	}
-
-	/**
-	 * Postcode from format string [code]name.
-	 * 
-	 * @param postalCode
-	 *            formated string.
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final @Nonnull String postalCode) {
-		Matcher postalMatcher = postalPattern.matcher(postalCode);
-		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
-
-		return valueOf(postalMatcher.group(1), postalMatcher.group(2));
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -114,22 +127,6 @@ public final class Postcode implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hashCode(code);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (obj instanceof Postcode) {
-			Postcode other = (Postcode) obj;
-
-			return Objects.equal(code, other.code);
-		} else {
-			return false;
-		}
 	}
 
 	/*

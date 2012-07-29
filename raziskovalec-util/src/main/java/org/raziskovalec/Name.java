@@ -35,8 +35,8 @@ public final class Name implements Serializable {
 	/**
 	 * Empty name.
 	 */
-	private static final long serialVersionUID = -7175433342123178074L;
-	private final Optional<String> name;
+	private static final long		serialVersionUID	= -7175433342123178074L;
+	private final Optional<String>	name;
 
 	// =================================================================================================================
 	// Constructors

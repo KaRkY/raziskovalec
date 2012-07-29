@@ -33,11 +33,11 @@ public class Researcher implements Serializable {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private static final long serialVersionUID = 5018104292542842256L;
-	private final Identifier id;
-	private Name name;
-	private Name lastName;
-	private InternetAddress email;
+	private static final long	serialVersionUID	= 5018104292542842256L;
+	private final Identifier	id;
+	private Name				name;
+	private Name				lastName;
+	private InternetAddress		email;
 
 	// =================================================================================================================
 	// Constructors

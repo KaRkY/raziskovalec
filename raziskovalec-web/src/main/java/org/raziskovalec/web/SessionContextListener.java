@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SessionContextListener implements HttpSessionListener {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+	private final Logger	logger	= LoggerFactory.getLogger(getClass());
 
 	@Override
 	public void sessionCreated(HttpSessionEvent httpSessionEvent) {

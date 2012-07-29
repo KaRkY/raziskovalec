@@ -25,8 +25,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nonnull;
-
 import com.google.common.base.Objects;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -45,13 +43,13 @@ public final class Identifier implements Serializable {
 	// Fields
 	// =================================================================================================================
 
-	private static final long serialVersionUID = 6346749479769179997L;
-	private static final int CACHE_EXPIRE_TIME = 10;
-	private static final long CACHE_SIZE = 10000L;
-	private static final HashFunction HF = Hashing.sha1();
-	private static final Cache<String, Identifier> CACHE;
-	private static Pattern hashPattern;
-	private final String hash;
+	private static final long						serialVersionUID	= 6346749479769179997L;
+	private static final int						CACHE_EXPIRE_TIME	= 10;
+	private static final long						CACHE_SIZE			= 10000L;
+	private static final HashFunction				HF					= Hashing.sha1();
+	private static final Cache<String, Identifier>	CACHE;
+	private static Pattern							hashPattern;
+	private final String							hash;
 
 	// =================================================================================================================
 	// Constructors
@@ -64,12 +62,12 @@ public final class Identifier implements Serializable {
 
 	private Identifier() {
 		final UUID uuid = UUID.randomUUID();
-		Hasher hasher = HF.newHasher();
+		final Hasher hasher = HF.newHasher();
 		hasher.putString(uuid.toString());
 		hash = hasher.hash().toString();
 	}
 
-	private Identifier(final @Nonnull String hash) {
+	private Identifier(final String hash) {
 		super();
 		this.hash = hash;
 	}
@@ -77,6 +75,41 @@ public final class Identifier implements Serializable {
 	// =================================================================================================================
 	// Methods
 	// =================================================================================================================
+
+	/**
+	 * @return new random unique id.
+	 */
+	public static Identifier newId() {
+		final Identifier result = new Identifier();
+		CACHE.put(result.toString(), result);
+		return result;
+	}
+
+	/**
+	 * @param hash
+	 *            String representation of Identifier.
+	 * @return Identifier representation of hash string.
+	 */
+	public static Identifier valueOf(final String hash) {
+		// Validates hash pattern.
+		final Matcher hashMatcher = hashPattern.matcher(hash);
+		checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
+
+		try {
+			// Trys to resolve Identity from cache. If Identity is not in cache
+			// it creates a new random unique Identity.
+			return CACHE.get(hash, new Callable<Identifier>() {
+
+				@Override
+				public Identifier call() throws Exception {
+					return new Identifier(hash);
+				}
+
+			});
+		} catch (final ExecutionException e) {
+			throw new ExecutionError(new Error("Could not create Id", e));
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -86,11 +119,10 @@ public final class Identifier implements Serializable {
 	@Override
 	public boolean equals(final Object obj) {
 		if (obj instanceof Identifier) {
-			Identifier other = (Identifier) obj;
+			final Identifier other = (Identifier) obj;
 			return Objects.equal(hash, other.hash);
-		} else {
+		} else
 			return false;
-		}
 	}
 
 	/*
@@ -111,40 +143,5 @@ public final class Identifier implements Serializable {
 	@Override
 	public String toString() {
 		return hash;
-	}
-
-	/**
-	 * @return new random unique id.
-	 */
-	public static Identifier newId() {
-		final Identifier result = new Identifier();
-		CACHE.put(result.toString(), result);
-		return result;
-	}
-
-	/**
-	 * @param hash
-	 *            String representation of Identifier.
-	 * @return Identifier representation of hash string.
-	 */
-	public static Identifier valueOf(final @Nonnull String hash) {
-		// Validates hash pattern.
-		final Matcher hashMatcher = hashPattern.matcher(hash);
-		checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
-
-		try {
-			// Trys to resolve Identity from cache. If Identity is not in cache
-			// it creates a new random unique Identity.
-			return CACHE.get(hash, new Callable<Identifier>() {
-
-				@Override
-				public Identifier call() throws Exception {
-					return new Identifier(hash);
-				}
-
-			});
-		} catch (ExecutionException e) {
-			throw new ExecutionError(new Error("Could not create Id", e));
-		}
 	}
 }

@@ -14,9 +14,9 @@ public class Organization {
 	// =================================================================================================================
 	// Fields
 	// =================================================================================================================
-	private Name name;
-	private InternetAddress email;
-	private Set<Researcher> employees = Sets.newLinkedHashSet();
+	private Name			name;
+	private InternetAddress	email;
+	private Set<Researcher>	employees	= Sets.newLinkedHashSet();
 
 	// =================================================================================================================
 	// Constructors
