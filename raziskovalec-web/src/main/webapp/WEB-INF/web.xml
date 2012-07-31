@@ -16,9 +16,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:root-applicationContext.xml,
-			classpath*:org/raziskovalec/**/*-applicationContext.xml,
-			classpath:security-applicationContext.xml
+			classpath:root-applicationContext.xml
 		</param-value>
 	</context-param>
 
@@ -69,17 +67,6 @@
 		<servlet-name>DispatcherServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-
-	<!-- Spring Security -->
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 	<resource-env-ref>
 		<resource-env-ref-name>jdbc/raziskovalecDB</resource-env-ref-name>
