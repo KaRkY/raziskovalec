@@ -8,7 +8,7 @@
 	</definition>
 	
 	<definition name="home" extends="base">
-		<put-attribute name="content" value="home :: content" />
-		<put-attribute name="title" value="#{home}" />
+		<put-attribute name="content" value="index" />
+		<put-attribute name="title" expression="${messageSource['home']}" />
 	</definition>
 </tiles-definitions>
