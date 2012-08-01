@@ -38,6 +38,6 @@ public class ResearcherController {
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
 	public String search() {
-		return "researcher/search";
+		return "researcher.search";
 	}
 }

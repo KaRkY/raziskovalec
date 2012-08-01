@@ -3,12 +3,33 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-	<definition name="base" template="templates/template" preparer="attributePreparer">
-		
+	<definition name="base" template="templates/template"
+		preparer="attributePreparer">
+
 	</definition>
-	
+
 	<definition name="home" extends="base">
 		<put-attribute name="content" value="index" />
-		<put-attribute name="title" expression="${messageSource['home']}" />
+		<put-attribute name="titleExpression" value="home" />
+	</definition>
+
+	<definition name="group.search" extends="base">
+		<put-attribute name="content" value="group/search" />
+		<put-attribute name="titleExpression" value="group" />
+	</definition>
+
+	<definition name="organization.search" extends="base">
+		<put-attribute name="content" value="organization/search" />
+		<put-attribute name="titleExpression" value="organization" />
+	</definition>
+
+	<definition name="researcher.search" extends="base">
+		<put-attribute name="content" value="researcher/search" />
+		<put-attribute name="titleExpression" value="researcher" />
+	</definition>
+
+	<definition name="search.search" extends="base">
+		<put-attribute name="content" value="search/search" />
+		<put-attribute name="titleExpression" value="search" />
 	</definition>
 </tiles-definitions>

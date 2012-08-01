@@ -38,6 +38,6 @@ public class GroupController {
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
 	public String search() {
-		return "group/search";
+		return "group.search";
 	}
 }

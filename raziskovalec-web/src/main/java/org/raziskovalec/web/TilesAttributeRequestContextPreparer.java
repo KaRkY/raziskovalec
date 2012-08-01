@@ -9,15 +9,9 @@ public class TilesAttributeRequestContextPreparer implements ViewPreparer {
     @Override
     public void execute(final TilesRequestContext tilesContext,
 	    final AttributeContext attributeContext) {
-	/*for (final String name : attributeContext.getLocalAttributeNames())
-	{
-	    System.out.println(name);
+	for (final String name : attributeContext.getLocalAttributeNames())
 	    tilesContext.getRequestScope().put(name,
 		    attributeContext.getLocalAttribute(name));
-	}*/
-	
-	tilesContext.getRequestScope().put("title",
-		    attributeContext.getLocalAttribute("title"));
     }
 
 }

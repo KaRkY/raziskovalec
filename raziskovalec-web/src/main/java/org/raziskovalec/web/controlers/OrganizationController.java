@@ -38,6 +38,6 @@ public class OrganizationController {
 	// =================================================================================================================
 	@RequestMapping(method = RequestMethod.GET)
 	public String search() {
-		return "organization/search";
+		return "organization.search";
 	}
 }

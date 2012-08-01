@@ -1,49 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html xmlns:th="http://www.thymeleaf.org" class="no-js" lang="en"
-	th:with="title=#{researcher}">
-<!--<![endif]-->
-<head th:substituteby="templates/layout::head" >
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-<title>Resercher.org</title>
-<meta name="description" content="Page for researchers" />
-<meta name="author" content="Rene Svetina" />
-
-<meta name="viewport" content="width=device-width" />
-
-<link rel="stylesheet" href="../../resources/css/style.css" />
-
-<script src="../../resources/js/libs/modernizr-2.5.3.min.js"></script>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:tiles="http://www.thymeleaf.org">
 <body>
-
-	<div id="wrap">
-	
-		<header th:substituteby="templates/layout::header" >
-			<hgroup>
-				<h1>Raziskovalec.org</h1>
-				<h2>at your service</h2>
-			</hgroup>
-			<nav></nav>
-		</header>
-		
-		<div id="content">
-			
-		</div>
-		<footer th:substituteby="templates/layout::footer" > Raziskovalec.org </footer>
-	</div>
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-	<script src="../../resources/js/plugins.js"
-		th:src="@{/resources/js/plugins.js}"></script>
-	<script src="../../resources/js/script.js"
-		th:src="@{/resources/js/script.js}"></script>
+	<div id="content"></div>
 </body>
 </html>

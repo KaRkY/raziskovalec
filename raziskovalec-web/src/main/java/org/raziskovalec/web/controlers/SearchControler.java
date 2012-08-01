@@ -53,13 +53,13 @@ public class SearchControler {
 	public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
 		logger.trace("Serving search page.");
 
-		return "search/search";
+		return "search.search";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String searchFor(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
 		logger.trace("Searching for: {}", searchForm.getSearchTerm());
 
-		return "search/search";
+		return "search.search";
 	}
 }
