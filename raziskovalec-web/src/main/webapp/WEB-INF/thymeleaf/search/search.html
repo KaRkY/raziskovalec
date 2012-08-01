@@ -5,8 +5,8 @@
   <div id="search">
     <form action="#" method="post" th:object="${search}"
       th:action="@{/search}">
-      <input type="text" th:field="*{searchTerm}" /> <input
-        type="submit" name="search" th:value="#{search.button}" />
+      <input type="text" th:field="*{searchTerm}" />
+      <input type="submit" name="search" th:value="#{search.button}" />
     </form>
   </div>
 </body>
