@@ -29,41 +29,41 @@ import org.testng.annotations.Test;
  * @author Rene Svetina
  */
 public class NameShould {
-	/**
-	 * Equal with same name.
-	 */
-	@Test
-	public void equalWithSameString() {
-		String name = "Rene";
-		Name name1 = Name.valueOf(name);
-		Name name2 = Name.valueOf("Rene");
+  /**
+   * Equal with same name.
+   */
+  @Test
+  public void equalWithSameString() {
+    String name = "Rene";
+    Name name1 = Name.valueOf(name);
+    Name name2 = Name.valueOf("Rene");
 
-		assertThat(name1, is(equalTo(name2)));
-	}
+    assertThat(name1, is(equalTo(name2)));
+  }
 
-	/**
-	 * Fail on empty name.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnEmptyName() {
-		Name.valueOf("");
-	}
+  /**
+   * Fail on empty name.
+   */
+  @Test(expectedExceptions = { IllegalArgumentException.class })
+  public void failOnEmptyName() {
+    Name.valueOf("");
+  }
 
-	/**
-	 * Fail on N/A string.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnNAName() {
-		Name.valueOf("N/A");
-	}
+  /**
+   * Fail on N/A string.
+   */
+  @Test(expectedExceptions = { IllegalArgumentException.class })
+  public void failOnNAName() {
+    Name.valueOf("N/A");
+  }
 
-	/**
-	 * Return valid name.
-	 */
-	@Test
-	protected void returnName() {
-		Name name = Name.valueOf("Rene");
+  /**
+   * Return valid name.
+   */
+  @Test
+  protected void returnName() {
+    Name name = Name.valueOf("Rene");
 
-		assertThat(name, is(notNullValue()));
-	}
+    assertThat(name, is(notNullValue()));
+  }
 }

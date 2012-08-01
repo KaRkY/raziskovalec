@@ -30,79 +30,79 @@ import org.testng.annotations.Test;
  * @author Rene Svetina
  */
 public class IdentifierShould {
-	/**
-	 * 2 Identifiers with same hash should equal.
-	 */
-	@Test
-	public void equalWithSameString() {
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id1 = Identifier.valueOf(hash);
-		Identifier id2 = Identifier.valueOf(hash);
+  /**
+   * 2 Identifiers with same hash should equal.
+   */
+  @Test
+  public void equalWithSameString() {
+    String hash = "5678901234567890123456789012345678abcdef";
+    Identifier id1 = Identifier.valueOf(hash);
+    Identifier id2 = Identifier.valueOf(hash);
 
-		assertThat(id1, is(equalTo(id2)));
-	}
+    assertThat(id1, is(equalTo(id2)));
+  }
 
-	/**
-	 * Creation should fail on invalid hash.
-	 */
-	@Test(expectedExceptions = { IllegalArgumentException.class })
-	public void failOnIvalidHash() {
-		String hash = "12rt";
-		Identifier.valueOf(hash);
-	}
+  /**
+   * Creation should fail on invalid hash.
+   */
+  @Test(expectedExceptions = { IllegalArgumentException.class })
+  public void failOnIvalidHash() {
+    String hash = "12rt";
+    Identifier.valueOf(hash);
+  }
 
-	/**
-	 * Should generate random unique id.
-	 */
-	@Test
-	public void generateNewId() {
-		Identifier id = Identifier.newId();
+  /**
+   * Should generate random unique id.
+   */
+  @Test
+  public void generateNewId() {
+    Identifier id = Identifier.newId();
 
-		assertThat(id, is(notNullValue()));
-	}
+    assertThat(id, is(notNullValue()));
+  }
 
-	/**
-	 * Should get valid id from string.
-	 */
-	@Test
-	public void getIdFromString() {
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id = Identifier.valueOf(hash);
+  /**
+   * Should get valid id from string.
+   */
+  @Test
+  public void getIdFromString() {
+    String hash = "5678901234567890123456789012345678abcdef";
+    Identifier id = Identifier.valueOf(hash);
 
-		assertThat(id, is(notNullValue()));
-	}
+    assertThat(id, is(notNullValue()));
+  }
 
-	/**
-	 * Should generate same hashcode.
-	 */
-	@Test
-	public void getSameHashOnSameString() {
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id1 = Identifier.valueOf(hash);
-		Identifier id2 = Identifier.valueOf(hash);
+  /**
+   * Should generate same hashcode.
+   */
+  @Test
+  public void getSameHashOnSameString() {
+    String hash = "5678901234567890123456789012345678abcdef";
+    Identifier id1 = Identifier.valueOf(hash);
+    Identifier id2 = Identifier.valueOf(hash);
 
-		assertThat(id1.hashCode(), is(equalTo(id2.hashCode())));
-	}
+    assertThat(id1.hashCode(), is(equalTo(id2.hashCode())));
+  }
 
-	/**
-	 * Should return same instance.
-	 */
-	@Test
-	public void getSameInstance() {
-		Identifier id1 = Identifier.newId();
-		Identifier id2 = Identifier.valueOf(id1.toString());
+  /**
+   * Should return same instance.
+   */
+  @Test
+  public void getSameInstance() {
+    Identifier id1 = Identifier.newId();
+    Identifier id2 = Identifier.valueOf(id1.toString());
 
-		assertThat(id1, is(sameInstance(id2)));
-	}
+    assertThat(id1, is(sameInstance(id2)));
+  }
 
-	/**
-	 * Should return string representation.
-	 */
-	@Test
-	public void getStringRepresentationOfId() {
-		String hash = "5678901234567890123456789012345678abcdef";
-		Identifier id = Identifier.valueOf(hash);
+  /**
+   * Should return string representation.
+   */
+  @Test
+  public void getStringRepresentationOfId() {
+    String hash = "5678901234567890123456789012345678abcdef";
+    Identifier id = Identifier.valueOf(hash);
 
-		assertThat(id.toString(), is(equalTo(hash)));
-	}
+    assertThat(id.toString(), is(equalTo(hash)));
+  }
 }

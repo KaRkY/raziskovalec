@@ -4,8 +4,8 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:tiles="http://www.thymeleaf.org" class="no-js" lang="en"
-	th:with="title = #{__${titleExpression}__}">
+  xmlns:tiles="http://www.thymeleaf.org" class="no-js" lang="en"
+  th:with="title = #{__${titleExpression}__}">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
@@ -23,47 +23,47 @@
 </head>
 <body>
 
-	<div id="wrap">
+  <div id="wrap">
 
-		<header>
-			<hgroup>
-				<h1>Raziskovalec.org</h1>
-				<h2>at your service</h2>
-			</hgroup>
-			<div id="internationalization">
-				<a href="?locale=en">English</a> <a href="?locale=sl">Slovenščina</a>
-			</div>
-			<nav>
-				<ul>
-					<li><a th:href="@{/}" th:text="#{home}"
-						th:with="current=#{home}"
-						th:class="${title == current ? 'selected' : ''}">Home</a></li>
-					<li><a th:href="@{/search}" th:text="#{search}"
-						th:with="current=#{search}"
-						th:class="${title == current ? 'selected' : ''}">Search</a></li>
-					<li><a th:href="@{/researcher}" th:text="#{researcher}"
-						th:with="current=#{researcher}"
-						th:class="${title == current ? 'selected' : ''}">Researcher</a></li>
-					<li><a th:href="@{/organization}" th:text="#{organization}"
-						th:with="current=#{organization}"
-						th:class="${title == current ? 'selected' : ''}">Organizations</a></li>
-					<li><a th:href="@{/group}" th:text="#{group}"
-						th:with="current=#{group}"
-						th:class="${title == current ? 'selected' : ''}">Groups</a></li>
-				</ul>
-			</nav>
-		</header>
+    <header>
+      <hgroup>
+        <h1>Raziskovalec.org</h1>
+        <h2>at your service</h2>
+      </hgroup>
+      <div id="internationalization">
+        <a href="?locale=en">English</a> <a href="?locale=sl">Slovenščina</a>
+      </div>
+      <nav>
+        <ul>
+          <li><a th:href="@{/}" th:text="#{home}"
+            th:with="current=#{home}"
+            th:class="${title == current ? 'selected' : ''}">Home</a></li>
+          <li><a th:href="@{/search}" th:text="#{search}"
+            th:with="current=#{search}"
+            th:class="${title == current ? 'selected' : ''}">Search</a></li>
+          <li><a th:href="@{/researcher}" th:text="#{researcher}"
+            th:with="current=#{researcher}"
+            th:class="${title == current ? 'selected' : ''}">Researcher</a></li>
+          <li><a th:href="@{/organization}"
+            th:text="#{organization}" th:with="current=#{organization}"
+            th:class="${title == current ? 'selected' : ''}">Organizations</a></li>
+          <li><a th:href="@{/group}" th:text="#{group}"
+            th:with="current=#{group}"
+            th:class="${title == current ? 'selected' : ''}">Groups</a></li>
+        </ul>
+      </nav>
+    </header>
 
-		<div id="content" tiles:substituteby="content"></div>
-		<footer> Raziskovalec.org </footer>
-	</div>
+    <div id="content" tiles:include="content"></div>
+    <footer> Raziskovalec.org </footer>
+  </div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-	<script src="../resources/js/plugins.js"
-		th:src="@{/resources/js/plugins.js}"></script>
-	<script src="../resources/js/script.js"
-		th:src="@{/resources/js/script.js}"></script>
+  <script src="../resources/js/plugins.js"
+    th:src="@{/resources/js/plugins.js}"></script>
+  <script src="../resources/js/script.js"
+    th:src="@{/resources/js/script.js}"></script>
 </body>
 </html>

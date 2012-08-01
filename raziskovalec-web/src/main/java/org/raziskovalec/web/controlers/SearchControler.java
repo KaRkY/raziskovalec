@@ -32,34 +32,34 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/search")
 @SessionAttributes({ "search" })
 public class SearchControler {
-	// =================================================================================================================
-	// Fields
-	// =================================================================================================================
-	private final Logger	logger	= LoggerFactory.getLogger(getClass());
+  // =================================================================================================================
+  // Fields
+  // =================================================================================================================
+  private final Logger logger = LoggerFactory.getLogger(getClass());
 
-	// =================================================================================================================
-	// Constructors
-	// =================================================================================================================
+  // =================================================================================================================
+  // Constructors
+  // =================================================================================================================
 
-	// =================================================================================================================
-	// Methods
-	// =================================================================================================================
-	@ModelAttribute("search")
-	public SearchForm getSearch() {
-		return new SearchForm();
-	}
+  // =================================================================================================================
+  // Methods
+  // =================================================================================================================
+  @ModelAttribute("search")
+  public SearchForm getSearch() {
+    return new SearchForm();
+  }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
-		logger.trace("Serving search page.");
+  @RequestMapping(method = RequestMethod.GET)
+  public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
+    logger.trace("Serving search page.");
 
-		return "search.search";
-	}
+    return "search.search";
+  }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public String searchFor(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
-		logger.trace("Searching for: {}", searchForm.getSearchTerm());
+  @RequestMapping(method = RequestMethod.POST)
+  public String searchFor(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
+    logger.trace("Searching for: {}", searchForm.getSearchTerm());
 
-		return "search.search";
-	}
+    return "search.search";
+  }
 }
