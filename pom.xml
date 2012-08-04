@@ -215,11 +215,6 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
                     <version>1.7</version>
                   </requireJavaVersion>
 
-                  <requireOS>
-                    <family>unix</family>
-                    <family>windows</family>
-                  </requireOS>
-
                   <requirePluginVersions>
                     <message>Best Practice is to always define plugin
                       versions!</message>
