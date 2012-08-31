@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:tiles="http://www.thymeleaf.org"
+  th:with="current = #{__${siteNavExpression}__}">
+<body>
+
+  <div tiles:fragment="sitebar">
+    <ul class="nav nav-tabs nav-stacked">
+      <li th:class="#{search.researcher.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/}" th:text="#{search.researcher.for}" ></a>
+      </li>
+      <li th:class="#{search.organization.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/}" th:text="#{search.organization.for}" ></a>
+      </li>
+      <li th:class="#{search.group.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/}" th:text="#{search.group.for}" ></a>
+      </li>
+    </ul>
+  </div>
+
+  <div tiles:fragment="content">
+    <form action="#" method="post" th:object="${search}"
+      th:action="@{/search}" class="form-search">
+
+      <div class="input-append">
+        <input class="search-query" type="text" th:field="*{searchTerm}" />
+        <input class="btn" type="submit" name="search"
+          th:value="#{search.button}" />
+      </div>
+    </form>
+  </div>
+</body>
+</html>

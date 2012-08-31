@@ -14,30 +14,31 @@
     <put-attribute name="sitebar" value="" />
   </definition>
 
-  <definition name="group.search" extends="base">
-    <put-attribute name="content" value="group/search :: content" />
+  <definition name="group.list" extends="base">
+    <put-attribute name="content" value="group/list :: content" />
     <put-attribute name="titleExpression" value="group" />
     <put-attribute name="sitebar" value="" />
   </definition>
 
-  <definition name="organization.search" extends="base">
-    <put-attribute name="content" value="organization/search :: content" />
+  <definition name="organization.list" extends="base">
+    <put-attribute name="content" value="organization/list :: content" />
     <put-attribute name="titleExpression" value="organization" />
     <put-attribute name="sitebar" value="" />
   </definition>
 
-  <definition name="researcher.search" extends="base">
-    <put-attribute name="content" value="researcher/search :: content" />
+  <definition name="researcher.list" extends="base">
+    <put-attribute name="content" value="researcher/list :: content" />
     <put-attribute name="titleExpression" value="researcher" />
     <put-attribute name="sitebar" value="" />
   </definition>
 
-  <definition name="search.search" extends="base">
-    <put-attribute name="content" value="search/search :: content" />
+  <definition name="search.general" extends="base">
+    <put-attribute name="content" value="search/general :: content" />
     <put-attribute name="titleExpression" value="search" />
-    <put-attribute name="sitebar" value="" />
+    <put-attribute name="sitebar" value="search/general :: sitebar" />
+    <put-attribute name="siteNavExpression" value="" />
   </definition>
-  
+
   <definition name="login" extends="base">
     <put-attribute name="content" value="login :: content" />
     <put-attribute name="titleExpression" value="login" />

@@ -36,14 +36,14 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li th:class="${title} eq #{home} ? 'active'">
-              <a href="#" th:href="@{/}" th:text="#{home}">Home</a>
+              <a href="#" th:href="@{/}" th:inline="text"><i class="icon-home icon-white"></i> [[#{home}]]</a>
             </li>
             <li th:class="${title} eq #{search} ? 'active'">
-              <a href="#" th:href="@{/search}" th:text="#{search}">Search</a>
+              <a href="#" th:href="@{/search}" th:inline="text"><i class="icon-search icon-white"></i> [[#{search}]]</a>
             </li>
             <li th:class="${title} eq #{researcher} ? 'active'">
               <a href="#" th:href="@{/researcher}"
-                th:text="#{researcher}">Researcher</a>
+                th:inline="text"><i class="icon-user icon-white"></i> [[#{researcher}]]</a>
             </li>
             <li th:class="${title} eq #{organization} ? 'active'">
               <a href="#" th:href="@{/organization}"

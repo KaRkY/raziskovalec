@@ -32,18 +32,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/search")
 @SessionAttributes({ "search" })
 public class SearchControler {
-  // =================================================================================================================
-  // Fields
-  // =================================================================================================================
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  // =================================================================================================================
-  // Constructors
-  // =================================================================================================================
-
-  // =================================================================================================================
-  // Methods
-  // =================================================================================================================
   @ModelAttribute("search")
   public SearchForm getSearch() {
     return new SearchForm();
@@ -53,13 +43,13 @@ public class SearchControler {
   public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
     logger.trace("Serving search page.");
 
-    return "search.search";
+    return "search.general";
   }
 
   @RequestMapping(method = RequestMethod.POST)
   public String searchFor(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
     logger.trace("Searching for: {}", searchForm.getSearchTerm());
 
-    return "search.search";
+    return "search.general";
   }
 }
