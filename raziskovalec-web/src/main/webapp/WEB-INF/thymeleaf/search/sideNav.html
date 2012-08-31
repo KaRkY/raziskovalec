@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:tiles="http://www.thymeleaf.org">
+<body>
+
+  <div tiles:fragment="sidebar">
+    <ul class="nav nav-tabs nav-stacked" th:with="current=#{__${sideNavExpression}__}">
+      <li th:class="#{search.general} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/search}" th:text="#{search.general}" ></a>
+      </li>
+      <li th:class="#{search.researcher.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/search/researcher}" th:text="#{search.researcher.for}" ></a>
+      </li>
+      <li th:class="#{search.organization.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/search/organization}" th:text="#{search.organization.for}" ></a>
+      </li>
+      <li th:class="#{search.group.for} eq ${current} ? 'active'">
+        <a href="#" th:href="@{/search/group}" th:text="#{search.group.for}" ></a>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

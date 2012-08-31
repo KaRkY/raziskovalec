@@ -74,6 +74,7 @@
     class="org.springframework.context.support.ResourceBundleMessageSource">
     <property name="basenames">
       <list>
+        <value>org.raziskovalec.messages.home.messages</value>
         <value>org.raziskovalec.messages.menu</value>
         <value>org.raziskovalec.messages.search.messages</value>
         <value>org.raziskovalec.messages.researcher.messages</value>

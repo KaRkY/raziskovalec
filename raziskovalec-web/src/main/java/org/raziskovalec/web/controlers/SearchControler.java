@@ -34,22 +34,37 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class SearchControler {
   private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  @ModelAttribute("search")
-  public SearchForm getSearch() {
-    return new SearchForm();
+  @RequestMapping(method = RequestMethod.POST)
+  public String executeGeneralSearch(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
+    logger.trace("Searching for: {}", searchForm.getSearchTerm());
+
+    return "search.general";
   }
 
   @RequestMapping(method = RequestMethod.GET)
-  public String search(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
+  public String generalSearch(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
     logger.trace("Serving search page.");
 
     return "search.general";
   }
 
-  @RequestMapping(method = RequestMethod.POST)
-  public String searchFor(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
-    logger.trace("Searching for: {}", searchForm.getSearchTerm());
+  @ModelAttribute("search")
+  public SearchForm getSearch() {
+    return new SearchForm();
+  }
 
-    return "search.general";
+  @RequestMapping("/group")
+  public String groupSearch() {
+    return "search.group";
+  }
+
+  @RequestMapping("/organization")
+  public String organizationSearch() {
+    return "search.organization";
+  }
+
+  @RequestMapping("/researcher")
+  public String researcherSearch() {
+    return "search.researcher";
   }
 }

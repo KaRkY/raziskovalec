@@ -3,30 +3,21 @@
   xmlns:tiles="http://www.thymeleaf.org">
 <body>
   <div tiles:fragment="content">
-    <form class="form-horizontal well">
-      <legend>Add researcher</legend>
+    <div class="hero-unit">
+      <h1>Raziskovalec.org</h1>
 
-      <div class="control-group">
-        <label class="control-label" for="name">Name</label>
-        <div class="controls">
-          <input id="name" name="name" type="text" placeholder="Name" />
-        </div>
-      </div>
+      <hr />
       
-      <div class="control-group">
-        <label class="control-label" for="lastname">Lastname</label>
-        <div class="controls">
-          <input id="lastname" name="lastname" type="text"
-            placeholder="Lastname" />
+      <div class="row">
+        <div class="span4">
+          <img class="img-rounded" alt="Slika raziskovalca"
+            th:src="@{/resources/img/curiosity.jpg}" />
+        </div>
+        <div class="span6">
+          <p th:text="#{presentation}"></p>
         </div>
       </div>
-      
-      <div class="control-group">
-        <div class="controls">
-          <input class="btn btn-primary" type="submit" value="Submit" />
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
 </body>
 </html>

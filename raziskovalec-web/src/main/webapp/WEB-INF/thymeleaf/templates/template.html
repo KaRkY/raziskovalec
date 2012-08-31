@@ -76,11 +76,11 @@
   <div class="container">
 
     <div class="row">
-      <div class="span2" th:if="${!#strings.isEmpty(sitebar)}">
-        <div tiles:substituteBy="sitebar"></div>
+      <div class="span2" th:if="${!#strings.isEmpty(sidebar)}">
+        <div tiles:substituteBy="sidebar"></div>
       </div>
       <div tiles:include="content"
-        th:class="${#strings.isEmpty(sitebar)} ? 'span12' : 'span10'">
+        th:class="${#strings.isEmpty(sidebar)} ? 'span12' : 'span10'">
       </div>
     </div>
 
