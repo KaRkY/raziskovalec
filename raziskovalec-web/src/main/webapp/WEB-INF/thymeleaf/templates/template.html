@@ -31,25 +31,21 @@
         <h2>at your service</h2>
       </hgroup>
       <div id="internationalization">
-        <a href="?locale=en">English</a> <a href="?locale=sl">Slovenščina</a>
+        <a href="#" th:href="@{${#httpServletRequest.pathInfo}(locale='en')}">English</a> <a href="#" th:href="@{${#httpServletRequest.pathInfo}(locale='sl')}">Slovenščina</a>
       </div>
       <nav>
         <ul>
           <li><a th:href="@{/}" th:text="#{home}"
-            th:with="current=#{home}"
-            th:class="${title == current ? 'selected' : ''}">Home</a></li>
+            th:class="${title} eq #{home} ? 'selected'">Home</a></li>
           <li><a th:href="@{/search}" th:text="#{search}"
-            th:with="current=#{search}"
-            th:class="${title == current ? 'selected' : ''}">Search</a></li>
+            th:class="${title} eq #{search} ? 'selected'">Search</a></li>
           <li><a th:href="@{/researcher}" th:text="#{researcher}"
-            th:with="current=#{researcher}"
-            th:class="${title == current ? 'selected' : ''}">Researcher</a></li>
+            th:class="${title} eq #{researcher} ? 'selected'">Researcher</a></li>
           <li><a th:href="@{/organization}"
-            th:text="#{organization}" th:with="current=#{organization}"
-            th:class="${title == current ? 'selected' : ''}">Organizations</a></li>
+            th:text="#{organization}"
+            th:class="${title} eq #{organization} ? 'selected'">Organizations</a></li>
           <li><a th:href="@{/group}" th:text="#{group}"
-            th:with="current=#{group}"
-            th:class="${title == current ? 'selected' : ''}">Groups</a></li>
+            th:class="${title} eq #{group} ? 'selected'">Groups</a></li>
         </ul>
       </nav>
     </header>
