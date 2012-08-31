@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:tiles="http://www.thymeleaf.org">
+<body>
+  <div tiles:fragment="content">
+    <form class="form-horizontal well">
+      <legend th:text="#{login}">Login</legend>
+
+      <div class="control-group">
+        <label class="control-label" for="username" th:text="#{login.username}">Username</label>
+        <div class="controls">
+          <input id="username" name="username" type="text" th:placeholder="#{login.username}" />
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label" for="password" th:text="#{login.password}">Password</label>
+        <div class="controls">
+          <input id="password" name="password" type="password"
+            th:placeholder="#{login.password}" />
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <div class="controls">
+          <input class="btn btn-primary" type="submit" th:value="#{login.login}" />
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -2,25 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:tiles="http://www.thymeleaf.org">
 <body>
-  <form>
-    <fieldset>
+  <div tiles:fragment="content">
+    <form class="form-horizontal well">
       <legend>Add researcher</legend>
 
-      <ul>
-        <li>
-          <label>Name</label>
-          <input id="name" name="name" type="text" value="Rene" />
-        </li>
-        <li>
-          <label>Lastname</label>
+      <div class="control-group">
+        <label class="control-label" for="name">Name</label>
+        <div class="controls">
+          <input id="name" name="name" type="text" placeholder="Name" />
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label class="control-label" for="lastname">Lastname</label>
+        <div class="controls">
           <input id="lastname" name="lastname" type="text"
-            value="Svetina" />
-        </li>
-        <li>
+            placeholder="Lastname" />
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <div class="controls">
           <input type="submit" value="Submit" />
-        </li>
-      </ul>
-    </fieldset>
-  </form>
+        </div>
+      </div>
+    </form>
+  </div>
 </body>
 </html>

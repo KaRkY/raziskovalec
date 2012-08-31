@@ -2,9 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:tiles="http://www.thymeleaf.org">
 <body>
-  <div id="search">
+  <div tiles:fragment="content">
     <form action="#" method="post" th:object="${search}"
-      th:action="@{/search}">
+      th:action="@{/search}" class="form-search">
       <input type="text" th:field="*{searchTerm}" />
       <input type="submit" name="search" th:value="#{search.button}" />
     </form>
