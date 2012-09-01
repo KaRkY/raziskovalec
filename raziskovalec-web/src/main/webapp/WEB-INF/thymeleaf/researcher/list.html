@@ -1,8 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org">
+  xmlns:tiles="http://www.thymeleaf.org"
+>
 <body>
-  <div tiles:fragment="content">
-  </div>
+
+    <div class="row">
+      <div class="span10 offset1">
+        <a href="#" class="btn btn-primary" th:inline="text">
+          <i class="icon-plus"></i> [[#{researcher.add}]]
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span10 offset1">
+        <table id="researchers" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th th:text="#{researcher.name}"></th>
+              <th th:text="#{researcher.lastname}"></th>
+              <th th:text="#{researcher.email}"></th>
+              <th th:text="#{researcher.telephonenumber}"></th>
+              <th th:text="#{researcher.www}"></th>
+              <th th:text="#{researcher.actions}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:attr="data-url=@{/researchers/id1}">
+              <td>Rene</td>
+              <td>Svetina</td>
+              <td><a href="mailto:rene.svetina@gmail.com">rene.svetina@gmail.com</a></td>
+              <td>+386 40 663 494</td>
+              <td>raziskovalec.org</td>
+              <td><a href="#" class="btn" th:title="#{researcher.delete}">
+                  <i class="icon-minus"></i>
+                </a> <a href="#" class="btn" th:title="#{researcher.edit}">
+                  <i class="icon-pencil"></i>
+                </a></td>
+            </tr>
+            <tr th:attr="data-url=@{/researchers/id2}">
+              <td>Janez</td>
+              <td>Novak</td>
+              <td><a href="mailto:janez.novak@gmail.com">janez.novak@gmail.com</a></td>
+              <td>+386 41 424 356</td>
+              <td></td>
+              <td><a href="#" class="btn" th:title="#{researcher.delete}">
+                  <i class="icon-minus"></i>
+                </a> <a href="#" class="btn" th:title="#{researcher.edit}">
+                  <i class="icon-pencil"></i>
+                </a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <ul>
+            <li><a href="#"><i class="icon-arrow-left"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#"><i class="icon-arrow-right"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>

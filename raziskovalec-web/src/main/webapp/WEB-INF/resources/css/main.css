@@ -11,6 +11,14 @@ body {
 	padding-bottom: 40px;
 }
 
+.center-block{
+	margin: 0px auto;
+}
+
+.center-text{
+	text-align: center;
+}
+
 
 
 

@@ -48,6 +48,8 @@
     <property name="definitions">
       <list>
         <value>/WEB-INF/tiles-defs.xml</value>
+        <value>/WEB-INF/tiles-defs-error.xml</value>
+        <value>/WEB-INF/tiles-defs-search.xml</value>
       </list>
     </property>
   </bean>
@@ -75,6 +77,7 @@
     <property name="basenames">
       <list>
         <value>org.raziskovalec.messages.home.messages</value>
+        <value>org.raziskovalec.messages.error.messages</value>
         <value>org.raziskovalec.messages.menu</value>
         <value>org.raziskovalec.messages.search.messages</value>
         <value>org.raziskovalec.messages.researcher.messages</value>

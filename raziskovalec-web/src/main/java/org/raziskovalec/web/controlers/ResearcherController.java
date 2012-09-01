@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/researcher")
 public class ResearcherController {
   @RequestMapping(method = RequestMethod.GET)
-  public String search() {
+  public String list() {
     return "researcher.list";
   }
 }

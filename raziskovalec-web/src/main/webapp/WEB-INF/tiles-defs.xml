@@ -5,64 +5,31 @@
 <tiles-definitions>
   <definition name="base" template="templates/template"
     preparer="attributePreparer">
-
+    <put-attribute name="sidebar" value="" />
   </definition>
 
   <definition name="home" extends="base">
-    <put-attribute name="content" value="index :: content" />
+    <put-attribute name="content" value="index" />
     <put-attribute name="titleExpression" value="home" />
-    <put-attribute name="sidebar" value="" />
   </definition>
 
   <definition name="group.list" extends="base">
-    <put-attribute name="content" value="group/list :: content" />
+    <put-attribute name="content" value="group/list" />
     <put-attribute name="titleExpression" value="group" />
-    <put-attribute name="sidebar" value="" />
   </definition>
 
   <definition name="organization.list" extends="base">
-    <put-attribute name="content" value="organization/list :: content" />
+    <put-attribute name="content" value="organization/list" />
     <put-attribute name="titleExpression" value="organization" />
-    <put-attribute name="sidebar" value="" />
   </definition>
 
   <definition name="researcher.list" extends="base">
-    <put-attribute name="content" value="researcher/list :: content" />
+    <put-attribute name="content" value="researcher/list" />
     <put-attribute name="titleExpression" value="researcher" />
-    <put-attribute name="sidebar" value="" />
-  </definition>
-
-  <definition name="search.general" extends="base">
-    <put-attribute name="content" value="search/general :: content" />
-    <put-attribute name="titleExpression" value="search" />
-    <put-attribute name="sidebar" value="search/sideNav :: sidebar" />
-    <put-attribute name="sideNavExpression" value="search.general" />
-  </definition>
-  
-  <definition name="search.researcher" extends="base">
-    <put-attribute name="content" value="search/researcher :: content" />
-    <put-attribute name="titleExpression" value="search" />
-    <put-attribute name="sidebar" value="search/sideNav :: sidebar" />
-    <put-attribute name="sideNavExpression" value="search.researcher.for" />
-  </definition>
-  
-  <definition name="search.organization" extends="base">
-    <put-attribute name="content" value="search/organization :: content" />
-    <put-attribute name="titleExpression" value="search" />
-    <put-attribute name="sidebar" value="search/sideNav :: sidebar" />
-    <put-attribute name="sideNavExpression" value="search.organization.for" />
-  </definition>
-  
-  <definition name="search.group" extends="base">
-    <put-attribute name="content" value="search/group :: content" />
-    <put-attribute name="titleExpression" value="search" />
-    <put-attribute name="sidebar" value="search/sideNav :: sidebar" />
-    <put-attribute name="sideNavExpression" value="search.group.for" />
   </definition>
 
   <definition name="login" extends="base">
-    <put-attribute name="content" value="login :: content" />
+    <put-attribute name="content" value="login" />
     <put-attribute name="titleExpression" value="login" />
-    <put-attribute name="sidebar" value="" />
   </definition>
 </tiles-definitions>

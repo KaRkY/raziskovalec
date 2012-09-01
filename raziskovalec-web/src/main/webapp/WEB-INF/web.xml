@@ -1,81 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2012 Rene Svetina Licensed under the Apache License, Version 
-	2.0 (the "License"); you may not use this file except in compliance with 
-	the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
-	Unless required by applicable law or agreed to in writing, software distributed 
-	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
-	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
-	the specific language governing permissions and limitations under the License. -->
+  2.0 (the "License"); you may not use this file except in compliance with 
+  the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+  Unless required by applicable law or agreed to in writing, software distributed 
+  under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+  OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+  the specific language governing permissions and limitations under the License. -->
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	version="3.0">
+  xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
 
-	<display-name>Raziskovalci.org</display-name>
+  <display-name>Raziskovalci.org</display-name>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
 			classpath:root-applicationContext.xml
 		</param-value>
-	</context-param>
+  </context-param>
 
-	<filter>
-		<display-name>Character encoding</display-name>
-		<filter-name>characterEncoding</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
+  <filter>
+    <display-name>Character encoding</display-name>
+    <filter-name>characterEncoding</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
 
-	<filter-mapping>
-		<filter-name>characterEncoding</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+  <filter-mapping>
+    <filter-name>characterEncoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
 
-	<listener>
-		<listener-class>org.raziskovalec.web.ApplicationContextListener</listener-class>
-	</listener>
-	
-	<listener>
-		<listener-class>org.raziskovalec.web.SessionContextListener</listener-class>
-	</listener>
+  <listener>
+    <listener-class>org.raziskovalec.web.ApplicationContextListener</listener-class>
+  </listener>
 
-	<servlet>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>
+  <listener>
+    <listener-class>org.raziskovalec.web.SessionContextListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>
 				classpath:servlet-applicationContext.xml
 			</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
-	<servlet-mapping>
-		<servlet-name>DispatcherServlet</servlet-name>
-		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
 
-	<resource-env-ref>
-		<resource-env-ref-name>jdbc/raziskovalecDB</resource-env-ref-name>
-		<resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
-	</resource-env-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>jdbc/raziskovalecDB</resource-env-ref-name>
+    <resource-env-ref-type>javax.sql.DataSource</resource-env-ref-type>
+  </resource-env-ref>
 
-	<resource-env-ref>
-		<resource-env-ref-name>mail/gmail</resource-env-ref-name>
-		<resource-env-ref-type>javax.mail.Session</resource-env-ref-type>
-	</resource-env-ref>
-	
+  <resource-env-ref>
+    <resource-env-ref-name>mail/gmail</resource-env-ref-name>
+    <resource-env-ref-type>javax.mail.Session</resource-env-ref-type>
+  </resource-env-ref>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/404</location>
+  </error-page>
+  
+  <error-page>
+    <error-code>500</error-code>
+    <location>/500</location>
+  </error-page>
+
 </web-app>

@@ -2,20 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:tiles="http://www.thymeleaf.org">
 <body>
-  <div tiles:fragment="content">
-    <div class="hero-unit">
-      <h1>Raziskovalec.org</h1>
+  <div class="hero-unit">
+    <h1>Raziskovalec.org</h1>
 
-      <hr />
-      
-      <div class="row">
-        <div class="span4">
-          <img class="img-rounded" alt="Slika raziskovalca"
-            th:src="@{/resources/img/curiosity.jpg}" />
-        </div>
-        <div class="span6">
-          <p th:text="#{presentation}"></p>
-        </div>
+    <hr />
+
+    <div class="row">
+      <div class="span4">
+        <img class="img-rounded" alt="Slika raziskovalca"
+          th:src="@{/resources/img/curiosity.jpg}" />
+      </div>
+      <div class="span6">
+        <p th:text="#{presentation}"></p>
       </div>
     </div>
   </div>

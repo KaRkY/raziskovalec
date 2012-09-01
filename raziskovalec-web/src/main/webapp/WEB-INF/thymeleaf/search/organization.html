@@ -3,16 +3,14 @@
   xmlns:tiles="http://www.thymeleaf.org">
 <body>
 
-  <div tiles:fragment="content">
-    <form action="#" method="post" th:object="${search}"
-      th:action="@{/search}" class="form-search">
+  <form action="#" method="post" th:object="${search}"
+    th:action="@{/search}" class="form-search">
 
-      <div class="input-append">
-        <input class="search-query" type="text" th:field="*{searchTerm}" />
-        <input class="btn" type="submit" name="search"
-          th:value="#{search.button}" />
-      </div>
-    </form>
-  </div>
+    <div class="input-append">
+      <input class="search-query" type="text" th:field="*{searchTerm}" />
+      <input class="btn" type="submit" name="search"
+        th:value="#{search.button}" />
+    </div>
+  </form>
 </body>
 </html>
