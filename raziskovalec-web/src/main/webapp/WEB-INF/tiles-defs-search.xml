@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+  <definition name="search.general" extends="base">
+    <put-attribute name="content" value="search/general" />
+    <put-attribute name="titleExpression" value="search" />
+    <put-attribute name="sidebar" value="search/sideNav" />
+    <put-attribute name="sideNavExpression" value="search.general" />
+  </definition>
+
+  <definition name="search.researcher" extends="base">
+    <put-attribute name="content" value="search/researcher" />
+    <put-attribute name="titleExpression" value="search" />
+    <put-attribute name="sidebar" value="search/sideNav" />
+    <put-attribute name="sideNavExpression" value="search.researcher.for" />
+  </definition>
+
+  <definition name="search.organization" extends="base">
+    <put-attribute name="content" value="search/organization" />
+    <put-attribute name="titleExpression" value="search" />
+    <put-attribute name="sidebar" value="search/sideNav" />
+    <put-attribute name="sideNavExpression" value="search.organization.for" />
+  </definition>
+
+  <definition name="search.group" extends="base">
+    <put-attribute name="content" value="search/group" />
+    <put-attribute name="titleExpression" value="search" />
+    <put-attribute name="sidebar" value="search/sideNav" />
+    <put-attribute name="sideNavExpression" value="search.group.for" />
+  </definition>
+</tiles-definitions>
