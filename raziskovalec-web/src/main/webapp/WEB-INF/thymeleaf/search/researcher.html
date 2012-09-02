@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <body>
+  <div class="page-header">
+    <h1 th:text="#{search.researcher.for}"></h1>
+  </div>
 
-  <form action="#" method="post" th:object="${search}"
-    th:action="@{/search}" class="form-search">
+  <div class="row">
+    <div class="span4 offset3">
+      <form action="#" method="post" th:object="${search}" th:action="@{/search}" class="form-search">
 
-    <div class="input-append">
-      <input class="search-query" type="text" th:field="*{searchTerm}" />
-      <input class="btn" type="submit" name="search"
-        th:value="#{search.button}" />
+        <div class="input-append">
+          <input class="search-query" type="text" th:field="*{searchTerm}" />
+          <input class="btn" type="submit" name="search" th:value="#{search.button}" />
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
 </body>
 </html>
