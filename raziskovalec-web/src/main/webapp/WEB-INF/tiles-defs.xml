@@ -23,11 +23,6 @@
     <put-attribute name="titleExpression" value="organization" />
   </definition>
 
-  <definition name="researcher.list" extends="base">
-    <put-attribute name="content" value="researcher/list" />
-    <put-attribute name="titleExpression" value="researcher" />
-  </definition>
-
   <definition name="login" extends="base">
     <put-attribute name="content" value="login" />
     <put-attribute name="titleExpression" value="login" />

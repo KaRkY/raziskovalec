@@ -48,8 +48,7 @@
     <property name="definitions">
       <list>
         <value>/WEB-INF/tiles-defs.xml</value>
-        <value>/WEB-INF/tiles-defs-error.xml</value>
-        <value>/WEB-INF/tiles-defs-search.xml</value>
+        <value>/WEB-INF/thymeleaf/**/tiles-defs.xml</value>
       </list>
     </property>
   </bean>

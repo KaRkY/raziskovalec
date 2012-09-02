@@ -15,9 +15,13 @@
  */
 package org.raziskovalec.web.controlers;
 
+import org.raziskovalec.web.form.ResearcherForm;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @author Rene Svetina
@@ -25,6 +29,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/researcher")
 public class ResearcherController {
+  @RequestMapping(value = "/add", method = RequestMethod.GET)
+  public ModelAndView add() {
+    final ModelAndView modelAndView = new ModelAndView("researcher.add");
+
+    modelAndView.addObject("researcher", new ResearcherForm());
+
+    return modelAndView;
+  }
+
+  @RequestMapping(value = "/add", method = RequestMethod.POST)
+  public String addSave(@ModelAttribute("researcher") final ResearcherForm researcherForm,
+      final BindingResult bindingResult) {
+
+    if (bindingResult.hasErrors()) return "researcher.add";
+    else return "redirect:/researcher";
+  }
+
   @RequestMapping(method = RequestMethod.GET)
   public String list() {
     return "researcher.list";
