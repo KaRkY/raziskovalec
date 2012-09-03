@@ -15,6 +15,8 @@
  */
 package org.raziskovalec.web.controlers;
 
+import javax.validation.Valid;
+
 import org.raziskovalec.web.form.ResearcherForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -44,17 +45,13 @@ public class ResearcherController {
   }
 
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public ModelAndView addSave(@ModelAttribute("researcher") final ResearcherForm researcherForm,
-      @RequestParam(required = false, value = "save") final String save,
-      @RequestParam(required = false, value = "cancel") final String cancel, final BindingResult bindingResult) {
-    final ModelAndView modelAndView = new ModelAndView();
+  public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm, final BindingResult bindingResult) {
 
-    if (save != null && cancel == null) logger.info("Researcher added.");
+    if (bindingResult.hasErrors())
+      return "researcher.add";
+    else
+      return "redirect:/researcher";
 
-    if (bindingResult.hasErrors() && save != null && cancel != null) modelAndView.setViewName("researcher.add");
-    else modelAndView.setViewName("redirect:/researcher");
-
-    return modelAndView;
   }
 
   @RequestMapping(method = RequestMethod.GET)

@@ -48,6 +48,8 @@
     
     <logger name="org.thymeleaf" level="warn" />
     
+    <logger name="org.hibernate" level="warn" />
+    
     <root level="trace">
         <appender-ref ref="STDOUT" />
     </root>

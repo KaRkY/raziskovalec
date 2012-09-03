@@ -1,10 +1,28 @@
 package org.raziskovalec.web.form;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
+
 public class ResearcherForm {
+
+  @NotBlank
+  @Size(min = 3)
   private String name;
+
+  @NotBlank
+  @Size(min = 3)
   private String lastname;
+
+  @NotBlank
+  @Email
   private String email;
+
+  @NotBlank
   private String telephonenumber;
+
+  @NotBlank
   private String www;
 
   public String getEmail() {

@@ -7,11 +7,15 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
-  <mvc:annotation-driven />
+  <mvc:annotation-driven validator="validationBean" />
   <context:component-scan base-package="org.raziskovalec.web" />
   <mvc:resources location="/WEB-INF/resources/" mapping="/resources/**" />
 
   <mvc:view-controller path="/" view-name="home" />
+  
+  <bean id="validationBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+    <property name="validationMessageSource" ref="messageSource" />
+  </bean>
 
   <mvc:interceptors>
     <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
