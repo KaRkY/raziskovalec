@@ -46,7 +46,7 @@ public class ResearcherController {
 
   @RequestMapping(value = "/add", method = RequestMethod.POST)
   public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm, final BindingResult bindingResult) {
-
+    logger.trace("Saveing researcher.");
     if (bindingResult.hasErrors())
       return "researcher.add";
     else
