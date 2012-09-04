@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
@@ -13,18 +13,8 @@
     <put-attribute name="titleExpression" value="home" />
   </definition>
 
-  <definition name="group.list" extends="base">
-    <put-attribute name="content" value="group/list" />
-    <put-attribute name="titleExpression" value="group" />
-  </definition>
-
-  <definition name="organization.list" extends="base">
-    <put-attribute name="content" value="organization/list" />
-    <put-attribute name="titleExpression" value="organization" />
-  </definition>
-
   <definition name="login" extends="base">
-    <put-attribute name="content" value="login" />
+    <put-attribute name="content" value="authentication" />
     <put-attribute name="titleExpression" value="login" />
   </definition>
 </tiles-definitions>
