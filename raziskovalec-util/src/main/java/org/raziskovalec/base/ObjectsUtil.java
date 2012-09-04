@@ -23,67 +23,29 @@ import com.google.common.collect.Sets;
  * @author Rene Svetina
  */
 public final class ObjectsUtil {
-	// =================================================================================================================
-	// Fields
-	// =================================================================================================================
+  private ObjectsUtil() {
+  }
 
-	// =================================================================================================================
-	// Constructors
-	// =================================================================================================================
-	private ObjectsUtil() {
-	}
+  public static <E> Set<E> emptyForNull(final Set<E> set) {
+    if (set == null)
+      return Sets.newHashSet();
+    return set;
+  }
 
-	// =================================================================================================================
-	// Methods
-	// =================================================================================================================
+  public static boolean isNotNullOrEmpty(final Object o) {
+    if (o == null)
+      return false;
 
-	/**
-	 * For null returns empty Set.
-	 * 
-	 * @param set
-	 *            Set for null check.
-	 * @param <E>
-	 *            Set generic type.
-	 * @return For null returns empty Set if not null then returns same Set.
-	 */
-	public static <E> Set<E> emptyForNull(final Set<E> set) {
-		if (set == null) {
-			return Sets.newHashSet();
-		}
-		return set;
-	}
+    if (o.toString().isEmpty())
+      return false;
 
-	/**
-	 * Returns true for not empty toString.
-	 * 
-	 * @param o
-	 *            object to test
-	 * @return true for not empty false for null or empty.
-	 */
-	public static boolean isNotNullOrEmpty(final Object o) {
-		if (o == null) {
-			return false;
-		}
+    return true;
+  }
 
-		if (o.toString().isEmpty()) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Returns string representation or null.
-	 * 
-	 * @param o
-	 *            any object
-	 * @return string representation
-	 */
-	public static String toStringOrNull(final Object o) {
-		if (o == null) {
-			return null;
-		} else {
-			return o.toString();
-		}
-	}
+  public static String toStringOrNull(final Object o) {
+    if (o == null)
+      return null;
+    else
+      return o.toString();
+  }
 }

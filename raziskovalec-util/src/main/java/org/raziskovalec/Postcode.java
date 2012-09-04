@@ -15,14 +15,12 @@
  */
 package org.raziskovalec;
 
-import static com.google.common.base.Preconditions.checkArgument;
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 
 /**
  * Postcode for address.
@@ -30,112 +28,62 @@ import com.google.common.base.Objects;
  * @author Rene Svetina
  */
 public final class Postcode implements Serializable {
-	// =================================================================================================================
-	// Fields
-	// =================================================================================================================
-	private static final long	serialVersionUID	= 8996124494460276539L;
-	private final String		code;
-	private final String		name;
-	private static Pattern		postalPattern;
+  private static final long serialVersionUID = 8996124494460276539L;
+  private final String      code;
+  private final String      name;
+  private static Pattern    postalPattern;
 
-	// =================================================================================================================
-	// Constructors
-	// =================================================================================================================
-	static {
-		postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
-	}
+  static {
+    Postcode.postalPattern = Pattern.compile("^\\[([A-Za-z0-9]+)\\](.*)$");
+  }
 
-	private Postcode(final String code, final String name) {
-		checkNotNull(code, "Code should not be null.");
-		checkNotNull(name, "name should not be null.");
-		checkArgument(!code.isEmpty(), "Code should not be empty.");
-		checkArgument(!name.isEmpty(), "Name should not be empty.");
+  private Postcode(final String code, final String name) {
+    Preconditions.checkNotNull(code, "Code should not be null.");
+    Preconditions.checkNotNull(name, "name should not be null.");
+    Preconditions.checkArgument(!code.isEmpty(), "Code should not be empty.");
+    Preconditions.checkArgument(!name.isEmpty(), "Name should not be empty.");
 
-		this.code = code;
-		this.name = name;
-	}
+    this.code = code;
+    this.name = name;
+  }
 
-	// =================================================================================================================
-	// Methods
-	// =================================================================================================================
+  @Override
+  public boolean equals(final Object obj) {
+    if (obj instanceof Postcode) {
+      final Postcode other = (Postcode) obj;
 
-	/**
-	 * Postcode from format string [code]name.
-	 * 
-	 * @param postalCode
-	 *            formated string.
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final String postalCode) {
-		final Matcher postalMatcher = postalPattern.matcher(postalCode);
-		checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
+      return Objects.equal(code, other.code);
+    }
+    else
+      return false;
+  }
 
-		return valueOf(postalMatcher.group(1), postalMatcher.group(2));
-	}
+  public String getCode() {
+    return code;
+  }
 
-	/**
-	 * Postalcode.
-	 * 
-	 * @param code
-	 *            postal code
-	 * @param name
-	 *            postal name
-	 * @return Postcode
-	 */
-	public static Postcode valueOf(final String code, final String name) {
-		return new Postcode(code, name);
-	}
+  public String getName() {
+    return name;
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(final Object obj) {
-		if (obj instanceof Postcode) {
-			final Postcode other = (Postcode) obj;
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(code);
+  }
 
-			return Objects.equal(code, other.code);
-		} else
-			return false;
-	}
+  @Override
+  public String toString() {
+    return String.format("[%s]%s", code, name);
+  }
 
-	/**
-	 * Postal code.
-	 * 
-	 * @return Postal code.
-	 */
-	public String getCode() {
-		return code;
-	}
+  public static Postcode valueOf(final String postalCode) {
+    final Matcher postalMatcher = Postcode.postalPattern.matcher(postalCode);
+    Preconditions.checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
 
-	/**
-	 * Postal name.
-	 * 
-	 * @return Postal name.
-	 */
-	public String getName() {
-		return name;
-	}
+    return Postcode.valueOf(postalMatcher.group(1), postalMatcher.group(2));
+  }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(code);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return String.format("[%s]%s", code, name);
-	}
+  public static Postcode valueOf(final String code, final String name) {
+    return new Postcode(code, name);
+  }
 }

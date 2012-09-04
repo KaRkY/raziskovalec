@@ -1,37 +1,26 @@
 package org.raziskovalec.domain;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 
 import org.raziskovalec.Name;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 
 public class Organization {
-  // =================================================================================================================
-  // Fields
-  // =================================================================================================================
-  private Name            name;
-  private InternetAddress email;
-  private Set<Researcher> employees = Sets.newLinkedHashSet();
+  private final Name            name;
+  private final InternetAddress email;
+  private final Set<Researcher> employees = Sets.newLinkedHashSet();
 
-  // =================================================================================================================
-  // Constructors
-  // =================================================================================================================
   public Organization(final Name name, final InternetAddress email) {
     this.name = name;
     this.email = email;
   }
 
-  // =================================================================================================================
-  // Methods
-  // =================================================================================================================
-
-  public void recruit(final Researcher researcher) {
-    employees.add(checkNotNull(researcher, "Researcher cannot be null."));
+  public InternetAddress email() {
+    return email;
   }
 
   public void fire(final Researcher researcher) {
@@ -42,7 +31,7 @@ public class Organization {
     return name;
   }
 
-  public InternetAddress email() {
-    return email;
+  public void recruit(final Researcher researcher) {
+    employees.add(Preconditions.checkNotNull(researcher, "Researcher cannot be null."));
   }
 }

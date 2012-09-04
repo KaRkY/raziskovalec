@@ -24,11 +24,6 @@ import org.raziskovalec.Name;
 
 import com.google.common.base.Objects;
 
-/**
- * Researcher domain class.
- * 
- * @author Rene Svetina
- */
 public class Researcher implements Serializable {
   private static final long     serialVersionUID = 5018104292542842256L;
   private final Identifier      id;
@@ -36,16 +31,6 @@ public class Researcher implements Serializable {
   private final Name            lastName;
   private final InternetAddress email;
 
-  /**
-   * Initializes researcher.
-   * 
-   * @param id
-   *          unique id
-   * @param name
-   *          Personal name
-   * @param lastName
-   *          lastName
-   */
   public Researcher(final Identifier id, final Name name, final Name lastName, final InternetAddress email) {
     this.id = id;
     this.name = name;
@@ -59,33 +44,23 @@ public class Researcher implements Serializable {
       final Researcher other = (Researcher) obj;
 
       return Objects.equal(id, other.id);
-    } else return false;
+    }
+    else
+      return false;
   }
 
-  /**
-   * @return the email
-   */
   public InternetAddress getEmail() {
     return email;
   }
 
-  /**
-   * @return the id
-   */
   public Identifier getId() {
     return id;
   }
 
-  /**
-   * @return the lastName
-   */
   public Name getLastName() {
     return lastName;
   }
 
-  /**
-   * @return the name
-   */
   public Name getName() {
     return name;
   }
@@ -97,7 +72,6 @@ public class Researcher implements Serializable {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email)
-        .toString();
+    return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email).toString();
   }
 }
