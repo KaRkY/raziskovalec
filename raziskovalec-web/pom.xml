@@ -39,10 +39,6 @@
 		
 		
 		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>raziskovalec-util</artifactId>
 			<version>${project.version}</version>
