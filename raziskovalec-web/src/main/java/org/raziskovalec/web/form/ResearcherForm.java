@@ -19,10 +19,8 @@ public class ResearcherForm {
   @Email
   private String email;
 
-  @NotBlank
   private String telephonenumber;
 
-  @NotBlank
   private String www;
 
   public String getEmail() {
