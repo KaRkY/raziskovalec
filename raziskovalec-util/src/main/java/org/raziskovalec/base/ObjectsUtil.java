@@ -43,9 +43,7 @@ public final class ObjectsUtil {
   }
 
   public static String toStringOrNull(final Object o) {
-    if (o == null)
-      return null;
-    else
-      return o.toString();
+    if (o == null) return null;
+    else return o.toString();
   }
 }

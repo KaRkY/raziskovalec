@@ -46,8 +46,7 @@ public final class Name implements Serializable {
       final Name other = (Name) obj;
       return Objects.equal(name, other.name);
     }
-    else
-      return false;
+    else return false;
   }
 
   @Override

@@ -54,8 +54,7 @@ public final class Postcode implements Serializable {
 
       return Objects.equal(code, other.code);
     }
-    else
-      return false;
+    else return false;
   }
 
   public String getCode() {

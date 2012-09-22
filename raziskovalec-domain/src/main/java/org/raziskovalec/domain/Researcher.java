@@ -45,8 +45,7 @@ public class Researcher implements Serializable {
 
       return Objects.equal(id, other.id);
     }
-    else
-      return false;
+    else return false;
   }
 
   public InternetAddress getEmail() {
@@ -72,6 +71,7 @@ public class Researcher implements Serializable {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email).toString();
+    return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email)
+        .toString();
   }
 }

@@ -47,7 +47,8 @@ public final class Identifier implements Serializable {
   private final String                           hash;
 
   static {
-    CACHE = CacheBuilder.newBuilder().maximumSize(Identifier.CACHE_SIZE).expireAfterAccess(Identifier.CACHE_EXPIRE_TIME, TimeUnit.MINUTES).build();
+    CACHE = CacheBuilder.newBuilder().maximumSize(Identifier.CACHE_SIZE)
+        .expireAfterAccess(Identifier.CACHE_EXPIRE_TIME, TimeUnit.MINUTES).build();
     Identifier.hashPattern = Pattern.compile("[A-Fa-f0-9]{40}");
   }
 
@@ -69,8 +70,7 @@ public final class Identifier implements Serializable {
       final Identifier other = (Identifier) obj;
       return Objects.equal(hash, other.hash);
     }
-    else
-      return false;
+    else return false;
   }
 
   @Override
@@ -92,7 +92,8 @@ public final class Identifier implements Serializable {
   public static Identifier valueOf(final String hash) {
     // Validates hash pattern.
     final Matcher hashMatcher = Identifier.hashPattern.matcher(hash);
-    Preconditions.checkArgument(hashMatcher.matches(), String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
+    Preconditions.checkArgument(hashMatcher.matches(),
+        String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
 
     try {
       // Trys to resolve Identity from cache. If Identity is not in cache
