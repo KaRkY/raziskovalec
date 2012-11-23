@@ -4,7 +4,8 @@
 
   <form action="" class="form-horizontal" th:object="${researcher}" method="post">
 
-    <legend th:text="#{researcher.add}"></legend>
+    <h4 th:text="#{researcher.add}"></h4>
+    <hr />
 
     <div th:class="${#fields.hasErrors('name')}? 'control-group error' : 'control-group'">
       <label class="control-label" for="name" th:text="#{researcher.name}"></label>

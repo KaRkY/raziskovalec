@@ -42,6 +42,7 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+    registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
   }
 
   @Override
@@ -76,9 +77,8 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
     final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 
     messageSource.setBasenames("org.raziskovalec.messages.home.messages", "org.raziskovalec.messages.error.messages",
-        "org.raziskovalec.messages.menu",
-        "org.raziskovalec.messages.search.messages", "org.raziskovalec.messages.researcher.messages",
-        "org.raziskovalec.messages.validation.messages",
+        "org.raziskovalec.messages.menu", "org.raziskovalec.messages.search.messages",
+        "org.raziskovalec.messages.researcher.messages", "org.raziskovalec.messages.validation.messages",
         "org.raziskovalec.messages.login.messages");
 
     return messageSource;
