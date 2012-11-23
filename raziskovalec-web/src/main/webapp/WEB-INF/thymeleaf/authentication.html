@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <body>
-  <form class="form-horizontal well">
-    <legend th:text="#{login}">Login</legend>
+  <div class="span6 offset3">
+    <form class="form-horizontal well center-block">
+      <h4 th:text="#{login}">Login</h4>
+      <hr />
 
-    <div class="control-group">
-      <label class="control-label" for="username"
-        th:text="#{login.username}">Username</label>
-      <div class="controls">
-        <input id="username" name="username" type="text"
-          th:placeholder="#{login.username}" />
+      <div class="control-group">
+        <label class="control-label" for="username" th:text="#{login.username}">Username</label>
+        <div class="controls">
+          <input id="username" name="username" type="text" th:placeholder="#{login.username}" />
+        </div>
       </div>
-    </div>
 
-    <div class="control-group">
-      <label class="control-label" for="password"
-        th:text="#{login.password}">Password</label>
-      <div class="controls">
-        <input id="password" name="password" type="password"
-          th:placeholder="#{login.password}" />
+      <div class="control-group">
+        <label class="control-label" for="password" th:text="#{login.password}">Password</label>
+        <div class="controls">
+          <input id="password" name="password" type="password" th:placeholder="#{login.password}" />
+        </div>
       </div>
-    </div>
 
-    <div class="control-group">
-      <div class="controls">
-        <input class="btn btn-primary" type="submit"
-          th:value="#{login.login}" />
+      <div class="control-group">
+        <div class="controls">
+          <input class="btn btn-primary" type="submit" th:value="#{login.login}" />
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </body>
 </html>

@@ -45,6 +45,15 @@
         <span class="help-block" th:if="${#fields.hasErrors('www')}" th:errors="*{www}"></span>
       </div>
     </div>
+    
+    <div th:class="${#fields.hasErrors('dateOfBirth')}? 'control-group error' : 'control-group'">
+      <label class="control-label" for="dateOfBirth" th:text="#{researcher.dateofbirth}"></label>
+      <div class="controls">
+        <input type="text" th:field="*{dateOfBirth}" th:placeholder="#{researcher.dateofbirth}" />
+        <span class="help-inline" th:text="#{researcher.dateofbirth.format}"></span>
+        <span class="help-block" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+      </div>
+    </div>
 
     <div class="form-actions">
         <input type="submit" id="save" name="save" class="btn btn-primary" th:value="#{researcher.save}" />

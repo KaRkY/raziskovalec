@@ -4,24 +4,26 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.joda.time.LocalDate;
 
 public class ResearcherForm {
 
   @NotBlank
   @Size(min = 3)
-  private String name;
-
+  private String    name;
   @NotBlank
   @Size(min = 3)
-  private String lastname;
-
+  private String    lastname;
   @NotBlank
   @Email
-  private String email;
+  private String    email;
+  private String    telephonenumber;
+  private String    www;
+  private LocalDate dateOfBirth;
 
-  private String telephonenumber;
-
-  private String www;
+  public LocalDate getDateOfBirth() {
+    return dateOfBirth;
+  }
 
   public String getEmail() {
     return email;
@@ -41,6 +43,10 @@ public class ResearcherForm {
 
   public String getWww() {
     return www;
+  }
+
+  public void setDateOfBirth(final LocalDate dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 
   public void setEmail(final String email) {
