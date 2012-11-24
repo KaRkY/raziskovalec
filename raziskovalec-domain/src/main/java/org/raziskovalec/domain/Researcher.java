@@ -17,21 +17,19 @@ package org.raziskovalec.domain;
 
 import java.io.Serializable;
 
-import javax.mail.internet.InternetAddress;
-
 import org.raziskovalec.Identifier;
 import org.raziskovalec.Name;
 
 import com.google.common.base.Objects;
 
 public class Researcher implements Serializable {
-  private static final long     serialVersionUID = 5018104292542842256L;
-  private final Identifier      id;
-  private final Name            name;
-  private final Name            lastName;
-  private final InternetAddress email;
+  private static final long serialVersionUID = 5018104292542842256L;
+  private final Identifier  id;
+  private final Name        name;
+  private final Name        lastName;
+  private final String      email;
 
-  public Researcher(final Identifier id, final Name name, final Name lastName, final InternetAddress email) {
+  public Researcher(final Identifier id, final Name name, final Name lastName, final String email) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
@@ -48,7 +46,7 @@ public class Researcher implements Serializable {
     else return false;
   }
 
-  public InternetAddress getEmail() {
+  public String getEmail() {
     return email;
   }
 

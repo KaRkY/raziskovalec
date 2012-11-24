@@ -23,6 +23,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonValue;
+
 import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 import com.google.common.cache.Cache;
@@ -79,6 +82,7 @@ public final class Identifier implements Serializable {
   }
 
   @Override
+  @JsonValue
   public String toString() {
     return hash;
   }
@@ -89,6 +93,7 @@ public final class Identifier implements Serializable {
     return result;
   }
 
+  @JsonCreator
   public static Identifier valueOf(final String hash) {
     // Validates hash pattern.
     final Matcher hashMatcher = Identifier.hashPattern.matcher(hash);

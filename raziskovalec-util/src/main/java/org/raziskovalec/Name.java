@@ -17,6 +17,9 @@ package org.raziskovalec;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonValue;
+
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
@@ -55,10 +58,12 @@ public final class Name implements Serializable {
   }
 
   @Override
+  @JsonValue
   public String toString() {
     return name.or("N/A");
   }
 
+  @JsonCreator
   public static Name valueOf(final String name) {
     return new Name(name);
   }
