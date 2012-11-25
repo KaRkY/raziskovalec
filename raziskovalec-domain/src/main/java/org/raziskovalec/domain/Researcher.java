@@ -17,6 +17,9 @@ package org.raziskovalec.domain;
 
 import java.io.Serializable;
 
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonProperty;
+import org.joda.time.LocalDate;
 import org.raziskovalec.Identifier;
 import org.raziskovalec.Name;
 
@@ -28,12 +31,17 @@ public class Researcher implements Serializable {
   private final Name        name;
   private final Name        lastName;
   private final String      email;
+  private final LocalDate   dateOdBirth;
 
-  public Researcher(final Identifier id, final Name name, final Name lastName, final String email) {
+  @JsonCreator
+  public Researcher(@JsonProperty("id") final Identifier id, @JsonProperty("name") final Name name,
+      @JsonProperty("lastName") final Name lastName, @JsonProperty("email") final String email,
+      @JsonProperty("dateOfBirth") final LocalDate dateOfBirth) {
     this.id = id;
     this.name = name;
     this.lastName = lastName;
     this.email = email;
+    dateOdBirth = dateOfBirth;
   }
 
   @Override
@@ -44,6 +52,10 @@ public class Researcher implements Serializable {
       return Objects.equal(id, other.id);
     }
     else return false;
+  }
+
+  public LocalDate getDateOdBirth() {
+    return dateOdBirth;
   }
 
   public String getEmail() {
@@ -70,6 +82,7 @@ public class Researcher implements Serializable {
   @Override
   public String toString() {
     return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email)
+        .add("dateOfBirth", dateOdBirth)
         .toString();
   }
 }

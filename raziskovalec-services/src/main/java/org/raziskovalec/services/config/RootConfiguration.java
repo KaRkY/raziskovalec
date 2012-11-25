@@ -1,7 +1,7 @@
 package org.raziskovalec.services.config;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-import org.raziskovalec.services.test.TestingService;
+import org.raziskovalec.services.rest.ResearcherServices;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
@@ -16,7 +16,7 @@ public class RootConfiguration {
   }
 
   @Bean
-  public TestingService testService() {
-    return new TestingService();
+  public ResearcherServices researcherServices() {
+    return new ResearcherServices();
   }
 }

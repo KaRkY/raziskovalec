@@ -16,12 +16,20 @@
 package org.raziskovalec.web.controlers;
 
 import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.raziskovalec.Identifier;
+import org.raziskovalec.Name;
+import org.raziskovalec.domain.Researcher;
 import org.raziskovalec.web.form.ResearcherForm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +41,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/researcher")
 public class ResearcherController {
-  private final Logger logger = LoggerFactory.getLogger(this.getClass());
+  private final Logger    logger = LoggerFactory.getLogger(this.getClass());
+  private final WebClient client;
+
+  @Autowired
+  public ResearcherController(@Qualifier("webClient") final WebClient client) {
+    this.client = client;
+  }
 
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public ModelAndView add() {
@@ -45,12 +59,24 @@ public class ResearcherController {
   }
 
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm, final BindingResult bindingResult) {
+  public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm,
+      final BindingResult bindingResult) {
     logger.trace("Saveing researcher.");
-    if (bindingResult.hasErrors())
-      return "researcher.add";
-    else
-      return "redirect:/researcher";
+    if (bindingResult.hasErrors()) return "researcher.add";
+    else {
+
+      final Researcher researcher = new Researcher(Identifier.newId(), Name.valueOf(researcherForm.getName()),
+          Name.valueOf(researcherForm.getLastname()), researcherForm.getEmail(), researcherForm.getDateOfBirth());
+
+      final Response researcherSaveResponse = client.path("/researcher/add").post(researcher);
+
+      if (researcherSaveResponse.getStatus() == 200) return "redirect:/researcher";
+      else {
+        bindingResult.addError(new ObjectError("researcher", "Error on service"));
+        return "researcher.add";
+      }
+
+    }
 
   }
 

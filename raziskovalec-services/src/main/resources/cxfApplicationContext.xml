@@ -20,7 +20,7 @@ http://cxf.apache.org/schemas/jaxrs.xsd">
 
   <jaxrs:server id="restServices" address="/">
     <jaxrs:serviceBeans>
-      <ref bean="testService" />
+      <ref bean="researcherServices" />
     </jaxrs:serviceBeans>
     <jaxrs:providers>
       <ref bean="jsonProvider" />
