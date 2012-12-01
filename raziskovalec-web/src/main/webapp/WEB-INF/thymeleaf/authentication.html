@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template"
+  th:with="title=#{login}">
+  <head>
+    <title th:inline="text">[[#{login}]] | Raziskovalec.org</title>
+  </head>
 <body>
-  <div class="span6 offset3">
+  <div layout:fragment="sidebar">
+  </div>
+
+  <div class="span6 offset3" layout:fragment="content">
     <form class="form-horizontal well center-block">
       <h4 th:text="#{login}">Login</h4>
       <hr />

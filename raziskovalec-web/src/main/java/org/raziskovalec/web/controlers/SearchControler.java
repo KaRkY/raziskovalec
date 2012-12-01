@@ -38,14 +38,14 @@ public class SearchControler {
   public String executeGeneralSearch(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
     logger.trace("Searching for: {}", searchForm.getSearchTerm());
 
-    return "search.general";
+    return "search/general";
   }
 
   @RequestMapping(method = RequestMethod.GET)
   public String generalSearch(@ModelAttribute("search") final SearchForm searchForm, final Model model) {
     logger.trace("Serving search page.");
 
-    return "search.general";
+    return "search/general";
   }
 
   @ModelAttribute("search")
@@ -55,16 +55,16 @@ public class SearchControler {
 
   @RequestMapping("/group")
   public String groupSearch() {
-    return "search.group";
+    return "search/group";
   }
 
   @RequestMapping("/organization")
   public String organizationSearch() {
-    return "search.organization";
+    return "search/organization";
   }
 
   @RequestMapping("/researcher")
   public String researcherSearch() {
-    return "search.researcher";
+    return "search/researcher";
   }
 }

@@ -51,7 +51,7 @@ public class ResearcherController {
 
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public ModelAndView add() {
-    final ModelAndView modelAndView = new ModelAndView("researcher.add");
+    final ModelAndView modelAndView = new ModelAndView("researcher/add");
 
     modelAndView.addObject("researcher", new ResearcherForm());
 
@@ -62,7 +62,7 @@ public class ResearcherController {
   public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm,
       final BindingResult bindingResult) {
     logger.trace("Saveing researcher.");
-    if (bindingResult.hasErrors()) return "researcher.add";
+    if (bindingResult.hasErrors()) return "researcher/add";
     else {
 
       final Researcher researcher = new Researcher(Identifier.newId(), Name.valueOf(researcherForm.getName()),
@@ -73,7 +73,7 @@ public class ResearcherController {
       if (researcherSaveResponse.getStatus() == 200) return "redirect:/researcher";
       else {
         bindingResult.addError(new ObjectError("researcher", "Error on service"));
-        return "researcher.add";
+        return "researcher/add";
       }
 
     }
@@ -82,6 +82,6 @@ public class ResearcherController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String list() {
-    return "researcher.list";
+    return "researcher/list";
   }
 }

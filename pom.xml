@@ -410,9 +410,9 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
         <version>2.0.14</version>
       </dependency>
       <dependency>
-        <groupId>org.thymeleaf.extras</groupId>
-        <artifactId>thymeleaf-extras-tiles2</artifactId>
-        <version>1.0.0-beta3</version>
+        <groupId>nz.net.ultraq.web.thymeleaf</groupId>
+        <artifactId>thymeleaf-layout-dialect</artifactId>
+        <version>1.0.4</version>
       </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>

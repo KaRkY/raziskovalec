@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org">
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template"
+  th:with="title=#{organization}">
+<head>
+<title th:inline="text">[[#{organization}]] | Raziskovalec.org</title>
+</head>
 <body>
+  <div layout:fragment="sidebar"></div>
+  <div layout:fragment="content" class="span12"></div>
 </body>
 </html>

@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template" th:with="title=#{search}">
+<head>
+<title th:inline="text">[[#{search.organization.for}]] | Raziskovalec.org</title>
+</head>
 <body>
-  <div class="page-header">
-    <h1 th:text="#{search.organization.for}"></h1>
+  <div layout:fragment="sidebar" class="span3">
+    <div layout:include="/search/sideNav :: sideNav" th:with="current=#{search.organization.for}">
+    </div>
   </div>
+  
+  <div layout:fragment="content" class="span9">
 
-  <div class="row">
-    <div class="span4 offset3">
-      <form action="#" method="post" th:object="${search}" th:action="@{/search}" class="form-search">
+    <div class="page-header">
+      <h1 th:text="#{search.organization.for}"></h1>
+    </div>
 
-        <div class="input-append">
-          <input class="search-query" type="text" th:field="*{searchTerm}" />
-          <button class="btn" type="submit" name="search" th:inline="text"><i class="icon-search"></i> [[#{search.button}]]</button>
-        </div>
-      </form>
+    <div class="row">
+      <div class="span4 offset3">
+        <form action="#" method="post" th:object="${search}" th:action="@{/search}" class="form-search">
+          <div class="input-append">
+            <input class="search-query" type="text" th:field="*{searchTerm}" />
+            <button class="btn" type="submit" name="search" th:inline="text">
+              <i class="icon-search"></i> [[#{search.button}]]
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </body>

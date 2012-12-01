@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org"
->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template">
+<head>
+<title th:inline="text">[[#{error.404.title}]] | Raziskovalec.org</title>
+</head>
 <body>
+  <div layout:fragment="sidebar"></div>
+  <div layout:fragment="content"  class="span12">
     <h1 th:text="#{error.404.title}"></h1>
+  </div>
 </body>
 </html>

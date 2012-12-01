@@ -27,6 +27,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class OrganizationController {
   @RequestMapping(method = RequestMethod.GET)
   public String list() {
-    return "organization.list";
+    return "organization/list";
   }
 }

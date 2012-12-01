@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org"
->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template" th:with="title=#{researcher}">
+<head>
+<title th:inline="text">[[#{researcher}]] | Raziskovalec.org</title>
+</head>
 <body>
+  <div layout:fragment="sidebar"></div>
 
+  <div layout:fragment="content" class="span12">
     <div class="row">
       <div class="span10 offset1">
-        <a th:href="@{/researcher/add}" class="btn btn-primary" th:inline="text">
-          <i class="icon-plus"></i> [[#{researcher.add}]]
+        <a th:href="@{/researcher/add}" class="btn btn-primary" th:inline="text"> <i class="icon-plus"></i>
+          [[#{researcher.add}]]
         </a>
       </div>
     </div>
@@ -32,11 +36,9 @@
               <td><a href="mailto:rene.svetina@gmail.com">rene.svetina@gmail.com</a></td>
               <td>+386 40 663 494</td>
               <td>raziskovalec.org</td>
-              <td><a href="#" class="btn" th:title="#{researcher.delete}">
-                  <i class="icon-minus"></i>
-                </a> <a href="#" class="btn" th:title="#{researcher.edit}">
-                  <i class="icon-pencil"></i>
-                </a></td>
+              <td><a href="#" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
+              </a> <a href="#" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
+              </a></td>
             </tr>
             <tr th:attr="data-url=@{/researchers/id2}">
               <td>Janez</td>
@@ -44,11 +46,9 @@
               <td><a href="mailto:janez.novak@gmail.com">janez.novak@gmail.com</a></td>
               <td>+386 41 424 356</td>
               <td></td>
-              <td><a href="#" class="btn" th:title="#{researcher.delete}">
-                  <i class="icon-minus"></i>
-                </a> <a href="#" class="btn" th:title="#{researcher.edit}">
-                  <i class="icon-pencil"></i>
-                </a></td>
+              <td><a href="#" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
+              </a> <a href="#" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
+              </a></td>
             </tr>
           </tbody>
         </table>
@@ -64,6 +64,7 @@
         </div>
       </div>
     </div>
+  </div>
 
 </body>
 </html>

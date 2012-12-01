@@ -3,12 +3,11 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org" class="no-js"
-  th:with="title = #{__${titleExpression}__}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
-<title th:inline="text">[[${title}]] | Raziskovalec.org</title>
+
 <meta name="description" content="Page for researchers" />
 <meta name="author" content="Rene Svetina" />
 <meta name="viewport" content="width=device-width" />
@@ -27,24 +26,22 @@
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
+          <span class="icon-bar"></span> <span class="icon-bar"></span>
+        </a> <a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li th:class="${title} eq #{home} ? 'active'"><a href="#" th:href="@{/}" th:inline="text">
-                <i class="icon-home icon-white"></i> [[#{home}]]
-              </a></li>
+            <li th:class="${title} eq #{home} ? 'active'"><a href="#" th:href="@{/}" th:inline="text"> <i
+                class="icon-home icon-white"></i> [[#{home}]]
+            </a></li>
             <li th:class="${title} eq #{search} ? 'active'"><a href="#" th:href="@{/search}" th:inline="text">
                 <i class="icon-search icon-white"></i> [[#{search}]]
-              </a></li>
+            </a></li>
             <li th:class="${title} eq #{researcher} ? 'active'"><a href="#" th:href="@{/researcher}"
-                th:inline="text">
-                <i class="icon-user icon-white"></i> [[#{researcher}]]
-              </a></li>
+              th:inline="text"> <i class="icon-user icon-white"></i> [[#{researcher}]]
+            </a></li>
             <li th:class="${title} eq #{organization} ? 'active'"><a href="#" th:href="@{/organization}"
-                th:text="#{organization}">Organization</a></li>
+              th:text="#{organization}">Organization</a></li>
             <li th:class="${title} eq #{group} ? 'active'"><a href="#" th:href="@{/group}" th:text="#{group}">Group</a>
             </li>
             <li th:class="${title} eq #{login} ? 'active'"><a href="#" th:href="@{/login}" th:text="#{login}">Login</a>
@@ -64,10 +61,8 @@
   <div class="container">
 
     <div class="row">
-      <div class="span2" th:if="${!#strings.isEmpty(sidebar)}">
-        <div tiles:substituteBy="sidebar"></div>
-      </div>
-      <div tiles:include="content" th:class="${#strings.isEmpty(sidebar)} ? 'span12' : 'span10'"></div>
+      <div layout:fragment="sidebar"></div>
+      <div layout:fragment="content"></div>
     </div>
 
     <hr />

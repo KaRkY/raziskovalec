@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org">
-<body>
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<body layout:fragment="sideNav">
 
-  <ul class="nav nav-tabs nav-stacked"
-    th:with="current=#{__${sideNavExpression}__}">
+  <ul class="nav nav-tabs nav-stacked">
     <li th:class="#{search.general} eq ${current} ? 'active'"><a
         href="#" th:href="@{/search}" th:text="#{search.general}"></a>
     </li>

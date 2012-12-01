@@ -76,10 +76,6 @@
       <artifactId>thymeleaf-spring3</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-tiles2</artifactId>
-    </dependency>
-    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
     </dependency>
@@ -102,6 +98,10 @@
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-jaxrs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>nz.net.ultraq.web.thymeleaf</groupId>
+      <artifactId>thymeleaf-layout-dialect</artifactId>
     </dependency>
   </dependencies>
 </project>

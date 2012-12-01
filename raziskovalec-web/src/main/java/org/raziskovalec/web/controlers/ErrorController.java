@@ -14,12 +14,12 @@ public class ErrorController {
 
   @RequestMapping("/404")
   public String error404() {
-    return "error.404";
+    return "error/404";
   }
 
   @RequestMapping("/500")
   public ModelAndView error500(final HttpServletRequest request) {
-    final ModelAndView modelAndView = new ModelAndView("error.500");
+    final ModelAndView modelAndView = new ModelAndView("error/500");
 
     final Object exception = request.getAttribute("javax.servlet.error.exception");
     final Object pathInfo = request.getAttribute("javax.servlet.forward.path_info");

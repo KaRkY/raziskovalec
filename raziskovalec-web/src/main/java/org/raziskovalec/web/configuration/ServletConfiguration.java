@@ -1,7 +1,7 @@
 package org.raziskovalec.web.configuration;
 
-import org.apache.tiles.preparer.ViewPreparer;
-import org.raziskovalec.web.TilesAttributeRequestContextPreparer;
+import nz.net.ultraq.web.thymeleaf.LayoutDialect;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,11 +19,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory;
 import org.thymeleaf.dialect.IDialect;
-import org.thymeleaf.extras.tiles2.dialect.TilesDialect;
-import org.thymeleaf.extras.tiles2.spring.web.configurer.ThymeleafTilesConfigurer;
-import org.thymeleaf.extras.tiles2.spring.web.view.ThymeleafTilesView;
 import org.thymeleaf.spring3.SpringTemplateEngine;
 import org.thymeleaf.spring3.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
@@ -47,12 +43,7 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
 
   @Override
   public void addViewControllers(final ViewControllerRegistry registry) {
-    registry.addViewController("/").setViewName("home");
-  }
-
-  @Bean
-  public ViewPreparer attributePreparer() {
-    return new TilesAttributeRequestContextPreparer();
+    registry.addViewController("/").setViewName("index");
   }
 
   @Override
@@ -63,6 +54,11 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public Validator getValidator() {
     return validator();
+  }
+
+  @Bean
+  public IDialect layoutDialect() {
+    return new LayoutDialect();
   }
 
   @Bean
@@ -90,7 +86,7 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
 
     templateEngine.setMessageSource(messageSource());
     templateEngine.setTemplateResolver(templateResolver());
-    templateEngine.setAdditionalDialects(ImmutableSet.<IDialect> of(new TilesDialect()));
+    templateEngine.setAdditionalDialects(ImmutableSet.<IDialect> of(layoutDialect()));
 
     return templateEngine;
   }
@@ -110,16 +106,6 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   }
 
   @Bean
-  public ThymeleafTilesConfigurer tilesConfigurer() {
-    final ThymeleafTilesConfigurer tilesConfigurer = new ThymeleafTilesConfigurer();
-
-    tilesConfigurer.setPreparerFactoryClass(SpringBeanPreparerFactory.class);
-    tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles-defs.xml", "/WEB-INF/thymeleaf/**/tiles-defs.xml" });
-
-    return tilesConfigurer;
-  }
-
-  @Bean
   public Validator validator() {
     final LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
 
@@ -132,7 +118,6 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   public ViewResolver viewResolver() {
     final ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 
-    viewResolver.setViewClass(ThymeleafTilesView.class);
     viewResolver.setContentType("text/html; charset=UTF-8");
     viewResolver.setTemplateEngine(templateEngine());
 

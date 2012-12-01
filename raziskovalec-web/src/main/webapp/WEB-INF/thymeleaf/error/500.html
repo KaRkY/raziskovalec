@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:tiles="http://www.thymeleaf.org"
->
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template">
+<head>
+<title th:inline="text">[[#{error.500.title}]] | Raziskovalec.org</title>
+</head>
 <body>
+  <div layout:fragment="sidebar"></div>
+  <div layout:fragment="content" class="span12">
     <h1 th:text="#{error.500.title}"></h1>
-    
+
     <div th:if="${#objects.nullSafe(exception,'null') != 'null'}">
       <h4 th:text="${exception.message}"></h4>
     </div>
     <p th:text="${pathInfo}"></p>
+  </div>
 </body>
 </html>

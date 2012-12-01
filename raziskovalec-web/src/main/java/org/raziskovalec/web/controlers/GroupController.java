@@ -28,6 +28,6 @@ public class GroupController {
 
   @RequestMapping(method = RequestMethod.GET)
   public String list() {
-    return "group.list";
+    return "group/list";
   }
 }
