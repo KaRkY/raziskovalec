@@ -31,26 +31,57 @@
         </a> <a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li th:class="${title} eq #{home} ? 'active'"><a href="#" th:href="@{/}" th:inline="text"> <i
-                class="icon-home icon-white"></i> [[#{home}]]
-            </a></li>
-            <li th:class="${title} eq #{search} ? 'active'"><a href="#" th:href="@{/search}" th:inline="text">
-                <i class="icon-search icon-white"></i> [[#{search}]]
-            </a></li>
-            <li th:class="${title} eq #{researcher} ? 'active'"><a href="#" th:href="@{/researcher}"
-              th:inline="text"> <i class="icon-user icon-white"></i> [[#{researcher}]]
-            </a></li>
-            <li th:class="${title} eq #{organization} ? 'active'"><a href="#" th:href="@{/organization}"
-              th:text="#{organization}">Organization</a></li>
-            <li th:class="${title} eq #{group} ? 'active'"><a href="#" th:href="@{/group}" th:text="#{group}">Group</a>
+            <li th:class="${title} eq #{home} ? 'active'">
+              <a href="#" th:href="@{/}" th:inline="text"> <i class="icon-home icon-white"></i> [[#{home}]]
+              </a>
             </li>
-            <li th:class="${title} eq #{login} ? 'active'"><a href="#" th:href="@{/login}" th:text="#{login}">Login</a>
+            <li th:class="${title} eq #{search} ? 'active'">
+              <a href="#" th:href="@{/search}" th:inline="text"> <i class="icon-search icon-white"></i>
+                [[#{search}]]
+              </a>
+            </li>
+            <li th:class="${title} eq #{researcher} ? 'active'">
+              <a href="#" th:href="@{/researcher}" th:inline="text"> <i class="icon-user icon-white"></i>
+                [[#{researcher}]]
+              </a>
+            </li>
+            <li th:class="${title} eq #{organization} ? 'active'">
+              <a href="#" th:href="@{/organization}" th:text="#{organization}">Organization</a>
+            </li>
+            <li th:class="${title} eq #{group} ? 'active'">
+              <a href="#" th:href="@{/group}" th:text="#{group}">Group</a>
             </li>
           </ul>
 
           <ul class="nav pull-right">
-            <li><a href="?locale=en">English</a></li>
-            <li><a href="?locale=sl">Slovenščina</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:inline="text">[[#{welcome}]],
+                [[${userName}]] <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" th:if="${loggedIn}">
+                <li>
+                  <a href="#"><i class="icon-cog"></i> Preferences</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#" th:href="@{/logout}" th:text="#{login.logout}">Login</a>
+                </li>
+              </ul>
+              <ul class="dropdown-menu" th:unless="${loggedIn}">
+                <li>
+                  <a href="#" th:href="@{/login}" th:text="#{login}">Login</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="nav pull-right">
+            <li>
+              <a href="?locale=en">English</a>
+            </li>
+            <li>
+              <a href="?locale=sl">Slovenščina</a>
+            </li>
           </ul>
         </div>
         <!--/.nav-collapse -->
