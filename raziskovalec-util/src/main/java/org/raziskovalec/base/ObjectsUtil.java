@@ -27,17 +27,14 @@ public final class ObjectsUtil {
   }
 
   public static <E> Set<E> emptyForNull(final Set<E> set) {
-    if (set == null)
-      return Sets.newHashSet();
+    if (set == null) return Sets.newHashSet();
     return set;
   }
 
   public static boolean isNotNullOrEmpty(final Object o) {
-    if (o == null)
-      return false;
+    if (o == null) return false;
 
-    if (o.toString().isEmpty())
-      return false;
+    if (o.toString().isEmpty()) return false;
 
     return true;
   }

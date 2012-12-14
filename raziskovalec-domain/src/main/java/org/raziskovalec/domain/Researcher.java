@@ -15,6 +15,9 @@
  */
 package org.raziskovalec.domain;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Objects.toStringHelper;
+
 import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonCreator;
@@ -34,8 +37,10 @@ public class Researcher implements Serializable {
   private final LocalDate   dateOdBirth;
 
   @JsonCreator
-  public Researcher(@JsonProperty("id") final Identifier id, @JsonProperty("name") final Name name,
-      @JsonProperty("lastName") final Name lastName, @JsonProperty("email") final String email,
+  public Researcher(@JsonProperty("id") final Identifier id,
+      @JsonProperty("name") final Name name,
+      @JsonProperty("lastName") final Name lastName,
+      @JsonProperty("email") final String email,
       @JsonProperty("dateOfBirth") final LocalDate dateOfBirth) {
     this.id = id;
     this.name = name;
@@ -49,9 +54,8 @@ public class Researcher implements Serializable {
     if (obj instanceof Researcher) {
       final Researcher other = (Researcher) obj;
 
-      return Objects.equal(id, other.id);
-    }
-    else return false;
+      return equal(id, other.id);
+    } else return false;
   }
 
   public LocalDate getDateOdBirth() {
@@ -81,7 +85,11 @@ public class Researcher implements Serializable {
 
   @Override
   public String toString() {
-    return Objects.toStringHelper(this).add("id", id).add("name", name).add("lastName", lastName).add("email", email)
+    return toStringHelper(this)
+        .add("id", id)
+        .add("name", name)
+        .add("lastName", lastName)
+        .add("email", email)
         .add("dateOfBirth", dateOdBirth)
         .toString();
   }

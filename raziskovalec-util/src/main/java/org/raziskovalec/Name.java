@@ -15,6 +15,9 @@
  */
 package org.raziskovalec;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonCreator;
@@ -22,7 +25,6 @@ import org.codehaus.jackson.annotate.JsonValue;
 
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
-import com.google.common.base.Preconditions;
 
 /**
  * Value class for handling personal names.
@@ -39,17 +41,21 @@ public final class Name implements Serializable {
 
   private Name(final String name) {
     this.name = Optional.fromNullable(name);
-    Preconditions.checkArgument(!this.name.isPresent() || !this.name.get().isEmpty(), "Name can not be empty.");
-    Preconditions.checkArgument(!this.name.isPresent() || !this.name.get().equals("N/A"), "Name can not be N/A");
+    checkArgument(!this.name.isPresent() || !this.name.get().isEmpty(), "Name can not be empty.");
+    checkArgument(!this.name.isPresent() || !this.name.get().equals("N/A"), "Name can not be N/A");
+  }
+
+  @JsonCreator
+  public static Name valueOf(final String name) {
+    return new Name(name);
   }
 
   @Override
   public boolean equals(final Object obj) {
     if (obj instanceof Name) {
       final Name other = (Name) obj;
-      return Objects.equal(name, other.name);
-    }
-    else return false;
+      return equal(name, other.name);
+    } else return false;
   }
 
   @Override
@@ -61,10 +67,5 @@ public final class Name implements Serializable {
   @JsonValue
   public String toString() {
     return name.or("N/A");
-  }
-
-  @JsonCreator
-  public static Name valueOf(final String name) {
-    return new Name(name);
   }
 }

@@ -1,12 +1,13 @@
 package org.raziskovalec.domain;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 
 import org.raziskovalec.Name;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 
 public class Organization {
@@ -32,6 +33,6 @@ public class Organization {
   }
 
   public void recruit(final Researcher researcher) {
-    employees.add(Preconditions.checkNotNull(researcher, "Researcher cannot be null."));
+    employees.add(checkNotNull(researcher, "Researcher cannot be null."));
   }
 }

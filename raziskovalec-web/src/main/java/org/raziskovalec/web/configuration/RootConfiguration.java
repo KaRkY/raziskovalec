@@ -19,7 +19,8 @@ public class RootConfiguration {
 
   @Bean
   public WebClient webClient() {
-    return WebClient.create("http://localhost:8080/raziskovalec-services", Lists.newArrayList(jsonProvider())).type(
-        MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+    return WebClient.create("http://localhost:8080/raziskovalec-services", Lists.newArrayList(jsonProvider()))
+        .type(MediaType.APPLICATION_JSON)
+        .accept(MediaType.APPLICATION_JSON);
   }
 }

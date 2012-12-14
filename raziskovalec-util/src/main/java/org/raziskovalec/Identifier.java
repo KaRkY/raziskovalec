@@ -15,6 +15,10 @@
  */
 package org.raziskovalec;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Preconditions.checkArgument;
+import static java.lang.String.format;
+
 import java.io.Serializable;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -27,7 +31,6 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonValue;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.hash.HashFunction;
@@ -50,14 +53,16 @@ public final class Identifier implements Serializable {
   private final String                           hash;
 
   static {
-    CACHE = CacheBuilder.newBuilder().maximumSize(Identifier.CACHE_SIZE)
-        .expireAfterAccess(Identifier.CACHE_EXPIRE_TIME, TimeUnit.MINUTES).build();
-    Identifier.hashPattern = Pattern.compile("[A-Fa-f0-9]{40}");
+    CACHE = CacheBuilder.newBuilder()
+        .maximumSize(CACHE_SIZE)
+        .expireAfterAccess(CACHE_EXPIRE_TIME, TimeUnit.MINUTES)
+        .build();
+    hashPattern = Pattern.compile("[A-Fa-f0-9]{40}");
   }
 
   private Identifier() {
     final UUID uuid = UUID.randomUUID();
-    final Hasher hasher = Identifier.HF.newHasher();
+    final Hasher hasher = HF.newHasher();
     hasher.putString(uuid.toString());
     hash = hasher.hash().toString();
   }
@@ -65,26 +70,6 @@ public final class Identifier implements Serializable {
   private Identifier(final String hash) {
     super();
     this.hash = hash;
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (obj instanceof Identifier) {
-      final Identifier other = (Identifier) obj;
-      return Objects.equal(hash, other.hash);
-    }
-    else return false;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hashCode(hash);
-  }
-
-  @Override
-  @JsonValue
-  public String toString() {
-    return hash;
   }
 
   public static Identifier newId() {
@@ -96,14 +81,14 @@ public final class Identifier implements Serializable {
   @JsonCreator
   public static Identifier valueOf(final String hash) {
     // Validates hash pattern.
-    final Matcher hashMatcher = Identifier.hashPattern.matcher(hash);
-    Preconditions.checkArgument(hashMatcher.matches(),
-        String.format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
+    final Matcher hashMatcher = hashPattern.matcher(hash);
+    checkArgument(hashMatcher.matches(),
+        format("%s: does not matches predefined pattern [A-Fa-f0-9]{64}", hash));
 
     try {
       // Trys to resolve Identity from cache. If Identity is not in cache
       // it creates a new random unique Identity.
-      return Identifier.CACHE.get(hash, new Callable<Identifier>() {
+      return CACHE.get(hash, new Callable<Identifier>() {
 
         @Override
         public Identifier call() throws Exception {
@@ -114,5 +99,24 @@ public final class Identifier implements Serializable {
     } catch (final ExecutionException e) {
       throw new ExecutionError(new Error("Could not create Id", e));
     }
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (obj instanceof Identifier) {
+      final Identifier other = (Identifier) obj;
+      return equal(hash, other.hash);
+    } else return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(hash);
+  }
+
+  @Override
+  @JsonValue
+  public String toString() {
+    return hash;
   }
 }

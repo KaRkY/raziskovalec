@@ -15,12 +15,16 @@
  */
 package org.raziskovalec;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static java.lang.String.format;
+
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
 
 /**
  * Postcode for address.
@@ -38,13 +42,24 @@ public final class Postcode implements Serializable {
   }
 
   private Postcode(final String code, final String name) {
-    Preconditions.checkNotNull(code, "Code should not be null.");
-    Preconditions.checkNotNull(name, "name should not be null.");
-    Preconditions.checkArgument(!code.isEmpty(), "Code should not be empty.");
-    Preconditions.checkArgument(!name.isEmpty(), "Name should not be empty.");
+    checkNotNull(code, "Code should not be null.");
+    checkNotNull(name, "name should not be null.");
+    checkArgument(!code.isEmpty(), "Code should not be empty.");
+    checkArgument(!name.isEmpty(), "Name should not be empty.");
 
     this.code = code;
     this.name = name;
+  }
+
+  public static Postcode valueOf(final String postalCode) {
+    final Matcher postalMatcher = Postcode.postalPattern.matcher(postalCode);
+    checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
+
+    return valueOf(postalMatcher.group(1), postalMatcher.group(2));
+  }
+
+  public static Postcode valueOf(final String code, final String name) {
+    return new Postcode(code, name);
   }
 
   @Override
@@ -52,9 +67,8 @@ public final class Postcode implements Serializable {
     if (obj instanceof Postcode) {
       final Postcode other = (Postcode) obj;
 
-      return Objects.equal(code, other.code);
-    }
-    else return false;
+      return equal(code, other.code);
+    } else return false;
   }
 
   public String getCode() {
@@ -72,17 +86,6 @@ public final class Postcode implements Serializable {
 
   @Override
   public String toString() {
-    return String.format("[%s]%s", code, name);
-  }
-
-  public static Postcode valueOf(final String postalCode) {
-    final Matcher postalMatcher = Postcode.postalPattern.matcher(postalCode);
-    Preconditions.checkArgument(postalMatcher.matches(), "Wrong postalCode format, format should be [<code>]<name>");
-
-    return Postcode.valueOf(postalMatcher.group(1), postalMatcher.group(2));
-  }
-
-  public static Postcode valueOf(final String code, final String name) {
-    return new Postcode(code, name);
+    return format("[%s]%s", code, name);
   }
 }
