@@ -11,7 +11,6 @@
   <artifactId>raziskovalec-services</artifactId>
 
   <packaging>war</packaging>
-  <name>raziskovalec-services Maven Webapp</name>
 
   <dependencies>
   <dependency>

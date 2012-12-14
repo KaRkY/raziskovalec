@@ -475,7 +475,7 @@ in njihovimi patenti ter projekti, ki jih izvajajo.</description>
     <project.compile.version>1.7</project.compile.version>
     <netbeans.hint.license>apache20</netbeans.hint.license>
     <netbeans.hint.jdkPlatform>JDK 1.7</netbeans.hint.jdkPlatform>
-    <version.springframework>3.2.0.RC1</version.springframework>
+    <version.springframework>3.2.0.RELEASE</version.springframework>
     <version.slf4j>1.7.2</version.slf4j>
   </properties>
 
