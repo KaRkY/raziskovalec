@@ -2,41 +2,41 @@
 allprojects{
   apply plugin: 'eclipse'
   apply plugin: 'eclipse-wtp'
-  
+
   version = '1.0'
 }
 
 subprojects{
   apply plugin: 'java'
-  
+
   sourceCompatibility = 1.7
   targetCompatibility = 1.7
-  
+
   group = 'org.raziskovalec'
-  
-  repositories {
-    mavenCentral()
-  }
-  
+
+  repositories { mavenCentral() }
+
   configurations{
     all*.exclude (module: 'commons-logging')
   }
-  
+
   dependencies{
     compile (group: 'org.slf4j', name: 'slf4j-api', version: '1.7.2')
     compile (group: 'com.google.guava', name: 'guava', version: '14.0-rc2')
-    
+
     testCompile (group: 'org.testng', name: 'testng', version: '6.8')
     testCompile (group: 'org.mockito', name: 'mockito-all', version: '1.9.5')
     testCompile (group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3')
   }
-  
+
   test{
-   useTestNG()
-   scanForTestClasses  = false
-   options.suiteXmlFiles = [file('src/test/resources/testng.yaml')]
+    useTestNG()
+    scanForTestClasses  = false
+    options.suiteXmlFiles = [
+      file('src/test/resources/testng.yaml')
+    ]
   }
-  
+
   eclipse {
     classpath{
       downloadSources = true
@@ -47,138 +47,130 @@ subprojects{
 
 project('raziskovalec-web'){
   apply plugin: 'war'
-  
+
   dependencies{
     runtime (group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.9')
     compile (group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.6.4')
     compile (group: 'joda-time', name: 'joda-time', version: '2.1')
-    
+
     compile (group: 'org.springframework', name: 'spring-core', version: '3.2.0.RELEASE')
     compile (group: 'org.springframework', name: 'spring-context', version: '3.2.0.RELEASE')
     compile (group: 'org.springframework', name: 'spring-webmvc', version: '3.2.0.RELEASE')
     compile (group: 'org.hibernate', name: 'hibernate-validator', version: '4.3.1.Final')
-    
+
     compile (group: 'org.thymeleaf', name: 'thymeleaf', version: '2.0.14')
     compile (group: 'org.thymeleaf', name: 'thymeleaf-spring3', version: '2.0.14')
     compile (group: 'nz.net.ultraq.web.thymeleaf', name: 'thymeleaf-layout-dialect', version: '1.0.4')
     compile (group: 'org.webjars', name: 'bootstrap', version: '2.2.1')
-    
+
     compile (group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '2.7.0')
     compile (group: 'org.apache.cxf', name: 'cxf-rt-rs-extension-providers', version: '2.7.0')
     compile (group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.11')
 
     compile project(':raziskovalec-domain')
-    
+
     providedCompile (group: 'javax', name: 'javaee-web-api', version: '6.0')
   }
 }
 
 project('raziskovalec-services'){
   apply plugin: 'war'
-  
+
   dependencies{
     runtime (group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.9')
     compile (group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.6.4')
     compile (group: 'joda-time', name: 'joda-time', version: '2.1')
-    
+
     compile (group: 'org.springframework', name: 'spring-core', version: '3.2.0.RELEASE')
     compile (group: 'org.springframework', name: 'spring-context', version: '3.2.0.RELEASE')
     compile (group: 'org.springframework', name: 'spring-web', version: '3.2.0.RELEASE')
-    
+
     compile (group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '2.7.0')
     compile (group: 'org.apache.cxf', name: 'cxf-rt-rs-extension-providers', version: '2.7.0')
     compile (group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.11')
 
     compile project(':raziskovalec-domain')
-    
+
     providedCompile (group: 'javax', name: 'javaee-web-api', version: '6.0')
   }
 }
 
 project('raziskovalec-util'){
-  
+
   dependencies{
-      compile (group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12')
+    compile (group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12')
   }
 }
 
 project('raziskovalec-domain'){
-  
+
   dependencies{
-      compile (group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12')
-      compile (group: 'joda-time', name: 'joda-time', version: '2.1')
-      
-      compile project(':raziskovalec-util')
+    compile (group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12')
+    compile (group: 'joda-time', name: 'joda-time', version: '2.1')
+
+    compile project(':raziskovalec-util')
   }
 }
 
 configure(rootProject){
-  
+
   task docs(type: Javadoc) {
     source subprojects.collect {project -> project.sourceSets.main.allJava }
     classpath = files(subprojects.collect {project -> project.sourceSets.main.compileClasspath})
     destinationDir = new File(project.buildDir, 'docs/javadoc')
-    
+
     options.linkSource = true
     options.author = true
     options.overview = 'src/main/javadoc/overview.html'
     options.docTitle = 'raziskovalec.org'
     options.links(
-      'http://download.oracle.com/javase/7/docs/api/',
-      'http://static.springsource.org/spring/docs/3.1.x/javadoc-api/',
-      'http://java.sun.com/javaee/6/docs/api/',
-      'http://www.slf4j.org/apidocs/',
-      'http://docs.jboss.org/hibernate/core/3.6/javadocs/',
-      'http://joda-time.sourceforge.net/api-release/',
-      'http://docs.guava-libraries.googlecode.com/git-history/v10.0/javadoc/',
-      'http://cxf.apache.org/javadoc/latest/',
-      'http://commons.apache.org/lang/api-release/'
-    )
+        'http://download.oracle.com/javase/7/docs/api/',
+        'http://static.springsource.org/spring/docs/3.1.x/javadoc-api/',
+        'http://java.sun.com/javaee/6/docs/api/',
+        'http://www.slf4j.org/apidocs/',
+        'http://docs.jboss.org/hibernate/core/3.6/javadocs/',
+        'http://joda-time.sourceforge.net/api-release/',
+        'http://docs.guava-libraries.googlecode.com/git-history/v10.0/javadoc/',
+        'http://cxf.apache.org/javadoc/latest/',
+        'http://commons.apache.org/lang/api-release/'
+        )
     options.group('Raziskovalec web', 'org.raziskovalec.web*')
     options.group('Raziskovalec services', 'org.raziskovalec.services*')
     options.group('Raziskovalec domain', 'org.raziskovalec.domain*')
     options.group('Raziskovalec util', 'org.raziskovalec.base*')
   }
-  
+
   task docsZip(type: Zip) {
     baseName = "raziskovalec"
     classifier = "docs"
     description = "Raziskovalec documentation"
     destinationDir = new File(project.buildDir, 'dist')
-    
+
     from (docs)
   }
-  
+
   task binZip(type: Zip){
     baseName = "raziskovalec"
     classifier = "bin"
     description = "Raziskovalec binnary"
     destinationDir = new File(project.buildDir, 'dist')
-    
+
     from project(':raziskovalec-web').war.outputs.files
     from project(':raziskovalec-services').war.outputs.files
   }
-  
+
   task distZip(type: Zip, dependsOn: [docsZip, binZip]){
     baseName = "raziskovalec"
     classifier = "dist"
     description = "Raziskovalec distribution"
     destinationDir = new File(project.buildDir, 'dist')
-    
-    from(zipTree(docsZip.archivePath)) {
-      into "docs"
-    }
-    
-    from(zipTree(binZip.archivePath)) {
-      into "bin"
-    }
+
+    from(zipTree(docsZip.archivePath)) { into "docs" }
+
+    from(zipTree(binZip.archivePath)) { into "bin" }
   }
-  
-  task clean(type: Delete){
-    delete 'build'
-  }
-  
-  task wrapper(type: Wrapper) {
-    gradleVersion = "1.5-20130131230018+0000"
-  }
+
+  task clean(type: Delete){ delete 'build' }
+
+  task wrapper(type: Wrapper) { gradleVersion = "1.5-20130131230018+0000" }
 }
