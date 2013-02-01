@@ -1,10 +1,5 @@
 name: raziskovalec-domain
 tests:
-  - name: value classes
-    classes:
-    - org.raziskovalec.domain.value.IdentifierShould
-    - org.raziskovalec.domain.value.NameShould
-    - org.raziskovalec.domain.value.PostcodeShould
   - name: domain classes
     classes:
     - org.raziskovalec.domain.OrganizationTest

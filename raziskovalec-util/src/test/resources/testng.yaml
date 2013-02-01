@@ -1,1 +1,7 @@
 name: raziskovalec-util
+tests:
+  - name: value classes
+    classes:
+    - org.raziskovalec.IdentifierShould
+    - org.raziskovalec.NameShould
+    - org.raziskovalec.PostcodeShould
