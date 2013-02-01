@@ -14,7 +14,7 @@ subprojects{
 
   group = 'org.raziskovalec'
 
-  repositories { mavenCentral() }
+  repositories {  mavenCentral() }
 
   configurations{
     all*.exclude (module: 'commons-logging')
