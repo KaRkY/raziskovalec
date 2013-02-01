@@ -42,13 +42,15 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="warn" />
+    <logger name="org.springframework" level="info" />
 
     <logger name="org.apache" level="info" />
     
-    <logger name="org.thymeleaf" level="warn" />
+    <logger name="org.thymeleaf" level="info" />
     
-    <logger name="org.hibernate" level="warn" />
+    <logger name="org.hibernate" level="info" />
+    
+    <logger name="org.jboss" level="info" />
     
     <root level="trace">
         <appender-ref ref="STDOUT" />

@@ -1,0 +1,4 @@
+include 'raziskovalec-domain'
+include 'raziskovalec-util'
+include 'raziskovalec-services'
+include 'raziskovalec-web'

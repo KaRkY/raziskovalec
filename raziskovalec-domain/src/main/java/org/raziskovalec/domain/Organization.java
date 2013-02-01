@@ -4,23 +4,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Set;
 
-import javax.mail.internet.InternetAddress;
-
 import org.raziskovalec.Name;
 
 import com.google.common.collect.Sets;
 
 public class Organization {
   private final Name            name;
-  private final InternetAddress email;
+  private final String          email;
   private final Set<Researcher> employees = Sets.newLinkedHashSet();
 
-  public Organization(final Name name, final InternetAddress email) {
+  public Organization(final Name name, final String email) {
     this.name = name;
     this.email = email;
   }
 
-  public InternetAddress email() {
+  public String email() {
     return email;
   }
 
