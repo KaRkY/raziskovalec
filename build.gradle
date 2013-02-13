@@ -171,5 +171,5 @@ configure(rootProject){
 
   task clean(type: Delete){ delete 'build' }
 
-  task wrapper(type: Wrapper) { gradleVersion = "1.5-20130131230018+0000" }
+  task wrapper(type: Wrapper) { gradleVersion = "1.5-20130212232708+0000" }
 }
