@@ -41,7 +41,12 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   @Override
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
-    registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    registry.addResourceHandler("/bootstrap/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/bootstrap/2.3.0/");
+    registry.addResourceHandler("/modernizr/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/modernizr/2.6.2/");
+    registry.addResourceHandler("/jquery/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/jquery/1.9.0/");
   }
 
   @Override

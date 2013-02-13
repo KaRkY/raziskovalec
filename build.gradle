@@ -62,7 +62,9 @@ project('raziskovalec-web'){
     compile (group: 'org.thymeleaf', name: 'thymeleaf', version: '2.0.14')
     compile (group: 'org.thymeleaf', name: 'thymeleaf-spring3', version: '2.0.14')
     compile (group: 'nz.net.ultraq.web.thymeleaf', name: 'thymeleaf-layout-dialect', version: '1.0.4')
-    compile (group: 'org.webjars', name: 'bootstrap', version: '2.2.1')
+    compile (group: 'org.webjars', name: 'bootstrap', version: '2.3.0')
+    compile (group: 'org.webjars', name: 'modernizr', version: '2.6.2-1')
+    compile (group: 'org.webjars', name: 'jquery', version: '1.9')
 
     compile (group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '2.7.0')
     compile (group: 'org.apache.cxf', name: 'cxf-rt-rs-extension-providers', version: '2.7.0')
