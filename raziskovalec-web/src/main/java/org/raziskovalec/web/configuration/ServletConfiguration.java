@@ -47,6 +47,8 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
         .addResourceLocations("classpath:/META-INF/resources/webjars/modernizr/2.6.2/");
     registry.addResourceHandler("/jquery/**")
         .addResourceLocations("classpath:/META-INF/resources/webjars/jquery/1.9.0/");
+    registry.addResourceHandler("/font-awesome/**")
+        .addResourceLocations("classpath:/META-INF/resources/webjars/font-awesome/3.0.0/");
   }
 
   @Override

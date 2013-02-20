@@ -14,6 +14,7 @@
 
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-responsive.min.css}" />
+<link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}" />
 <link rel="stylesheet" th:href="@{/resources/css/main.css}" />
 
 <script th:src="@{/modernizr/modernizr.min.js}"></script>
@@ -32,24 +33,28 @@
         <div class="nav-collapse collapse">
           <ul class="nav">
             <li th:class="${title} eq #{home} ? 'active'">
-              <a href="#" th:href="@{/}" th:inline="text"> <i class="icon-home icon-white"></i> [[#{home}]]
+              <a href="#" th:href="@{/}" th:inline="text"> <i class="icon-home"></i> [[#{home}]]
               </a>
             </li>
             <li th:class="${title} eq #{search} ? 'active'">
-              <a href="#" th:href="@{/search}" th:inline="text"> <i class="icon-search icon-white"></i>
+              <a href="#" th:href="@{/search}" th:inline="text"> <i class="icon-search"></i>
                 [[#{search}]]
               </a>
             </li>
             <li th:class="${title} eq #{researcher} ? 'active'">
-              <a href="#" th:href="@{/researcher}" th:inline="text"> <i class="icon-user icon-white"></i>
+              <a href="#" th:href="@{/researcher}" th:inline="text"> <i class="icon-user"></i>
                 [[#{researcher}]]
               </a>
             </li>
             <li th:class="${title} eq #{organization} ? 'active'">
-              <a href="#" th:href="@{/organization}" th:text="#{organization}">Organization</a>
+              <a href="#" th:href="@{/organization}" th:inline="text"> <i class="icon-cogs"></i>
+                [[#{organization}]]
+              </a>
             </li>
             <li th:class="${title} eq #{group} ? 'active'">
-              <a href="#" th:href="@{/group}" th:text="#{group}">Group</a>
+              <a href="#" th:href="@{/group}" th:inline="text"> <i class="icon-group"></i>
+                [[#{group}]]
+              </a>
             </li>
           </ul>
 
