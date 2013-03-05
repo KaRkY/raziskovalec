@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class ResearcherForm {
 
@@ -19,6 +20,7 @@ public class ResearcherForm {
   private String    email;
   private String    telephonenumber;
   private String    www;
+  @DateTimeFormat(style = "S-")
   private LocalDate dateOfBirth;
 
   public LocalDate getDateOfBirth() {

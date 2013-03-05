@@ -1,28 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-  layout:decorator="/templates/template"
-  th:with="title=#{home}">
-  <head>
-    <title th:inline="text"> [[#{home}]] | Raziskovalec.org</title>
-  </head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template" th:with="title=#{home}">
+<head>
+<title th:inline="text">[[#{home}]] | Raziskovalec.org</title>
+</head>
 <body>
 
-  <div layout:fragment="sidebar">
-  </div>
-  
-  <div layout:fragment="content" class="span12 hero-unit">
-    <h1>Raziskovalec.org</h1>
+  <div layout:fragment="sidebar"></div>
 
-    <hr />
+  <div layout:fragment="content" class="span12">
+    <div class="hero-unit">
+      <h1>Raziskovalec.org</h1>
 
-    <div class="row">
-      <div class="span4">
-        <img class="img-rounded img-polaroid" alt="Slika raziskovalca"
-          th:src="@{/resources/img/curiosity.jpg}" />
-      </div>
-      <div class="span6">
-        <p th:text="#{presentation}"></p>
+      <hr />
+
+      <div class="row">
+        <div class="span4">
+          <img class="img-rounded img-polaroid" alt="Slika raziskovalca" th:src="@{/resources/img/curiosity.jpg}" />
+        </div>
+        <div class="span6">
+          <p th:text="#{presentation}"></p>
+        </div>
       </div>
     </div>
   </div>

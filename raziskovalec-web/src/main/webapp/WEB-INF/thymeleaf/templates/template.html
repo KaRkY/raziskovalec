@@ -12,8 +12,10 @@
 <meta name="author" content="Rene Svetina" />
 <meta name="viewport" content="width=device-width" />
 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
-<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-responsive.min.css}" />
+
 <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}" />
 <link rel="stylesheet" th:href="@{/resources/css/main.css}" />
 
@@ -32,61 +34,35 @@
         </a> <a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li th:class="${title} eq #{home} ? 'active'">
-              <a href="#" th:href="@{/}" th:inline="text"> <i class="icon-home"></i> [[#{home}]]
-              </a>
-            </li>
-            <li th:class="${title} eq #{search} ? 'active'">
-              <a href="#" th:href="@{/search}" th:inline="text"> <i class="icon-search"></i>
-                [[#{search}]]
-              </a>
-            </li>
-            <li th:class="${title} eq #{researcher} ? 'active'">
-              <a href="#" th:href="@{/researcher}" th:inline="text"> <i class="icon-user"></i>
-                [[#{researcher}]]
-              </a>
-            </li>
-            <li th:class="${title} eq #{organization} ? 'active'">
-              <a href="#" th:href="@{/organization}" th:inline="text"> <i class="icon-cogs"></i>
-                [[#{organization}]]
-              </a>
-            </li>
-            <li th:class="${title} eq #{group} ? 'active'">
-              <a href="#" th:href="@{/group}" th:inline="text"> <i class="icon-group"></i>
-                [[#{group}]]
-              </a>
-            </li>
+            <li th:class="${title} eq #{home} ? 'active'"><a href="#" th:href="@{/}" th:inline="text"> <i
+                class="icon-home"></i> [[#{home}]]
+            </a></li>
+            <li th:class="${title} eq #{search} ? 'active'"><a href="#" th:href="@{/search}" th:inline="text">
+                <i class="icon-search"></i> [[#{search}]]
+            </a></li>
+            <li th:class="${title} eq #{researcher} ? 'active'"><a href="#" th:href="@{/researcher}"
+              th:inline="text"> <i class="icon-user"></i> [[#{researcher}]]
+            </a></li>
+            <li th:class="${title} eq #{organization} ? 'active'"><a href="#" th:href="@{/organization}"
+              th:inline="text"> <i class="icon-cogs"></i> [[#{organization}]]
+            </a></li>
+            <li th:class="${title} eq #{group} ? 'active'"><a href="#" th:href="@{/group}" th:inline="text"> <i
+                class="icon-group"></i> [[#{group}]]
+            </a></li>
           </ul>
 
           <ul class="nav pull-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" th:inline="text">[[#{welcome}]],
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" th:inline="text">[[#{welcome}]],
                 [[${userName}]] <b class="caret"></b>
-              </a>
+            </a>
               <ul class="dropdown-menu" th:if="${loggedIn}">
-                <li>
-                  <a href="#"><i class="icon-cog"></i> Preferences</a>
-                </li>
+                <li><a href="#"><i class="icon-cog"></i> Preferences</a></li>
                 <li class="divider"></li>
-                <li>
-                  <a href="#" th:href="@{/logout}" th:text="#{login.logout}">Login</a>
-                </li>
+                <li><a href="#" th:href="@{/logout}" th:text="#{login.logout}">Login</a></li>
               </ul>
               <ul class="dropdown-menu" th:unless="${loggedIn}">
-                <li>
-                  <a href="#" th:href="@{/login}" th:text="#{login}">Login</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-
-          <ul class="nav pull-right">
-            <li>
-              <a href="?locale=en">English</a>
-            </li>
-            <li>
-              <a href="?locale=sl">Slovenščina</a>
-            </li>
+                <li><a href="#" th:href="@{/login}" th:text="#{login}">Login</a></li>
+              </ul></li>
           </ul>
         </div>
         <!--/.nav-collapse -->
@@ -101,11 +77,21 @@
       <div layout:fragment="content"></div>
     </div>
 
-    <hr />
+    <div class="row">
+      <hr />
 
-    <footer>
-      <p>&copy; Raziskovalec.org 2012</p>
-    </footer>
+      <footer>
+        <div class="span3">
+          <p>&copy; Raziskovalec.org 2012</p>
+        </div>
+        <div class="span2 offset7">
+          <div class="btn-group pull-right">
+            <a class="btn" href="?locale=en" th:classappend="${#strings.equals(locale, 'en')} ? 'btn-primary'">English</a>
+            <a class="btn" href="?locale=sl" th:classappend="${#strings.equals(locale, 'sl')} ? 'btn-primary'">Slovenščina</a>
+          </div>
+        </div>
+      </footer>
+    </div>
 
   </div>
   <!-- /container -->
@@ -113,5 +99,6 @@
   <script th:src="@{/jquery/jquery.min.js}"></script>
   <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
   <script th:src="@{/resources/js/main.js}"></script>
+  <script layout:fragment="script"></script>
 </body>
 </html>

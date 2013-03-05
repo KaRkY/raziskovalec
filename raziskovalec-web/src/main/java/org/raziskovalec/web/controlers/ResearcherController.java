@@ -73,7 +73,8 @@ public class ResearcherController {
       final Researcher researcher = new Researcher(Identifier.newId(), Name.valueOf(researcherForm.getName()),
           Name.valueOf(researcherForm.getLastname()), researcherForm.getEmail(), researcherForm.getDateOfBirth());
 
-      final Response researcherSaveResponse = client.path("/researcher/ad").post(researcher);
+      final WebClient localClient = WebClient.fromClient(client, true);
+      final Response researcherSaveResponse = localClient.path("/researcher/add").post(researcher);
 
       if (researcherSaveResponse.getStatus() == 200) {
         modelAndView.setViewName("redirect:/researcher");
@@ -83,7 +84,7 @@ public class ResearcherController {
       }
 
     }
-
+    System.out.println(bindingResult);
     return modelAndView;
   }
 

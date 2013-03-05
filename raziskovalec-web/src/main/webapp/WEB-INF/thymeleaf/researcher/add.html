@@ -73,6 +73,17 @@
         <a th:href="@{/researcher}" class="btn" th:text="#{researcher.cancel}"></a>
       </div>
     </form>
+
   </div>
+
+  <script layout:fragment="script" type="text/javascript">
+			(function($) {
+
+				$(document).ready(function() {
+					$("#name").focus();
+				});
+
+			}(jQuery));
+		</script>
 </body>
 </html>
