@@ -29,11 +29,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author Rene Svetina
@@ -59,25 +60,31 @@ public class ResearcherController {
   }
 
   @RequestMapping(value = "/add", method = RequestMethod.POST)
-  public String addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm,
+  public ModelAndView addSave(@ModelAttribute("researcher") @Valid final ResearcherForm researcherForm,
       final BindingResult bindingResult) {
     logger.trace("Saveing researcher.");
-    if (bindingResult.hasErrors()) return "researcher/add";
-    else {
+
+    final ModelAndView modelAndView = new ModelAndView();
+
+    if (bindingResult.hasErrors()) {
+      modelAndView.setViewName("researcher/add");
+    } else {
 
       final Researcher researcher = new Researcher(Identifier.newId(), Name.valueOf(researcherForm.getName()),
           Name.valueOf(researcherForm.getLastname()), researcherForm.getEmail(), researcherForm.getDateOfBirth());
 
-      final Response researcherSaveResponse = client.path("/researcher/add").post(researcher);
+      final Response researcherSaveResponse = client.path("/researcher/ad").post(researcher);
 
-      if (researcherSaveResponse.getStatus() == 200) return "redirect:/researcher";
-      else {
-        bindingResult.addError(new ObjectError("researcher", "Error on service"));
-        return "researcher/add";
+      if (researcherSaveResponse.getStatus() == 200) {
+        modelAndView.setViewName("redirect:/researcher");
+      } else {
+        modelAndView.addObject("errors", Lists.newArrayList("error.service"));
+        modelAndView.setViewName("researcher/add");
       }
 
     }
 
+    return modelAndView;
   }
 
   @RequestMapping(method = RequestMethod.GET)
