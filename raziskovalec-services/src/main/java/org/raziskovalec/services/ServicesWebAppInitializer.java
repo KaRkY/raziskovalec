@@ -45,7 +45,7 @@ public class ServicesWebAppInitializer implements WebApplicationInitializer {
   private WebApplicationContext createRootContext() {
     final AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
     context.register(RootConfiguration.class);
-    context.refresh();
+    // context.refresh();
 
     return context;
   }
