@@ -30,26 +30,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:attr="data-url=@{/researchers/id1}">
-              <td>Rene</td>
-              <td>Svetina</td>
-              <td><a href="mailto:rene.svetina@gmail.com">rene.svetina@gmail.com</a></td>
-              <td>+386 40 663 494</td>
-              <td>raziskovalec.org</td>
-              <td><a href="#" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
-              </a> <a href="#" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
+            <tr th:each="researcher : ${researchers}">
+              <td th:text="${researcher.name}">Rene</td>
+              <td th:text="${researcher.lastName}">Svetina</td>
+              <td><a th:href="${'mailto:' + researcher.email}" th:text="${researcher.email}">rene.svetina@gmail.com</a></td>
+              <td th:text="${researcher.telephoneNumber}">+386 40 663 494</td>
+              <td  th:text="${researcher.website}">raziskovalec.org</td>
+              <td><a th:href="@{'/researcher/delete/' + ${researcher.id}}" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
+              </a> <a th:href="@{'/researcher/edit/' + ${researcher.id}}" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
               </a></td>
             </tr>
-            <tr th:attr="data-url=@{/researchers/id2}">
-              <td>Janez</td>
-              <td>Novak</td>
-              <td><a href="mailto:janez.novak@gmail.com">janez.novak@gmail.com</a></td>
-              <td>+386 41 424 356</td>
-              <td></td>
-              <td><a href="#" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
-              </a> <a href="#" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
-              </a></td>
-            </tr>
+            
           </tbody>
         </table>
         <div class="pagination">

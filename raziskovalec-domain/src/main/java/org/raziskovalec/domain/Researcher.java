@@ -23,30 +23,23 @@ import java.io.Serializable;
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.joda.time.LocalDate;
-import org.raziskovalec.Identifier;
 import org.raziskovalec.Name;
 
 import com.google.common.base.Objects;
 
 public class Researcher implements Serializable {
   private static final long serialVersionUID = 5018104292542842256L;
-  private final Identifier  id;
-  private final Name        name;
-  private final Name        lastName;
-  private final String      email;
-  private final LocalDate   dateOdBirth;
+  private final Integer     id;
+  private Name              name;
+  private Name              lastName;
+  private String            email;
+  private LocalDate         dateOdBirth;
+  private String            telephoneNumber;
+  private String            website;
 
   @JsonCreator
-  public Researcher(@JsonProperty("id") final Identifier id,
-      @JsonProperty("name") final Name name,
-      @JsonProperty("lastName") final Name lastName,
-      @JsonProperty("email") final String email,
-      @JsonProperty("dateOfBirth") final LocalDate dateOfBirth) {
+  public Researcher(@JsonProperty("id") final Integer id) {
     this.id = id;
-    this.name = name;
-    this.lastName = lastName;
-    this.email = email;
-    dateOdBirth = dateOfBirth;
   }
 
   @Override
@@ -66,7 +59,7 @@ public class Researcher implements Serializable {
     return email;
   }
 
-  public Identifier getId() {
+  public Integer getId() {
     return id;
   }
 
@@ -78,9 +71,41 @@ public class Researcher implements Serializable {
     return name;
   }
 
+  public String getTelephoneNumber() {
+    return telephoneNumber;
+  }
+
+  public String getWebsite() {
+    return website;
+  }
+
   @Override
   public int hashCode() {
     return Objects.hashCode(id);
+  }
+
+  public void setDateOdBirth(final LocalDate dateOdBirth) {
+    this.dateOdBirth = dateOdBirth;
+  }
+
+  public void setEmail(final String email) {
+    this.email = email;
+  }
+
+  public void setLastName(final Name lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setName(final Name name) {
+    this.name = name;
+  }
+
+  public void setTelephoneNumber(final String telephoneNumber) {
+    this.telephoneNumber = telephoneNumber;
+  }
+
+  public void setWebsite(final String website) {
+    this.website = website;
   }
 
   @Override

@@ -110,13 +110,14 @@ project('raziskovalec-services'){
     compile (group: 'org.springframework', name: 'spring-core', version: springVersion)
     compile (group: 'org.springframework', name: 'spring-context', version: springVersion)
     compile (group: 'org.springframework', name: 'spring-web', version: springVersion)
+    compile (group: 'org.springframework', name: 'spring-jdbc', version: springVersion)
 
     compile (group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '2.7.3')
     compile (group: 'org.apache.cxf', name: 'cxf-rt-rs-extension-providers', version: '2.7.3')
     compile (group: 'org.codehaus.jackson', name: 'jackson-jaxrs', version: '1.9.11')
     
     compile (group: 'com.jolbox', name: 'bonecp', version: '0.8.0-rc1')
-    compile (group: 'com.google.code.maven-play-plugin.hsqldb', name: 'hsqldb', version: '1.8.1.2')
+    compile (group: 'org.hsqldb', name: 'hsqldb', version: '2.2.9')
 
     compile project(':raziskovalec-domain')
 
