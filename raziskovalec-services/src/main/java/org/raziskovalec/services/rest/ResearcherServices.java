@@ -41,7 +41,7 @@ public class ResearcherServices {
   }
 
   @POST
-  @Path("{id}")
+  @Path("/{id}")
   public Response edit(@PathParam("id") final int id, final Researcher researcher) {
     if (repo.edit(id, researcher)) return Response.ok().build();
     else return Response.notModified().build();

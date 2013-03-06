@@ -4,6 +4,7 @@ import nz.net.ultraq.web.thymeleaf.LayoutDialect;
 
 import org.raziskovalec.web.interceptors.LocaleAttributIntrceptor;
 import org.raziskovalec.web.interceptors.UserInterceptor;
+import org.raziskovalec.web.interceptors.UtilRegisterInterceptor;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -38,6 +39,7 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
     registry.addInterceptor(new LocaleChangeInterceptor());
     registry.addInterceptor(userInterceptor());
     registry.addInterceptor(new LocaleAttributIntrceptor());
+    registry.addInterceptor(new UtilRegisterInterceptor());
   }
 
   @Override

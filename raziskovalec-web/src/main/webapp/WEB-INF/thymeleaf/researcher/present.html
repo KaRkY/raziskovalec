@@ -12,11 +12,11 @@
         <img alt="Face" class="img-rounded img-polaroid" src="http://dummyimages.com/150x200/cccccc/999999" />
       </div>
       <div class="span4 offset1">
-        <p><b>Naziv:</b> Rene Svetina</p>
-        <p><b>Email:</b> rene.svetina@gmail.com</p>
-        <p><b>Date of birth:</b> 09.10.1987</p>
-        <p><b>Telephone:</b> 98236493826</p>
-        <p><b>Website:</b> alaskld</p>
+        <p th:inline="text"><b>[[#{researcher.name}]]:</b> [[${researcher.name + ' ' + researcher.lastname}]]</p>
+        <p th:inline="text"><b>[[#{researcher.email}]]:</b> [[${researcher.email}]]</p>
+        <p th:inline="text"><b>[[#{researcher.dateofbirth}]]:</b> [[${dates.formatStyle(researcher.dateOfBirth, 'S-')}]]</p>
+        <p th:inline="text"><b>[[#{researcher.telephonenumber}]]:</b> [[${#objects.nullSafe(researcher.telephonenumber, '')}]]</p>
+        <p th:inline="text"><b>[[#{researcher.www}]]:</b> [[${#objects.nullSafe(researcher.www, '')}]]</p>
       </div>
     </div>
   </div>

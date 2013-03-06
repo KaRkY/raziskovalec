@@ -33,7 +33,7 @@ public class Researcher implements Serializable {
   private Name              name;
   private Name              lastName;
   private String            email;
-  private LocalDate         dateOdBirth;
+  private LocalDate         dateOfBirth;
   private String            telephoneNumber;
   private String            website;
 
@@ -51,8 +51,8 @@ public class Researcher implements Serializable {
     } else return false;
   }
 
-  public LocalDate getDateOdBirth() {
-    return dateOdBirth;
+  public LocalDate getDateOfBirth() {
+    return dateOfBirth;
   }
 
   public String getEmail() {
@@ -84,8 +84,8 @@ public class Researcher implements Serializable {
     return Objects.hashCode(id);
   }
 
-  public void setDateOdBirth(final LocalDate dateOdBirth) {
-    this.dateOdBirth = dateOdBirth;
+  public void setDateOfBirth(final LocalDate dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 
   public void setEmail(final String email) {
@@ -115,7 +115,7 @@ public class Researcher implements Serializable {
         .add("name", name)
         .add("lastName", lastName)
         .add("email", email)
-        .add("dateOfBirth", dateOdBirth)
+        .add("dateOfBirth", dateOfBirth)
         .toString();
   }
 }

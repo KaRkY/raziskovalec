@@ -78,7 +78,7 @@ public class ResearcherController {
       final Researcher researcher = new Researcher(null);
       researcher.setName(Name.valueOf(researcherForm.getName()));
       researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
-      researcher.setDateOdBirth(researcherForm.getDateOfBirth());
+      researcher.setDateOfBirth(researcherForm.getDateOfBirth());
       researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
       researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
       researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
@@ -120,7 +120,7 @@ public class ResearcherController {
       researcherForm.setEmail(researcher.getEmail());
       researcherForm.setTelephonenumber(researcher.getTelephoneNumber());
       researcherForm.setWww(researcher.getWebsite());
-      researcherForm.setDateOfBirth(researcher.getDateOdBirth());
+      researcherForm.setDateOfBirth(researcher.getDateOfBirth());
 
       modelAndView.addObject("researcher", researcherForm);
       modelAndView.setViewName("researcher/edit");
@@ -146,7 +146,7 @@ public class ResearcherController {
       final Researcher researcher = new Researcher(id);
       researcher.setName(Name.valueOf(researcherForm.getName()));
       researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
-      researcher.setDateOdBirth(researcherForm.getDateOfBirth());
+      researcher.setDateOfBirth(researcherForm.getDateOfBirth());
       researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
       researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
       researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
@@ -166,8 +166,24 @@ public class ResearcherController {
   }
 
   @RequestMapping(value = "/presentation/{id}", method = RequestMethod.GET)
-  public String get(@PathVariable("id") final int id) {
-    return "researcher/present";
+  public ModelAndView get(@PathVariable("id") final int id) {
+    final WebClient resultClient = WebClient.fromClient(client, true);
+    Response response = resultClient.path("/researcher/{id}", id).get();
+    ModelAndView modelAndView = new ModelAndView("researcher/present");
+
+    if (response.getStatus() == 200) {
+      Researcher researcher = response.readEntity(Researcher.class);
+      final ResearcherForm researcherForm = new ResearcherForm();
+      researcherForm.setName(researcher.getName().toString());
+      researcherForm.setLastname(researcher.getLastName().toString());
+      researcherForm.setEmail(researcher.getEmail());
+      researcherForm.setTelephonenumber(researcher.getTelephoneNumber());
+      researcherForm.setWww(researcher.getWebsite());
+      researcherForm.setDateOfBirth(researcher.getDateOfBirth());
+      modelAndView.addObject("researcher", researcherForm);
+    }
+
+    return modelAndView;
   }
 
   @RequestMapping(method = RequestMethod.GET)

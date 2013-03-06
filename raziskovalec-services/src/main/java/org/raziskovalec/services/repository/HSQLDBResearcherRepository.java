@@ -18,6 +18,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 public class HSQLDBResearcherRepository implements ResearcherRepository {
 
+  private final class ResearcherRowMapper implements RowMapper<Researcher> {
+    @Override
+    public Researcher mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+      final Researcher result = new Researcher(rs.getInt("ID"));
+
+      result.setName(Name.valueOf(rs.getString("NAME")));
+      result.setLastName(Name.valueOf(rs.getString("LAST_NAME")));
+      result.setEmail(rs.getString("EMAIL"));
+      result.setTelephoneNumber(rs.getString("TELEPHONE_NUMBER"));
+      result.setWebsite(rs.getString("WEBSITE"));
+
+      final Date dateOfBirth = rs.getDate("DATE_OF_BIRTH");
+      if (dateOfBirth != null) {
+        result.setDateOfBirth(LocalDate.fromDateFields(dateOfBirth));
+      }
+
+      return result;
+    }
+  }
+
   private final NamedParameterJdbcTemplate jdbcTemplate;
 
   public HSQLDBResearcherRepository(final DataSource dataSource) {
@@ -52,7 +72,7 @@ public class HSQLDBResearcherRepository implements ResearcherRepository {
         .addValue("email", researcher.getEmail())
         .addValue("telephoneNumber", researcher.getTelephoneNumber())
         .addValue("website", researcher.getWebsite())
-        .addValue("dateOfBirth", SqlUtil.nullSafeConvert(researcher.getDateOdBirth()));
+        .addValue("dateOfBirth", SqlUtil.nullSafeConvert(researcher.getDateOfBirth()));
 
     jdbcTemplate.update("UPDATE PUBLIC.RESEARCHERS\n" +
         "SET NAME = :name,\n" +
@@ -83,7 +103,7 @@ public class HSQLDBResearcherRepository implements ResearcherRepository {
         .addValue("email", researcher.getEmail())
         .addValue("telephoneNumber", researcher.getTelephoneNumber())
         .addValue("website", researcher.getWebsite())
-        .addValue("dateOfBirth", SqlUtil.nullSafeConvert(researcher.getDateOdBirth()));
+        .addValue("dateOfBirth", SqlUtil.nullSafeConvert(researcher.getDateOfBirth()));
 
     jdbcTemplate.update(
         "INSERT INTO PUBLIC.RESEARCHERS " +
@@ -114,25 +134,5 @@ public class HSQLDBResearcherRepository implements ResearcherRepository {
             .addValue("skip", skip)
             .addValue("resultsPerPage", resultsPerPage),
         new ResearcherRowMapper());
-  }
-
-  private final class ResearcherRowMapper implements RowMapper<Researcher> {
-    @Override
-    public Researcher mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-      final Researcher result = new Researcher(rs.getInt("ID"));
-
-      result.setName(Name.valueOf(rs.getString("NAME")));
-      result.setLastName(Name.valueOf(rs.getString("LAST_NAME")));
-      result.setEmail(rs.getString("EMAIL"));
-      result.setTelephoneNumber(rs.getString("TELEPHONE_NUMBER"));
-      result.setWebsite(rs.getString("WEBSITE"));
-
-      final Date dateOfBirth = rs.getDate("DATE_OF_BIRTH");
-      if (dateOfBirth != null) {
-        result.setDateOdBirth(LocalDate.fromDateFields(dateOfBirth));
-      }
-
-      return result;
-    }
   }
 }
