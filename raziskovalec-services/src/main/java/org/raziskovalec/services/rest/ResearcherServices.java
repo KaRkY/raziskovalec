@@ -26,6 +26,12 @@ public class ResearcherServices {
     this.repo = repo;
   }
 
+  @GET
+  @Path("/count")
+  public Response count() {
+    return Response.ok().entity(repo.count()).build();
+  }
+
   @DELETE
   @Path("/{id}")
   public Response delete(@PathParam("id") final int id) {
@@ -51,6 +57,15 @@ public class ResearcherServices {
   @GET
   public Response listAll() {
     final List<Researcher> allResearchers = repo.listAll();
+
+    return Response.ok().entity(allResearchers).build();
+  }
+
+  @GET
+  @Path("/{pageNum}/{resultsPerPage}")
+  public Response listPaged(@PathParam("pageNum") final int pageNum,
+      @PathParam("resultsPerPage") final int resultsPerPage) {
+    final List<Researcher> allResearchers = repo.listPaged(pageNum, resultsPerPage);
 
     return Response.ok().entity(allResearchers).build();
   }

@@ -10,6 +10,8 @@ public interface ResearcherRepository {
   @Transactional
   public abstract void insert(Researcher researcher);
 
+  int count();
+
   void delete(int id);
 
   boolean edit(int id, Researcher researcher);
@@ -17,5 +19,7 @@ public interface ResearcherRepository {
   Researcher get(int id);
 
   List<Researcher> listAll();
+
+  List<Researcher> listPaged(int pageNum, int resultsPerPage);
 
 }

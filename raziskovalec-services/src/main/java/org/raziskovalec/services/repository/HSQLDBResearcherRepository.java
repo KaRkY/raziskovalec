@@ -25,6 +25,12 @@ public class HSQLDBResearcherRepository implements ResearcherRepository {
   }
 
   @Override
+  @Transactional(readOnly = true)
+  public int count() {
+    return jdbcTemplate.queryForInt("SELECT COUNT(*) FROM PUBLIC.RESEARCHERS", new MapSqlParameterSource());
+  }
+
+  @Override
   @Transactional
   public void delete(final int id) {
     jdbcTemplate.update("DELETE FROM PUBLIC.RESEARCHERS\n" +
@@ -93,6 +99,20 @@ public class HSQLDBResearcherRepository implements ResearcherRepository {
     return jdbcTemplate.query("SELECT ID, NAME, LAST_NAME, EMAIL, DATE_OF_BIRTH, TELEPHONE_NUMBER, WEBSITE \n" +
         "FROM PUBLIC.RESEARCHERS",
         new MapSqlParameterSource(),
+        new ResearcherRowMapper());
+  }
+
+  @Override
+  @Transactional(readOnly = true)
+  public List<Researcher> listPaged(final int pageNum, final int resultsPerPage) {
+
+    final int skip = pageNum * resultsPerPage;
+    return jdbcTemplate.query("SELECT ID, NAME, LAST_NAME, EMAIL, DATE_OF_BIRTH, TELEPHONE_NUMBER, WEBSITE \n" +
+        "FROM PUBLIC.RESEARCHERS\n" +
+        "LIMIT :resultsPerPage OFFSET :skip ",
+        new MapSqlParameterSource()
+            .addValue("skip", skip)
+            .addValue("resultsPerPage", resultsPerPage),
         new ResearcherRowMapper());
   }
 

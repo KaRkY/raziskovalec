@@ -45,8 +45,9 @@ import com.google.common.collect.Lists;
 @Controller
 @RequestMapping("/researcher")
 public class ResearcherController {
-  private final Logger    logger = LoggerFactory.getLogger(this.getClass());
-  private final WebClient client;
+  private final Logger     logger           = LoggerFactory.getLogger(this.getClass());
+  private final WebClient  client;
+  private static final int RESULTS_PER_PAGE = 10;
 
   @Autowired
   public ResearcherController(@Qualifier("webClient") final WebClient client) {
@@ -165,12 +166,32 @@ public class ResearcherController {
 
   @RequestMapping(method = RequestMethod.GET)
   public ModelAndView list() {
-    final WebClient localClient = WebClient.fromClient(client, true);
-    final Response response = localClient.path("/researcher").get();
-    final ModelAndView modelAndView = new ModelAndView("researcher/list");
+    return listPage(0);
+  }
 
-    if (response.getStatus() == 200) {
-      final List<Researcher> researchers = response.readEntity(new GenericType<List<Researcher>>() {
+  @RequestMapping(value = "/{pageNum}", method = RequestMethod.GET)
+  public ModelAndView listPage(@PathVariable("pageNum") final int pageNum) {
+    final WebClient resultClient = WebClient.fromClient(client, true);
+    final ModelAndView modelAndView = new ModelAndView("researcher/list");
+    modelAndView.addObject("pageNum", pageNum);
+
+    final WebClient countClient = WebClient.fromClient(client, true);
+    final Response countResponse = countClient.path("/researcher/count").get();
+    if (countResponse.getStatus() == 200) {
+      modelAndView.addObject("pageCount", countResponse.readEntity(Integer.class) / RESULTS_PER_PAGE);
+    } else
+    {
+      modelAndView.addObject("pageCount", 0);
+      return modelAndView;
+    }
+
+    final Response resultResponse = resultClient.path("/researcher/{pageNum}/{resultsPerPage}",
+        pageNum,
+        RESULTS_PER_PAGE)
+        .get();
+
+    if (resultResponse.getStatus() == 200) {
+      final List<Researcher> researchers = resultResponse.readEntity(new GenericType<List<Researcher>>() {
       });
 
       modelAndView.addObject("researchers", researchers);
