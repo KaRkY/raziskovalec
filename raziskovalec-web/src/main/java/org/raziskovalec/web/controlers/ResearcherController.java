@@ -23,6 +23,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.raziskovalec.Name;
+import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.domain.Researcher;
 import org.raziskovalec.web.form.ResearcherForm;
 import org.slf4j.Logger;
@@ -78,9 +79,9 @@ public class ResearcherController {
       researcher.setName(Name.valueOf(researcherForm.getName()));
       researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
       researcher.setDateOdBirth(researcherForm.getDateOfBirth());
-      researcher.setEmail(researcherForm.getEmail());
-      researcher.setTelephoneNumber(researcherForm.getTelephonenumber());
-      researcher.setWebsite(researcherForm.getWww());
+      researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
+      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
+      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
 
       final WebClient localClient = WebClient.fromClient(client, true);
       final Response researcherSaveResponse = localClient.path("/researcher").put(researcher);
@@ -146,9 +147,9 @@ public class ResearcherController {
       researcher.setName(Name.valueOf(researcherForm.getName()));
       researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
       researcher.setDateOdBirth(researcherForm.getDateOfBirth());
-      researcher.setEmail(researcherForm.getEmail());
-      researcher.setTelephoneNumber(researcherForm.getTelephonenumber());
-      researcher.setWebsite(researcherForm.getWww());
+      researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
+      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
+      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
 
       final WebClient localClient = WebClient.fromClient(client, true);
       final Response researcherSaveResponse = localClient.path("/researcher/{id}", id).post(researcher);

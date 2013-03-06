@@ -39,9 +39,13 @@ public final class ObjectsUtil {
     return true;
   }
 
+  public static String nullForEmpty(final String str) {
+    if (str != null && !str.isEmpty()) return str;
+    return null;
+  }
+
   public static String toStringOrNull(final Object o) {
     if (o == null) return null;
     else return o.toString();
   }
-
 }
