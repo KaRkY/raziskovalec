@@ -30,28 +30,41 @@
             </tr>
           </thead>
           <tbody>
-            <tr th:each="researcher : ${researchers}">
+            <tr th:each="researcher : ${researchers}" th:attr="data-url=@{'/researcher/presentation/' + ${researcher.id}}">
               <td th:text="${researcher.name}">Rene</td>
               <td th:text="${researcher.lastName}">Svetina</td>
               <td><a th:href="${'mailto:' + researcher.email}" th:text="${researcher.email}">rene.svetina@gmail.com</a></td>
               <td th:text="${researcher.telephoneNumber}">+386 40 663 494</td>
-              <td  th:text="${researcher.website}">raziskovalec.org</td>
-              <td><a th:href="@{'/researcher/delete/' + ${researcher.id}}" class="btn" th:title="#{researcher.delete}"> <i class="icon-minus"></i>
-              </a> <a th:href="@{'/researcher/edit/' + ${researcher.id}}" class="btn" th:title="#{researcher.edit}"> <i class="icon-pencil"></i>
+              <td th:text="${researcher.website}">raziskovalec.org</td>
+              <td><a th:href="@{'/researcher/delete/' + ${researcher.id}}" class="btn"
+                th:title="#{researcher.delete}"> <i class="icon-minus"></i>
+              </a> <a th:href="@{'/researcher/edit/' + ${researcher.id}}" class="btn" th:title="#{researcher.edit}"> <i
+                  class="icon-pencil"></i>
               </a></td>
             </tr>
           </tbody>
         </table>
-        <div class="pagination">
-          <ul>
-            <li th:class="${pageNum eq 0} ? 'disabled'"><a th:href="@{'/researcher/' + ${pageNum - 1}}">Prev</a></li>
-            <li class="active"><a th:href="@{'/researcher/' + ${pageNum}}" th:text="${pageNum}"></a></li>
-            <li th:class="${pageNum eq pageCount} ? 'disabled'"><a th:href="@{'/researcher/' + ${pageNum + 1}}">Next</a></li>
-          </ul>
-        </div>
+
+        <ul class="pager">
+          <li class="previous" th:classappend="${pageNum eq 0} ? 'disabled'"><a
+            th:href="@{'/researcher/' + ${pageNum - 1}}" th:inline="text">&larr; [[#{prev}]]</a></li>
+          <li class="next" th:classappend="${pageNum eq pageCount} ? 'disabled'"><a
+            th:href="@{'/researcher/' + ${pageNum + 1}}" th:inline="text">[[#{next}]] &rarr;</a></li>
+        </ul>
       </div>
     </div>
   </div>
 
+  <script layout:fragment="script" type="text/javascript">
+			(function($) {
+
+				$(document).ready(function() {
+					$("#researchers tr").click(function(event) {
+						window.location.href = $(this).attr("data-url");
+					});
+				});
+
+			}(jQuery));
+		</script>
 </body>
 </html>

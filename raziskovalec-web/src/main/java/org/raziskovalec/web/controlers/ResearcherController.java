@@ -164,6 +164,11 @@ public class ResearcherController {
     return modelAndView;
   }
 
+  @RequestMapping(value = "/presentation/{id}", method = RequestMethod.GET)
+  public String get(@PathVariable("id") final int id) {
+    return "researcher/present";
+  }
+
   @RequestMapping(method = RequestMethod.GET)
   public ModelAndView list() {
     return listPage(0);

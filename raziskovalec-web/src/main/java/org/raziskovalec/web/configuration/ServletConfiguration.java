@@ -87,7 +87,7 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
     messageSource.setBasenames("org.raziskovalec.messages.home.messages", "org.raziskovalec.messages.error.messages",
         "org.raziskovalec.messages.menu", "org.raziskovalec.messages.search.messages",
         "org.raziskovalec.messages.researcher.messages", "org.raziskovalec.messages.validation.messages",
-        "org.raziskovalec.messages.login.messages");
+        "org.raziskovalec.messages.login.messages", "org.raziskovalec.messages.general.messages");
 
     return messageSource;
   }
