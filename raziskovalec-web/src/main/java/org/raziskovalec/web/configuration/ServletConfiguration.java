@@ -86,10 +86,13 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
   public MessageSource messageSource() {
     final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 
-    messageSource.setBasenames("org.raziskovalec.messages.home.messages", "org.raziskovalec.messages.error.messages",
-        "org.raziskovalec.messages.menu", "org.raziskovalec.messages.search.messages",
-        "org.raziskovalec.messages.researcher.messages", "org.raziskovalec.messages.validation.messages",
-        "org.raziskovalec.messages.login.messages", "org.raziskovalec.messages.general.messages");
+    messageSource.setBasenames("org.raziskovalec.messages.home",
+        "org.raziskovalec.messages.error",
+        "org.raziskovalec.messages.general",
+        "org.raziskovalec.messages.search",
+        "org.raziskovalec.messages.researcher",
+        "org.raziskovalec.messages.validation",
+        "org.raziskovalec.messages.login");
 
     return messageSource;
   }

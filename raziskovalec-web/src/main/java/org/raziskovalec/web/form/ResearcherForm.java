@@ -14,12 +14,12 @@ public class ResearcherForm {
   private String    name;
   @NotBlank
   @Size(min = 3)
-  private String    lastname;
+  private String    lastName;
   @NotBlank
   @Email
   private String    email;
-  private String    telephonenumber;
-  private String    www;
+  private String    telephoneNumber;
+  private String    website;
   @DateTimeFormat(style = "S-")
   private LocalDate dateOfBirth;
 
@@ -31,20 +31,20 @@ public class ResearcherForm {
     return email;
   }
 
-  public String getLastname() {
-    return lastname;
+  public String getLastName() {
+    return lastName;
   }
 
   public String getName() {
     return name;
   }
 
-  public String getTelephonenumber() {
-    return telephonenumber;
+  public String getTelephoneNumber() {
+    return telephoneNumber;
   }
 
-  public String getWww() {
-    return www;
+  public String getWebsite() {
+    return website;
   }
 
   public void setDateOfBirth(final LocalDate dateOfBirth) {
@@ -55,19 +55,19 @@ public class ResearcherForm {
     this.email = email;
   }
 
-  public void setLastname(final String lastname) {
-    this.lastname = lastname;
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
   }
 
   public void setName(final String name) {
     this.name = name;
   }
 
-  public void setTelephonenumber(final String telephonenumber) {
-    this.telephonenumber = telephonenumber;
+  public void setTelephoneNumber(final String telephoneNumber) {
+    this.telephoneNumber = telephoneNumber;
   }
 
-  public void setWww(final String www) {
-    this.www = www;
+  public void setWebsite(final String website) {
+    this.website = website;
   }
 }

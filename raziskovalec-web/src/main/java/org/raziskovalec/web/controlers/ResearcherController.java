@@ -77,11 +77,11 @@ public class ResearcherController {
 
       final Researcher researcher = new Researcher(null);
       researcher.setName(Name.valueOf(researcherForm.getName()));
-      researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
+      researcher.setLastName(Name.valueOf(researcherForm.getLastName()));
       researcher.setDateOfBirth(researcherForm.getDateOfBirth());
       researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
-      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
-      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
+      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephoneNumber()));
+      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWebsite()));
 
       final WebClient localClient = WebClient.fromClient(client, true);
       final Response researcherSaveResponse = localClient.path("/researcher").put(researcher);
@@ -116,14 +116,14 @@ public class ResearcherController {
       final Researcher researcher = response.readEntity(Researcher.class);
       final ResearcherForm researcherForm = new ResearcherForm();
       researcherForm.setName(researcher.getName().toString());
-      researcherForm.setLastname(researcher.getLastName().toString());
+      researcherForm.setLastName(researcher.getLastName().toString());
       researcherForm.setEmail(researcher.getEmail());
-      researcherForm.setTelephonenumber(researcher.getTelephoneNumber());
-      researcherForm.setWww(researcher.getWebsite());
+      researcherForm.setTelephoneNumber(researcher.getTelephoneNumber());
+      researcherForm.setWebsite(researcher.getWebsite());
       researcherForm.setDateOfBirth(researcher.getDateOfBirth());
 
       modelAndView.addObject("researcher", researcherForm);
-      modelAndView.setViewName("researcher/edit");
+      modelAndView.setViewName("researcher/add");
     } else {
       modelAndView.setViewName("redirect:/researcher");
     }
@@ -140,16 +140,16 @@ public class ResearcherController {
     final ModelAndView modelAndView = new ModelAndView();
 
     if (bindingResult.hasErrors()) {
-      modelAndView.setViewName("researcher/edit");
+      modelAndView.setViewName("researcher/add");
     } else {
 
       final Researcher researcher = new Researcher(id);
       researcher.setName(Name.valueOf(researcherForm.getName()));
-      researcher.setLastName(Name.valueOf(researcherForm.getLastname()));
+      researcher.setLastName(Name.valueOf(researcherForm.getLastName()));
       researcher.setDateOfBirth(researcherForm.getDateOfBirth());
       researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
-      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephonenumber()));
-      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWww()));
+      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephoneNumber()));
+      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWebsite()));
 
       final WebClient localClient = WebClient.fromClient(client, true);
       final Response researcherSaveResponse = localClient.path("/researcher/{id}", id).post(researcher);
@@ -158,7 +158,7 @@ public class ResearcherController {
         modelAndView.setViewName("redirect:/researcher");
       } else {
         modelAndView.addObject("errors", Lists.newArrayList("error.service"));
-        modelAndView.setViewName("researcher/edit");
+        modelAndView.setViewName("researcher/add");
       }
 
     }
@@ -168,17 +168,17 @@ public class ResearcherController {
   @RequestMapping(value = "/presentation/{id}", method = RequestMethod.GET)
   public ModelAndView get(@PathVariable("id") final int id) {
     final WebClient resultClient = WebClient.fromClient(client, true);
-    Response response = resultClient.path("/researcher/{id}", id).get();
-    ModelAndView modelAndView = new ModelAndView("researcher/present");
+    final Response response = resultClient.path("/researcher/{id}", id).get();
+    final ModelAndView modelAndView = new ModelAndView("researcher/present");
 
     if (response.getStatus() == 200) {
-      Researcher researcher = response.readEntity(Researcher.class);
+      final Researcher researcher = response.readEntity(Researcher.class);
       final ResearcherForm researcherForm = new ResearcherForm();
       researcherForm.setName(researcher.getName().toString());
-      researcherForm.setLastname(researcher.getLastName().toString());
+      researcherForm.setLastName(researcher.getLastName().toString());
       researcherForm.setEmail(researcher.getEmail());
-      researcherForm.setTelephonenumber(researcher.getTelephoneNumber());
-      researcherForm.setWww(researcher.getWebsite());
+      researcherForm.setTelephoneNumber(researcher.getTelephoneNumber());
+      researcherForm.setWebsite(researcher.getWebsite());
       researcherForm.setDateOfBirth(researcher.getDateOfBirth());
       modelAndView.addObject("researcher", researcherForm);
     }

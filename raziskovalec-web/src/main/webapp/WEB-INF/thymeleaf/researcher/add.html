@@ -16,7 +16,7 @@
 
     <form action="" class="form-horizontal" th:object="${researcher}" method="post">
 
-      <h4 th:text="#{researcher.add}"></h4>
+      <h4 th:text="#{researcher.edit.title}"></h4>
       <hr />
 
       <div class="control-group" th:classappend="${#fields.hasErrors('name')} ? 'error'">
@@ -27,11 +27,11 @@
         </div>
       </div>
 
-      <div class="control-group" th:classappend="${#fields.hasErrors('lastname')} ? 'error'">
-        <label class="control-label" for="lastname" th:text="#{researcher.lastname}"></label>
+      <div class="control-group" th:classappend="${#fields.hasErrors('lastName')} ? 'error'">
+        <label class="control-label" for="lastName" th:text="#{researcher.lastName}"></label>
         <div class="controls">
-          <input type="text" th:field="*{lastname}" th:placeholder="#{researcher.lastname}" /> <span class="help-block"
-            th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"></span>
+          <input type="text" th:field="*{lastName}" th:placeholder="#{researcher.lastName}" /> <span class="help-block"
+            th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
         </div>
       </div>
 
@@ -43,27 +43,27 @@
         </div>
       </div>
 
-      <div class="control-group" th:classappend="${#fields.hasErrors('telephonenumber')} ? 'error'">
-        <label class="control-label" for="telephonenumber" th:text="#{researcher.telephonenumber}"></label>
+      <div class="control-group" th:classappend="${#fields.hasErrors('telephoneNumber')} ? 'error'">
+        <label class="control-label" for="telephoneNumber" th:text="#{researcher.telephoneNumber}"></label>
         <div class="controls">
-          <input type="text" th:field="*{telephonenumber}" th:placeholder="#{researcher.telephonenumber}" /> <span
-            class="help-block" th:if="${#fields.hasErrors('telephonenumber')}" th:errors="*{telephonenumber}"></span>
+          <input type="text" th:field="*{telephoneNumber}" th:placeholder="#{researcher.telephoneNumber}" /> <span
+            class="help-block" th:if="${#fields.hasErrors('telephoneNumber')}" th:errors="*{telephoneNumber}"></span>
         </div>
       </div>
 
-      <div class="control-group" th:classappend="${#fields.hasErrors('www')} ? 'error'">
-        <label class="control-label" for="www" th:text="#{researcher.www}"></label>
+      <div class="control-group" th:classappend="${#fields.hasErrors('website')} ? 'error'">
+        <label class="control-label" for="website" th:text="#{researcher.website}"></label>
         <div class="controls">
-          <input type="text" th:field="*{www}" th:placeholder="#{researcher.www}" /> <span class="help-block"
-            th:if="${#fields.hasErrors('www')}" th:errors="*{www}"></span>
+          <input type="text" th:field="*{website}" th:placeholder="#{researcher.website}" /> <span class="help-block"
+            th:if="${#fields.hasErrors('website')}" th:errors="*{website}"></span>
         </div>
       </div>
 
       <div class="control-group" th:classappend="${#fields.hasErrors('dateOfBirth')} ? 'error'">
-        <label class="control-label" for="dateOfBirth" th:text="#{researcher.dateofbirth}"></label>
+        <label class="control-label" for="dateOfBirth" th:text="#{researcher.dateOfBirth}"></label>
         <div class="controls">
-          <input type="text" th:field="*{dateOfBirth}" th:placeholder="#{researcher.dateofbirth}" /> <span
-            class="help-inline" th:text="#{researcher.dateofbirth.format}"></span> <span class="help-block"
+          <input type="text" th:field="*{dateOfBirth}" th:placeholder="#{researcher.dateOfBirth}" /> <span
+            class="help-inline" th:text="#{researcher.dateOfBirth.format}"></span> <span class="help-block"
             th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
         </div>
       </div>
