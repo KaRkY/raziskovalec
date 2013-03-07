@@ -17,7 +17,6 @@ package org.raziskovalec.web.controlers;
 
 import javax.validation.Valid;
 
-import org.apache.cxf.jaxrs.client.WebClient;
 import org.raziskovalec.web.form.ResearcherForm;
 import org.raziskovalec.web.form.mapping.ResearcherFormMapper;
 import org.raziskovalec.web.services.ResearcherService;
@@ -40,14 +39,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/researcher")
 public class ResearcherController {
   private final Logger            logger           = LoggerFactory.getLogger(this.getClass());
-  private final WebClient         client;
   private static final int        RESULTS_PER_PAGE = 10;
   private final ResearcherService researcherService;
 
   @Autowired
-  public ResearcherController(@Qualifier("webClient") final WebClient client,
+  public ResearcherController(
       @Qualifier("researcherService") final ResearcherService researcherService) {
-    this.client = client;
     this.researcherService = researcherService;
   }
 
