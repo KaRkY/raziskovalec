@@ -12,11 +12,11 @@
         <img alt="Face" class="img-rounded img-polaroid" src="http://dummyimages.com/150x200/cccccc/999999" />
       </div>
       <div class="span4 offset1">
-        <p th:inline="text"><b>[[#{researcher.name}]]:</b> [[${researcher.name + ' ' + researcher.lastname}]]</p>
+        <p th:inline="text"><b>[[#{researcher.name}]]:</b> [[${researcher.name + ' ' + researcher.lastName}]]</p>
         <p th:inline="text"><b>[[#{researcher.email}]]:</b> [[${researcher.email}]]</p>
-        <p th:inline="text"><b>[[#{researcher.dateofbirth}]]:</b> [[${dates.formatStyle(researcher.dateOfBirth, 'S-')}]]</p>
-        <p th:inline="text"><b>[[#{researcher.telephonenumber}]]:</b> [[${#objects.nullSafe(researcher.telephonenumber, '')}]]</p>
-        <p th:inline="text"><b>[[#{researcher.www}]]:</b> [[${#objects.nullSafe(researcher.www, '')}]]</p>
+        <p th:inline="text"><b>[[#{researcher.dateOfBirth}]]:</b> [[${dates.formatStyle(researcher.dateOfBirth, 'S-')}]]</p>
+        <p th:inline="text"><b>[[#{researcher.telephoneNumber}]]:</b> [[${#objects.nullSafe(researcher.telephoneNumber, '')}]]</p>
+        <p th:inline="text"><b>[[#{researcher.website}]]:</b> [[${#objects.nullSafe(researcher.website, '')}]]</p>
       </div>
     </div>
   </div>
