@@ -22,10 +22,9 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.raziskovalec.Name;
-import org.raziskovalec.base.ObjectsUtil;
 import org.raziskovalec.domain.Researcher;
 import org.raziskovalec.web.form.ResearcherForm;
+import org.raziskovalec.web.form.mapping.ResearcherFormMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,16 +74,9 @@ public class ResearcherController {
       modelAndView.setViewName("researcher/add");
     } else {
 
-      final Researcher researcher = new Researcher(null);
-      researcher.setName(Name.valueOf(researcherForm.getName()));
-      researcher.setLastName(Name.valueOf(researcherForm.getLastName()));
-      researcher.setDateOfBirth(researcherForm.getDateOfBirth());
-      researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
-      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephoneNumber()));
-      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWebsite()));
-
       final WebClient localClient = WebClient.fromClient(client, true);
-      final Response researcherSaveResponse = localClient.path("/researcher").put(researcher);
+      final Response researcherSaveResponse = localClient.path("/researcher")
+          .put(ResearcherFormMapper.mapToResearcher(researcherForm, null));
 
       if (researcherSaveResponse.getStatus() == 200) {
         modelAndView.setViewName("redirect:/researcher");
@@ -114,15 +106,8 @@ public class ResearcherController {
 
     if (response.getStatus() == 200) {
       final Researcher researcher = response.readEntity(Researcher.class);
-      final ResearcherForm researcherForm = new ResearcherForm();
-      researcherForm.setName(researcher.getName().toString());
-      researcherForm.setLastName(researcher.getLastName().toString());
-      researcherForm.setEmail(researcher.getEmail());
-      researcherForm.setTelephoneNumber(researcher.getTelephoneNumber());
-      researcherForm.setWebsite(researcher.getWebsite());
-      researcherForm.setDateOfBirth(researcher.getDateOfBirth());
 
-      modelAndView.addObject("researcher", researcherForm);
+      modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcher));
       modelAndView.setViewName("researcher/add");
     } else {
       modelAndView.setViewName("redirect:/researcher");
@@ -143,16 +128,9 @@ public class ResearcherController {
       modelAndView.setViewName("researcher/add");
     } else {
 
-      final Researcher researcher = new Researcher(id);
-      researcher.setName(Name.valueOf(researcherForm.getName()));
-      researcher.setLastName(Name.valueOf(researcherForm.getLastName()));
-      researcher.setDateOfBirth(researcherForm.getDateOfBirth());
-      researcher.setEmail(ObjectsUtil.nullForEmpty(researcherForm.getEmail()));
-      researcher.setTelephoneNumber(ObjectsUtil.nullForEmpty(researcherForm.getTelephoneNumber()));
-      researcher.setWebsite(ObjectsUtil.nullForEmpty(researcherForm.getWebsite()));
-
       final WebClient localClient = WebClient.fromClient(client, true);
-      final Response researcherSaveResponse = localClient.path("/researcher/{id}", id).post(researcher);
+      final Response researcherSaveResponse = localClient.path("/researcher/{id}", id)
+          .post(ResearcherFormMapper.mapToResearcher(researcherForm, id));
 
       if (researcherSaveResponse.getStatus() == 200) {
         modelAndView.setViewName("redirect:/researcher");
@@ -173,14 +151,8 @@ public class ResearcherController {
 
     if (response.getStatus() == 200) {
       final Researcher researcher = response.readEntity(Researcher.class);
-      final ResearcherForm researcherForm = new ResearcherForm();
-      researcherForm.setName(researcher.getName().toString());
-      researcherForm.setLastName(researcher.getLastName().toString());
-      researcherForm.setEmail(researcher.getEmail());
-      researcherForm.setTelephoneNumber(researcher.getTelephoneNumber());
-      researcherForm.setWebsite(researcher.getWebsite());
-      researcherForm.setDateOfBirth(researcher.getDateOfBirth());
-      modelAndView.addObject("researcher", researcherForm);
+
+      modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcher));
     }
 
     return modelAndView;
