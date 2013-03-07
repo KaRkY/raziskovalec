@@ -4,6 +4,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import org.raziskovalec.web.services.ResearcherService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,6 +16,11 @@ public class RootConfiguration {
   @Bean
   public JacksonJsonProvider jsonProvider() {
     return new JacksonJsonProvider();
+  }
+
+  @Bean
+  public ResearcherService researcherService() {
+    return new ResearcherService(webClient());
   }
 
   @Bean

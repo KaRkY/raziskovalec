@@ -15,16 +15,12 @@
  */
 package org.raziskovalec.web.controlers;
 
-import java.util.List;
-
 import javax.validation.Valid;
-import javax.ws.rs.core.GenericType;
-import javax.ws.rs.core.Response;
 
 import org.apache.cxf.jaxrs.client.WebClient;
-import org.raziskovalec.domain.Researcher;
 import org.raziskovalec.web.form.ResearcherForm;
 import org.raziskovalec.web.form.mapping.ResearcherFormMapper;
+import org.raziskovalec.web.services.ResearcherService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,21 +33,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.common.collect.Lists;
-
 /**
  * @author Rene Svetina
  */
 @Controller
 @RequestMapping("/researcher")
 public class ResearcherController {
-  private final Logger     logger           = LoggerFactory.getLogger(this.getClass());
-  private final WebClient  client;
-  private static final int RESULTS_PER_PAGE = 10;
+  private final Logger            logger           = LoggerFactory.getLogger(this.getClass());
+  private final WebClient         client;
+  private static final int        RESULTS_PER_PAGE = 10;
+  private final ResearcherService researcherService;
 
   @Autowired
-  public ResearcherController(@Qualifier("webClient") final WebClient client) {
+  public ResearcherController(@Qualifier("webClient") final WebClient client,
+      @Qualifier("researcherService") final ResearcherService researcherService) {
     this.client = client;
+    this.researcherService = researcherService;
   }
 
   @RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -73,45 +70,24 @@ public class ResearcherController {
     if (bindingResult.hasErrors()) {
       modelAndView.setViewName("researcher/add");
     } else {
-
-      final WebClient localClient = WebClient.fromClient(client, true);
-      final Response researcherSaveResponse = localClient.path("/researcher")
-          .put(ResearcherFormMapper.mapToResearcher(researcherForm, null));
-
-      if (researcherSaveResponse.getStatus() == 200) {
-        modelAndView.setViewName("redirect:/researcher");
-      } else {
-        modelAndView.addObject("errors", Lists.newArrayList("error.service"));
-        modelAndView.setViewName("researcher/add");
-      }
-
+      researcherService.save(ResearcherFormMapper.mapToResearcher(researcherForm, null));
+      modelAndView.setViewName("redirect:/researcher");
     }
     return modelAndView;
   }
 
   @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
   public String delete(@PathVariable("id") final Integer id) {
-    final WebClient localClient = WebClient.fromClient(client, true);
-    final Response response = localClient.path("/researcher/{id}", id).delete();
+    researcherService.delete(id);
 
-    if (response.getStatus() == 200) return "redirect:/researcher";
-    else return "redirect:/researcher";
+    return "redirect:/researcher";
   }
 
   @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
   public ModelAndView edit(@PathVariable("id") final Integer id) {
-    final ModelAndView modelAndView = new ModelAndView();
-    final WebClient localClient = WebClient.fromClient(client, true);
-    final Response response = localClient.path("/researcher/{id}", id).get();
+    final ModelAndView modelAndView = new ModelAndView("researcher/add");
 
-    if (response.getStatus() == 200) {
-      final Researcher researcher = response.readEntity(Researcher.class);
-
-      modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcher));
-      modelAndView.setViewName("researcher/add");
-    } else {
-      modelAndView.setViewName("redirect:/researcher");
-    }
+    modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcherService.get(id)));
 
     return modelAndView;
   }
@@ -128,16 +104,9 @@ public class ResearcherController {
       modelAndView.setViewName("researcher/add");
     } else {
 
-      final WebClient localClient = WebClient.fromClient(client, true);
-      final Response researcherSaveResponse = localClient.path("/researcher/{id}", id)
-          .post(ResearcherFormMapper.mapToResearcher(researcherForm, id));
+      researcherService.edit(ResearcherFormMapper.mapToResearcher(researcherForm, id));
 
-      if (researcherSaveResponse.getStatus() == 200) {
-        modelAndView.setViewName("redirect:/researcher");
-      } else {
-        modelAndView.addObject("errors", Lists.newArrayList("error.service"));
-        modelAndView.setViewName("researcher/add");
-      }
+      modelAndView.setViewName("redirect:/researcher");
 
     }
     return modelAndView;
@@ -145,15 +114,9 @@ public class ResearcherController {
 
   @RequestMapping(value = "/presentation/{id}", method = RequestMethod.GET)
   public ModelAndView get(@PathVariable("id") final int id) {
-    final WebClient resultClient = WebClient.fromClient(client, true);
-    final Response response = resultClient.path("/researcher/{id}", id).get();
     final ModelAndView modelAndView = new ModelAndView("researcher/present");
 
-    if (response.getStatus() == 200) {
-      final Researcher researcher = response.readEntity(Researcher.class);
-
-      modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcher));
-    }
+    modelAndView.addObject("researcher", ResearcherFormMapper.mapToForm(researcherService.get(id)));
 
     return modelAndView;
   }
@@ -165,31 +128,11 @@ public class ResearcherController {
 
   @RequestMapping(value = "/{pageNum}", method = RequestMethod.GET)
   public ModelAndView listPage(@PathVariable("pageNum") final int pageNum) {
-    final WebClient resultClient = WebClient.fromClient(client, true);
     final ModelAndView modelAndView = new ModelAndView("researcher/list");
+
     modelAndView.addObject("pageNum", pageNum);
-
-    final WebClient countClient = WebClient.fromClient(client, true);
-    final Response countResponse = countClient.path("/researcher/count").get();
-    if (countResponse.getStatus() == 200) {
-      modelAndView.addObject("pageCount", countResponse.readEntity(Integer.class) / RESULTS_PER_PAGE);
-    } else
-    {
-      modelAndView.addObject("pageCount", 0);
-      return modelAndView;
-    }
-
-    final Response resultResponse = resultClient.path("/researcher/{pageNum}/{resultsPerPage}",
-        pageNum,
-        RESULTS_PER_PAGE)
-        .get();
-
-    if (resultResponse.getStatus() == 200) {
-      final List<Researcher> researchers = resultResponse.readEntity(new GenericType<List<Researcher>>() {
-      });
-
-      modelAndView.addObject("researchers", researchers);
-    }
+    modelAndView.addObject("pageCount", researcherService.count() / RESULTS_PER_PAGE);
+    modelAndView.addObject("researchers", researcherService.listPaged(pageNum, RESULTS_PER_PAGE));
 
     return modelAndView;
   }
