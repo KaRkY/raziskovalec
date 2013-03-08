@@ -1,13 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-  layout:decorator="/templates/template"
-  th:with="title=#{organization}">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+  layout:decorator="/templates/template" th:with="title=#{organization}">
 <head>
 <title th:inline="text">[[#{organization}]] | Raziskovalec.org</title>
 </head>
 <body>
   <div layout:fragment="sidebar"></div>
-  <div layout:fragment="content" class="span12"></div>
+
+  <div layout:fragment="content" class="span12">
+    <div class="row">
+      <div class="span10 offset1">
+        <a th:href="@{/organization/add}" class="btn btn-primary" th:inline="text"> <i class="icon-plus"></i>
+          [[#{researcher.add}]]
+        </a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="span10 offset1">
+        <table id="researchers" class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th th:text="#{researcher.name}"></th>
+              <th th:text="#{researcher.lastName}"></th>
+              <th th:text="#{researcher.email}"></th>
+              <th th:text="#{researcher.telephoneNumber}"></th>
+              <th th:text="#{researcher.website}"></th>
+              <th th:text="#{researcher.actions}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="researcher : ${researchers}"
+              th:attr="data-url=@{'/researcher/presentation/' + ${researcher.id}}">
+              <td th:text="${researcher.name}">Rene</td>
+              <td th:text="${researcher.lastName}">Svetina</td>
+              <td><a th:href="${'mailto:' + researcher.email}" th:text="${researcher.email}">rene.svetina@gmail.com</a></td>
+              <td th:text="${researcher.telephoneNumber}">+386 40 663 494</td>
+              <td th:text="${researcher.website}">raziskovalec.org</td>
+              <td><a th:href="@{'/researcher/delete/' + ${researcher.id}}" class="btn"
+                th:title="#{researcher.delete}"> <i class="icon-minus"></i>
+              </a> <a th:href="@{'/researcher/edit/' + ${researcher.id}}" class="btn" th:title="#{researcher.edit}"> <i
+                  class="icon-pencil"></i>
+              </a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul class="pager">
+          <li class="previous" th:classappend="${pageNum eq 0} ? 'disabled'"><a
+            th:href="@{'/researcher/' + ${pageNum - 1}}" th:inline="text">&larr; [[#{prev}]]</a></li>
+          <li class="next" th:classappend="${pageNum eq pageCount} ? 'disabled'"><a
+            th:href="@{'/researcher/' + ${pageNum + 1}}" th:inline="text">[[#{next}]] &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script layout:fragment="script" type="text/javascript">
+			(function($) {
+
+				$(document).ready(function() {
+					$("#researchers tr").click(function(event) {
+						window.location.href = $(this).attr("data-url");
+					});
+				});
+
+			}(jQuery));
+		</script>
 </body>
 </html>

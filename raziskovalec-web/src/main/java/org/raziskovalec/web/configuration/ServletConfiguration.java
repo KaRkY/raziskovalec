@@ -92,7 +92,8 @@ public class ServletConfiguration extends WebMvcConfigurerAdapter {
         "org.raziskovalec.messages.search",
         "org.raziskovalec.messages.researcher",
         "org.raziskovalec.messages.validation",
-        "org.raziskovalec.messages.login");
+        "org.raziskovalec.messages.login",
+        "org.raziskovalec.messages.organization");
 
     return messageSource;
   }
