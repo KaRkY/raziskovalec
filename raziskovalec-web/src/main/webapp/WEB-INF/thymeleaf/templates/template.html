@@ -3,102 +3,119 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" class="no-js">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	class="no-js">
 <!--<![endif]-->
 <head>
 <meta charset="utf-8" />
 
 <meta name="description" content="Page for researchers" />
 <meta name="author" content="Rene Svetina" />
-<meta name="viewport" content="width=device-width" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}" />
-
-<link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/bootstrap/css/bootstrap-responsive.min.css}" />
+<link rel="stylesheet"
+	th:href="@{/font-awesome/css/font-awesome.min.css}" />
 <link rel="stylesheet" th:href="@{/resources/css/main.css}" />
 
-<script th:src="@{/modernizr/modernizr.min.js}"></script>
+<script type="text/javascript" th:src="@{/modernizr/modernizr.min.js}"></script>
+<script type="text/javascript" th:src="@{/resources/js/respond.min.js}"></script>
 </head>
 <body>
-  <!--[if lt IE 7]>
+	<!--[if lt IE 7]>
             <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
         <![endif]-->
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span>
-          <span class="icon-bar"></span> <span class="icon-bar"></span>
-        </a> <a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
-        <div class="nav-collapse collapse">
-          <ul class="nav">
-            <li th:class="${title} eq #{home} ? 'active'"><a href="#" th:href="@{/}" th:inline="text"> <i
-                class="icon-home"></i> [[#{home}]]
-            </a></li>
-            <li th:class="${title} eq #{search} ? 'active'"><a href="#" th:href="@{/search}" th:inline="text">
-                <i class="icon-search"></i> [[#{search}]]
-            </a></li>
-            <li th:class="${title} eq #{researcher} ? 'active'"><a href="#" th:href="@{/researcher}"
-              th:inline="text"> <i class="icon-user"></i> [[#{researcher}]]
-            </a></li>
-            <li th:class="${title} eq #{organization} ? 'active'"><a href="#" th:href="@{/organization}"
-              th:inline="text"> <i class="icon-cogs"></i> [[#{organization}]]
-            </a></li>
-            <li th:class="${title} eq #{group} ? 'active'"><a href="#" th:href="@{/group}" th:inline="text"> <i
-                class="icon-group"></i> [[#{group}]]
-            </a></li>
-          </ul>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<button class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="brand" href="http://raziskovalec.org">Raziskovalec.org</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li th:class="${title} eq #{home} ? 'active'"><a href="#"
+							th:href="@{/}" th:inline="text"> <i class="icon-home"></i>
+								[[#{home}]]
+						</a></li>
+						<li th:class="${title} eq #{search} ? 'active'"><a href="#"
+							th:href="@{/search}" th:inline="text"> <i class="icon-search"></i>
+								[[#{search}]]
+						</a></li>
+						<li th:class="${title} eq #{researcher} ? 'active'"><a
+							href="#" th:href="@{/researcher}" th:inline="text"> <i
+								class="icon-user"></i> [[#{researcher}]]
+						</a></li>
+						<li th:class="${title} eq #{organization} ? 'active'"><a
+							href="#" th:href="@{/organization}" th:inline="text"> <i
+								class="icon-cogs"></i> [[#{organization}]]
+						</a></li>
+						<li th:class="${title} eq #{group} ? 'active'"><a href="#"
+							th:href="@{/group}" th:inline="text"> <i class="icon-group"></i>
+								[[#{group}]]
+						</a></li>
+					</ul>
 
-          <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" th:inline="text">[[#{welcome}]],
-                [[${userName}]] <b class="caret"></b>
-            </a>
-              <ul class="dropdown-menu" th:if="${loggedIn}">
-                <li><a href="#"><i class="icon-cog"></i> Preferences</a></li>
-                <li class="divider"></li>
-                <li><a href="#" th:href="@{/logout}" th:text="#{login.logout}">Login</a></li>
-              </ul>
-              <ul class="dropdown-menu" th:unless="${loggedIn}">
-                <li><a href="#" th:href="@{/login}" th:text="#{login}">Login</a></li>
-              </ul></li>
-          </ul>
-        </div>
-        <!--/.nav-collapse -->
-      </div>
-    </div>
-  </div>
+					<ul class="nav pull-right">
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" th:inline="text">[[#{welcome}]],
+								[[${userName}]] <b class="caret"></b>
+						</a>
+							<ul class="dropdown-menu" th:if="${loggedIn}">
+								<li><a href="#"><i class="icon-cog"></i> Preferences</a></li>
+								<li class="divider"></li>
+								<li><a href="#" th:href="@{/logout}"
+									th:text="#{login.logout}">Login</a></li>
+							</ul>
+							<ul class="dropdown-menu" th:unless="${loggedIn}">
+								<li><a href="#" th:href="@{/login}" th:text="#{login}">Login</a></li>
+							</ul></li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
+			</div>
+		</div>
+	</div>
 
-  <div class="container">
+	<div class="container">
 
-    <div class="row">
-      <div layout:fragment="sidebar"></div>
-      <div layout:fragment="content"></div>
-    </div>
+		<div class="row">
+			<div layout:fragment="sidebar"></div>
+			<div layout:fragment="content"></div>
+		</div>
 
-    <div class="row">
-      <hr />
+		<div class="row">
+			<hr />
 
-      <footer>
-        <div class="span3">
-          <p>&copy; Raziskovalec.org 2012</p>
-        </div>
-        <div class="span2 offset7">
-          <div class="btn-group pull-right">
-            <a class="btn" href="?locale=en" th:classappend="${#strings.equals(locale, 'en')} ? 'btn-primary'">English</a>
-            <a class="btn" href="?locale=sl" th:classappend="${#strings.equals(locale, 'sl')} ? 'btn-primary'">Slovenščina</a>
-          </div>
-        </div>
-      </footer>
-    </div>
+			<footer>
+				<div class="span3">
+					<p>&copy; Raziskovalec.org 2012</p>
+				</div>
+				<div class="span2 offset7">
+					<div class="btn-group pull-right">
+						<a class="btn" href="?locale=en"
+							th:classappend="${#strings.equals(locale, 'en')} ? 'btn-primary'">English</a>
+						<a class="btn" href="?locale=sl"
+							th:classappend="${#strings.equals(locale, 'sl')} ? 'btn-primary'">Slovenščina</a>
+					</div>
+				</div>
+			</footer>
+		</div>
 
-  </div>
-  <!-- /container -->
+	</div>
+	<!-- /container -->
 
-  <script th:src="@{/jquery/jquery.min.js}"></script>
-  <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
-  <script th:src="@{/resources/js/main.js}"></script>
-  <script layout:fragment="script"></script>
+	<script type="text/javascript" th:src="@{/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/resources/js/main.js}"></script>
+	<script type="text/javascript" layout:fragment="script"></script>
 </body>
 </html>
