@@ -40,7 +40,7 @@ public class ResearcherService {
   }
 
   public void edit(final Researcher researcher) {
-    final Response response = getCopy().path("/researcher/{id}", researcher.getId()).post(researcher);
+    final Response response = getCopy().path("/researcher").post(researcher);
 
     if (!isResponseOK(response)) {
       logger.error("Response error: {}", prittyPrintResponseStatus(response.getStatusInfo()));
@@ -63,7 +63,8 @@ public class ResearcherService {
         resultsPerPage)
         .get();
 
-    if (isResponseOK(response)) return response.readEntity(new GenericType<List<Researcher>>() {});
+    if (isResponseOK(response)) return response.readEntity(new GenericType<List<Researcher>>() {
+    });
 
     logger.error("Response error: {}", prittyPrintResponseStatus(response.getStatusInfo()));
     throw new RuntimeException("Error in response");

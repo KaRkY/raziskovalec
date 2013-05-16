@@ -20,6 +20,11 @@ import static com.google.common.base.Objects.toStringHelper;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.joda.time.LocalDate;
@@ -27,8 +32,11 @@ import org.raziskovalec.Name;
 
 import com.google.common.base.Objects;
 
+@Entity
 public class Researcher implements Serializable {
   private static final long serialVersionUID = 5018104292542842256L;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private final Integer     id;
   private Name              name;
   private Name              lastName;
@@ -36,6 +44,10 @@ public class Researcher implements Serializable {
   private LocalDate         dateOfBirth;
   private String            telephoneNumber;
   private String            website;
+
+  protected Researcher() {
+    id = null;
+  }
 
   @JsonCreator
   public Researcher(@JsonProperty("id") final Integer id) {

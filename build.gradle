@@ -10,7 +10,7 @@ allprojects{
   apply plugin: 'eclipse-wtp'
 
   ext{
-    springVersion = "3.2.1.RELEASE"
+    springVersion = "3.2.2.RELEASE"
     slf4jVersion = "1.7.2"
   }
 
@@ -118,7 +118,10 @@ project('raziskovalec-services'){
     compile (group: 'org.springframework', name: 'spring-core', version: springVersion)
     compile (group: 'org.springframework', name: 'spring-context', version: springVersion)
     compile (group: 'org.springframework', name: 'spring-web', version: springVersion)
-    compile (group: 'org.springframework', name: 'spring-jdbc', version: springVersion)
+    compile (group: 'org.springframework', name: 'spring-orm', version: springVersion)
+    
+    compile (group: 'org.hibernate', name: 'hibernate-core', version: '4.2.1.Final')
+    compile (group: 'org.jadira.usertype', name:'usertype.core', version: '3.1.0.CR6')
 
     compile (group: 'org.apache.cxf', name: 'cxf-rt-frontend-jaxrs', version: '2.7.3')
     compile (group: 'org.apache.cxf', name: 'cxf-rt-rs-extension-providers', version: '2.7.3')
@@ -144,6 +147,7 @@ project('raziskovalec-domain'){
 
   dependencies{
     compile (group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.12')
+    compile (group: 'org.hibernate', name: 'hibernate-core', version: '4.2.1.Final')
 
     compile project(':raziskovalec-util')
   }

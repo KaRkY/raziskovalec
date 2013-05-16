@@ -8,18 +8,24 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ResearcherRepository {
 
   @Transactional
-  public abstract void insert(Researcher researcher);
+  void insert(Researcher researcher);
 
-  int count();
+  @Transactional(readOnly = true)
+  long count();
 
+  @Transactional
   void delete(int id);
 
-  boolean edit(int id, Researcher researcher);
+  @Transactional
+  boolean edit(Researcher researcher);
 
+  @Transactional(readOnly = true)
   Researcher get(int id);
 
+  @Transactional(readOnly = true)
   List<Researcher> listAll();
 
+  @Transactional(readOnly = true)
   List<Researcher> listPaged(int pageNum, int resultsPerPage);
 
 }

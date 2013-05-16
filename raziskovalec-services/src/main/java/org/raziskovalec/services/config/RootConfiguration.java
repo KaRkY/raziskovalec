@@ -2,12 +2,14 @@ package org.raziskovalec.services.config;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import org.hibernate.dialect.HSQLDialect;
 import org.hsqldb.jdbcDriver;
-import org.raziskovalec.services.repository.HSQLDBResearcherRepository;
+import org.raziskovalec.services.repository.HibernateResearcherRepository;
 import org.raziskovalec.services.repository.ResearcherRepository;
 import org.raziskovalec.services.rest.ResearcherServices;
 import org.slf4j.Logger;
@@ -18,7 +20,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -33,6 +36,26 @@ public class RootConfiguration {
 
   @Autowired
   private Environment  environment;
+
+  @Bean
+  public LocalSessionFactoryBean sessionFactory() {
+    LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+    sessionFactoryBean.setDataSource(dataSource());
+    sessionFactoryBean.setPackagesToScan("org.raziskovalec.domain");
+    sessionFactoryBean.setHibernateProperties(hibernateProperties());
+
+    return sessionFactoryBean;
+  }
+
+  private Properties hibernateProperties() {
+    Properties properties = new Properties();
+    properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+    properties.setProperty("hibernate.dialect", HSQLDialect.class.getName());
+    properties.setProperty("jadira.usertype.autoRegisterUserTypes", "true");
+    properties.setProperty("jadira.usertype.databaseZone", "jvm");
+    properties.setProperty("jadira.usertype.javaZone", "jvm");
+    return properties;
+  }
 
   @Bean(destroyMethod = "close")
   public DataSource dataSource() {
@@ -60,7 +83,7 @@ public class RootConfiguration {
 
   @Bean
   public ResearcherRepository researcherRepository() {
-    return new HSQLDBResearcherRepository(dataSource());
+    return new HibernateResearcherRepository(sessionFactory().getObject());
   }
 
   @Bean
@@ -70,6 +93,8 @@ public class RootConfiguration {
 
   @Bean
   public PlatformTransactionManager transactionManager() {
-    return new DataSourceTransactionManager(dataSource());
+    HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+    transactionManager.setSessionFactory(sessionFactory().getObject());
+    return transactionManager;
   }
 }
